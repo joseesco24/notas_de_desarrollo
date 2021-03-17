@@ -40,7 +40,7 @@ Para realizar la instalación de Docker en MacOS o en Windows basta con descarga
 
 <br>
 
-# Instalación de Docker en Linux
+# Instalación de Docker en Ubuntu
 
 Esta pequeña guía de instalación está basada en la [guía oficial](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker Hub para instalar Docker engine en **Ubuntu** mediante el sistema de repositorios, cabe aclarar que en Linux no hace falta instalar Docker desktop como en Mac o en Windows, con solo Docker engine es suficiente y además la manipulación del Docker daemon en Linux se hace solo por consola, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de Ubuntu:
 
@@ -51,15 +51,13 @@ Esta pequeña guía de instalación está basada en la [guía oficial](https://d
 
 <br>
 
-## Comandos de Instalación de Docker
-
-Antes de iniciar con la instalación es necesario eliminar cualquier instalación previa de Docker que se haya hecho en la máquina anfitrión, si no han habido instalaciones previas de Docker en la máquina anfitrión se puede omitir el primer comando.
+## Comandos de instalación de Docker
 
 ```shell
 sudo apt-get remove -y docker docker-engine docker.io containerd runc
 ```
 
-Luego de haber desinstalado las versiones viejas de Docker se configuran los repositorios necesarios para instalar Docker engine.
+Antes de iniciar con la instalación es necesario eliminar cualquier instalación previa de Docker que se haya hecho en la máquina anfitrión, si no han habido instalaciones previas de Docker en la máquina anfitrión se puede omitir el primer comando.
 
 ```shell
 sudo apt-get update
@@ -67,24 +65,26 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
-Tras configurar los repositorios necesarios lo siguiente es agregar la llave GPG oficial de Docker.
+Luego de haber desinstalado las versiones viejas de Docker se configuran los repositorios necesarios para instalar Docker engine.
 
 ```shell
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 ```
 
-Una vez configurados los repositorios necesarios y la llave GPG oficial de Docker lo siguiente es configurar el repositorio estable desde el cual se instalará Docker engine.
+Tras configurar los repositorios necesarios lo siguiente es agregar la llave GPG oficial de Docker.
 
 ```shell
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg]https://download.docker.com/linux/ubuntu(lsb_release -cs) stable" | sudo tee/etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
-Por último se utilizan los comandos anteriores para actualizar el índice de paquetes de apt y luego instalar Docker engine.
+Una vez configurados los repositorios necesarios y la llave GPG oficial de Docker lo siguiente es configurar el repositorio estable desde el cual se instalará Docker engine.
 
 ```shell
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 ```
+
+Por último se utilizan los comandos anteriores para actualizar el índice de paquetes de apt y luego instalar Docker engine.
 
 <br>
 
@@ -125,7 +125,7 @@ newgrp docker
 
 <br>
 
-# Comandos Básicos
+# Comandos básicos de administración en Docker
 
 ```shell
 man docker
