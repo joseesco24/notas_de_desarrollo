@@ -31,7 +31,7 @@ margin: 4px 0px 4px 0px;
 </style>
 <h1>Apreciaciones importantes sobre Docker</h1>
 <p>
-<img src="imagenes/Docker_layers_arch.png" />
+<img src="images/Docker_layers_arch.png" />
 <em>Imagen 1. Arquitectura de capas de Docker vs arquitectura de VM.</em>
 </p>
 <br>
@@ -93,7 +93,7 @@ OS del anfitrión, a no ser que se configuren estas funcionalidades.
 </li>
 </ul>
 <p>
-<img src="imagenes/Docker_engine_arch.png" />
+<img src="images/Docker_engine_arch.png" />
 <em>Imagen 2. Arquitectura y recursos de Docker.</em>
 </p>
 <br>
