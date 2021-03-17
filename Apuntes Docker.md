@@ -155,145 +155,113 @@ Esta pequeña guía de instalación está basada en la guía ofrecida en Docker 
 <p>
 Antes de iniciar con la instalación es necesario eliminar cualquier instalación previa de Docker que se haya hecho en la máquina anfitriona, si no han habido instalaciones previas de Docker en la máquina anfitriona se puede omitir el primer comando.
 </p>
-<p>
-<code>
+<p><code>
 sudo apt-get remove -y docker docker-engine docker.io containerd runc
-</code>
-</p>
+</code></p>
 <p>
 Luego de haber desinstalado las versiones viejas de Docker se configuran los repositorios necesarios para instalar Docker engine.
 </p>
-<p>
-<code>
+<p><code>
 sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io
-</code>
-</p>
+</code></p>
 <p>
 Tras configurar los repositorios necesarios lo siguiente es agregar la llave GPG oficial de Docker.
 </p>
-<p>
-<code>
+<p><code>
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-</code>
-</p>
+</code></p>
 <p>
 Una vez configurados los repositorios necesarios y la llave GPG oficial de Docker lo siguiente es configurar el repositorio estable desde el cual se instalará Docker engine.
 </p>
-<p>
-<code>
+<p><code>
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-</code>
-</p>
+</code></p>
 
 <p>
 Por último se utilizan los comandos anteriores para actualizar el índice de paquetes de apt y luego instalar Docker engine.
 </p>
-<p>
-<code>
+<p><code>
 sudo apt-get update
 
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-</code>
-</p>
+</code></p>
 <br>
 <h2>Comprobación de la instalación</h2>
 <hr />
 <p>
 Una forma sencilla de comprobar el funcionamiento de Docker engine es utilizando la imagen de Hello-World, para hacer esto se ejecuta el siguiente comando.
 </p>
-<p>
-<code>
+<p><code>
 docker run hello-world
-</code>
-</p>
+</code></p>
 <p>
 Otras alternativas más simples para comprobar el funcionamiento de la instalación es tratando de visualizar la información del Docker engine o su versión para esto se puede ejecutar cualquiera de los siguientes comandos.
 </p>
-<p>
-<code>
+<p><code>
 docker --version
-</code>
-</p>
-<p>
-<code>
+</code></p>
+<p><code>
 docker info
-</code>
-</p>
+</code></p>
 <br>
 <h2>En caso de errores</h2>
 <hr />
 <p>
 Un error comun al instalar Docker en Ubuntu es que al realizar la instalacion solo el usuario root posee permisos para ejecutar acciones manipulando el Docker daemon, por lo tanto si tratamos de usar alguno de los comandos de Docker con nuestro usuario obtendremos un mensaje de error de denegación de permisos, como el presente a continuación.
 </p>
-<p>
-<code>
+<p><code>
 docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create: dial unix /var/run/docker.sock: connect: permission denied.
 See 'docker run --help'.
-</code>
-</p>
+</code></p>
 <p>
 Para solucionar este problema simplemente debemos indicar a Docker que nuestro usuario también va a interactuar con el Docker daemon, esto lo podemos realizar fácilmente con los siguientes comandos.
 </p>
-<p>
-<code>
+<p><code>
 sudo usermod -aG docker $USER
 newgrp docker
-</code>
-</p>
+</code></p>
 <br>
 <h1>Comandos Básicos</h1>
-<p>
-<code>
+<p><code>
 man docker
-</code>
-</p>
+</code></p>
 <p>
 Muestra el manual de Docker.
 </p>
 <br>
-<p>
-<code>
+<p><code>
 docker [comando] --help
-</code>
-</p>
+</code></p>
 <p>
 Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
 </p>
 <br>
-<p>
-<code>
+<p><code>
 docker --version
-</code>
-</p>
+</code></p>
 <p>
 Permite ver la versión de Docker instalada actualmente en la máquina anfitriona.
 </p>
 <br>
-<p>
-<code>
+<p><code>
 docker info
-</code>
-</p>
+</code></p>
 <p>
 Muestra la información del Docker Daemon, como el número de imágenes descargadas, el estado de Swarm o incluso la versión del kernel, entre otros.
 </p>
 <br>
-<p>
-<code>
+<p><code>
 docker stats
-</code>
-</p>
+</code></p>
 <p>
 Muestra los recursos que está utilizando cada contenedor y docker en general.
 </p>
 <br>
-<p>
-<code>
+<p><code>
 docker system prune
-</code>
-</p>
+</code></p>
 <p>
 Elimina todos los volúmenes, contenedores y redes que no se estén usando.
 </p>
@@ -305,11 +273,9 @@ La administración de contenedores es una actividad clave al utilizar Docker ya 
 <br>
 <h2>Ejecutar un contenedor</h2>
 <hr />
-<p>
-<code>
+<p><code>
 docker run [parámetros] [imagen] [comando]
-</code>
-</p>
+</code></p>
 <p>
 Ejecuta un contenedor usando la imagen especificada y ejecutando el comando especificado como proceso principal en caso de ser dado un comando luego de la imagen, es importante entender que si la imagen no tiene definido un proceso principal ni en la imagen ni por comando el contenedor se ejecutará y apagará casi al instante ya que un contenedor se detiene cuando su proceso principal finaliza y el proceso principal por defecto es solo abrir un archivo, algunos de los parámetros más útiles al ejecutar un contenedor con <strong>docker run</strong> son:
 </p>
@@ -350,22 +316,18 @@ Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se lim
 <br>
 <h2>Cambiar el nombre de un contenedor</h2>
 <hr />
-<p>
-<code>
+<p><code>
 docker rename  [id o nombre del contenedor] [nuevo nombre]
-</code>
-</p>
+</code></p>
 <p>
 Asigna un nuevo nombre al contenedor especificado.
 </p>
 <br>
 <h2>Revisar el estado de un contenedor</h2>
 <hr />
-<p>
-<code>
+<p><code>
 docker ps [parámetros]
-</code>
-</p>
+</code></p>
 <p>
 Muestra todos los contenedores activos en la máquina anfitriona, junto con datos como su id, nombre, nombre de imagen, estatus, puertos expuestos, tiempo de creación y comando del proceso principal, algunos de los parámetros más útiles al visualizar datos de los contenedores con <strong>docker ps</strong> son:
 </p>
@@ -380,11 +342,9 @@ Muestra los mismos datos que <strong>docker ps</strong> pero muestra solo los da
 </li>
 </ul>
 <br>
-<p>
-<code>
+<p><code>
 docker inspect [id o nombre del contenedor]
-</code>
-</p>
+</code></p>
 <p>
 Muestra en un archivo JSON toda la información de la configuración de un contenedor en concreto.
 </p>
@@ -393,30 +353,24 @@ Muestra en un archivo JSON toda la información de la configuración de un conte
 Mover archivos y directorio entre el anfitrión y un contenedor
 </h2>
 <hr />
-<p>
-<code>
+<p><code>
 docker cp [ruta host] [id o nombre del contenedor]:[ruta contenedor]
-</code>
-</p>
+</code></p>
 <p>
 Copia un archivo o directorio desde la ruta de origen de la máquina anfitrión en la ruta de destino del contenedor designado.
 </p>
-<p>
-<code>
+<p><code>
 docker cp [id o nombre del contenedor]:[ruta contenedor] [ruta host]
-</code>
-</p>
+</code></p>
 <p>
 Copia un archivo o directorio desde la ruta de origen del contenedor designado en la ruta de destino de la máquina anfitriona.
 </p>
 <br>
 <h2>Ver los logs de un contenedor</h2>
 <hr />
-<p>
-<code>
+<p><code>
 docker logs [parámetros] [id o nombre del contenedor]
-</code>
-</p>
+</code></p>
 <p>
 Sirve para ver los logs de un contenedor especificado, algunos de los parámetros más útiles al ver los logs de un contenedor con <strong>docker logs</strong> son:
 </p>
@@ -433,11 +387,9 @@ Imprime los últimos logs limitándose al número de logs indicado.
 <br>
 <h2>Ejecutar tareas en un contenedor</h2>
 <hr />
-<p>
-<code>
+<p><code>
 docker exec [parámetros] [id o nombre del contenedor] [comando]
-</code>
-</p>
+</code></p>
 <p>
 Permite ejecutar un comando en un contenedor activo, algunos de los parámetros más útiles al ejecutar un comando un contenedor con <strong>docker exec</strong> son:
 </p>
@@ -448,42 +400,34 @@ Evita que la terminal del anfitrión quede atada a la ejecución del contenedor 
 </ul>
 <br>
 <h3>Comando preconstruído:</h3>
-<p>
-<code>
+<p><code>
 docker exec [id o nombre del contenedor] ps -ef
-</code>
-</p>
+</code></p>
 <p>
 El comando anterior es una extensión de <strong>docker exec</strong> que muestra los procesos que se están ejecutando dentro del contenedor indicado.
 </p>
 <br>
 <h2>Apagar un contenedor</h2>
 <hr />
-<p>
-<code>
+<p><code>
 docker stop [id o nombre del contenedor]
-</code>
-</p>
+</code></p>
 <p>
 Apaga manualmente un contenedor usando la señal <strong>sigterm</strong>, en caso de que la señal <strong>sigterm</strong> no logre apagar el contenedor se envía la señal <strong>sigkill</strong> 5 segundos después.
 </p>
 <br>
-<p>
-<code>
+<p><code>
 docker kill [id o nombre del contenedor]
-</code>
-</p>
+</code></p>
 <p>
 Apaga manualmente un contenedor usando la señal <strong>sigkill</strong>.
 </p>
 <br>
 <h2>Eliminar un contenedor</h2>
 <hr />
-<p>
-<code>
+<p><code>
 docker rm [parámetros] [id o nombre del contenedor]
-</code>
-</p>
+</code></p>
 <p>
 Sirve para borrar contenedores, Docker por defecto no elimina ningún contenedor, al finalizar el proceso principal del contenedor simplemente lo detiene, por lo que es usual tener que borrar contenedores manualmente para mantener en espacio de trabajo ordenado y evitar llenar el almacenamiento con contenedores que no es están usando, algunos de los parámetros más útiles al borrar un contenedor con <strong>docker rm</strong> son:
 </p>
@@ -494,21 +438,17 @@ Detiene un contenedor actualmente activo para así poder eliminarlo, la detenci�
 </li>
 </ul>
 <br>
-<p>
-<code>
+<p><code>
 docker container prune
-</code>
-</p>
+</code></p>
 <p>especificado
 Borra todos los contenedores inactivos.
 </p>
 <br>
 <h3>Comando preconstruído:</h3>
-<p>
-<code>
+<p><code>
 docker rm -f $(docker ps -aq)
-</code>
-</p>
+</code></p>
 <p>
 El comando anterior es una extensión de <strong>docker rm</strong> pero tiene la funcionalidad de eliminar todos los contenedores activos o inactivos y para eliminar los activos fuerza su detención antes de eliminarlos con la señal <strong>sigkill</strong>.
 </p>
@@ -520,42 +460,34 @@ Los volúmenes son parte fundamental de Docker ya que son las unidades virtuales
 <br>
 <h2>Crear volúmenes</h2>
 <hr />
-<p>
-<code>
+<p><code>
 docker volume create [nombre]
-</code>
-</p>
+</code></p>
 <p>
 Crea un volúmen y le asigna el nombre indicado.
 </p>
 <br>
 <h2>Listar volúmenes</h2>
 <hr />
-<p>
-<code>
+<p><code>
 docker volume ls
-</code>
-</p>
+</code></p>
 <p>
 Lista todos los volúmenes de Docker mostrando su driver y nombre.
 </p>
 <br>
 <h2>Borrar volúmenes</h2>
 <hr />
-<p>
-<code>
+<p><code>
 docker volume rm [nombre]
-</code>
-</p>
+</code></p>
 <p>
 Elimina el volumen indicado.
 </p>
 <br>
-<p>
-<code>
+<p><code>
 docker volume prune
-</code>
-</p>
+</code></p>
 <p>
 Elimina todos los volúmenes locales inactivos.
 </p>
