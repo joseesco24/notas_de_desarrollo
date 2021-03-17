@@ -32,9 +32,13 @@ Además de las capas con las que es necesario interactuar para usar Docker tambi
 - **Redes:** Las redes internas de Docker permiten que las diferentes aplicaciones desplegadas en diferentes contenedores puedan interactuar entre sí.
 - **Volúmenes de almacenamiento:** Los volúmenes de almacenamiento son la forma que provee Docker para que una aplicación desplegada en un contenedor puede almacenar datos para que otro contenedor pueda usarlos o simplemente para poder usarlos en ejecuciones posteriores, los volúmenes de almacenamiento son totalmente administrados por Docker, lo que los hace inaccesibles para la máquina anfitrión.
 
+<br>
+
 # Instalación de Docker en Mac o Windows
 
 Para realizar la instalación de Docker en MacOS o en Windows basta con descargar de [Docker Hub](https://hub.docker.com/) la aplicacion de escritorio.
+
+<br>
 
 # Instalación de Docker en Linux
 
@@ -44,6 +48,8 @@ Esta pequeña guía de instalación está basada en la [guía oficial](https://d
 - Ubuntu Groovy 20.10
 - Ubuntu Bionic 18.04 (LTS)
 - Ubuntu Xenial 16.04 (LTS)
+
+<br>
 
 ## Comandos de Instalación de Docker
 
@@ -80,6 +86,8 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 ```
 
+<br>
+
 ## Comprobación de la instalación
 
 Una forma sencilla de comprobar el funcionamiento de Docker engine es utilizando la imagen de Hello-World, para hacer esto se ejecuta el siguiente comando.
@@ -98,6 +106,8 @@ docker --version
 docker info
 ```
 
+<br>
+
 ## En caso de errores
 
 Un error comun al instalar Docker en Ubuntu es que al realizar la instalacion solo el usuario root posee permisos para ejecutar acciones manipulando el Docker daemon, por lo tanto si tratamos de usar alguno de los comandos de Docker con nuestro usuario obtendremos un mensaje de error de denegación de permisos, como el presente a continuación.
@@ -113,6 +123,8 @@ sudo usermod -aG docker $USER
 newgrp docker
 ```
 
+<br>
+
 # Comandos Básicos
 
 ```bash
@@ -121,11 +133,15 @@ man docker
 
 Muestra el manual de Docker.
 
+<br>
+
 ```bash
 docker [comando] --help
 ```
 
 Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+
+<br>
 
 ```bash
 docker --version
@@ -133,11 +149,15 @@ docker --version
 
 Permite ver la versión de Docker instalada actualmente en la máquina anfitrión.
 
+<br>
+
 ```bash
 docker info
 ```
 
 Muestra la información del Docker Daemon, como el número de imágenes descargadas, el estado de Swarm o incluso la versión del kernel, entre otros.
+
+<br>
 
 ```bash
 docker stats
@@ -145,15 +165,21 @@ docker stats
 
 Muestra los recursos que está utilizando cada contenedor y docker en general.
 
+<br>
+
 ```bash
 docker system prune
 ```
 
 Elimina todos los volúmenes, contenedores y redes que no se estén usando.
 
+<br>
+
 # Administración de contenedores
 
 La administración de contenedores es una actividad clave al utilizar Docker ya que los contenedores son las entidades más importantes manejadas por Docker, para adminsitrara contenedores manualmente Docker nos da varios comandos que se pueden utilizar en Docker CLI para: ejecutar, eliminar y alterar el comportamiento de los contenedores, entre otras acciones posibles, algunos de los comandos más importantes provistos por Docker para administrar contenedores se listan en esta sección.
+
+<br>
 
 ## Ejecutar un contenedor
 
@@ -172,6 +198,8 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando espe
 - **--mount src=[volumen],dst=[ruta contenedor]:** Liga los archivos que están en la ruta designada del contenedor a un volumen de Docker.
 - **--memory [ram designada][g:gigas o:megas]:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
 
+<br>
+
 ## Cambiar el nombre de un contenedor
 
 ```bash
@@ -179,6 +207,8 @@ docker rename [id o nombre del contenedor] [nuevo nombre]
 ```
 
 Asigna un nuevo nombre al contenedor especificado.
+
+<br>
 
 ## Revisar el estado de un contenedor
 
@@ -197,6 +227,8 @@ docker inspect [id o nombre del contenedor]
 
 Muestra en un archivo JSON toda la información de la configuración de un contenedor en concreto.
 
+<br>
+
 ## Mover archivos y directorio entre el anfitrión y un contenedor
 
 ```bash
@@ -211,6 +243,8 @@ docker cp [id o nombre del contenedor]:[ruta contenedor] [ruta host]
 
 Copia un archivo o directorio desde la ruta de origen del contenedor designado en la ruta de destino de la máquina anfitrión.
 
+<br>
+
 ## Ver los logs de un contenedor
 
 ```bash
@@ -222,6 +256,8 @@ Sirve para ver los logs de un contenedor especificado, algunos de los parámetro
 - **-f:** Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
 - **--tail [número de logs]:** Imprime los últimos logs limitándose al número de logs indicado.
 
+<br>
+
 ## Ejecutar tareas en un contenedor
 
 ```bash
@@ -232,6 +268,8 @@ Permite ejecutar un comando en un contenedor activo, algunos de los parámetros 
 
 - **-d:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
 
+<br>
+
 #### Comando pré construído:
 
 ```bash
@@ -239,6 +277,8 @@ docker exec [id o nombre del contenedor] ps -ef
 ```
 
 El comando anterior es una extensión de **docker exec** que muestra los procesos que se están ejecutando dentro del contenedor indicado.
+
+<br>
 
 ## Apagar un contenedor
 
@@ -253,6 +293,8 @@ docker kill [id o nombre del contenedor]
 ```
 
 Apaga manualmente un contenedor usando la señal **sigkill**.
+
+<br>
 
 ## Eliminar un contenedor
 
@@ -270,6 +312,8 @@ docker container prune
 
 Borra todos los contenedores inactivos.
 
+<br>
+
 #### Comando pré construído:
 
 ```bash
@@ -278,9 +322,13 @@ docker rm -f $(docker ps -aq)
 
 El comando anterior es una extensión de **docker rm** pero tiene la funcionalidad de eliminar todos los contenedores activos o inactivos y para eliminar los activos fuerza su detención antes de eliminarlos con la señal **sigkill**.
 
+<br>
+
 # Administración de volúmenes
 
 Los volúmenes son parte fundamental de Docker ya que son las unidades virtuales de almacenamiento que normalmente usan los contenedores para guardar y compartir datos de forma sencilla, si bien solo hay un par de comandos para administrar volúmenes es importante conocerlos para trabajar fácilmente con ellos, ya que usarlos nos garantiza que los datos persistirán incluso si se detiene o elimina el contenedor, cabe aclarar que los volúmenes son espacios de memoria del anfitrión que Docker usa para almacenar archivos de los contenedores, al igual que con los bind, pero a diferencia de los bind los volúmenes solo son administrados por Docker y no dan acceso al contenedor al sistema de directorio del anfitrión, lo que los hace más seguros de usar que los bind.
+
+<br>
 
 ## Crear volúmenes
 
@@ -290,6 +338,8 @@ docker volume create [nombre]
 
 Crea un volúmen y le asigna el nombre indicado.
 
+<br>
+
 ## Listar volúmenes
 
 ```bash
@@ -297,6 +347,8 @@ docker volume ls
 ```
 
 Lista todos los volúmenes de Docker mostrando su driver y nombre.
+
+<br>
 
 ## Borrar volúmenes
 
