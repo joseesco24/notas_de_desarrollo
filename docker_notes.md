@@ -388,7 +388,7 @@ Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el c
 
 <br>
 
-- **-t [nombre de la nueva imagen]:[tag de la nueva imagen]** Permite personalizar el nombre y tag de la nueva imagen que será construida.
+- **-t [nombre de la nueva imagen]:[tag de la nueva imagen]**: Permite personalizar el nombre y tag de la nueva imagen que será construida.
 - **--f [ruta del Dockerfile]:** Permite cambiar o especificar la ruta al Dockerfile con el cual se construirá la imagen.
 
 <br>
@@ -459,10 +459,10 @@ dive [nombre o id de la imagen]:[tag de la imagen]
 
 Para abrir los detalles de la imagen con dive, luego de abrir una imagen con dive podemos usar las siguientes combinaciones de teclas para navegar por las secciones de dive:
 
-- **tab**: alternar entre el panel de capas y el panel de archivos.
-- **flechas**navegar entre las capas y archivos.
-- **ctrl + u**: filtra los archivos que fueron cambiados en la capa actual.
-- **ctrl + c**: salir de diver.
+- **tab**: Alternar entre el panel de capas y el panel de archivos.
+- **flechas**: Navegar entre las capas y archivos.
+- **ctrl + u**: Filtra los archivos que fueron cambiados en la capa actual.
+- **ctrl + c**: Salir de dive.
 
 <br>
 
