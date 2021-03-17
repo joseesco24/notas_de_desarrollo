@@ -451,7 +451,7 @@ Muestra las capas de una imagen de forma simplificada.
 
 <br>
 
-Otra herramienta muy útil para visualizar las capas de una imagen en más profundidad es [dive](https://github.com/wagoodman/dive), dive a diferencia de los comandos nativos de Docker da más información sobre las capas de cada imagen, algunos de los comandos basicos para ver información de las imágenes con dive son:
+Otra herramienta muy útil para visualizar las capas de una imagen con más profundidad es [dive](https://github.com/wagoodman/dive), dive a diferencia de los comandos nativos de Docker da más información sobre las capas de cada imagen, algunos de los comandos básicos para ver información de las imágenes con dive son:
 
 ```shell
 dive [nombre o id de la imagen]:[tag de la imagen]
