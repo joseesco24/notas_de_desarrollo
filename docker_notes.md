@@ -7,7 +7,7 @@ Docker es un sistema de contenedores que permite que cada uno de nuestros proyec
 Cabe aclarar que el aislamiento de procesos en Docker es puramente lógico ya que por debajo los procesos son ejecutados por el sistema operativo de la máquina anfitriona, en un sistema Linux esto es apreciable con solo revisar los procesos en top, en Windows y en Mac no es apreciable esto, ya que al instalar Docker desktop, Docker por debajo instala una maquina virtual con un sistema operativo Linux que es el que se utiliza para suplir las capas más bajas de los contenedores y por lo tanto es en el sistema operativo de esa máquina virtual en el que se ejecutan los procesos de los contenedores.
 Implementar Docker en nuestros proyectos les otorga una capa adicional de abstracción mediante la virtualización de un sistema operativo sobre el cual trabaja nuestro proyecto, implementar Docker en nuestros proyectos también ayuda a atenuar algunos de los desafíos más importantes al momento de realizar un desarrollo profesional de software, como los relacionados con la construcción, distribución y ejecución de nuestras aplicaciones:
 
-- **Construccion:** Al construir o desarrollar aplicaciones con Docker uno de los principales beneficios es que inmediatamente se empieza a usar Docker los entornos de desarrollo y ejecución pueden ser equivalentes ya que todos los contenedores tendrán las mismas dependencias, paquetes y se ejecutarán sobre el mismo sistema operativo independientemente de si es un ambiente de desarrollo o de ejecución, además incluso gracias a Docker se pueden simular condiciones de ejecución con ciertos recursos como la RAM limitados mediante contenedores.
+- **Construcción:** Al construir o desarrollar aplicaciones con Docker uno de los principales beneficios es que inmediatamente se empieza a usar Docker los entornos de desarrollo y ejecución pueden ser equivalentes ya que todos los contenedores tendrán las mismas dependencias, paquetes y se ejecutarán sobre el mismo sistema operativo independientemente de si es un ambiente de desarrollo o de ejecución, además incluso gracias a Docker se pueden simular condiciones de ejecución con ciertos recursos como la RAM limitados mediante contenedores.
 - **Distribución:** Al distribuir aplicaciones mediante imágenes de Docker se garantiza que las dependencias de nuestra aplicación serán instaladas y además, se garantiza que no tendrán conflicto con las del sistema operativo de la máquina anfitrión, ya que están en ambientes aislados, otro beneficio de utilizar imágenes de Docker es que se pueden distribuir y usar fácilmente, ya que son bastante ligeras y además la instalación de dependencias es un proceso automatizado, por lo que independientemente del número de copias siempre que se hagan con base en la misma imagen y no se alteren nuestra aplicación se comportará de la misma forma.
 - **Ejecución:** Ya que los entornos de ejecución y desarrollo son equivalentes gracias a que se ejecutan bajo el mismo sistema operativo utilizando las mismas dependencias pre establecidas se descarta totalmente la posibilidad de que algo que funciona en desarrollo no funcione en un entorno de ejecución productivo, además Docker incluso permite limitar recursos, razón por la cual se pueden simular incluso condiciones de ejecución adversas.
 
@@ -38,11 +38,11 @@ Además de las interfaces necesarias para interactuar con Docker también es imp
 
 # Instalación de Docker en Mac o Windows
 
-Para realizar la instalación de Docker en MacOS o en Windows basta con descargar de [DockerHub](https://hub.docker.com/) el aplicativo de escritorio.
+Para realizar la instalación de Docker en MacOS o en Windows basta con descargar de [Docker Hub](https://hub.docker.com/) el aplicativo de escritorio.
 
 # Instalación de Docker en Linux
 
-Esta pequeña guía de instalación está basada en la [guía oficial](https://docs.docker.com/engine/install/ubuntu/) ofrecida en DockerHub para instalar Docker engine en **Ubuntu** mediante el sistema de repositorios y es válida para las siguientes versiones de **Ubuntu**, cabe calcular que en Linux no hace falta instalar Docker desktop como en Mac o en Windows, con solo Docker engine es suficiente y además la manipulación del Docker daemon en Linux se hace solo por consola, sin interfaz gráfica.
+Esta pequeña guía de instalación está basada en la [guía oficial](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker Hub para instalar Docker engine en **Ubuntu** mediante el sistema de repositorios y es válida para las siguientes versiones de **Ubuntu**, cabe calcular que en Linux no hace falta instalar Docker desktop como en Mac o en Windows, con solo Docker engine es suficiente y además la manipulación del Docker daemon en Linux se hace solo por consola, sin interfaz gráfica.
 
 - Ubuntu Focal 20.04 (LTS)
 - Ubuntu Groovy 20.10
@@ -224,7 +224,7 @@ docker logs [parámetros] [id o nombre del contenedor]
 Sirve para ver los logs de un contenedor especificado, algunos de los parámetros más útiles al ver los logs de un contenedor con **docker logs** son:
 
 - **-f:** Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitriona a los logs para verlos en la medida en la que se imprimen.
-- **--tail [numero de logs]:** Imprime los últimos logs limitándose al número de logs indicado.
+- **--tail [número de logs]:** Imprime los últimos logs limitándose al número de logs indicado.
 
 ## Ejecutar tareas en un contenedor
 
@@ -236,7 +236,7 @@ Permite ejecutar un comando en un contenedor activo, algunos de los parámetros 
 
 - **-d:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
 
-#### Comando preconstruído:
+#### Comando pré construído:
 
 ```bash
 docker exec [id o nombre del contenedor] ps -ef
@@ -274,7 +274,7 @@ docker container prune
 
 Borra todos los contenedores inactivos.
 
-#### Comando preconstruído:
+#### Comando pré construído:
 
 ```bash
 docker rm -f $(docker ps -aq)
