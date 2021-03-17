@@ -236,7 +236,7 @@ Permite ejecutar un comando en un contenedor activo, algunos de los parámetros 
 
 - **-d:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
 
-### Comando preconstruído:
+#### Comando preconstruído:
 
 ```bash
 docker exec [id o nombre del contenedor] ps -ef
@@ -274,7 +274,7 @@ docker container prune
 
 Borra todos los contenedores inactivos.
 
-### Comando preconstruído:
+#### Comando preconstruído:
 
 ```bash
 docker rm -f $(docker ps -aq)
