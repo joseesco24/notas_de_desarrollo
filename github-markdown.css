@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+img {
+    padding: 0px;
+    margin: 10px 0px 10px 0px;
+    border: none;
+    line-height: 0;
+    height: auto;
+    width: 100%;
+}
+
+p {
+    padding: 0px;
+    margin: 4px 0px 4px 0px;
+}
+
+ul {
+    margin: 0px;
+    padding: 10px 0px 10px 16px;
+}
+
+li.item_texto {
+    padding: 0px;
+    margin: 4px 0px 4px 0px;
+}
