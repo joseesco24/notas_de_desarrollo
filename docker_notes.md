@@ -171,7 +171,7 @@ Muestra los recursos que está utilizando cada contenedor y docker en general.
 docker system prune
 ```
 
-Elimina todos los volúmenes, contenedores y redes que no se estén usando.
+Elimina todos los volúmenes, contenedores y redes que no se estén usando, además de imágenes residuales.
 
 <br>
 
@@ -384,7 +384,7 @@ Algunos de los comandos más importantes provistos por Docker para administrar i
 docker build [parámetros] [ruta del contexto]
 ```
 
-Crea una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, Dockerfile y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
+Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, Dockerfile y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
 
 <br>
 
@@ -418,3 +418,76 @@ docker push [repositorio o nombre de usuario de Docker Hub]/[nombre o id de la i
 ```
 
 Sube la imagen con el nombre y el tag especificado al repositorio indicado.
+
+<br>
+
+## Cambiar tags de imágenes
+
+```shell
+docker tag [nombre o id de la imagen de origen]:[tag de la imagen de origen] [repositorio o nombre de usuario de Docker Hub]/[nombre o id de la nueva imagen]:[tag de la nueva imagen]
+```
+
+Crea una nueva imagen que se hace referencia a una ya existente y que se puede publicar en nuestro repositorio.
+
+<br>
+
+## Listar imágenes
+
+```shell
+docker image ls
+```
+
+Lista todas las imágenes almacenadas localmente.
+
+<br>
+
+## Visualizar capas de imágenes
+
+```shell
+docker history [nombre o id de la imagen]:[tag de la imagen]
+```
+
+Muestra las capas de una imagen de forma simplificada.
+
+<br>
+
+Otra herramienta muy útil para visualizar las capas de una imagen en más profundidad es [dive](https://github.com/wagoodman/dive), dive a diferencia de los comandos nativos de Docker da más información sobre las capas de cada imagen, algunos de los comandos basicos para ver información de las imágenes con dive son:
+
+```shell
+dive [nombre o id de la imagen]:[tag de la imagen]
+```
+
+Para abrir los detalles de la imagen con dive, luego de abrir una imagen con dive podemos usar las siguientes combinaciones de teclas para navegar por las secciones de dive:
+
+- **tab**: alternar entre el panel de capas y el panel de archivos.
+- **flechas**navegar entre las capas y archivos.
+- **ctrl + u**: filtra los archivos que fueron cambiados en la capa actual.
+- **ctrl + c**: salir de diver.
+
+<br>
+
+## Eliminar imágenes
+
+```shell
+docker image rmi [nombre o id de la imagen]:[tag de la imagen]
+```
+
+Elimina la imagen indicada.
+
+<br>
+
+```shell
+docker image prune
+```
+
+Elimina todas las imágenes residuales.
+
+<br>
+
+### Comando pré construído:
+
+```shell
+docker image rmi $(docker image ls -q)
+```
+
+El comando anterior es una extensión de **docker image rmi** pero tiene la funcionalidad de eliminar todos las imágenes independientemente de si son residuales o no.
