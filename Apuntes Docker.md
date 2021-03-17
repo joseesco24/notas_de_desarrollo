@@ -146,7 +146,6 @@ Esta pequeña guía de instalación está basada en la guía ofrecida en Docker 
 <li>Ubuntu Bionic 18.04 (LTS)</li>
 <li>Ubuntu Xenial 16.04 (LTS)</li>
 </ul>
-
 <p>
 <strong>link:</strong> <a href="url">https://docs.docker.com/engine/install/ubuntu/</a>
 </p>
@@ -159,9 +158,9 @@ Esta pequeña guía de instalación está basada en la guía ofrecida en Docker 
 Antes de iniciar con la instalación es necesario eliminar cualquier instalación previa de Docker que se haya hecho en la máquina anfitriona, si no han habido instalaciones previas de Docker en la máquina anfitriona se puede omitir el primer comando.
 </p>
 
-```bash
+<p><code>
 sudo apt-get remove -y docker docker-engine docker.io containerd runc
-```
+</code></p>
 
 <p>
 Luego de haber desinstalado las versiones viejas de Docker se configuran los repositorios necesarios para instalar Docker engine.
