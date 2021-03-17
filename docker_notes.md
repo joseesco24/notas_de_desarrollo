@@ -272,7 +272,7 @@ Permite ejecutar un comando en un contenedor activo, algunos de los parámetros 
 
 <br>
 
-#### Comando pré construído:
+### Comando pré construído:
 
 ```shell
 docker exec [id o nombre del contenedor] ps -ef
@@ -316,7 +316,7 @@ Borra todos los contenedores inactivos.
 
 <br>
 
-#### Comando pré construído:
+### Comando pré construído:
 
 ```shell
 docker rm -f $(docker ps -aq)
@@ -375,3 +375,46 @@ Elimina todos los volúmenes locales inactivos.
 En términos de relevancia las imágenes en Docker podrían considerarse como el segundo tipo de entidad más relevantes después de los contenedores, estando casi a la par en relevancia, lo que hace a la administración de imágenes el segundo tipo de actividad más relevante al usar Docker, si bien los contenedores son la forma de virtualizar un ambiente aislado sobre el que se ejecutara nuestro proyecto, las imágenes se encargan de indicar la forma en la que el contenedor debe construir ese ambiente, además es gracias a las imágenes que es fácil mover, desplegar y replicar un proyecto las veces que haga falta, sin alterar el funcionamiento del mismo, es por esto que las imágenes son las que aportan a nuestros proyectos las tres características restantes principales de Docker, concretamente las imágenes aportan **escalabilidad**, **portabilidad** y **ligereza** a nuestros proyectos.
 <br>
 Algunos de los comandos más importantes provistos por Docker para administrar imágenes se listan en esta sección.
+
+<br>
+
+## Construir imágenes
+
+```shell
+docker build [parámetros] [ruta del contexto]
+```
+
+Crea una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, Dockerfile y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
+
+<br>
+
+- **-t [nombre de la nueva imagen]:[tag de la nueva imagen]** Permite personalizar el nombre y tag de la nueva imagen que será construida.
+- **--f [ruta del Dockerfile]:** Permite cambiar o especificar la ruta al Dockerfile con el cual se construirá la imagen.
+
+<br>
+
+## Bajar imágenes
+
+```shell
+docker pull [nombre o id de la imagen]:[tag de la imagen]
+```
+
+Baja la imagen con el nombre y el tag especificado, si no se especifica un tag se baja la versión más reciente o por defecto de la imagen.
+
+<br>
+
+## Subir imágenes
+
+Antes de subir una imagen a nuestro repositorio es necesario iniciar sesión con nuestro usuario en el CLI de Docker, esto se hace con el siguiente comando.
+
+```shell
+docker login
+```
+
+Una vez iniciada la sesión ya podemos cargar nuestra imagen a nuestro repositorio con el siguiente comando.
+
+```shell
+docker push [repositorio o nombre de usuario de Docker Hub]/[nombre o id de la imagen]:[tag de la imagen]
+```
+
+Sube la imagen con el nombre y el tag especificado al repositorio indicado.
