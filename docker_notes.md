@@ -152,7 +152,7 @@ Permite ver la versión de Docker instalada actualmente en la máquina anfitrió
 <br>
 
 ```shell
-docker info
+docker info [parámetros]
 ```
 
 Muestra la información del Docker Daemon, como el número de imágenes descargadas, el estado de Swarm o incluso la versión del kernel, entre otros.
@@ -160,15 +160,15 @@ Muestra la información del Docker Daemon, como el número de imágenes descarga
 <br>
 
 ```shell
-docker stats
+docker stats [parámetros] [id o nombre del contenedor]
 ```
 
-Muestra los recursos que está utilizando cada contenedor y docker en general.
+Muestra los recursos que está utilizando cada contenedor y docker en general, si se especifica un contenedor con su id o nombre se muestran solo los recursos que está usando ese contenedor.
 
 <br>
 
 ```shell
-docker system prune
+docker system prune [parámetros]
 ```
 
 Elimina todos los volúmenes, contenedores y redes que no se estén usando, además de imágenes residuales.
@@ -183,7 +183,7 @@ Algunos de los comandos más importantes provistos por Docker para administrar c
 
 <br>
 
-## Ejecutar un contenedor
+## Ejecutar contenedores
 
 ```shell
 docker run [parámetros] [imagen] [comando]
@@ -191,28 +191,30 @@ docker run [parámetros] [imagen] [comando]
 
 Ejecuta un contenedor usando la imagen especificada y ejecutando el comando especificado como proceso principal en caso de ser dado un comando luego de la imagen, es importante entender que si la imagen no tiene definido un proceso principal ni en la imagen ni por comando el contenedor se ejecutará y apagará casi al instante ya que un contenedor se detiene cuando su proceso principal finaliza y el proceso principal por defecto es solo abrir un archivo, algunos de los parámetros más útiles al ejecutar un contenedor con **docker run** son:
 
-- **--name [nombre]:** Permite asignar un nombre personalizado al contenedor el cual puede ser utilizado para referenciar al contenedor como si fuera su id, además es único e irrepetible, en caso de no especificarse un nombre con este parámetro Docker asigna también un nombre al contenedor.
+- **--name [nombre del nuevo contenedor]:** Permite asignar un nombre personalizado al contenedor el cual puede ser utilizado para referenciar al contenedor como si fuera su id, además es único e irrepetible, en caso de no especificarse un nombre con este parámetro Docker asigna también un nombre al contenedor.
 - **-it:** Ejecuta el contenedor y abre una terminal mediante la cual se puede interactuar con el contenedor, it significa interactive terminal.
 - **-d:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
-- **-p [puerto anfitrión]:[puerto contenedor]:** Expone el puerto designado del contenedor en el puerto designado de la máquina anfitrión.
+- **-p [puerto del anfitrión]:[puerto del contenedor]:** Expone el puerto designado del contenedor en el puerto designado de la máquina anfitrión.
 - **--rm:** Indica a Docker que ese contenedor debe eliminarse tan pronto como se detiene, es decir al finalizar su proceso principal.
-- **-v [ruta anfitrión]:[ruta contenedor]:** Crea un bind ligando los archivos de la ruta del contenedor con los de la ruta del anfitrión.
-- **--mount src=[volumen],dst=[ruta contenedor]:** Liga los archivos que están en la ruta designada del contenedor a un volumen de Docker.
-- **--memory [ram designada][g:gigas o:megas]:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
+- **-v [ruta en el anfitrión]:[ruta en el contenedor]:** Crea un bind ligando los archivos de la ruta del contenedor con los de la ruta del anfitrión.
+- **--mount src=[nombre o id del volumen],dst=[ruta en el contenedor]:** Liga los archivos que están en la ruta designada del contenedor a un volumen de Docker.
+- **--memory [cantidad de memoria ram designada][g:gigas o:megas]:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
+
+**Nota**: al restringir la memoria ram que puede usar una aplicación es posible que este finaliza con el estatus **OOMKilled**, , el cual se puede ver con un **docker inspect** del contenedor, este estatus indica que el contenedor se detuvo debido a que la memoria con la que contaba le fue insuficiente para ejecutar todos sus procesos y por lo tanto colapsó y se detuvo.
 
 <br>
 
-## Cambiar el nombre de un contenedor
+## Cambiar nombres de los contenedores
 
 ```shell
-docker rename [id o nombre del contenedor] [nuevo nombre]
+docker rename [nombre o id del contenedor] [nuevo nombre]
 ```
 
 Asigna un nuevo nombre al contenedor especificado.
 
 <br>
 
-## Revisar el estado de un contenedor
+## Revisar el estado de los contenedores
 
 ```shell
 docker ps [parámetros]
@@ -224,33 +226,33 @@ Muestra todos los contenedores activos en la máquina anfitrión, junto con dato
 - **-l:** Muestra los mismos datos que **docker ps** pero muestra solo los datos del último contenedor activo.
 
 ```shell
-docker inspect [id o nombre del contenedor]
+docker inspect [parámetros] [nombre o id del contenedor]
 ```
 
 Muestra en un archivo JSON toda la información de la configuración de un contenedor en concreto.
 
 <br>
 
-## Mover archivos y directorio entre el anfitrión y un contenedor
+## Mover archivos y directorio entre el anfitrión y los contenedores
 
 ```shell
-docker cp [ruta host] [id o nombre del contenedor]:[ruta contenedor]
+docker cp [parámetros] [ruta host] [nombre o id del contenedor]:[ruta contenedor]
 ```
 
 Copia un archivo o directorio desde la ruta de origen de la máquina anfitrión en la ruta de destino del contenedor designado.
 
 ```shell
-docker cp [id o nombre del contenedor]:[ruta contenedor] [ruta host]
+docker cp [parámetros] [nombre o id del contenedor]:[ruta contenedor] [ruta host]
 ```
 
 Copia un archivo o directorio desde la ruta de origen del contenedor designado en la ruta de destino de la máquina anfitrión.
 
 <br>
 
-## Ver los logs de un contenedor
+## Visualizar los logs de los contenedores
 
 ```shell
-docker logs [parámetros] [id o nombre del contenedor]
+docker logs [parámetros] [nombre o id del contenedor]
 ```
 
 Sirve para ver los logs de un contenedor especificado, algunos de los parámetros más útiles al ver los logs de un contenedor con **docker logs** son:
@@ -260,10 +262,10 @@ Sirve para ver los logs de un contenedor especificado, algunos de los parámetro
 
 <br>
 
-## Ejecutar tareas en un contenedor
+## Ejecutar tareas en contenedores
 
 ```shell
-docker exec [parámetros] [id o nombre del contenedor] [comando]
+docker exec [parámetros] [nombre o id del contenedor] [comando]
 ```
 
 Permite ejecutar un comando en un contenedor activo, algunos de los parámetros más útiles al ejecutar un comando un contenedor con **docker exec** son:
@@ -275,33 +277,33 @@ Permite ejecutar un comando en un contenedor activo, algunos de los parámetros 
 ### Comando pré construído:
 
 ```shell
-docker exec [id o nombre del contenedor] ps -ef
+docker exec [nombre o id del contenedor] ps -ef
 ```
 
 El comando anterior es una extensión de **docker exec** que muestra los procesos que se están ejecutando dentro del contenedor indicado.
 
 <br>
 
-## Apagar un contenedor
+## Apagar contenedores
 
 ```shell
-docker stop [id o nombre del contenedor]
+docker stop [parámetros] [nombre o id del contenedor]
 ```
 
 Apaga manualmente un contenedor usando la señal **sigterm**, en caso de que la señal **sigterm** no logre apagar el contenedor se envía la señal **sigkill** 5 segundos después.
 
 ```shell
-docker kill [id o nombre del contenedor]
+docker kill [parámetros] [nombre o id del contenedor]
 ```
 
 Apaga manualmente un contenedor usando la señal **sigkill**.
 
 <br>
 
-## Eliminar un contenedor
+## Eliminar contenedores
 
 ```shell
-docker rm [parámetros] [id o nombre del contenedor]
+docker rm [parámetros] [nombre o id del contenedor]
 ```
 
 Sirve para borrar contenedores, Docker por defecto no elimina ningún contenedor, al finalizar el proceso principal del contenedor simplemente lo detiene, por lo que es usual tener que borrar contenedores manualmente para mantener en espacio de trabajo ordenado y evitar llenar el almacenamiento con contenedores que no es están usando, algunos de los parámetros más útiles al borrar un contenedor con **docker rm** son:
@@ -309,7 +311,7 @@ Sirve para borrar contenedores, Docker por defecto no elimina ningún contenedor
 - **-f:** Detiene un contenedor actualmente activo para así poder eliminarlo, la detención del contenedor se fuerza usando la señal **sigkill**.
 
 ```shell
-docker container prune
+docker container prune [parámetros]
 ```
 
 Borra todos los contenedores inactivos.
@@ -323,50 +325,6 @@ docker rm -f $(docker ps -aq)
 ```
 
 El comando anterior es una extensión de **docker rm** pero tiene la funcionalidad de eliminar todos los contenedores activos o inactivos y para eliminar los activos fuerza su detención antes de eliminarlos con la señal **sigkill**.
-
-<br>
-
-# Administración de volúmenes
-
-Los volúmenes son una parte fundamental al usar Docker para desarrollar una solución ya que son las unidades virtuales de almacenamiento que normalmente usan los contenedores para guardar y compartir datos entre ellos de forma sencilla, usar volúmenes garantiza que los datos almacenados persistirán incluso si se detiene o elimina el contenedor que hacía uso del volumen, cabe aclarar que los volúmenes son espacios de memoria del anfitrión que Docker usa para almacenar archivos de los contenedores, al igual que con los bind, pero a diferencia de los bind los volúmenes solo son administrados únicamente por Docker y no conceden al contenedor acceso al sistema de directorios del anfitrión, lo que los hace más seguros de usar que los bind, es por esto último que los volúmenes son la opción más recomendable al utilizar un medio de almacenamiento de datos del contenedor una solución desplegada para producción.
-<br>
-Los comandos provistos por Docker para administrar volúmenes se listan en esta sección.
-
-<br>
-
-## Crear volúmenes
-
-```shell
-docker volume create [nombre]
-```
-
-Crea un volúmen y le asigna el nombre indicado.
-
-<br>
-
-## Listar volúmenes
-
-```shell
-docker volume ls
-```
-
-Lista todos los volúmenes de Docker mostrando su driver y nombre.
-
-<br>
-
-## Borrar volúmenes
-
-```shell
-docker volume rm [nombre]
-```
-
-Elimina el volumen indicado.
-
-```shell
-docker volume prune
-```
-
-Elimina todos los volúmenes locales inactivos.
 
 <br>
 
@@ -396,7 +354,7 @@ Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el c
 ## Bajar imágenes
 
 ```shell
-docker pull [nombre o id de la imagen]:[tag de la imagen]
+docker pull [parámetros] [nombre o id de la imagen]:[tag de la imagen]
 ```
 
 Baja la imagen con el nombre y el tag especificado, si no se especifica un tag se baja la versión más reciente o por defecto de la imagen.
@@ -408,13 +366,13 @@ Baja la imagen con el nombre y el tag especificado, si no se especifica un tag s
 Antes de subir una imagen a nuestro repositorio es necesario iniciar sesión con nuestro usuario en el CLI de Docker, esto se hace con el siguiente comando.
 
 ```shell
-docker login
+docker login [parámetros]
 ```
 
 Una vez iniciada la sesión ya podemos cargar nuestra imagen a nuestro repositorio con el siguiente comando.
 
 ```shell
-docker push [repositorio o nombre de usuario de Docker Hub]/[nombre o id de la imagen]:[tag de la imagen]
+docker push [parámetros] [repositorio o nombre de usuario de Docker Hub]/[nombre o id de la imagen]:[tag de la imagen]
 ```
 
 Sube la imagen con el nombre y el tag especificado al repositorio indicado.
@@ -434,7 +392,7 @@ Crea una nueva imagen que se hace referencia a una ya existente y que se puede p
 ## Listar imágenes
 
 ```shell
-docker image ls
+docker image ls [parámetros]
 ```
 
 Lista todas las imágenes almacenadas localmente.
@@ -444,7 +402,7 @@ Lista todas las imágenes almacenadas localmente.
 ## Visualizar capas de imágenes
 
 ```shell
-docker history [nombre o id de la imagen]:[tag de la imagen]
+docker history [parámetros] [nombre o id de la imagen]:[tag de la imagen]
 ```
 
 Muestra las capas de una imagen de forma simplificada.
@@ -469,7 +427,7 @@ Para abrir los detalles de la imagen con dive, luego de abrir una imagen con div
 ## Eliminar imágenes
 
 ```shell
-docker image rmi [nombre o id de la imagen]:[tag de la imagen]
+docker image rm [parámetros] [nombre o id de la imagen]:[tag de la imagen]
 ```
 
 Elimina la imagen indicada.
@@ -477,17 +435,156 @@ Elimina la imagen indicada.
 <br>
 
 ```shell
-docker image prune
+docker image prune [parámetros]
 ```
 
-Elimina todas las imágenes residuales.
+Elimina todas las imágenes residuales o inactivas.
 
 <br>
 
 ### Comando pré construído:
 
 ```shell
-docker image rmi $(docker image ls -q)
+docker image rm -f $(docker image ls -q)
 ```
 
-El comando anterior es una extensión de **docker image rmi** pero tiene la funcionalidad de eliminar todos las imágenes independientemente de si son residuales o no.
+El comando anterior es una extensión de **docker image rm** pero tiene la funcionalidad de eliminar todos las imágenes independientemente de si son residuales o no.
+
+<br>
+
+# Administración de volúmenes
+
+Los volúmenes son una parte fundamental al usar Docker para desarrollar una solución ya que son las unidades virtuales de almacenamiento que normalmente usan los contenedores para guardar y compartir datos entre ellos de forma sencilla, usar volúmenes garantiza que los datos almacenados persistirán incluso si se detiene o elimina el contenedor que hacía uso del volumen, cabe aclarar que los volúmenes son espacios de memoria del anfitrión que Docker usa para almacenar archivos de los contenedores, al igual que con los bind, pero a diferencia de los bind los volúmenes solo son administrados únicamente por Docker y no conceden al contenedor acceso al sistema de directorios del anfitrión, lo que los hace más seguros de usar que los bind, es por esto último que los volúmenes son la opción más recomendable al utilizar un medio de almacenamiento de datos del contenedor una solución desplegada para producción.
+<br>
+Los comandos provistos por Docker para administrar volúmenes se listan en esta sección.
+
+<br>
+
+## Crear volúmenes
+
+```shell
+docker volume create [parámetros] [nombre]
+```
+
+Crea un volúmen y le asigna el nombre indicado.
+
+<br>
+
+## Listar volúmenes
+
+```shell
+docker volume ls [parámetros]
+```
+
+Lista todos los volúmenes de Docker mostrando su driver y nombre.
+
+<br>
+
+## Eliminar volúmenes
+
+```shell
+docker volume rm [parámetros] [nombre]
+```
+
+Elimina el volumen indicado.
+
+```shell
+docker volume prune [parámetros]
+```
+
+Elimina todos los volúmenes residuales o inactivos almacenados localmente.
+
+<br>
+
+### Comando pré construído:
+
+```shell
+docker volume rm -f $(docker volume ls -q)
+```
+
+El comando anterior es una extensión de **docker volume rm** pero tiene la funcionalidad de eliminar todos los volúmenes independientemente de si son residuales o no.
+
+<br>
+
+# Administración de redes
+
+Las redes son una parte fundamental al usar Docker para desarrollar una solución ya que usándolas se puede lograr que varios contenedores en la misma red se comunican, y cooperan generando un esquema de micro servicios, una de las principales ventajas de usar redes de Docker es que se puede usar directamente el nombre del contenedor para establecer las comunicaciones y a diferencia de el uso de conexiones directas por API usando redes de Docker no hace falta que un contenedor salga a internet para comunicarse con otro.
+<br>
+Los comandos provistos por Docker para administrar redes se listan en esta sección.
+
+<br>
+
+## Crear redes
+
+```shell
+docker network create [parámetros] [nombre]
+```
+
+Crea un nueva red de Docker, algunos de los parámetros más útiles al crear una red con **docker network create** son:
+
+- **--attachable**: Habilita la opción de agregar contendores manualmente a la red.
+- **--internal**: Restringe el acceso externo de la red.
+
+<br>
+
+## Listar redes
+
+```shell
+docker network ls [parámetros]
+```
+
+Lista todas las redes de Docker, mostrando su nombre, tipo de driver, id y alcance:
+
+<br>
+
+## Inspeccionar redes
+
+```shell
+docker network inspect [parámetros] [nombre o id de la red]
+```
+
+Muestra todas las configuración de una red en formato JSON, incluidos los contenedores conectados a ella.
+
+<br>
+
+## Conectar y desconectar redes con contenedores
+
+```shell
+docker network connect [parámetros] [id o nombre de la red] [id o nombre del contenedor]
+```
+
+Conecta un contenedor a una red.
+
+```shell
+docker network disconnect [parámetros] [id o nombre de la red] [id o nombre del contenedor]
+```
+
+Desconecta un contenedor de una red.
+
+<br>
+
+## Eliminar redes
+
+```shell
+docker network rm [parámetros] [nombre]
+```
+
+Elimina la red indicada.
+
+```shell
+docker network prune [parámetros]
+```
+
+Elimina todas las redes residuales o inactivas.
+
+<br>
+
+### Comando pré construído:
+
+```shell
+docker network rm -f $(docker network ls -q)
+```
+
+El comando anterior es una extensión de **docker network rm** pero tiene la funcionalidad de eliminar todos las redes independientemente de si son residuales o no.
+
+<br>
