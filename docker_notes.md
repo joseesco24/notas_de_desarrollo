@@ -589,7 +589,7 @@ El comando anterior es una extensión de **docker network rm** pero tiene la fun
 
 <br>
 
-## Comandos pre construidos para limpiar todos los contenedores, imagenes, volúmenes y redes de Docker
+# Comandos pre construidos de limpieza
 
 ```shell
 docker rm -f $(docker ps -aq)
