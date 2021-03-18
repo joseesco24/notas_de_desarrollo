@@ -189,7 +189,7 @@ Algunos de los comandos más importantes provistos por Docker para administrar c
 docker run [parámetros] [imagen] [comando]
 ```
 
-Ejecuta un contenedor usando la imagen especificada y ejecutando el comando especificado como proceso principal en caso de ser dado un comando luego de la imagen, es importante entender que si la imagen no tiene definido un proceso principal ni en la imagen ni por comando el contenedor se ejecutará y apagará casi al instante ya que un contenedor se detiene cuando su proceso principal finaliza y el proceso principal por defecto es solo abrir un archivo, algunos de los parámetros más útiles al ejecutar un contenedor con **docker run** son:
+Ejecuta un contenedor usando la imagen especificada y ejecutando el comando especificado como proceso principal en caso de ser dado un comando luego de la imagen, es importante entender que si no es definido definido un proceso principal ni en la imagen (por defecto) ni por comando el contenedor nunca se inicia ya que un contenedor se detiene cuando su proceso principal finaliza y al no abre proceso principal realmente el contenedor nunca arranca, algunos de los parámetros más útiles al ejecutar un contenedor con **docker run** son:
 
 - **--name [nombre del nuevo contenedor]:** Permite asignar un nombre personalizado al contenedor el cual puede ser utilizado para referenciar al contenedor como si fuera su id, además es único e irrepetible, en caso de no especificarse un nombre con este parámetro Docker asigna también un nombre al contenedor.
 - **-it:** Ejecuta el contenedor y abre una terminal mediante la cual se puede interactuar con el contenedor, it significa interactive terminal.
@@ -199,8 +199,13 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando espe
 - **-v [ruta en el anfitrión]:[ruta en el contenedor]:** Crea un bind ligando los archivos de la ruta del contenedor con los de la ruta del anfitrión.
 - **--mount src=[nombre o id del volumen],dst=[ruta en el contenedor]:** Liga los archivos que están en la ruta designada del contenedor a un volumen de Docker.
 - **--memory [cantidad de memoria ram designada][g:gigas o:megas]:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
+- **--env [nombre de la variable de ambiente]=[valor de la variable de ambiente]**: Establece una variable de ambiente a la que tendrá acceso el contenedor.
 
-**Nota**: al restringir la memoria ram que puede usar una aplicación es posible que este finaliza con el estatus **OOMKilled**, , el cual se puede ver con un **docker inspect** del contenedor, este estatus indica que el contenedor se detuvo debido a que la memoria con la que contaba le fue insuficiente para ejecutar todos sus procesos y por lo tanto colapsó y se detuvo.
+### Apuntes adicionales:
+
+- Al restringir la memoria ram que puede usar una aplicación es posible que este finaliza con el estatus **OOMKilled**, , el cual se puede ver con un **docker inspect** del contenedor, este estatus indica que el contenedor se detuvo debido a que la memoria con la que contaba le fue insuficiente para ejecutar todos sus procesos y por lo tanto colapsó y se detuvo.
+- Los status de salida con código por encima de 128 indican salidas forzosas y normalmente indican que el cierre de ese contenedor causó que varios procesos que se estaban llevando a cabo se detuvieran sin finalizarse.
+- Un código de salida 137 indica que el proceso fue cerrado por la señal **sigkill**.
 
 <br>
 
@@ -342,7 +347,7 @@ Algunos de los comandos más importantes provistos por Docker para administrar i
 docker build [parámetros] [ruta del contexto]
 ```
 
-Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, Dockerfile y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
+Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, Dockerfile y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, es importante que siempre en el contexto haya un Dockerfile, ya que el Dockerfile es el que indica la forma en la que se construye una imagen, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
 
 <br>
 
@@ -603,6 +608,29 @@ docker network rm $(docker network ls -q)
 <br>
 
 # Dockerfile
+
+Los Dockerfile son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse como un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un Dockerfile en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un Dockerfile y sus funciones se listan a continuación:
+
+- **FROM [nombre de la imagen]:[versión de la imagen]**: Indica la imagen base, o primera capa que se va a utilizar para construir la nueva imagen, siempre es el primer comando de un Dockerfile.
+- **RUN [comando]**: Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con **RUN** solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un Dockerfile que implemente esta instrucción.
+- **WORKDIR [ruta dentro del contenedor]**: Establece un directorio de trabajo que será el directorio en el que se posicionará el contenedor al iniciar su ejecución.
+- **COPY [ruta archivo 0, ruta archivo 1, ... ruta archivo n, ruta destino contenedor]**: Copia todos los archivos indicados en la ruta de destino de la imagen, cabe aclarar que Docker solo da acceso a la imagen en tiempo de construcción al directorio especificado como contexto, por lo que los archivos que se quieren copiar a la imagen deben estar dentro del contexto de construcción para poder ser empaquetados dentro de la misma.
+- **EXPOSE [número de puerto]**: Expone un puerto del contenedor permitiendo que ese puerto sea vinculable o bindable a un puerto de la máquina anfitrión.
+- **CMD ["parte 1 del comando", "parte 2 del comando"]**: Exec form para ejecutar un comando, ejecutar procesos con exec form hace que los procesos se ejecuten directamente, lo que pone el proceso indicado como proceso principal del contenedor.
+- **CMD [comando entero]**: Shell form para ejecutar un comando, ejecutar procesos con shell form hace que los procesos se ejecuten como procesos hijos de un shell, lo que pone al shell como proceso principal del contenedor en lugar del proceso indicado.
+- **ENTRYPOINT ["parte 1 del comando", "parte 2 del comando"]**: Exec form para ejecutar un entrypoint, ejecuta el entrypoint como proceso principal.
+- **ENTRYPOINT [comando entero]**: Shell form para ejecutar un entrypoint, ejecuta el entrypoint como proceso hijo del shell.
+
+<br>
+
+### Tips de Dockerfile:
+
+- Docker no construye de nuevo las capas a no ser que haya cambios, esto lo logra utilizando el caché de capas, es importante construir los Dockerfile considerando el caché de capas para facilitar el proceso de desarrollo.
+- Utilizando monitores de scripting y bind mounts se puede lograr que Docker actualice el código que se está ejecutando en tiempo de ejecución sin tener que reconstruir la imagen de nuevo.
+- En Docker existe un archivo llamado **.dockersignore** que funciona igual que **.gitignore**, su función es evitar que cierto tipo de archivos copien la imagen al construirla.
+- Los **entrypoint** a diferencia de **cmd** no pueden ser sobreescritos a no ser que se utilice un flag especial al momento de ejecutar un contenedor, por lo que si el contenedor está destinado a tener solo un uso específico es recomendable usar **entrypoints** en lugar de **cmd** para establecer el comando por defecto.
+- Los **entrypoint** se ejecutan siempre como comandos por defecto al tener prioridad sobre los comandos de **cmd**, además al combinarse **entrypoints** y **cmd** los **entrypoint** utilizan los comandos de **cmd** como parámetros al final del comando del **entrypoint**, por lo que el comando del proceso principal termina siendo el comando del **entrypoint** concatenado con el comando de **cmd**, lo que hace que al no enviar comandos al momento de ejecutar el contenedor use lo que hay en por defecto en **cmd** como parámetro y al enviar comandos se estos se reemplazan en **cmd** y se usan como parámetros al final del comando del **entrypoint**.
+- Cuando se utilizan **entrypoints** y **cmd** en un mismo Dockerfile es importante que ambos utilicen o shell form o exec form, no es recomendable que usen formas diferentes de ejecutar el comando.
 
 <br>
 
