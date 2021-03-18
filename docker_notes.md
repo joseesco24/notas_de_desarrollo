@@ -582,9 +582,20 @@ Elimina todas las redes residuales o inactivas.
 ### Comando pré construído:
 
 ```shell
-docker network rm -f $(docker network ls -q)
+docker network rm $(docker network ls -q)
 ```
 
 El comando anterior es una extensión de **docker network rm** pero tiene la funcionalidad de eliminar todos las redes independientemente de si son residuales o no.
+
+<br>
+
+## Comandos pre construidos para limpiar todos los contenedores, imagenes, volúmenes y redes de Docker
+
+```shell
+docker rm -f $(docker ps -aq)
+docker image rm -f $(docker image ls -q)
+docker volume rm -f $(docker volume ls -q)
+docker network rm $(docker network ls -q)
+```
 
 <br>
