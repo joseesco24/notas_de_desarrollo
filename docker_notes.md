@@ -591,11 +591,21 @@ El comando anterior es una extensión de **docker network rm** pero tiene la fun
 
 # Comandos pre construidos de limpieza
 
+Los siguientes comandos simplemente son una compilación de los comandos de las secciones anteriores, en conjunto y ejecutados en secuencia eliminan todos los contenedores, imágenes, volúmenes y redes que se hayan creado.
+
 ```shell
 docker rm -f $(docker ps -aq)
 docker image rm -f $(docker image ls -q)
 docker volume rm -f $(docker volume ls -q)
 docker network rm $(docker network ls -q)
 ```
+
+<br>
+
+# Docker compose
+
+<br>
+
+# Docker swarm
 
 <br>
