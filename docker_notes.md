@@ -1,9 +1,7 @@
 # Apreciaciones importantes sobre Docker
 
-Docker es un sistema de contenedores que permite que cada uno de nuestros proyectos este autocontenido y empaquetado en una imagen ultra liviana de un sistema operativo Linux, el cual al desplegarse como contenedor **aprovecha partes del sistema operativo de la máquina anfitrión** para completar los componentes necesarios para ejecutarse correctamente, esto lo logra gracias a su arquitectura por capas, cada capa corresponde con una parte necesaria para que nuestro proyecto se ejecute en un contenedor sobre un sistema operativo aislado, en consecuencia cuando una nueva imagen llega a la máquina anfitrión y ya están presentes las capas más pesadas, normalmente del kernel y demas paquetes del OS, solo hace falta descargar e instalar las más livianas, que por lo general son los requerimientos de nuestro proyecto, por lo que no hace falta mover las capas más pesadas, es por esto que las imágenes suelen ser muy livianas y además al desplegarse como contenedores proveen todas las funcionalidades de un sistema operativo totalmente virtualizado y aislado, sin ser los contenedores sistemas operativos virtualizados totalmente desacoplados como los utilizados en las máquinas virtuales.
-<br>
-Cabe aclarar que el aislamiento de procesos en Docker es puramente lógico ya que por debajo los procesos son ejecutados por el sistema operativo de la máquina anfitrión, no por un sistema operativo virtual que usa el hardware de la máquina anfitrión, en un sistema Linux esto es apreciable con solo revisar los procesos con top, en Windows y en Mac no es apreciable esto, ya que al instalar Docker desktop, Docker por debajo instala una maquina virtual con un sistema operativo Linux que es el que se utiliza para suplir las capas más bajas de los contenedores y por lo tanto es en el sistema operativo de esa máquina virtual en el que se ejecutan los procesos de los contenedores.
-<br>
+Docker es un sistema de contenedores que permite que cada uno de nuestros proyectos este autocontenido y empaquetado en una imagen ultra liviana de un sistema operativo Linux, el cual al desplegarse como contenedor **aprovecha partes del sistema operativo de la máquina anfitrión** para completar los componentes necesarios para ejecutarse correctamente, esto lo logra gracias a su arquitectura por capas, cada capa corresponde con una parte necesaria para que nuestro proyecto se ejecute en un contenedor sobre un sistema operativo aislado, en consecuencia cuando una nueva imagen llega a la máquina anfitrión y ya están presentes las capas más pesadas, normalmente del kernel y demas paquetes del OS, solo hace falta descargar e instalar las más livianas, que por lo general son los requerimientos de nuestro proyecto, por lo que no hace falta mover las capas más pesadas, es por esto que las imágenes suelen ser muy livianas y además al desplegarse como contenedores proveen todas las funcionalidades de un sistema operativo totalmente virtualizado y aislado, sin ser los contenedores sistemas operativos virtualizados totalmente desacoplados como los utilizados en las máquinas virtuales.\
+Cabe aclarar que el aislamiento de procesos en Docker es puramente lógico ya que por debajo los procesos son ejecutados por el sistema operativo de la máquina anfitrión, no por un sistema operativo virtual que usa el hardware de la máquina anfitrión, en un sistema Linux esto es apreciable con solo revisar los procesos con top, en Windows y en Mac no es apreciable esto, ya que al instalar Docker desktop, Docker por debajo instala una maquina virtual con un sistema operativo Linux que es el que se utiliza para suplir las capas más bajas de los contenedores y por lo tanto es en el sistema operativo de esa máquina virtual en el que se ejecutan los procesos de los contenedores.\
 Implementar Docker en nuestros proyectos les otorga una capa adicional de abstracción sobre el cual trabajara nuestro proyecto y también ayuda a atenuar algunos de los desafíos más importantes al momento de realizar un desarrollo profesional de software, como los relacionados con la construcción, distribución y ejecución de nuestros proyectos:
 
 - **Construcción**: Al construir o desarrollar aplicaciones con Docker uno de los principales beneficios es que inmediatamente se empieza a usar Docker los entornos de desarrollo y ejecución pueden ser equivalentes ya que todos los contenedores tendrán las mismas dependencias, paquetes y se ejecutarán sobre el mismo sistema operativo independientemente de si es un ambiente de desarrollo o de ejecución, además incluso gracias a Docker se pueden simular condiciones de ejecución con ciertos recursos como la RAM limitados mediante contenedores.
@@ -32,15 +30,11 @@ Además de las capas con las que es necesario interactuar para usar Docker tambi
 - **Redes**: Las redes internas de Docker permiten que las diferentes aplicaciones desplegadas en diferentes contenedores puedan interactuar entre sí.
 - **Volúmenes de almacenamiento**: Los volúmenes de almacenamiento son la forma que provee Docker para que una aplicación desplegada en un contenedor puede almacenar datos para que otro contenedor pueda usarlos o simplemente para poder usarlos en ejecuciones posteriores, los volúmenes de almacenamiento son totalmente administrados por Docker, lo que los hace inaccesibles para la máquina anfitrión.
 
-<br>
-
-# Instalación de Docker en Mac o Windows
+## Instalación de Docker en Mac o Windows
 
 Para realizar la instalación de Docker en MacOS o en Windows basta con descargar de [Docker Hub](https://hub.docker.com/) la aplicación de escritorio.
 
-<br>
-
-# Instalación de Docker en Ubuntu
+## Instalación de Docker en Ubuntu
 
 Esta pequeña guía de instalación está basada en la [guía oficial](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker Hub para instalar Docker engine en **Ubuntu** mediante el sistema de repositorios, cabe aclarar que en Linux no hace falta instalar Docker desktop como en Mac o en Windows, con solo Docker engine es suficiente y además la manipulación del Docker daemon en Linux se hace solo por consola, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de Ubuntu:
 
@@ -48,8 +42,6 @@ Esta pequeña guía de instalación está basada en la [guía oficial](https://d
 - Ubuntu Groovy 20.10
 - Ubuntu Bionic 18.04 (LTS)
 - Ubuntu Xenial 16.04 (LTS)
-
-<br>
 
 ## Comandos de instalación de Docker
 
@@ -86,9 +78,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 Por último se utilizan los comandos anteriores para actualizar el índice de paquetes de apt y luego instalar Docker engine.
 
-<br>
-
-## Comprobación de la instalación
+### Comprobación de la instalación
 
 Una forma sencilla de comprobar el funcionamiento de Docker engine es utilizando la imagen de Hello-World, para hacer esto se ejecuta el siguiente comando.
 
@@ -106,9 +96,7 @@ docker --version
 docker info
 ```
 
-<br>
-
-## En caso de errores
+### En caso de errores
 
 Un error comun al instalar Docker en Ubuntu es que al realizar la instalacion solo el usuario root posee permisos para ejecutar acciones manipulando el Docker daemon, por lo tanto si tratamos de usar alguno de los comandos de Docker con nuestro usuario obtendremos un mensaje de error de denegación de permisos, como el presente a continuación.
 
@@ -123,9 +111,7 @@ sudo usermod -aG docker $USER
 newgrp docker
 ```
 
-<br>
-
-# Comandos básicos de administración en Docker
+## Comandos básicos de administración en Docker
 
 ```bash
 man docker
@@ -133,15 +119,11 @@ man docker
 
 Muestra el manual de Docker.
 
-<br>
-
 ```bash
 docker [comando] --help
 ```
 
 Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
-
-<br>
 
 ```bash
 docker --version
@@ -149,15 +131,11 @@ docker --version
 
 Permite ver la versión de Docker instalada actualmente en la máquina anfitrión.
 
-<br>
-
 ```bash
 docker info [parámetros]
 ```
 
 Muestra la información del Docker Daemon, como el número de imágenes descargadas, el estado de Swarm o incluso la versión del kernel, entre otros.
-
-<br>
 
 ```bash
 docker stats [parámetros] [id o nombre del contenedor]
@@ -165,25 +143,19 @@ docker stats [parámetros] [id o nombre del contenedor]
 
 Muestra los recursos que está utilizando cada contenedor y docker en general, si se especifica un contenedor con su id o nombre se muestran solo los recursos que está usando ese contenedor.
 
-<br>
-
 ```bash
 docker system prune [parámetros]
 ```
 
 Elimina todos los volúmenes, contenedores y redes que no se estén usando, además de imágenes residuales.
 
-<br>
-
-# Administración de contenedores
+## Administración de contenedores
 
 La administración de contenedores es una actividad clave al utilizar Docker ya que los contenedores son las entidades más importantes que podemos manejar en Docker, esto se debe a que los contenedores son los encargados de virtualizar al ambiente aislado donde se ejecutarán nuestros proyectos, es mediante el uso de contenedores que Docker adquiere tres de sus características más importantes, concretamente el uso de contenedores aporta **flexibilidad**, **seguridad** y **bajo acoplamiento** a nuestros proyectos.
-<br>
+
 Algunos de los comandos más importantes provistos por Docker para administrar contenedores se listan en esta sección.
 
-<br>
-
-## Ejecutar contenedores
+### Ejecutar contenedores
 
 ```bash
 docker run [parámetros] [imagen] [comando]
@@ -201,15 +173,13 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando espe
 - **--memory [cantidad de memoria ram designada][g:gigas o:megas]**: Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
 - **--env [nombre de la variable de ambiente]=[valor de la variable de ambiente]**: Establece una variable de ambiente a la que tendrá acceso el contenedor.
 
-### Apuntes adicionales:
+#### Apuntes adicionales
 
 - Al restringir la memoria ram que puede usar una aplicación es posible que este finaliza con el estatus **OOMKilled**, , el cual se puede ver con un **docker inspect** del contenedor, este estatus indica que el contenedor se detuvo debido a que la memoria con la que contaba le fue insuficiente para ejecutar todos sus procesos y por lo tanto colapsó y se detuvo.
 - Los status de salida con código por encima de 128 indican salidas forzosas y normalmente indican que el cierre de ese contenedor causó que varios procesos que se estaban llevando a cabo se detuvieran sin finalizarse.
 - Un código de salida 137 indica que el proceso fue cerrado por la señal **sigkill**.
 
-<br>
-
-## Cambiar nombres de los contenedores
+### Cambiar nombres de los contenedores
 
 ```bash
 docker rename [nombre o id del contenedor] [nuevo nombre]
@@ -217,9 +187,7 @@ docker rename [nombre o id del contenedor] [nuevo nombre]
 
 Asigna un nuevo nombre al contenedor especificado.
 
-<br>
-
-## Revisar el estado de los contenedores
+### Revisar el estado de los contenedores
 
 ```bash
 docker ps [parámetros]
@@ -236,9 +204,7 @@ docker inspect [parámetros] [nombre o id del contenedor]
 
 Muestra en un archivo JSON toda la información de la configuración de un contenedor en concreto.
 
-<br>
-
-## Mover archivos y directorio entre el anfitrión y los contenedores
+### Mover archivos y directorio entre el anfitrión y los contenedores
 
 ```bash
 docker cp [parámetros] [ruta host] [nombre o id del contenedor]:[ruta contenedor]
@@ -252,9 +218,7 @@ docker cp [parámetros] [nombre o id del contenedor]:[ruta contenedor] [ruta hos
 
 Copia un archivo o directorio desde la ruta de origen del contenedor designado en la ruta de destino de la máquina anfitrión.
 
-<br>
-
-## Visualizar los logs de los contenedores
+### Visualizar los logs de los contenedores
 
 ```bash
 docker logs [parámetros] [nombre o id del contenedor]
@@ -265,9 +229,7 @@ Sirve para ver los logs de un contenedor especificado, algunos de los parámetro
 - **-f**: Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
 - **--tail [número de logs]**: Imprime los últimos logs limitándose al número de logs indicado.
 
-<br>
-
-## Ejecutar tareas en contenedores
+### Ejecutar tareas en contenedores
 
 ```bash
 docker exec [parámetros] [nombre o id del contenedor] [comando]
@@ -277,9 +239,7 @@ Permite ejecutar un comando en un contenedor activo, algunos de los parámetros 
 
 - **-d**: Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
 
-<br>
-
-### Comando pré construído:
+#### Comando pré construído para ver procesos dentro de un contenedor
 
 ```bash
 docker exec [nombre o id del contenedor] ps -ef
@@ -287,9 +247,7 @@ docker exec [nombre o id del contenedor] ps -ef
 
 El comando anterior es una extensión de **docker exec** que muestra los procesos que se están ejecutando dentro del contenedor indicado.
 
-<br>
-
-## Apagar contenedores
+### Apagar contenedores
 
 ```bash
 docker stop [parámetros] [nombre o id del contenedor]
@@ -303,9 +261,7 @@ docker kill [parámetros] [nombre o id del contenedor]
 
 Apaga manualmente un contenedor usando la señal **sigkill**.
 
-<br>
-
-## Eliminar contenedores
+### Eliminar contenedores
 
 ```bash
 docker rm [parámetros] [nombre o id del contenedor]
@@ -321,9 +277,7 @@ docker container prune [parámetros]
 
 Borra todos los contenedores inactivos.
 
-<br>
-
-### Comando pré construído:
+#### Comando pré construído para eliminar contenedores
 
 ```bash
 docker rm -f $(docker ps -aq)
@@ -331,17 +285,12 @@ docker rm -f $(docker ps -aq)
 
 El comando anterior es una extensión de **docker rm** pero tiene la funcionalidad de eliminar todos los contenedores activos o inactivos y para eliminar los activos fuerza su detención antes de eliminarlos con la señal **sigkill**.
 
-<br>
-
-# Administración de imágenes
+## Administración de imágenes
 
 En términos de relevancia las imágenes en Docker podrían considerarse como el segundo tipo de entidad más relevantes después de los contenedores, estando casi a la par en relevancia, lo que hace a la administración de imágenes el segundo tipo de actividad más relevante al usar Docker, si bien los contenedores son la forma de virtualizar un ambiente aislado sobre el que se ejecutara nuestro proyecto, las imágenes se encargan de indicar la forma en la que el contenedor debe construir ese ambiente, además es gracias a las imágenes que es fácil mover, desplegar y replicar un proyecto las veces que haga falta, sin alterar el funcionamiento del mismo, es por esto que las imágenes son las que aportan a nuestros proyectos las tres características restantes principales de Docker, concretamente las imágenes aportan **escalabilidad**, **portabilidad** y **ligereza** a nuestros proyectos.
-<br>
 Algunos de los comandos más importantes provistos por Docker para administrar imágenes se listan en esta sección.
 
-<br>
-
-## Construir imágenes
+### Construir imágenes
 
 ```bash
 docker build [parámetros] [ruta del contexto]
@@ -349,14 +298,10 @@ docker build [parámetros] [ruta del contexto]
 
 Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, Dockerfile y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, es importante que siempre en el contexto haya un Dockerfile, ya que el Dockerfile es el que indica la forma en la que se construye una imagen, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
 
-<br>
-
 - **-t [nombre de la nueva imagen]:[tag de la nueva imagen]**: Permite personalizar el nombre y tag de la nueva imagen que será construida.
 - **--f [ruta del Dockerfile]**: Permite cambiar o especificar la ruta al Dockerfile con el cual se construirá la imagen.
 
-<br>
-
-## Bajar imágenes
+### Bajar imágenes
 
 ```bash
 docker pull [parámetros] [nombre o id de la imagen]:[tag de la imagen]
@@ -364,9 +309,7 @@ docker pull [parámetros] [nombre o id de la imagen]:[tag de la imagen]
 
 Baja la imagen con el nombre y el tag especificado, si no se especifica un tag se baja la versión más reciente o por defecto de la imagen.
 
-<br>
-
-## Subir imágenes
+### Subir imágenes
 
 Antes de subir una imagen a nuestro repositorio es necesario iniciar sesión con nuestro usuario en el CLI de Docker, esto se hace con el siguiente comando.
 
@@ -382,9 +325,7 @@ docker push [parámetros] [repositorio o nombre de usuario de Docker Hub]/[nombr
 
 Sube la imagen con el nombre y el tag especificado al repositorio indicado.
 
-<br>
-
-## Cambiar tags de imágenes
+### Cambiar tags de imágenes
 
 ```bash
 docker tag [nombre o id de la imagen de origen]:[tag de la imagen de origen] [repositorio o nombre de usuario de Docker Hub]/[nombre o id de la nueva imagen]:[tag de la nueva imagen]
@@ -392,9 +333,7 @@ docker tag [nombre o id de la imagen de origen]:[tag de la imagen de origen] [re
 
 Crea una nueva imagen que se hace referencia a una ya existente y que se puede publicar en nuestro repositorio.
 
-<br>
-
-## Listar imágenes
+### Listar imágenes
 
 ```bash
 docker image ls [parámetros]
@@ -402,17 +341,13 @@ docker image ls [parámetros]
 
 Lista todas las imágenes almacenadas localmente.
 
-<br>
-
-## Visualizar capas de imágenes
+### Visualizar capas de imágenes
 
 ```bash
 docker history [parámetros] [nombre o id de la imagen]:[tag de la imagen]
 ```
 
 Muestra las capas de una imagen de forma simplificada.
-
-<br>
 
 Otra herramienta muy útil para visualizar las capas de una imagen con más profundidad es [dive](https://github.com/wagoodman/dive), dive a diferencia de los comandos nativos de Docker da más información sobre las capas de cada imagen, algunos de los comandos básicos para ver información de las imágenes con dive son:
 
@@ -427,9 +362,7 @@ Para abrir los detalles de la imagen con dive, luego de abrir una imagen con div
 - **ctrl + u**: Filtra los archivos que fueron cambiados en la capa actual.
 - **ctrl + c**: Salir de dive.
 
-<br>
-
-## Eliminar imágenes
+### Eliminar imágenes
 
 ```bash
 docker image rm [parámetros] [nombre o id de la imagen]:[tag de la imagen]
@@ -437,17 +370,13 @@ docker image rm [parámetros] [nombre o id de la imagen]:[tag de la imagen]
 
 Elimina la imagen indicada.
 
-<br>
-
 ```bash
 docker image prune [parámetros]
 ```
 
 Elimina todas las imágenes residuales o inactivas.
 
-<br>
-
-### Comando pré construído:
+#### Comando pré construído para eliminar imagenes
 
 ```bash
 docker image rm -f $(docker image ls -q)
@@ -455,17 +384,12 @@ docker image rm -f $(docker image ls -q)
 
 El comando anterior es una extensión de **docker image rm** pero tiene la funcionalidad de eliminar todos las imágenes independientemente de si son residuales o no.
 
-<br>
-
-# Administración de volúmenes
+## Administración de volúmenes
 
 Los volúmenes son una parte fundamental al usar Docker para desarrollar una solución ya que son las unidades virtuales de almacenamiento que normalmente usan los contenedores para guardar y compartir datos entre ellos de forma sencilla, usar volúmenes garantiza que los datos almacenados persistirán incluso si se detiene o elimina el contenedor que hacía uso del volumen, cabe aclarar que los volúmenes son espacios de memoria del anfitrión que Docker usa para almacenar archivos de los contenedores, al igual que con los bind, pero a diferencia de los bind los volúmenes solo son administrados únicamente por Docker y no conceden al contenedor acceso al sistema de directorios del anfitrión, lo que los hace más seguros de usar que los bind, es por esto último que los volúmenes son la opción más recomendable al utilizar un medio de almacenamiento de datos del contenedor una solución desplegada para producción.
-<br>
 Los comandos provistos por Docker para administrar volúmenes se listan en esta sección.
 
-<br>
-
-## Crear volúmenes
+### Crear volúmenes
 
 ```bash
 docker volume create [parámetros] [nombre]
@@ -473,9 +397,7 @@ docker volume create [parámetros] [nombre]
 
 Crea un volúmen y le asigna el nombre indicado.
 
-<br>
-
-## Listar volúmenes
+### Listar volúmenes
 
 ```bash
 docker volume ls [parámetros]
@@ -483,9 +405,7 @@ docker volume ls [parámetros]
 
 Lista todos los volúmenes de Docker mostrando su driver y nombre.
 
-<br>
-
-## Eliminar volúmenes
+### Eliminar volúmenes
 
 ```bash
 docker volume rm [parámetros] [nombre]
@@ -499,9 +419,7 @@ docker volume prune [parámetros]
 
 Elimina todos los volúmenes residuales o inactivos almacenados localmente.
 
-<br>
-
-### Comando pré construído:
+#### Comando pré construído para eliminar volúmenes
 
 ```bash
 docker volume rm -f $(docker volume ls -q)
@@ -509,17 +427,12 @@ docker volume rm -f $(docker volume ls -q)
 
 El comando anterior es una extensión de **docker volume rm** pero tiene la funcionalidad de eliminar todos los volúmenes independientemente de si son residuales o no.
 
-<br>
-
-# Administración de redes
+## Administración de redes
 
 Las redes son una parte fundamental al usar Docker para desarrollar una solución ya que usándolas se puede lograr que varios contenedores en la misma red se comunican, y cooperan generando un esquema de micro servicios, una de las principales ventajas de usar redes de Docker es que se puede usar directamente el nombre del contenedor para establecer las comunicaciones y a diferencia de el uso de conexiones directas por API usando redes de Docker no hace falta que un contenedor salga a internet para comunicarse con otro.
-<br>
 Los comandos provistos por Docker para administrar redes se listan en esta sección.
 
-<br>
-
-## Crear redes
+### Crear redes
 
 ```bash
 docker network create [parámetros] [nombre]
@@ -530,9 +443,7 @@ Crea un nueva red de Docker, algunos de los parámetros más útiles al crear un
 - **--attachable**: Habilita la opción de agregar contendores manualmente a la red.
 - **--internal**: Restringe el acceso externo de la red.
 
-<br>
-
-## Listar redes
+### Listar redes
 
 ```bash
 docker network ls [parámetros]
@@ -540,9 +451,7 @@ docker network ls [parámetros]
 
 Lista todas las redes de Docker, mostrando su nombre, tipo de driver, id y alcance:
 
-<br>
-
-## Inspeccionar redes
+### Inspeccionar redes
 
 ```bash
 docker network inspect [parámetros] [nombre o id de la red]
@@ -550,9 +459,7 @@ docker network inspect [parámetros] [nombre o id de la red]
 
 Muestra todas las configuración de una red en formato JSON, incluidos los contenedores conectados a ella.
 
-<br>
-
-## Conectar y desconectar redes con contenedores
+### Conectar y desconectar redes con contenedores
 
 ```bash
 docker network connect [parámetros] [id o nombre de la red] [id o nombre del contenedor]
@@ -566,9 +473,7 @@ docker network disconnect [parámetros] [id o nombre de la red] [id o nombre del
 
 Desconecta un contenedor de una red.
 
-<br>
-
-## Eliminar redes
+### Eliminar redes
 
 ```bash
 docker network rm [parámetros] [nombre]
@@ -582,9 +487,7 @@ docker network prune [parámetros]
 
 Elimina todas las redes residuales o inactivas.
 
-<br>
-
-### Comando pré construído:
+#### Comando pré construído para eliminar redes
 
 ```bash
 docker network rm $(docker network ls -q)
@@ -592,9 +495,7 @@ docker network rm $(docker network ls -q)
 
 El comando anterior es una extensión de **docker network rm** pero tiene la funcionalidad de eliminar todos las redes independientemente de si son residuales o no.
 
-<br>
-
-# Comandos pre construidos de limpieza
+## Comandos pre construidos de limpieza
 
 Los siguientes comandos simplemente son una compilación de los comandos de las secciones anteriores, en conjunto y ejecutados en secuencia eliminan todos los contenedores, imágenes, volúmenes y redes que se hayan creado.
 
@@ -605,9 +506,7 @@ docker volume rm -f $(docker volume ls -q)
 docker network rm $(docker network ls -q)
 ```
 
-<br>
-
-# Archivos Dockerfile
+## Archivos Dockerfile
 
 Los Dockerfile son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse como un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un Dockerfile en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un Dockerfile y sus funciones se listan a continuación:
 
@@ -621,9 +520,7 @@ Los Dockerfile son los archivos que usa Docker al momento de construir una image
 - **ENTRYPOINT ["parte 1 del comando", "parte 2 del comando"]**: Exec form para ejecutar un entrypoint, ejecuta el entrypoint como proceso principal.
 - **ENTRYPOINT [comando entero]**: bash form para ejecutar un entrypoint, ejecuta el entrypoint como proceso hijo del bash.
 
-<br>
-
-### Tips de Dockerfile:
+### Tips de Dockerfile
 
 - Docker no construye de nuevo las capas a no ser que haya cambios, esto lo logra utilizando el caché de capas, es importante construir los Dockerfile considerando el caché de capas para facilitar el proceso de desarrollo.
 - Utilizando monitores de scripting y bind mounts, como nodemon, se puede lograr que Docker actualice el código que se está ejecutando en tiempo de ejecución sin tener que reconstruir la imagen de nuevo.
@@ -635,9 +532,7 @@ Los Dockerfile son los archivos que usa Docker al momento de construir una image
 - El resultado de construir una imagen con un Dockerfile multi etapa siempre es la imagen resultante de la etapa final.
 - Cuando se realizan construcciones con múltiples etapas se utiliza el indicativo **as** junto a **FROM** para nombrar la imagen previa y además se puede utilizar **--from=nombre** para que una imagen posterior referencia una imagen previa.
 
-<br>
-
-#### Ejemplo de cache por capas en Dockerfile:
+#### Ejemplo de cache por capas en Dockerfile
 
 ```dockerfile
 FROM node:14
@@ -649,9 +544,7 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
 
-<br>
-
-#### Ejemplo de .dockerignore:
+#### Ejemplo de .dockerignore
 
 ```ignore
 *.log
@@ -665,9 +558,7 @@ npm-debug.log*
 README.md
 ```
 
-<br>
-
-#### Ejemplo de entrypoint y cmd en Dockerfile:
+#### Ejemplo de entrypoint y cmd en Dockerfile
 
 ```dockerfile
 FROM ubuntu:trusty
@@ -675,9 +566,7 @@ ENTRYPOINT ["/bin/ping", "-c", "3"]
 CMD ["localhost"]
 ```
 
-<br>
-
-#### Ejemplo de un Dockerfile multi etapa:
+#### Ejemplo de un Dockerfile multi etapa
 
 ```dockerfile
 # etapa 1.
@@ -699,9 +588,7 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
 
-<br>
-
-# Instalación de Docker compose en Ubuntu
+## Instalación de Docker compose en Ubuntu
 
 Docker-compose se instala junto a las versiones de escritorio de Windows o Mac, sin embargo en la versión de Ubuntu es necesario instalarlo manualmente con los siguientes comandos, los cuales son extraídos de la guia oficial de [Docker Hub](https://docs.docker.com/compose/install/):
 
@@ -710,15 +597,11 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-<br>
-
-# Subcomandos de Docker compose
+## Subcomandos de Docker compose
 
 Docker-compose tiene varios subcomandos similares a los usados en la administración regular de Docker, algunos de los más relevantes son:
 
-<br>
-
-## Comandos de administración general de compose
+### Comandos de administración general de compose
 
 ```bash
 docker-compose [comando] --help
@@ -726,9 +609,7 @@ docker-compose [comando] --help
 
 Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
 
-<br>
-
-## Construir las imágenes necesarias para una aplicación de compose
+### Construir las imágenes necesarias para una aplicación de compose
 
 ```bash
 docker-compose build [parámetros] [nombre del servicio]
@@ -736,9 +617,7 @@ docker-compose build [parámetros] [nombre del servicio]
 
 Construye las imágenes que requieren ser construidas según el **compose file**, al especificarse uno o varios servicios solo se construirán las imágenes de los servicios indicados.
 
-<br>
-
-## Iniciar una aplicación con compose
+### Iniciar una aplicación con compose
 
 ```bash
 docker-compose up [parámetros] [nombre del servicio]
@@ -749,9 +628,7 @@ Levanta la arquitectura descrita por el **compose file** en caso de no indicarse
 - **-d**: Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
 - **--scale [nombre o id del servicio]=[número de contenedores]**: Escala un determinado servicio al número de contenedores indicado.
 
-<br>
-
-## Revisar el estado de los contenedores generados por compose
+### Revisar el estado de los contenedores generados por compose
 
 ```bash
 docker-compose ps [parámetros] [nombre del servicio]
@@ -761,9 +638,7 @@ Muestra el estado de los contenedores creados por el **compose file** en caso de
 
 - **-a**: Muestra todos los contenedores de la aplicación independientemente de si están o no ejecutados.
 
-<br>
-
-## Revisar los logs de una aplicación compose
+### Revisar los logs de una aplicación compose
 
 ```bash
 docker-compose logs [parámetros] [nombre del servicio]
@@ -774,9 +649,7 @@ Muestra los logs de todos los contenedores usados por la aplicación en caso de 
 - **-f**: Sirve para hacer follow a los logs de toda la aplicación o de cierto servicio si se indica el servicio.
 - **--tail [número de logs]**: Imprime los últimos logs limitándose al número de logs indicado de toda la aplicación o de cierto servicio si se indica el servicio.
 
-<br>
-
-## Ejecutar comandos en servicios de una aplicación compose
+### Ejecutar comandos en servicios de una aplicación compose
 
 ```bash
 docker-compose exec [parámetros] [nombre del servicio] [comando]
@@ -784,9 +657,7 @@ docker-compose exec [parámetros] [nombre del servicio] [comando]
 
 Ejecuta un comando dentro del o los contenedores pertenecientes a un servicio de una aplicación compose.
 
-<br>
-
-## Ejecutar comandos en servicios de una aplicación compose
+### Detener y eliminar todos los servicios de una aplicación compose
 
 ```bash
 docker-compose down [parámetros]
@@ -794,9 +665,7 @@ docker-compose down [parámetros]
 
 Detiene y elimina todos los recursos usados por una aplicación compose.
 
-<br>
-
-# Archivos docker-compose.yml
+## Archivos docker-compose.yml
 
 Docker-compose permite usar los 4 recursos de Docker juntos fácilmente desde un solo archivo **docker-compose.yml**, usando este archivo también llamado **compose file** se pueden integrar fácilmente recursos de red, volúmenes, imagenes y contenedores sin necesidad de administrar uno a uno cada tipo de recurso, en síntesis lo que permite Docker-compose es describir de forma declarativa la arquitectura de servicios que la aplicación necesita, y Docker se encargará de crear e integrar cada recursos declarado por detrás evitandonos tener que administraba uno a uno los recursos, algunos de los componentes que soporta **Docker-compose** y sus funciones son:
 
@@ -810,9 +679,7 @@ Docker-compose permite usar los 4 recursos de Docker juntos fácilmente desde un
 - **command**: Cambia el comando por defecto del servicio.
 - **build**: Indica el contexto con el que se debe construir una nueva imagen que se desplegará en todos los contenedores del servicio indicado, el nombre de la nueva imagen se construye en base al nombre del directorio de trabajo y el nombre del servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]**.
 
-<br>
-
-### Tips de Docker-compose:
+### Tips de Docker-compose
 
 - Al usar Docker-compose Docker por detrás crea una red dedicada a esa arquitectura a la que conecta todos los contenedores de todos los servicios declarados, el nombre de la red se asigna en base al nombre del directorio de trabajo en el siguiente formato **[nombre del directorio de trabajo]\_default**.
 - Al usar Docker-compose Docker por detras trata de asignar nombres únicos a cada contenedor para evitar conflictos a causa de los nombres, los nombres de los contenedores se asigna en base del nombre del directorio de trabajo, el nombre del servicio y un número que diferencia los diferentes contenedores de un servicio en el siguiente formato **[nombre del directorio de trabajo] _ [nombre del servicio] _ [número de contenedor]**.
@@ -824,9 +691,7 @@ Docker-compose permite usar los 4 recursos de Docker juntos fácilmente desde un
 - Para usar un **compose.override** solo hace falta construir la imagen de forma normal, Docker por defecto detecta el archivo de sobre escritura y lo utiliza.
 - Al poner **image** y **build** en un mismo compose la imagen se construye pero se le asigna el nombre de imagen en lugar del nombre por defecto.
 
-<br>
-
-#### Ejemplo de un Docker-compose con dos servicios y volúmenes:
+#### Ejemplo de un Docker-compose con dos servicios y volúmenes
 
 ```yml
 version: "3.8"
@@ -850,9 +715,7 @@ services:
 
 El compose anterior utiliza un volumen en app, además de una variable de ambiente, un puerto vinculado, un cambio en el comando por defecto y construye una imagen para los contenedores del servicio app.
 
-<br>
-
-#### Ejemplo de un Docker-compose con dos servicios y bind mount:
+#### Ejemplo de un Docker-compose con dos servicios y bind mount
 
 ```yml
 version: "3.8"
@@ -876,9 +739,7 @@ services:
 
 El compose anterior utiliza un bind mount, indica una ruta que no debe ser alterada por el bind, además, utiliza una variable de ambiente y un rango de puertos del anfitrión que pueden ser vinculados a los contenedores del servicio app.
 
-<br>
-
-#### Ejemplo de un Docker-compose.override:
+#### Ejemplo de un Docker-compose.override
 
 ```yml
 version: "3.8"
@@ -892,10 +753,4 @@ services:
 
 Al declarar un **docker-compose.override.yml** como el anterior junto a cualquiera de los **docker-compose.yml** se logra que se construya la imagen y se agregue la variable de ambiente nueva a la imagen.
 
-<br>
-
-# Docker swarm
-
-<br>
-
-
+## Docker swarm
