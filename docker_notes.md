@@ -173,7 +173,7 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando espe
 - **--memory [cantidad de memoria ram designada][g:gigas o:megas]**: Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
 - **--env [nombre de la variable de ambiente]=[valor de la variable de ambiente]**: Establece una variable de ambiente a la que tendrá acceso el contenedor.
 
-#### Apuntes adicionales
+#### Apuntes adicionales sobre la ejecución de contenedores
 
 - Al restringir la memoria ram que puede usar una aplicación es posible que este finaliza con el estatus **OOMKilled**, , el cual se puede ver con un **docker inspect** del contenedor, este estatus indica que el contenedor se detuvo debido a que la memoria con la que contaba le fue insuficiente para ejecutar todos sus procesos y por lo tanto colapsó y se detuvo.
 - Los status de salida con código por encima de 128 indican salidas forzosas y normalmente indican que el cierre de ese contenedor causó que varios procesos que se estaban llevando a cabo se detuvieran sin finalizarse.
@@ -376,7 +376,7 @@ docker image prune [parámetros]
 
 Elimina todas las imágenes residuales o inactivas.
 
-#### Comando pré construído para eliminar imagenes
+#### Comando pré construído para eliminar imágenes
 
 ```bash
 docker image rm -f $(docker image ls -q)
