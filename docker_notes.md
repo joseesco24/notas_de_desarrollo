@@ -1,4 +1,4 @@
-# Apreciaciones importantes sobre Docker
+# Apuntes sobre Docker
 
 Docker es un sistema de contenedores que permite que cada uno de nuestros proyectos este autocontenido y empaquetado en una imagen ultra liviana de un sistema operativo Linux, el cual al desplegarse como contenedor **aprovecha partes del sistema operativo de la máquina anfitrión** para completar los componentes necesarios para ejecutarse correctamente, esto lo logra gracias a su arquitectura por capas, cada capa corresponde con una parte necesaria para que nuestro proyecto se ejecute en un contenedor sobre un sistema operativo aislado, en consecuencia cuando una nueva imagen llega a la máquina anfitrión y ya están presentes las capas más pesadas, normalmente del kernel y demas paquetes del OS, solo hace falta descargar e instalar las más livianas, que por lo general son los requerimientos de nuestro proyecto, por lo que no hace falta mover las capas más pesadas, es por esto que las imágenes suelen ser muy livianas y además al desplegarse como contenedores proveen todas las funcionalidades de un sistema operativo totalmente virtualizado y aislado, sin ser los contenedores sistemas operativos virtualizados totalmente desacoplados como los utilizados en las máquinas virtuales.\
 Cabe aclarar que el aislamiento de procesos en Docker es puramente lógico ya que por debajo los procesos son ejecutados por el sistema operativo de la máquina anfitrión, no por un sistema operativo virtual que usa el hardware de la máquina anfitrión, en un sistema Linux esto es apreciable con solo revisar los procesos con top, en Windows y en Mac no es apreciable esto, ya que al instalar Docker desktop, Docker por debajo instala una maquina virtual con un sistema operativo Linux que es el que se utiliza para suplir las capas más bajas de los contenedores y por lo tanto es en el sistema operativo de esa máquina virtual en el que se ejecutan los procesos de los contenedores.\
@@ -753,4 +753,39 @@ services:
 
 Al declarar un **docker-compose.override.yml** como el anterior junto a cualquiera de los **docker-compose.yml** se logra que se construya la imagen y se agregue la variable de ambiente nueva a la imagen.
 
-## Docker swarm
+## Docker Swarm
+
+Docker Swarm es la solución nativa que ofrece Docker para montar una solución de cómputo distribuido o clustering basada en contenedores, lo que propone Swarm es que al montar un cluster este sea fácilmente administrable, como si se tratara de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto con Swarm es posible manejar clusters como si fueran uno solo computador con un solo Docker daemon, cuando en realidad son varios computadores cada uno con su propio Docker daemon, es por esto que las aplicaciones desplegadas con Swarm sean altamente escalables, disponibles y además son muy fáciles de administrar.
+Al utilizar Docker Swarm los computadores del cluster o nodos se divide en dos tipos de máquinas, Managers o Administradores y Workers o Trabajadores, siendo los Managers los encargados de administrar el Swarm en sí, mientras que los Workers se encargaran de ejecutar las tareas asignadas al cluster, las funciones específicas de los dos tipos de nodo se lista a continuación:
+
+- **Managers**: Gestiona las comunicaciones, distribuyen las tareas, gestionan los recursos y se encargan de posicionar contenedores y tareas en caso de caídas de algún nodo del cluster.
+- **Workers**: Ejecutan los contenedores de la aplicación.
+
+Por lo general hay más nodos Worker que Manager, ya que los Worker son el núcleo de la aplicación al ser los que ejecutan la aplicacion como tal, mientras que los Manager están dedicados exclusivamente a gestionar el cluster, si bien los manager también pueden ejecutar contendores con la aplicación no es recomendable ya que esto generaría una competencia de recursos entre las tareas de gestionar el cluster y ejecutar contenedores de la aplicación, lo que podría generar errores en la administración del Swarm.
+Las únicas restricciones al momento de desplegar una aplicación con Swarm es que todos los nodos deben estar en la misma red o subred y deben ser visibles entre ellos y además todos tiene que tener instalado el Dcoker daemon, idealmente de la misma versión.
+
+Antes de desplegar una aplicación con Docker Swarm lo adecuado es revisar que la aplicación cumpla ciertos factores para poder sacarle todo el provecho a un cluster con Swarm, si bien hay muchos factores a considerar, hay consenso en [12 factores](https://12factor.net/) que deben ser tomados en cuenta antes de decidir si una aplicación está lista o no para ser desplegada en Swarm, muy resumidamente los 12 factores son:
+
+1. El código fuente de la aplicación debe estar en un repositorio versionado y además debe haber una paridad de 1 a 1 entre el repositorio y la aplicación, por lo que no puede haber código de varias aplicaciones diferentes en el repositorio.
+
+1. Las dependencias deben estar declaradas explícitamente en un archivo de dependencias, el cual debe estar empaquetado junto al código fuente de la aplicación, siempre debe asumirse que las dependencias no están instaladas por lo que es necesario instalarlas con su archivo de dependencias correspondiente.
+
+1. Las definiciones de configuración de la aplicación deben estar empaquetadas junto a la aplicación y la aplicación debe estar diseñada para que bajo ninguna circunstancia la configuración varía en función del servidor.
+
+1. Los servicios de apoyo con los que interactúa la aplicación se tratan como aplicaciones externas a las que la aplicación se conecta, no como componentes o complementos de la aplicación como tal.
+
+1. Se deben separar estrictamente las etapas de construcción, liberación y ejecución, no debe haber procesos en etapas que no les corresponden, por ejemplo, un proceso de construcción jamás debe ocurrir en una etapa de ejecución, máximo en una etapa de ejecución se pueden hacer configuraciones.
+
+1. La aplicación tiene que poder ejecutarse como un proceso stateless, es decir que no debe depender de ciertos estados de memoria o archivos que ya están en la máquina.
+
+1. Las aplicaciones deben exponerse a sí mismas mediante puertos vinculados entre el host y la aplicación, siempre evitando utilizar intermediarios.
+
+1. La aplicación debe poder ejecutarse con múltiples instancias en paralelo.
+
+1. La aplicación debe poder apagarse, destruirse y levantarse muy rápidamente.
+
+1. El entorno de desarrollo y el entorno de producción deben ser lo más parecidos posibles.
+
+1. Todos los logs de la aplicación deben emitirse por la salida estándar, de tal modo que si se necesitan simplemente se puedan inspeccionar y recolectar.
+
+1. Todas las labores de administración deben poder realizarse sin alterar la ejecución de la aplicación, es decir que no debe ser necesario reiniciar la aplicación en cierto modo o con cierto estado para poder administrar.
