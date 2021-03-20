@@ -755,16 +755,21 @@ Al declarar un **docker-compose.override.yml** como el anterior junto a cualquie
 
 ## Docker Swarm
 
-Docker Swarm es la solución nativa que ofrece Docker para montar una solución de cómputo distribuido o clustering basada en contenedores, lo que propone Swarm es que al montar un cluster este sea fácilmente administrable, como si se tratara de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto con Swarm es posible manejar clusters como si fueran uno solo computador con un solo Docker daemon, cuando en realidad son varios computadores cada uno con su propio Docker daemon, es por esto que las aplicaciones desplegadas con Swarm sean altamente escalables, disponibles y además son muy fáciles de administrar.
-Al utilizar Docker Swarm los computadores del cluster o nodos se divide en dos tipos de máquinas, Managers o Administradores y Workers o Trabajadores, siendo los Managers los encargados de administrar el Swarm en sí, mientras que los Workers se encargaran de ejecutar las tareas asignadas al cluster, las funciones específicas de los dos tipos de nodo se lista a continuación:
+Las soluciones basadas en Docker Swarm tienen 3 componentes fundamentale, resumidamente estos componentes son:
+
+- **Swarm**: El Swarm, cluster o enjambre son lo mismo, una agrupación de varias máquinas que cooperan para realizar la misma tarea, en el caso de Swarm, desplegar contenedores de una aplicación para aumentar su disponibilidad y escalabilidad.
+- **Nodos**: Los nodos son todas las máquinas o computadores que componen el Swarm, cluster o enjambre.
+- **Servicios**: Los servicios son uno o varios contendores que ejecutan la misma aplicación en diferentes nodos en un mismo Swarm con el objetivo de que ese servicio tenga una muy alta disponibilidad y además sea altamente escalable.
+
+Docker Swarm es la solución nativa que ofrece Docker para montar una solución de cómputo distribuido o clusterizada basada en contenedores, lo que propone Swarm es que al montar un cluster en el que queremos desplegar aplicaciones contenerizadas bajo el esquema de servicios el cluster debe ser fácilmente administrable, bajo esta premisa Swarm ha llegado hasta el punto en el que el desarrollar puede tratar al cluster como si se tratase de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto usando Swarm es posible administrar clústeres casi con la facilidad con la que se administra uno solo computador con un solo Docker daemon, cuando en realidad son varios computadores cada uno con su propio Docker daemon, es por esto que las aplicaciones desplegadas con Swarm sean altamente escalables, tienen una disponibilidad altísima y además son muy fáciles de administrar.\
+Al utilizar Docker Swarm los computadores del cluster o nodos se divide en dos tipos de máquinas, Managers o Administradores y Workers o Trabajadores, siendo los Managers los encargados de dirigir o orquestar el Swarm en sí, mientras que los Workers se encargaran de ejecutar las tareas asignadas al por los Managers, las funciones específicas de los dos tipos de nodo se lista a continuación:
 
 - **Managers**: Gestiona las comunicaciones, distribuyen las tareas, gestionan los recursos y se encargan de posicionar contenedores y tareas en caso de caídas de algún nodo del cluster.
 - **Workers**: Ejecutan los contenedores de la aplicación.
 
-Por lo general hay más nodos Worker que Manager, ya que los Worker son el núcleo de la aplicación al ser los que ejecutan la aplicacion como tal, mientras que los Manager están dedicados exclusivamente a gestionar el cluster, si bien los manager también pueden ejecutar contendores con la aplicación no es recomendable ya que esto generaría una competencia de recursos entre las tareas de gestionar el cluster y ejecutar contenedores de la aplicación, lo que podría generar errores en la administración del Swarm.
-Las únicas restricciones al momento de desplegar una aplicación con Swarm es que todos los nodos deben estar en la misma red o subred y deben ser visibles entre ellos y además todos tiene que tener instalado el Dcoker daemon, idealmente de la misma versión.
-
-Antes de desplegar una aplicación con Docker Swarm lo adecuado es revisar que la aplicación cumpla ciertos factores para poder sacarle todo el provecho a un cluster con Swarm, si bien hay muchos factores a considerar, hay consenso en [12 factores](https://12factor.net/) que deben ser tomados en cuenta antes de decidir si una aplicación está lista o no para ser desplegada en Swarm, muy resumidamente los 12 factores son:
+Por lo general hay más nodos Worker que Manager, ya que los Worker son el núcleo de la aplicación al ser los que ejecutan la aplicacion como tal, mientras que los Manager están dedicados exclusivamente a gestionar el cluster, si bien los manager también pueden ejecutar contendores con la aplicación no es recomendable ya que esto generaría una competencia de recursos entre las tareas de gestión del Swarm y de ejecución de la aplicación, lo que podría generar errores en la gestión del Swarm y en consecuencia en la totalidad de la aplicación.\
+Las únicas restricciones al momento de crear una aplicación usando Swarm es que todos los nodos deben estar en la misma red o subred y deben ser visibles entre ellos y además todos tiene que tener instalado el Dcoker daemon, idealmente de la misma versión.\
+Antes de desplegar una aplicación con Docker Swarm lo adecuado es revisar que la aplicación cumpla ciertos factores para poder sacarle todo el provecho al cluster Swarm, si bien hay muchos factores a considerar, hay consenso en [12 factores clave](https://12factor.net/) que deben ser tomados en cuenta antes de decidir si una aplicación está lista o no para ser desplegada con Swarm, muy resumidamente los 12 factores son:
 
 1. El código fuente de la aplicación debe estar en un repositorio versionado y además debe haber una paridad de 1 a 1 entre el repositorio y la aplicación, por lo que no puede haber código de varias aplicaciones diferentes en el repositorio.
 
@@ -789,3 +794,7 @@ Antes de desplegar una aplicación con Docker Swarm lo adecuado es revisar que l
 1. Todos los logs de la aplicación deben emitirse por la salida estándar, de tal modo que si se necesitan simplemente se puedan inspeccionar y recolectar.
 
 1. Todas las labores de administración deben poder realizarse sin alterar la ejecución de la aplicación, es decir que no debe ser necesario reiniciar la aplicación en cierto modo o con cierto estado para poder administrar.
+
+Docker Swarm además viene instalado con Docker engine, por lo que no hace falta instalarlo una vez ya está instalado Docker engine.
+
+## Administración de un cluster Swarm
