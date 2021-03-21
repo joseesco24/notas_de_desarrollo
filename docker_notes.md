@@ -107,7 +107,8 @@ docker: Got permission denied while trying to connect to the Docker daemon socke
 Para solucionar este problema simplemente debemos indicar a Docker que nuestro usuario también va a interactuar con el Docker daemon, esto lo podemos realizar fácilmente con los siguientes comandos.
 
 ```bash
-sudo usermod -aG docker $USER
+sudo addgroup --system docker
+sudo adduser $USER docker
 newgrp docker
 ```
 
