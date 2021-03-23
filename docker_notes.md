@@ -171,7 +171,7 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando espe
 - **--rm**: Indica a Docker que ese contenedor debe eliminarse tan pronto como se detiene, es decir al finalizar su proceso principal.
 - **-v [ruta en el anfitrión]:[ruta en el contenedor]**: Crea un bind ligando los archivos de la ruta del contenedor con los de la ruta del anfitrión.
 - **--mount src=[nombre o id del volumen],dst=[ruta en el contenedor]**: Liga los archivos que están en la ruta designada del contenedor a un volumen de Docker.
-- **--memory [cantidad de memoria ram designada][g:gigas o:megas]**: Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
+- **--memory [cantidad de memoria ram designada][g|m]**: Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
 - **--env [nombre de la variable de ambiente]=[valor de la variable de ambiente]**: Establece una variable de ambiente a la que tendrá acceso el contenedor.
 
 #### Apuntes adicionales sobre la ejecución de contenedores
@@ -799,3 +799,45 @@ Antes de desplegar una aplicación con Docker Swarm lo adecuado es revisar que l
 Docker Swarm además viene instalado con Docker engine, por lo que no hace falta instalarlo una vez ya está instalado Docker engine.
 
 ## Administración de un cluster Swarm
+
+El cluster, enjambre o Swarm es lo que permite que una aplicación basad en Docker Swarm escale sobre un hardware virtualmente infinito, es por esto que si bien el cluster no es muy difícil de administrar es importante tener en cuenta los comandos necesarios para administrar y escalar el cluster.
+
+### Comandos básicos de administración de un cluster Swarm
+
+```bash
+docker swarm [comando] --help
+```
+
+Muestra a grandes rasgos los comandos disponibles para administrar el swarm y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+
+### Iniciar un cluster Swarm
+
+```bash
+docker swarm init [parámetros]
+```
+
+Inicia un swarm utilizando la máquina actual como manager, algunos de los parámetros más útiles al utilizar **docker swarm init** para iniciar un enjambre son:
+
+- **--advertise-addr [IP]**: Al iniciar un Swarm en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del Swarm.
+
+### Conectar máquinas al cluster
+
+```bash
+docker swarm join-token [parametros] [worker|manager]
+```
+
+Genera un token que es utilizado para agregar una nueva máquina al cluster, hay dos tipos de tokens, uno para agregar managers y otro para agregar workers, al utilizar este comando además de imprimir el token se imprime el comando que permitirá utilizarlo para unir la máquina al cluster.
+
+### Desconectar máquinas del cluster
+
+```bash
+docker swarm leave [parametros]
+```
+
+Permite a la máquina actual abandonar el cluster, para dejar el cluster con **docker swarm leave** solo puede utilizarse un parámetro adicional, éste es:
+
+- **-f, --force**: Permite forzar a la máquina actual a abandonar el cluster, cuando se requiere que un manager abandone el cluster suele ser necesario utilizar este parámetro, ya que Docker Swarm no permite que los manager abandonen el cluster fácilmente por seguridad.
+
+## Administración de nodos pertenecientes a un Swarm
+
+## Administración de servicios basados en Swarm
