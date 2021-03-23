@@ -4,31 +4,31 @@ Docker es un sistema de contenedores que permite que cada uno de nuestros proyec
 Cabe aclarar que el aislamiento de procesos en Docker es puramente lógico ya que por debajo los procesos son ejecutados por el sistema operativo de la máquina anfitrión, no por un sistema operativo virtual que usa el hardware de la máquina anfitrión, en un sistema Linux esto es apreciable con solo revisar los procesos con top, en Windows y en Mac no es apreciable esto, ya que al instalar Docker desktop, Docker por debajo instala una maquina virtual con un sistema operativo Linux que es el que se utiliza para suplir las capas más bajas de los contenedores y por lo tanto es en el sistema operativo de esa máquina virtual en el que se ejecutan los procesos de los contenedores.\
 Implementar Docker en nuestros proyectos les otorga una capa adicional de abstracción sobre el cual trabajara nuestro proyecto y también ayuda a atenuar algunos de los desafíos más importantes al momento de realizar un desarrollo profesional de software, como los relacionados con la construcción, distribución y ejecución de nuestros proyectos:
 
-- **Construcción**: Al construir o desarrollar aplicaciones con Docker uno de los principales beneficios es que inmediatamente se empieza a usar Docker los entornos de desarrollo y ejecución pueden ser equivalentes ya que todos los contenedores tendrán las mismas dependencias, paquetes y se ejecutarán sobre el mismo sistema operativo independientemente de si es un ambiente de desarrollo o de ejecución, además incluso gracias a Docker se pueden simular condiciones de ejecución con ciertos recursos como la RAM limitados mediante contenedores.
-- **Distribución**: Al distribuir aplicaciones mediante imágenes de Docker se garantiza que las dependencias de nuestra aplicación serán instaladas y además, se garantiza que no tendrán conflicto con las del sistema operativo de la máquina anfitrión, ya que están en ambientes aislados, otro beneficio de utilizar imágenes de Docker es que se pueden distribuir y usar fácilmente, ya que son bastante ligeras y además la instalación de dependencias es un proceso automatizado, por lo que independientemente del número de copias siempre que se hagan con base en la misma imagen y no se alteren nuestra aplicación se comportará de la misma forma.
-- **Ejecución**: Ya que los entornos de ejecución y desarrollo son equivalentes gracias a que se ejecutan bajo el mismo sistema operativo utilizando las mismas dependencias pre establecidas se descarta totalmente la posibilidad de que algo que funciona en desarrollo no funcione en un entorno de ejecución productivo, además Docker incluso permite limitar recursos, razón por la cual se pueden simular incluso condiciones de ejecución adversas.
+- **Construcción:** Al construir o desarrollar aplicaciones con Docker uno de los principales beneficios es que inmediatamente se empieza a usar Docker los entornos de desarrollo y ejecución pueden ser equivalentes ya que todos los contenedores tendrán las mismas dependencias, paquetes y se ejecutarán sobre el mismo sistema operativo independientemente de si es un ambiente de desarrollo o de ejecución, además incluso gracias a Docker se pueden simular condiciones de ejecución con ciertos recursos como la RAM limitados mediante contenedores.
+- **Distribución:** Al distribuir aplicaciones mediante imágenes de Docker se garantiza que las dependencias de nuestra aplicación serán instaladas y además, se garantiza que no tendrán conflicto con las del sistema operativo de la máquina anfitrión, ya que están en ambientes aislados, otro beneficio de utilizar imágenes de Docker es que se pueden distribuir y usar fácilmente, ya que son bastante ligeras y además la instalación de dependencias es un proceso automatizado, por lo que independientemente del número de copias siempre que se hagan con base en la misma imagen y no se alteren nuestra aplicación se comportará de la misma forma.
+- **Ejecución:** Ya que los entornos de ejecución y desarrollo son equivalentes gracias a que se ejecutan bajo el mismo sistema operativo utilizando las mismas dependencias pre establecidas se descarta totalmente la posibilidad de que algo que funciona en desarrollo no funcione en un entorno de ejecución productivo, además Docker incluso permite limitar recursos, razón por la cual se pueden simular incluso condiciones de ejecución adversas.
 
 Además de las ventajas ya expuestas otra ventaja que también tiene usar Docker es que los contenedores a diferencia de las máquinas virtuales tiene un costo de administración mínimo y además se destruyen, construyen y despliegan con mucha facilidad. Las aplicaciones contenerizadas con Docker (que emplean Docker para construir y desplegar software) tienen varias características, pero los principales son las siguientes:
 
-- **Son flexibles**: Docker engine puede ejecutarse en casi cualquier parte.
-- **Son livianas**: Al utilizar la arquitectura por capas y reutilizar partes del OS del anfitrión no hace falta empacar las partes más pesadas del OS usado en las imágenes.
-- **Son portables**: Las imágenes creadas con Docker se ejecutan de la misma forma en cualquier máquina independientemente de su software y hardware, limitándose únicamente por el uso del hardware.
-- **Tienen un bajo acoplamiento**: Cada aplicación contenerizada es una aplicación autocontenida, no requiere de recursos externos al contenedor para funcionar.
-- **Son escalables**: Es extremadamente sencillo replicar varios contenedores para que trabajen al mismo tiempo e incluso es fácil configurarlos para que se comuniquen y trabajen cooperando entre ellos.
-- **Son seguras**: Los contenedores acceden solo a los recursos a los que deben acceder, jamás acceden a secciones importantes del OS del anfitrión, a no ser que se configuren estas funcionalidades.
+- **Son flexibles:** Docker engine puede ejecutarse en casi cualquier parte.
+- **Son livianas:** Al utilizar la arquitectura por capas y reutilizar partes del OS del anfitrión no hace falta empacar las partes más pesadas del OS usado en las imágenes.
+- **Son portables:** Las imágenes creadas con Docker se ejecutan de la misma forma en cualquier máquina independientemente de su software y hardware, limitándose únicamente por el uso del hardware.
+- **Tienen un bajo acoplamiento:** Cada aplicación contenerizada es una aplicación autocontenida, no requiere de recursos externos al contenedor para funcionar.
+- **Son escalables:** Es extremadamente sencillo replicar varios contenedores para que trabajen al mismo tiempo e incluso es fácil configurarlos para que se comuniquen y trabajen cooperando entre ellos.
+- **Son seguras:** Los contenedores acceden solo a los recursos a los que deben acceder, jamás acceden a secciones importantes del OS del anfitrión, a no ser que se configuren estas funcionalidades.
 
 Docker se divide en 3 capas con las que es necesario interactuar de cierta forma para para acceder a todas las funcionalidades de Docker y sacarles provecho, las cuales son:
 
-- **Docker server o Docker daemon**: Es el núcleo de Docker, se encarga de manejar todas las entidades que administra Docker.
-- **Rest API**: Permite comunicar el Docker daemon con el CLI ya sea local o remoto, además de con otras interfaces que necesiten interactuar con el Docker daemon, como programas de administración de contenedores, es importante resaltar que cada lenguaje posee su forma de acceder al Docker daemon mediante el uso de esta API y que es la única forma de interactuar con el Docker daemon.
-- **Docker CLI o cliente**: Interfaz de línea de comandos que se utiliza de forma local para comunicarse con el Docker daemon, es la forma más sencilla de usar Docker.
+- **Docker server o Docker daemon:** Es el núcleo de Docker, se encarga de manejar todas las entidades que administra Docker.
+- **Rest API:** Permite comunicar el Docker daemon con el CLI ya sea local o remoto, además de con otras interfaces que necesiten interactuar con el Docker daemon, como programas de administración de contenedores, es importante resaltar que cada lenguaje posee su forma de acceder al Docker daemon mediante el uso de esta API y que es la única forma de interactuar con el Docker daemon.
+- **Docker CLI o cliente:** Interfaz de línea de comandos que se utiliza de forma local para comunicarse con el Docker daemon, es la forma más sencilla de usar Docker.
 
 Además de las capas con las que es necesario interactuar para usar Docker también es importante tener claros los recursos de los que dispone Docker para desplegar y construir aplicaciones, los cuales son:
 
-- **Contenedores**: Son la clave del funcionamiento de Docker, son ambientes autocontenidos que aprovechan partes del sistema operativo de la máquina anfitrión para dar a nuestras aplicaciones ambientes de ejecución iguales y aislados de forma lógica en cualquier anfitrión con Docker engine instalado.
-- **Imágenes**: Las imágenes son la forma en la cual Docker puede empaquetar, transportar y replicar el funcionamiento de un contenedor en cualquier máquina que tenga Docker engine instalado.
-- **Redes**: Las redes internas de Docker permiten que las diferentes aplicaciones desplegadas en diferentes contenedores puedan interactuar entre sí.
-- **Volúmenes de almacenamiento**: Los volúmenes de almacenamiento son la forma que provee Docker para que una aplicación desplegada en un contenedor puede almacenar datos para que otro contenedor pueda usarlos o simplemente para poder usarlos en ejecuciones posteriores, los volúmenes de almacenamiento son totalmente administrados por Docker, lo que los hace inaccesibles para la máquina anfitrión.
+- **Contenedores:** Son la clave del funcionamiento de Docker, son ambientes autocontenidos que aprovechan partes del sistema operativo de la máquina anfitrión para dar a nuestras aplicaciones ambientes de ejecución iguales y aislados de forma lógica en cualquier anfitrión con Docker engine instalado.
+- **Imágenes:** Las imágenes son la forma en la cual Docker puede empaquetar, transportar y replicar el funcionamiento de un contenedor en cualquier máquina que tenga Docker engine instalado.
+- **Redes:** Las redes internas de Docker permiten que las diferentes aplicaciones desplegadas en diferentes contenedores puedan interactuar entre sí.
+- **Volúmenes de almacenamiento:** Los volúmenes de almacenamiento son la forma que provee Docker para que una aplicación desplegada en un contenedor puede almacenar datos para que otro contenedor pueda usarlos o simplemente para poder usarlos en ejecuciones posteriores, los volúmenes de almacenamiento son totalmente administrados por Docker, lo que los hace inaccesibles para la máquina anfitrión.
 
 ## Instalación de Docker en Mac o Windows
 
@@ -164,16 +164,16 @@ docker run [parámetros] [imagen] [comando]
 
 Ejecuta un contenedor usando la imagen especificada y ejecutando el comando especificado como proceso principal en caso de ser dado un comando luego de la imagen, es importante entender que si no es definido definido un proceso principal ni en la imagen (por defecto) ni por comando el contenedor nunca se inicia ya que un contenedor se detiene cuando su proceso principal finaliza y al no abre proceso principal realmente el contenedor nunca arranca, algunos de los parámetros más útiles al ejecutar un contenedor con **docker run** son:
 
-- **--name [nombre del nuevo contenedor]**: Permite asignar un nombre personalizado al contenedor el cual puede ser utilizado para referenciar al contenedor como si fuera su id, además es único e irrepetible, en caso de no especificarse un nombre con este parámetro Docker asigna también un nombre al contenedor.
-- **--interactive**: Ejecuta el contenedor y abre una terminal mediante la cual se puede interactuar con el contenedor, al combinarlo con **--tty** se consigue una terminal interactiva entre el anfitrión y el contenedor.
-- **--tty**: Muestra en la salida estándar los resultados de ejecutar un comando, al combinarlo con **--interactive** se consigue una terminal interactiva entre el anfitrión y el contenedor.
-- **--detach**: Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
-- **--publish [puerto del anfitrión]:[puerto del contenedor]**: Expone el puerto designado del contenedor en el puerto designado de la máquina anfitrión.
-- **--rm**: Indica a Docker que ese contenedor debe eliminarse tan pronto como se detiene, es decir al finalizar su proceso principal.
-- **--volume [ruta en el anfitrión]:[ruta en el contenedor]**: Crea un bind ligando los archivos de la ruta del contenedor con los de la ruta del anfitrión.
-- **--mount src=[nombre o id del volumen],dst=[ruta en el contenedor]**: Liga los archivos que están en la ruta designada del contenedor a un volumen de Docker.
-- **--memory [cantidad de memoria ram designada][g|m]**: Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
-- **--env [nombre de la variable de ambiente]=[valor de la variable de ambiente]**: Establece una variable de ambiente a la que tendrá acceso el contenedor.
+- **--name [nombre del nuevo contenedor]:** Permite asignar un nombre personalizado al contenedor el cual puede ser utilizado para referenciar al contenedor como si fuera su id, además es único e irrepetible, en caso de no especificarse un nombre con este parámetro Docker asigna también un nombre al contenedor.
+- **--interactive:** Ejecuta el contenedor y abre una terminal mediante la cual se puede interactuar con el contenedor, al combinarlo con **--tty** se consigue una terminal interactiva entre el anfitrión y el contenedor.
+- **--tty:** Muestra en la salida estándar los resultados de ejecutar un comando, al combinarlo con **--interactive** se consigue una terminal interactiva entre el anfitrión y el contenedor.
+- **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
+- **--publish [puerto del anfitrión]:[puerto del contenedor]:** Expone el puerto designado del contenedor en el puerto designado de la máquina anfitrión.
+- **--rm:** Indica a Docker que ese contenedor debe eliminarse tan pronto como se detiene, es decir al finalizar su proceso principal.
+- **--volume [ruta en el anfitrión]:[ruta en el contenedor]:** Crea un bind ligando los archivos de la ruta del contenedor con los de la ruta del anfitrión.
+- **--mount src=[nombre o id del volumen],dst=[ruta en el contenedor]:** Liga los archivos que están en la ruta designada del contenedor a un volumen de Docker.
+- **--memory [cantidad de memoria ram designada][g|m]:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
+- **--env [nombre de la variable de ambiente]=[valor de la variable de ambiente]:** Establece una variable de ambiente a la que tendrá acceso el contenedor.
 
 #### Apuntes adicionales sobre la ejecución de contenedores
 
@@ -197,8 +197,8 @@ docker ps [parámetros]
 
 Muestra todos los contenedores activos en la máquina anfitrión, junto con datos como su id, nombre, nombre de imagen, estatus, puertos expuestos, tiempo de creación y comando del proceso principal, algunos de los parámetros más útiles al visualizar datos de los contenedores con **docker ps** son:
 
-- **--all**: Muestra los mismos datos que **docker ps** pero además incluye los contenedores que están actualmente inactivos.
-- **--latest**: Muestra los mismos datos que **docker ps** pero muestra solo los datos del último contenedor activo.
+- **--all:** Muestra los mismos datos que **docker ps** pero además incluye los contenedores que están actualmente inactivos.
+- **--latest:** Muestra los mismos datos que **docker ps** pero muestra solo los datos del último contenedor activo.
 
 ```bash
 docker inspect [parámetros] [nombre o id del contenedor]
@@ -228,8 +228,8 @@ docker logs [parámetros] [nombre o id del contenedor]
 
 Sirve para ver los logs de un contenedor especificado, algunos de los parámetros más útiles al ver los logs de un contenedor con **docker logs** son:
 
-- **--follow**: Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
-- **--tail [número de logs]**: Imprime los últimos logs limitándose al número de logs indicado.
+- **--follow:** Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
+- **--tail [número de logs]:** Imprime los últimos logs limitándose al número de logs indicado.
 
 ### Ejecutar tareas en contenedores
 
@@ -239,7 +239,7 @@ docker exec [parámetros] [nombre o id del contenedor] [comando]
 
 Permite ejecutar un comando en un contenedor activo, algunos de los parámetros más útiles al ejecutar un comando un contenedor con **docker exec** son:
 
-- **--detach**: Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
+- **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
 
 #### Comando pré construído para ver procesos dentro de un contenedor
 
@@ -271,7 +271,7 @@ docker rm [parámetros] [nombre o id del contenedor]
 
 Sirve para borrar contenedores, Docker por defecto no elimina ningún contenedor, al finalizar el proceso principal del contenedor simplemente lo detiene, por lo que es usual tener que borrar contenedores manualmente para mantener en espacio de trabajo ordenado y evitar llenar el almacenamiento con contenedores que no es están usando, algunos de los parámetros más útiles al borrar un contenedor con **docker rm** son:
 
-- **--force**: Detiene un contenedor actualmente activo para así poder eliminarlo, la detención del contenedor se fuerza usando la señal **sigkill**.
+- **--force:** Detiene un contenedor actualmente activo para así poder eliminarlo, la detención del contenedor se fuerza usando la señal **sigkill**.
 
 ```bash
 docker container prune [parámetros]
@@ -300,8 +300,8 @@ docker build [parámetros] [ruta del contexto]
 
 Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, Dockerfile y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, es importante que siempre en el contexto haya un Dockerfile, ya que el Dockerfile es el que indica la forma en la que se construye una imagen, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
 
-- **--tag [nombre de la nueva imagen]:[tag de la nueva imagen]**: Permite personalizar el nombre y tag de la nueva imagen que será construida.
-- **--file [ruta del Dockerfile]**: Permite cambiar o especificar la ruta al Dockerfile con el cual se construirá la imagen.
+- **--tag [nombre de la nueva imagen]:[tag de la nueva imagen]:** Permite personalizar el nombre y tag de la nueva imagen que será construida.
+- **--file [ruta del Dockerfile]:** Permite cambiar o especificar la ruta al Dockerfile con el cual se construirá la imagen.
 
 ### Bajar imágenes
 
@@ -359,10 +359,10 @@ dive [nombre o id de la imagen]:[tag de la imagen]
 
 Para abrir los detalles de la imagen con dive, luego de abrir una imagen con dive podemos usar las siguientes combinaciones de teclas para navegar por las secciones de dive:
 
-- **tab**: Alternar entre el panel de capas y el panel de archivos.
-- **flechas**: Navegar entre las capas y archivos.
-- **ctrl + u**: Filtra los archivos que fueron cambiados en la capa actual.
-- **ctrl + c**: Salir de dive.
+- **tab:** Alternar entre el panel de capas y el panel de archivos.
+- **flechas:** Navegar entre las capas y archivos.
+- **ctrl + u:** Filtra los archivos que fueron cambiados en la capa actual.
+- **ctrl + c:** Salir de dive.
 
 ### Eliminar imágenes
 
@@ -442,7 +442,7 @@ docker network create [parámetros] [nombre]
 
 Crea un nueva red de Docker, algunos de los parámetros más útiles al crear una red con **docker network create** son:
 
-- **--attachable**: Habilita la opción de agregar contendores manualmente a la red.
+- **--attachable:** Habilita la opción de agregar contendores manualmente a la red.
 
 ### Listar redes
 
@@ -511,15 +511,15 @@ docker network rm $(docker network ls -q)
 
 Los Dockerfile son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse como un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un Dockerfile en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un Dockerfile y sus funciones se listan a continuación:
 
-- **FROM [nombre de la imagen]:[versión de la imagen]**: Indica la imagen base, o primera capa que se va a utilizar para construir la nueva imagen, siempre es el primer comando de un Dockerfile.
-- **RUN [comando]**: Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con **RUN** solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un Dockerfile que implemente esta instrucción.
-- **WORKDIR [ruta dentro del contenedor]**: Establece un directorio de trabajo que será el directorio en el que se posicionará el contenedor al iniciar su ejecución.
-- **COPY [ruta archivo 0, ruta archivo 1, ... ruta archivo n, ruta destino contenedor]**: Copia todos los archivos indicados en la ruta de destino de la imagen, cabe aclarar que Docker solo da acceso a la imagen en tiempo de construcción al directorio especificado como contexto, por lo que los archivos que se quieren copiar a la imagen deben estar dentro del contexto de construcción para poder ser empaquetados dentro de la misma.
-- **EXPOSE [número de puerto]**: Expone un puerto del contenedor permitiendo que ese puerto sea vinculable o bindable a un puerto de la máquina anfitrión.
-- **CMD ["parte 1 del comando", "parte 2 del comando"]**: Exec form para ejecutar un comando, ejecutar procesos con exec form hace que los procesos se ejecuten directamente, lo que pone el proceso indicado como proceso principal del contenedor.
-- **CMD [comando entero]**: bash form para ejecutar un comando, ejecutar procesos con bash form hace que los procesos se ejecuten como procesos hijos de un bash, lo que pone al bash como proceso principal del contenedor en lugar del proceso indicado.
-- **ENTRYPOINT ["parte 1 del comando", "parte 2 del comando"]**: Exec form para ejecutar un entrypoint, ejecuta el entrypoint como proceso principal.
-- **ENTRYPOINT [comando entero]**: bash form para ejecutar un entrypoint, ejecuta el entrypoint como proceso hijo del bash.
+- **FROM [nombre de la imagen]:[versión de la imagen]:** Indica la imagen base, o primera capa que se va a utilizar para construir la nueva imagen, siempre es el primer comando de un Dockerfile.
+- **RUN [comando]:** Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con **RUN** solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un Dockerfile que implemente esta instrucción.
+- **WORKDIR [ruta dentro del contenedor]:** Establece un directorio de trabajo que será el directorio en el que se posicionará el contenedor al iniciar su ejecución.
+- **COPY [ruta archivo 0, ruta archivo 1, ... ruta archivo n, ruta destino contenedor]:** Copia todos los archivos indicados en la ruta de destino de la imagen, cabe aclarar que Docker solo da acceso a la imagen en tiempo de construcción al directorio especificado como contexto, por lo que los archivos que se quieren copiar a la imagen deben estar dentro del contexto de construcción para poder ser empaquetados dentro de la misma.
+- **EXPOSE [número de puerto]:** Expone un puerto del contenedor permitiendo que ese puerto sea vinculable o bindable a un puerto de la máquina anfitrión.
+- **CMD ["parte 1 del comando", "parte 2 del comando"]:** Exec form para ejecutar un comando, ejecutar procesos con exec form hace que los procesos se ejecuten directamente, lo que pone el proceso indicado como proceso principal del contenedor.
+- **CMD [comando entero]:** bash form para ejecutar un comando, ejecutar procesos con bash form hace que los procesos se ejecuten como procesos hijos de un bash, lo que pone al bash como proceso principal del contenedor en lugar del proceso indicado.
+- **ENTRYPOINT ["parte 1 del comando", "parte 2 del comando"]:** Exec form para ejecutar un entrypoint, ejecuta el entrypoint como proceso principal.
+- **ENTRYPOINT [comando entero]:** bash form para ejecutar un entrypoint, ejecuta el entrypoint como proceso hijo del bash.
 
 ### Tips de Dockerfile
 
@@ -626,8 +626,8 @@ docker-compose up [parámetros] [nombre del servicio]
 
 Levanta la arquitectura descrita por el **compose file** en caso de no indicarse un servicio en concreto, si se indica un servicio solo ese servicio será ejecutado, algunos de los parámetros más útiles al utilizar **docker-compose up** para levantar una arquitectura son:
 
-- **--detach**: Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
-- **--scale [nombre o id del servicio]=[número de contenedores]**: Escala un determinado servicio al número de contenedores indicado.
+- **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
+- **--scale [nombre o id del servicio]=[número de contenedores]:** Escala un determinado servicio al número de contenedores indicado.
 
 ### Revisar el estado de los contenedores generados por compose
 
@@ -637,7 +637,7 @@ docker-compose ps [parámetros] [nombre del servicio]
 
 Muestra el estado de los contenedores creados por el **compose file** en caso de no indicarse un servicio en concreto, si se indica un servicio solo se mostrará el estado de los contenedores pertenecientes a ese servicio, algunos de los parámetros más útiles al utilizar **docker-compose ps** para ver el estado de los contenedores pertenecientes a una arquitectura son:
 
-- **--all**: Muestra todos los contenedores de la aplicación independientemente de si están o no ejecutados.
+- **--all:** Muestra todos los contenedores de la aplicación independientemente de si están o no ejecutados.
 
 ### Revisar los logs de una aplicación compose
 
@@ -647,8 +647,8 @@ docker-compose logs [parámetros] [nombre del servicio]
 
 Muestra los logs de todos los contenedores usados por la aplicación en caso de no indicarse un servicio en concreto, si se indica un servicio sólo se mostrarán solo los logs de los contenedores pertenecientes a ese servicio, algunos de los parámetros más útiles al utilizar **docker-compose logs** para ver los logs de una arquitectura son:
 
-- **--follow**: Sirve para hacer follow a los logs de toda la aplicación o de cierto servicio si se indica el servicio.
-- **--tail [número de logs]**: Imprime los últimos logs limitándose al número de logs indicado de toda la aplicación o de cierto servicio si se indica el servicio.
+- **--follow:** Sirve para hacer follow a los logs de toda la aplicación o de cierto servicio si se indica el servicio.
+- **--tail [número de logs]:** Imprime los últimos logs limitándose al número de logs indicado de toda la aplicación o de cierto servicio si se indica el servicio.
 
 ### Ejecutar comandos en servicios de una aplicación compose
 
@@ -670,15 +670,15 @@ Detiene y elimina todos los recursos usados por una aplicación compose.
 
 Docker-compose permite usar los 4 recursos de Docker juntos fácilmente desde un solo archivo **docker-compose.yml**, usando este archivo también llamado **compose file** se pueden integrar fácilmente recursos de red, volúmenes, imagenes y contenedores sin necesidad de administrar uno a uno cada tipo de recurso, en síntesis lo que permite Docker-compose es describir de forma declarativa la arquitectura de servicios que la aplicación necesita, y Docker se encargará de crear e integrar cada recursos declarado por detrás evitandonos tener que administraba uno a uno los recursos, algunos de los componentes que soporta **Docker-compose** y sus funciones son:
 
-- **versión**: Indica la versión del compose file, dependiendo de la versión del compose file se indica a Docker-compose qué features puede o no soportar.
-- **services**: Indica que servicios componen la aplicación, básicamente son las partes o componentes que interactúan para formar nuestra aplicación y que funcione correctamente, un servicio no es un container explícitamente ya que un servicio puede componerse de uno o muchos contenedores.
-- **image**: Establece la imagen que se va a utilizar para ejecutar los contenedores de cierto servicio.
-- **environment**: Permite definir variables de ambiente a las que pueden acceder los contenedores de un servicio.
-- **depends_on**: Establece las dependencias entre servicios, si un servicio declara dependencia de otro este no deberá ejecutarse si antes no se ejecuta el o los servicios de los que depende.
-- **ports**: Bindea un puerto o un rango de puertos de la máquina anfitrión con un puerto de uno o varios contenedores.
-- **volumes**: Indica los volúmenes y bind mounts de un servicio.
-- **command**: Cambia el comando por defecto del servicio.
-- **build**: Indica el contexto con el que se debe construir una nueva imagen que se desplegará en todos los contenedores del servicio indicado, el nombre de la nueva imagen se construye en base al nombre del directorio de trabajo y el nombre del servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]**.
+- **versión:** Indica la versión del compose file, dependiendo de la versión del compose file se indica a Docker-compose qué features puede o no soportar.
+- **services:** Indica que servicios componen la aplicación, básicamente son las partes o componentes que interactúan para formar nuestra aplicación y que funcione correctamente, un servicio no es un container explícitamente ya que un servicio puede componerse de uno o muchos contenedores.
+- **image:** Establece la imagen que se va a utilizar para ejecutar los contenedores de cierto servicio.
+- **environment:** Permite definir variables de ambiente a las que pueden acceder los contenedores de un servicio.
+- **depends_on:** Establece las dependencias entre servicios, si un servicio declara dependencia de otro este no deberá ejecutarse si antes no se ejecuta el o los servicios de los que depende.
+- **ports:** Bindea un puerto o un rango de puertos de la máquina anfitrión con un puerto de uno o varios contenedores.
+- **volumes:** Indica los volúmenes y bind mounts de un servicio.
+- **command:** Cambia el comando por defecto del servicio.
+- **build:** Indica el contexto con el que se debe construir una nueva imagen que se desplegará en todos los contenedores del servicio indicado, el nombre de la nueva imagen se construye en base al nombre del directorio de trabajo y el nombre del servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]**.
 
 ### Tips de Docker-compose
 
@@ -758,15 +758,15 @@ Al declarar un **docker-compose.override.yml** como el anterior junto a cualquie
 
 Las soluciones basadas en Docker Swarm tienen 3 componentes fundamentales, es importante entenderlos antes de entrar a hablar de Docker Swarm ya que teniendo claros sus componentes es más fácil entender el comportamiento y los beneficios que dan al sumarse y comportarse como uno solo, resumidamente estos componentes son:
 
-- **Swarm**: Swarm, cluster o enjambre son referencias del mismo concepto, una agrupación de varias máquinas que cooperan para realizar la misma tarea, en el caso de Docker Swarm, desplegar contenedores de una aplicación para aumentar su disponibilidad y escalabilidad.
-- **Nodos**: Los nodos son todas las máquinas o computadores que componen el Swarm, cluster o enjambre, entre los nodos se reparten las tareas que deben ser ejecutadas, en el caso de Docker Swarm, los contenedores que deben ser ejecutados.
-- **Servicios**: Los servicios son uno o varios contendores que ejecutan la misma aplicación en diferentes nodos en un mismo Swarm con el objetivo de que ese servicio tenga una muy alta disponibilidad y además sea altamente escalable.
+- **Swarm:** Swarm, cluster o enjambre son referencias del mismo concepto, una agrupación de varias máquinas que cooperan para realizar la misma tarea, en el caso de Docker Swarm, desplegar contenedores de una aplicación para aumentar su disponibilidad y escalabilidad.
+- **Nodos:** Los nodos son todas las máquinas o computadores que componen el Swarm, cluster o enjambre, entre los nodos se reparten las tareas que deben ser ejecutadas, en el caso de Docker Swarm, los contenedores que deben ser ejecutados.
+- **Servicios:** Los servicios son uno o varios contendores que ejecutan la misma aplicación en diferentes nodos en un mismo Swarm con el objetivo de que ese servicio tenga una muy alta disponibilidad y además sea altamente escalable.
 
 Docker Swarm es la solución nativa que ofrece Docker para montar una solución de cómputo distribuido o clusterizada basada en contenedores, lo que propone Docker Swarm es que al montar un cluster en el que queremos desplegar aplicaciones contenerizadas bajo el esquema de servicios el cluster debe ser fácilmente administrable, bajo esta premisa Docker Swarm ha llegado hasta el punto en el que el desarrollador puede tratar la totalidad del cluster como si se tratase de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto es que usando Docker Swarm es posible administrar clústeres casi con la facilidad con la que se administra uno solo computador con un solo Docker daemon, cuando en realidad son varios computadores cada uno con su propio Docker daemon, es por esto que las aplicaciones desplegadas con Swarm son muy fáciles de administrar y además al utilizar cómputo distribuido tienen disponibilidades y escalabilidades virtualmente infinitas.\
 Al utilizar Docker Swarm los computadores del cluster o nodos se divide en dos tipos de máquinas, Managers y Workers, siendo los Managers los encargados de dirigir o orquestar el Swarm en sí, mientras que los Workers se encargaran de ejecutar las tareas asignadas por los Managers, las funciones específicas de los dos tipos de nodo se lista a continuación:
 
-- **Managers**: Gestiona las comunicaciones, distribuyen las tareas, gestionan los recursos y se encargan de re posicionar contenedores y tareas en caso de caídas de algún nodo del cluster.
-- **Workers**: Ejecutan los contenedores de la aplicación.
+- **Managers:** Gestiona las comunicaciones, distribuyen las tareas, gestionan los recursos y se encargan de re posicionar contenedores y tareas en caso de caídas de algún nodo del cluster.
+- **Workers:** Ejecutan los contenedores de la aplicación.
 
 Por lo general hay más nodos Worker que Manager, ya que los Worker son el núcleo de la aplicación al ser los que ejecutan la aplicacion como tal, mientras que los Manager están dedicados exclusivamente a gestionar el cluster, si bien los manager también pueden ejecutar contendores de la aplicación no es recomendable ya que esto generaría una competencia de recursos entre las tareas de gestión del Swarm y de ejecución de contenedores de la aplicación, lo que podría generar errores en la gestión del Swarm y en consecuencia en la totalidad de la aplicación.\
 Las únicas restricciones al momento de crear una aplicación usando Swarm es que todos los nodos deben estar en la misma red o subred y deben ser visibles entre ellos y además todos tiene que tener instalado el Dcoker daemon, idealmente de la misma versión.\
@@ -818,7 +818,7 @@ docker swarm init [parámetros]
 
 Inicia un swarm utilizando la máquina actual como manager, algunos de los parámetros más útiles al utilizar **docker swarm init** para iniciar un enjambre son:
 
-- **--advertise-addr [ip]**: Al iniciar un Swarm en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del Swarm.
+- **--advertise-addr [ip]:** Al iniciar un Swarm en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del Swarm.
 
 ### Conectar máquinas al cluster
 
@@ -836,7 +836,7 @@ docker swarm leave [parametros]
 
 Permite a la máquina actual abandonar el cluster, para dejar el cluster con **docker swarm leave** solo puede utilizarse un parámetro adicional, éste es:
 
-- **--force**: Permite forzar a la máquina actual a abandonar el cluster, cuando se requiere que un manager abandone el cluster suele ser necesario utilizar este parámetro, ya que Docker Swarm no permite que los manager abandonen el cluster fácilmente por seguridad.
+- **--force:** Permite forzar a la máquina actual a abandonar el cluster, cuando se requiere que un manager abandone el cluster suele ser necesario utilizar este parámetro, ya que Docker Swarm no permite que los manager abandonen el cluster fácilmente por seguridad.
 
 ## Administración de nodos pertenecientes a un cluster Swarm
 
@@ -866,7 +866,7 @@ docker node inspect [parámetros] [id o nombre del nodo]
 
 Muestra en detalle la configuración de un nodo en un archivo JSON, algunos de los parámetros más útiles al inspeccionar un nodo con **docker node inspect** son:
 
-- **--pretty**: Cambia el formato JSON con el que se muestran los datos por un formato clásico de consola que es más fácil de leer, pero omite ciertas partes de la configuración al cambiar el formato del texto.
+- **--pretty:** Cambia el formato JSON con el que se muestran los datos por un formato clásico de consola que es más fácil de leer, pero omite ciertas partes de la configuración al cambiar el formato del texto.
 
 ### Actualizar las configuraciones de uno o varios nodos conectados al Swarm
 
@@ -876,7 +876,7 @@ docker node update [parámetros] [id o nombre del nodo]
 
 Permite actualizar ciertas configuraciones de los nodos, algunos de los parámetros más útiles al actualizar un nodo con **docker node update** son:
 
-- **--availability ["active"|"pause"|"drain"]**: Permite cambiar la disponibilidad de un nodo, en estado activo se le pueden asignar tareas al nodo sin problema, en estado pausado el nodo no recibe tareas y en estado de drenado se sacan del nodo todas las tareas y se envían a otros nodos antes de ser puesto el nodo en estado pausado.
+- **--availability ["active"|"pause"|"drain"]:** Permite cambiar la disponibilidad de un nodo, en estado activo se le pueden asignar tareas al nodo sin problema, en estado pausado el nodo no recibe tareas y en estado de drenado se sacan del nodo todas las tareas y se envían a otros nodos antes de ser puesto el nodo en estado pausado.
 
 ## Administración de servicios basados en Swarm
 
@@ -898,10 +898,10 @@ docker service create [parámetros] [nombre o id de la imagen] [comando]
 
 Permite iniciar un servicio basado en swarm especificando la imagen y el comando del proceso principal, si no se especifica el comando del proceso principal se usa el proceso principal por defecto, algunos de los parámetros más útiles al iniciar un servicio con **docker service create** son:
 
-- **--name [nombre del servicio]**: Establece el nombre indicado como nombre del servicio.
-- **--publish [puerto del anfitrión]:[puerto del contenedor]**: Publica el puerto de los contenedores en el puerto del anfitrión usando el mesh routing de Docker Swarm.
-- **--replicas [número de réplicas]**: Establece el número de réplicas o contenedores que deben ejecutarse de cierto servicio.
-- **--constraint node.role==[worker|manager]**: Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
+- **--name [nombre del servicio]:** Establece el nombre indicado como nombre del servicio.
+- **--publish [puerto del anfitrión]:[puerto del contenedor]:** Publica el puerto de los contenedores en el puerto del anfitrión usando el mesh routing de Docker Swarm.
+- **--replicas [número de réplicas]:** Establece el número de réplicas o contenedores que deben ejecutarse de cierto servicio.
+- **--constraint node.role==[worker|manager]:** Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
 
 ### Visualizar servicios basados en Swarm
 
@@ -927,7 +927,7 @@ docker service inspect [parámetros] [id o nombre del servicio]
 
 Muestra en detalle la configuración de un servicio en un archivo JSON, algunos de los parámetros más útiles al inspeccionar un servicio con **docker service inspect** son:
 
-- **--pretty**: Cambia el formato JSON con el que se muestran los datos por un formato clásico de consola que es más fácil de leer, pero omite ciertas partes de la configuración al cambiar el formato del texto.
+- **--pretty:** Cambia el formato JSON con el que se muestran los datos por un formato clásico de consola que es más fácil de leer, pero omite ciertas partes de la configuración al cambiar el formato del texto.
 
 ### Modificar un servicio basado en Swarm
 
@@ -937,15 +937,15 @@ docker service update [parámetros] [id o nombre del servicio]
 
 Actualiza la configuración de un servicio, algunos de los parámetros más útiles al actualizar un servicio con **docker service update** son:
 
-- **--args [comando]**: Cambia el comando o los parámetros de la tarea principal según la configuración de la imagen del servicio.
-- **--replicas [número de réplicas]**: Actualiza el número de réplicas de servicio.
-- **--update-parallelism [número de tareas en paralelo]**: Cambia el número de tareas que se actualizan en paralelo, 0 actualiza todo en paralelo.
-- **--update-order [start-first|stop-first]**: Cambia el orden en el que se actualizan los servicios, con stop-first las tareas de un servicio se apagan antes de iniciar las nuevas tareas, con start-first las tareas viejas no se apagan hasta que las nuevas están arriba.
-- **--update-failure-action [pause|continue|rollback]**: Cambia la acción por defecto que se debe realizar en caso de fallar una tarea.
-- **--update-max-failure-ratio [porcentaje de fallo]**: Indica el porcentaje de tareas que pueden fallar antes de realizar la acción en caso de fallo.
-- **--rollback-parallelism [número de tareas de restauración paralelo]**: Cambia el número de tareas que se restauran en paralelo, 0 actualiza todo en paralelo.
-- **--constraint-add node.role==[rol]**Modifica las restricciones de carga de un servicio totalmente en paralelo.
-- **--env-add [nombre de la variable de entorno]=[valor de la variable de entorno]**: Agrega o actualiza el valor de una o varias variables de entorno.
+- **--args [comando]:** Cambia el comando o los parámetros de la tarea principal según la configuración de la imagen del servicio.
+- **--replicas [número de réplicas]:** Actualiza el número de réplicas de servicio.
+- **--update-parallelism [número de tareas en paralelo]:** Cambia el número de tareas que se actualizan en paralelo, 0 actualiza todo en paralelo.
+- **--update-order [start-first|stop-first]:** Cambia el orden en el que se actualizan los servicios, con stop-first las tareas de un servicio se apagan antes de iniciar las nuevas tareas, con start-first las tareas viejas no se apagan hasta que las nuevas están arriba.
+- **--update-failure-action [pause|continue|rollback]:** Cambia la acción por defecto que se debe realizar en caso de fallar una tarea.
+- **--update-max-failure-ratio [porcentaje de fallo]:** Indica el porcentaje de tareas que pueden fallar antes de realizar la acción en caso de fallo.
+- **--rollback-parallelism [número de tareas de restauración paralelo]:** Cambia el número de tareas que se restauran en paralelo, 0 actualiza todo en paralelo.
+- **--constraint-add node.role==[rol]:** Modifica las restricciones de carga de un servicio totalmente en paralelo.
+- **--env-add [nombre de la variable de entorno]=[valor de la variable de entorno]:** Agrega o actualiza el valor de una o varias variables de entorno.
 
 ### Visualizar logs de un servicio basado en Swarm
 
@@ -955,7 +955,7 @@ docker service logs [parámetros] [id o nombre del servicio|id o nombre de la ta
 
 Muestra los logs de los de un servicio o tarea, algunos de los parámetros más útiles al visualizar los logs de un servicio o tarea con **docker service logs** son:
 
-- **--follow**: Permite hacer follow de los logs del servicio o tarea, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
+- **--follow:** Permite hacer follow de los logs del servicio o tarea, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
 
 ### Escalar un servicio basado en Swarm
 
