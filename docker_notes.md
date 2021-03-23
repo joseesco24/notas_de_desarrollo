@@ -165,11 +165,12 @@ docker run [parámetros] [imagen] [comando]
 Ejecuta un contenedor usando la imagen especificada y ejecutando el comando especificado como proceso principal en caso de ser dado un comando luego de la imagen, es importante entender que si no es definido definido un proceso principal ni en la imagen (por defecto) ni por comando el contenedor nunca se inicia ya que un contenedor se detiene cuando su proceso principal finaliza y al no abre proceso principal realmente el contenedor nunca arranca, algunos de los parámetros más útiles al ejecutar un contenedor con **docker run** son:
 
 - **--name [nombre del nuevo contenedor]**: Permite asignar un nombre personalizado al contenedor el cual puede ser utilizado para referenciar al contenedor como si fuera su id, además es único e irrepetible, en caso de no especificarse un nombre con este parámetro Docker asigna también un nombre al contenedor.
-- **-it**: Ejecuta el contenedor y abre una terminal mediante la cual se puede interactuar con el contenedor, it significa interactive terminal.
-- **-d**: Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
-- **-p [puerto del anfitrión]:[puerto del contenedor]**: Expone el puerto designado del contenedor en el puerto designado de la máquina anfitrión.
+- **--interactive**: Ejecuta el contenedor y abre una terminal mediante la cual se puede interactuar con el contenedor, al combinarlo con **--tty** se consigue una terminal interactiva entre el anfitrión y el contenedor.
+- **--tty**: Muestra en la salida estándar los resultados de ejecutar un comando, al combinarlo con **--interactive** se consigue una terminal interactiva entre el anfitrión y el contenedor.
+- **--detach**: Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
+- **--publish [puerto del anfitrión]:[puerto del contenedor]**: Expone el puerto designado del contenedor en el puerto designado de la máquina anfitrión.
 - **--rm**: Indica a Docker que ese contenedor debe eliminarse tan pronto como se detiene, es decir al finalizar su proceso principal.
-- **-v [ruta en el anfitrión]:[ruta en el contenedor]**: Crea un bind ligando los archivos de la ruta del contenedor con los de la ruta del anfitrión.
+- **--volume [ruta en el anfitrión]:[ruta en el contenedor]**: Crea un bind ligando los archivos de la ruta del contenedor con los de la ruta del anfitrión.
 - **--mount src=[nombre o id del volumen],dst=[ruta en el contenedor]**: Liga los archivos que están en la ruta designada del contenedor a un volumen de Docker.
 - **--memory [cantidad de memoria ram designada][g|m]**: Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
 - **--env [nombre de la variable de ambiente]=[valor de la variable de ambiente]**: Establece una variable de ambiente a la que tendrá acceso el contenedor.
@@ -196,8 +197,8 @@ docker ps [parámetros]
 
 Muestra todos los contenedores activos en la máquina anfitrión, junto con datos como su id, nombre, nombre de imagen, estatus, puertos expuestos, tiempo de creación y comando del proceso principal, algunos de los parámetros más útiles al visualizar datos de los contenedores con **docker ps** son:
 
-- **-a**: Muestra los mismos datos que **docker ps** pero además incluye los contenedores que están actualmente inactivos.
-- **-l**: Muestra los mismos datos que **docker ps** pero muestra solo los datos del último contenedor activo.
+- **--all**: Muestra los mismos datos que **docker ps** pero además incluye los contenedores que están actualmente inactivos.
+- **--latest**: Muestra los mismos datos que **docker ps** pero muestra solo los datos del último contenedor activo.
 
 ```bash
 docker inspect [parámetros] [nombre o id del contenedor]
@@ -227,7 +228,7 @@ docker logs [parámetros] [nombre o id del contenedor]
 
 Sirve para ver los logs de un contenedor especificado, algunos de los parámetros más útiles al ver los logs de un contenedor con **docker logs** son:
 
-- **-f**: Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
+- **--follow**: Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
 - **--tail [número de logs]**: Imprime los últimos logs limitándose al número de logs indicado.
 
 ### Ejecutar tareas en contenedores
@@ -238,7 +239,7 @@ docker exec [parámetros] [nombre o id del contenedor] [comando]
 
 Permite ejecutar un comando en un contenedor activo, algunos de los parámetros más útiles al ejecutar un comando un contenedor con **docker exec** son:
 
-- **-d**: Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
+- **--detach**: Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
 
 #### Comando pré construído para ver procesos dentro de un contenedor
 
@@ -270,7 +271,7 @@ docker rm [parámetros] [nombre o id del contenedor]
 
 Sirve para borrar contenedores, Docker por defecto no elimina ningún contenedor, al finalizar el proceso principal del contenedor simplemente lo detiene, por lo que es usual tener que borrar contenedores manualmente para mantener en espacio de trabajo ordenado y evitar llenar el almacenamiento con contenedores que no es están usando, algunos de los parámetros más útiles al borrar un contenedor con **docker rm** son:
 
-- **-f**: Detiene un contenedor actualmente activo para así poder eliminarlo, la detención del contenedor se fuerza usando la señal **sigkill**.
+- **--force**: Detiene un contenedor actualmente activo para así poder eliminarlo, la detención del contenedor se fuerza usando la señal **sigkill**.
 
 ```bash
 docker container prune [parámetros]
@@ -299,8 +300,8 @@ docker build [parámetros] [ruta del contexto]
 
 Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, Dockerfile y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, es importante que siempre en el contexto haya un Dockerfile, ya que el Dockerfile es el que indica la forma en la que se construye una imagen, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
 
-- **-t [nombre de la nueva imagen]:[tag de la nueva imagen]**: Permite personalizar el nombre y tag de la nueva imagen que será construida.
-- **--f [ruta del Dockerfile]**: Permite cambiar o especificar la ruta al Dockerfile con el cual se construirá la imagen.
+- **--tag [nombre de la nueva imagen]:[tag de la nueva imagen]**: Permite personalizar el nombre y tag de la nueva imagen que será construida.
+- **--file [ruta del Dockerfile]**: Permite cambiar o especificar la ruta al Dockerfile con el cual se construirá la imagen.
 
 ### Bajar imágenes
 
@@ -442,7 +443,6 @@ docker network create [parámetros] [nombre]
 Crea un nueva red de Docker, algunos de los parámetros más útiles al crear una red con **docker network create** son:
 
 - **--attachable**: Habilita la opción de agregar contendores manualmente a la red.
-- **--internal**: Restringe el acceso externo de la red.
 
 ### Listar redes
 
@@ -626,7 +626,7 @@ docker-compose up [parámetros] [nombre del servicio]
 
 Levanta la arquitectura descrita por el **compose file** en caso de no indicarse un servicio en concreto, si se indica un servicio solo ese servicio será ejecutado, algunos de los parámetros más útiles al utilizar **docker-compose up** para levantar una arquitectura son:
 
-- **-d**: Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
+- **--detach**: Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
 - **--scale [nombre o id del servicio]=[número de contenedores]**: Escala un determinado servicio al número de contenedores indicado.
 
 ### Revisar el estado de los contenedores generados por compose
@@ -637,7 +637,7 @@ docker-compose ps [parámetros] [nombre del servicio]
 
 Muestra el estado de los contenedores creados por el **compose file** en caso de no indicarse un servicio en concreto, si se indica un servicio solo se mostrará el estado de los contenedores pertenecientes a ese servicio, algunos de los parámetros más útiles al utilizar **docker-compose ps** para ver el estado de los contenedores pertenecientes a una arquitectura son:
 
-- **-a**: Muestra todos los contenedores de la aplicación independientemente de si están o no ejecutados.
+- **--all**: Muestra todos los contenedores de la aplicación independientemente de si están o no ejecutados.
 
 ### Revisar los logs de una aplicación compose
 
@@ -647,7 +647,7 @@ docker-compose logs [parámetros] [nombre del servicio]
 
 Muestra los logs de todos los contenedores usados por la aplicación en caso de no indicarse un servicio en concreto, si se indica un servicio sólo se mostrarán solo los logs de los contenedores pertenecientes a ese servicio, algunos de los parámetros más útiles al utilizar **docker-compose logs** para ver los logs de una arquitectura son:
 
-- **-f**: Sirve para hacer follow a los logs de toda la aplicación o de cierto servicio si se indica el servicio.
+- **--follow**: Sirve para hacer follow a los logs de toda la aplicación o de cierto servicio si se indica el servicio.
 - **--tail [número de logs]**: Imprime los últimos logs limitándose al número de logs indicado de toda la aplicación o de cierto servicio si se indica el servicio.
 
 ### Ejecutar comandos en servicios de una aplicación compose
@@ -818,7 +818,7 @@ docker swarm init [parámetros]
 
 Inicia un swarm utilizando la máquina actual como manager, algunos de los parámetros más útiles al utilizar **docker swarm init** para iniciar un enjambre son:
 
-- **--advertise-addr [IP]**: Al iniciar un Swarm en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del Swarm.
+- **--advertise-addr [ip]**: Al iniciar un Swarm en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del Swarm.
 
 ### Conectar máquinas al cluster
 
@@ -836,7 +836,7 @@ docker swarm leave [parametros]
 
 Permite a la máquina actual abandonar el cluster, para dejar el cluster con **docker swarm leave** solo puede utilizarse un parámetro adicional, éste es:
 
-- **-f, --force**: Permite forzar a la máquina actual a abandonar el cluster, cuando se requiere que un manager abandone el cluster suele ser necesario utilizar este parámetro, ya que Docker Swarm no permite que los manager abandonen el cluster fácilmente por seguridad.
+- **--force**: Permite forzar a la máquina actual a abandonar el cluster, cuando se requiere que un manager abandone el cluster suele ser necesario utilizar este parámetro, ya que Docker Swarm no permite que los manager abandonen el cluster fácilmente por seguridad.
 
 ## Administración de nodos pertenecientes a un cluster Swarm
 
@@ -918,3 +918,65 @@ docker service ps [parámetros] [id o nombre del servicio]
 ```
 
 Muestra las tareas de uno o más servicios, además de su id, nombre, imagen, nodo de ejecución, estado actual y deseado, errores y puertos.
+
+### Inspeccionar un servicio basado en Swarm
+
+```bash
+docker service inspect [parámetros] [id o nombre del servicio]
+```
+
+Muestra en detalle la configuración de un servicio en un archivo JSON, algunos de los parámetros más útiles al inspeccionar un servicio con **docker service inspect** son:
+
+- **--pretty**: Cambia el formato JSON con el que se muestran los datos por un formato clásico de consola que es más fácil de leer, pero omite ciertas partes de la configuración al cambiar el formato del texto.
+
+### Modificar un servicio basado en Swarm
+
+```bash
+docker service update [parámetros] [id o nombre del servicio]
+```
+
+Actualiza la configuración de un servicio, algunos de los parámetros más útiles al actualizar un servicio con **docker service update** son:
+
+- **--args [comando]**: Cambia el comando o los parámetros de la tarea principal según la configuración de la imagen del servicio.
+- **--replicas [número de réplicas]**: Actualiza el número de réplicas de servicio.
+- **--update-parallelism [número de tareas en paralelo]**: Cambia el número de tareas que se actualizan en paralelo, 0 actualiza todo en paralelo.
+- **--update-order [start-first|stop-first]**: Cambia el orden en el que se actualizan los servicios, con stop-first las tareas de un servicio se apagan antes de iniciar las nuevas tareas, con start-first las tareas viejas no se apagan hasta que las nuevas están arriba.
+- **--update-failure-action [pause|continue|rollback]**: Cambia la acción por defecto que se debe realizar en caso de fallar una tarea.
+- **--update-max-failure-ratio [porcentaje de fallo]**: Indica el porcentaje de tareas que pueden fallar antes de realizar la acción en caso de fallo.
+- **--rollback-parallelism [número de tareas de restauración paralelo]**: Cambia el número de tareas que se restauran en paralelo, 0 actualiza todo en paralelo.
+- **--constraint-add node.role==[rol]**Modifica las restricciones de carga de un servicio totalmente en paralelo.
+- **--env-add [nombre de la variable de entorno]=[valor de la variable de entorno]**: Agrega o actualiza el valor de una o varias variables de entorno.
+
+### Visualizar logs de un servicio basado en Swarm
+
+```bash
+docker service logs [parámetros] [id o nombre del servicio|id o nombre de la tarea]
+```
+
+Muestra los logs de los de un servicio o tarea, algunos de los parámetros más útiles al visualizar los logs de un servicio o tarea con **docker service logs** son:
+
+- **--follow**: Permite hacer follow de los logs del servicio o tarea, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
+
+### Escalar un servicio basado en Swarm
+
+```bash
+docker service scale [parámetros] [id o nombre del servicio]=[número de réplicas]
+```
+
+Permite escalar uno o varios servicios estableciendo el número de réplicas necesarias por cada servicio.
+
+### Restaurar un servicio basado en Swarm a su estado anterior
+
+```bash
+docker service rollback [parámetros] [id o nombre del servicio]
+```
+
+Permite restaurar un servicio a su estado anterior.
+
+### Eliminar un servicio basado en Swarm
+
+```bash
+docker service rm [id o nombre del servicio]
+```
+
+Elimina un servicio del Swarm junto con todos sus contenedores y tareas.
