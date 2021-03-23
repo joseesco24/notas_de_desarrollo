@@ -879,3 +879,42 @@ Permite actualizar ciertas configuraciones de los nodos, algunos de los parámet
 - **--availability ["active"|"pause"|"drain"]**: Permite cambiar la disponibilidad de un nodo, en estado activo se le pueden asignar tareas al nodo sin problema, en estado pausado el nodo no recibe tareas y en estado de drenado se sacan del nodo todas las tareas y se envían a otros nodos antes de ser puesto el nodo en estado pausado.
 
 ## Administración de servicios basados en Swarm
+
+Los servicios son la base de Swarm, al igual que en Docker-compose un servicio es una aplicación contenerizada que está desplegada en uno o más contenedores, en Swarm la venta es que estos contenedores pueden estar ejecutándose en cualquier nodo del cluster y además pueden moverse entre nodos fácilmente, lo que hace a los servicios altamente disponibles y escalables.
+
+### Comandos básicos de administración de servicios
+
+```bash
+docker service [comando] --help
+```
+
+Muestra a grandes rasgos los comandos disponibles para administrar servicios y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+
+### Iniciar un servicio basado en Swarm
+
+```bash
+docker service create [parámetros] [nombre o id de la imagen] [comando]
+```
+
+Permite iniciar un servicio basado en swarm especificando la imagen y el comando del proceso principal, si no se especifica el comando del proceso principal se usa el proceso principal por defecto, algunos de los parámetros más útiles al iniciar un servicio con **docker service create** son:
+
+- **--name [nombre del servicio]**: Establece el nombre indicado como nombre del servicio.
+- **--publish [puerto del anfitrión]:[puerto del contenedor]**: Publica el puerto de los contenedores en el puerto del anfitrión usando el mesh routing de Docker Swarm.
+- **--replicas [número de réplicas]**: Establece el número de réplicas o contenedores que deben ejecutarse de cierto servicio.
+- **--constraint node.role==[worker|manager]**: Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
+
+### Visualizar servicios basados en Swarm
+
+```bash
+docker service ls [parámetros]
+```
+
+Lista los servicios del cluster junto con su id, nombre, modo, número de réplicas, imagen y puertos.
+
+### Visualizar tareas de un servicio basado en Swarm
+
+```bash
+docker service ps [parámetros] [id o nombre del servicio]
+```
+
+Muestra las tareas de uno o más servicios, además de su id, nombre, imagen, nodo de ejecución, estado actual y deseado, errores y puertos.
