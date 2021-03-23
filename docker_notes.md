@@ -802,7 +802,7 @@ Docker Swarm además viene instalado con Docker engine, por lo que no hace falta
 
 El cluster, enjambre o Swarm es lo que permite que una aplicación basad en Docker Swarm escale sobre un hardware virtualmente infinito, es por esto que si bien el cluster no es muy difícil de administrar es importante tener en cuenta los comandos necesarios para administrar y escalar el cluster.
 
-### Comandos básicos de administración de un cluster Swarm
+### Comandos básicos de administracion de un cluster
 
 ```bash
 docker swarm [comando] --help
@@ -810,7 +810,7 @@ docker swarm [comando] --help
 
 Muestra a grandes rasgos los comandos disponibles para administrar el swarm y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
 
-### Iniciar un cluster Swarm
+### Iniciar un cluster
 
 ```bash
 docker swarm init [parámetros]
@@ -838,6 +838,44 @@ Permite a la máquina actual abandonar el cluster, para dejar el cluster con **d
 
 - **-f, --force**: Permite forzar a la máquina actual a abandonar el cluster, cuando se requiere que un manager abandone el cluster suele ser necesario utilizar este parámetro, ya que Docker Swarm no permite que los manager abandonen el cluster fácilmente por seguridad.
 
-## Administración de nodos pertenecientes a un Swarm
+## Administración de nodos pertenecientes a un cluster Swarm
+
+Los nodos son las maquinas que estan conectadas al Swarm, no hay muchas opciones para administrar nodos, pero varios de estos comandos son muy útiles y es bueno tomarlos en cuenta, además, la administración de nodos sólo puede hacerse desde un manager, ya que los workers no tienen acceso a estas acciones.
+
+### Comandos básicos de administración de nodos
+
+```bash
+docker node [comando] --help
+```
+
+Muestra a grandes rasgos los comandos disponibles para administrar los nodos de un Swarm y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+
+### Listar nodos conectados al Swarm
+
+```bash
+docker no los [parámetros]
+```
+
+Lista los nodos pertenecientes a un Swarm, mostrando su id, nombre, estatus, disponibilidad, su versión de engine y si es manager o worker, además, se indica con \* el nodo en el que se está actualmente.
+
+### Inspeccionar un nodo conectado al Swarm
+
+```bash
+docker node inspect [parámetros] [id o nombre del nodo]
+```
+
+Muestra en detalle la configuración de un nodo en un archivo JSON, algunos de los parámetros más útiles al inspeccionar un nodo con **docker node inspect** son:
+
+- **--pretty**: Cambia el formato JSON con el que se muestran los datos por un formato clásico de consola que es más fácil de leer, pero omite ciertas partes de la configuración al cambiar el formato del texto.
+
+### Actualizar las configuraciones de uno o varios nodos conectados al Swarm
+
+```bash
+docker node update [parámetros] [id o nombre del nodo]
+```
+
+Permite actualizar ciertas configuraciones de los nodos, algunos de los parámetros más útiles al actualizar un nodo con **docker node update** son:
+
+- **--availability ["active"|"pause"|"drain"]**: Permite cambiar la disponibilidad de un nodo, en estado activo se le pueden asignar tareas al nodo sin problema, en estado pausado el nodo no recibe tareas y en estado de drenado se sacan del nodo todas las tareas y se envían a otros nodos antes de ser puesto el nodo en estado pausado.
 
 ## Administración de servicios basados en Swarm
