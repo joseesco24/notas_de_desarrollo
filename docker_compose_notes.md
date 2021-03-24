@@ -1,0 +1,169 @@
+# Docker Compose
+
+Docker Compose permite usar los 4 recursos de Docker juntos fácilmente desde un solo archivo [**docker-compose.yml**](https://docs.docker.com/compose/compose-file/), usando este archivo también llamado **compose file** se pueden integrar fácilmente recursos de red, volúmenes, imagenes y contenedores sin necesidad de administrar uno a uno cada tipo de recurso, en síntesis lo que permite Docker Compose es describir de forma declarativa la arquitectura de servicios que la aplicación necesita, y Docker se encargará de crear e integrar cada recursos declarado por detrás evitandonos tener que administraba uno a uno los recursos.
+
+## Instalación de Docker Compose en Ubuntu
+
+Docker Compose se instala junto a las versiones de escritorio de Windows o Mac, sin embargo en la versión de Ubuntu es necesario instalarlo manualmente con los siguientes comandos, los cuales son extraídos de la guia oficial de [Docker Hub](https://docs.docker.com/compose/install/):
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+## Archivos docker-compose.yml
+
+Algunos de los componentes que soporta **Docker Compose** y sus funciones son:
+
+- **version:** Indica la versión del compose file, dependiendo de la versión de Docker Engine se soportan ciertas características y ciertas versiones de compose-file.
+- **services:** Indica que servicios componen la aplicación, básicamente son las partes o componentes que interactúan para formar nuestra aplicación y que funcione correctamente, un servicio no es un container explícitamente ya que un servicio puede componerse de uno o muchos contenedores.
+- **image:** Establece la imagen que se va a utilizar para ejecutar los contenedores de cierto servicio.
+- **environment:** Permite definir variables de ambiente a las que pueden acceder los contenedores de un servicio.
+- **depends_on:** Establece las dependencias entre servicios, si un servicio declara dependencia de otro este no deberá ejecutarse si antes no se ejecuta el o los servicios de los que depende.
+- **ports:** Bindea un puerto o un rango de puertos de la máquina anfitrión con un puerto de uno o varios contenedores.
+- **volumes:** Indica los volúmenes y bind mounts de un servicio.
+- **command:** Cambia el comando por defecto del servicio.
+- **build:** Indica el contexto con el que se debe construir una nueva imagen que se desplegará en todos los contenedores del servicio indicado, el nombre de la nueva imagen se construye en base al nombre del directorio de trabajo y el nombre del servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]**.
+- **networks:** Indica las redes a las que se deben conectar los contenedores de un servicio.
+
+### Tips de Docker Compose
+
+- Al usar Docker Compose Docker por detrás crea una red dedicada a esa arquitectura a la que conecta todos los contenedores de todos los servicios declarados, el nombre de la red se asigna en base al nombre del directorio de trabajo en el siguiente formato **[nombre del directorio de trabajo]\_default**.
+- Al usar Docker Compose Docker por detras trata de asignar nombres únicos a cada contenedor para evitar conflictos a causa de los nombres, los nombres de los contenedores se asigna en base del nombre del directorio de trabajo, el nombre del servicio y un número que diferencia los diferentes contenedores de un servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]\_[número de contenedor]**.
+- Al usar Docker Compose Docker por detrás se asegura que a pesar de los nuevos nombres asignados a los contenedores estos sigan siendo alcanzables por los demás contenedores solo con el nombre del servicio que ejecutan.
+- Junto a **docker-compose.yml** se puede utilizar **docker-compose.override.yml**, la ventaja de utilizar Docker Compose.override es que se puede personalizar el compose-file sin cambiarlo directamente, lo que evita alterar el compose-file de producción pero nos permite probar pequeños cambios en el sin alterarlo directamente, además Docker por defecto tratar de unir y conservar las definiciones de ambos archivos.
+- Las variables de entorno son sencillas de manejar con los archivos **compose** y **compose.override** ya que simplemente se unen las definiciones de ambas y en caso de redefinición en **compose.override** simplemente se sobreescribe el valor de la variable.
+- Para el manejo de los puertos lo recomendable es no utilizar definiciones de puertos fuera de **compose** y en caso de hacerse la definición de los puertos debe estar solo en un archivo.
+- Las dependencias de servicios se usan siempre desde el **compose.override**.
+- Para usar un **compose.override** solo hace falta construir la imagen de forma normal, Docker por defecto detecta el archivo de sobre escritura y lo utiliza.
+- Al poner **image** y **build** en un mismo compose la imagen se construye pero se le asigna el nombre de imagen en lugar del nombre por defecto.
+
+#### Ejemplo de un Docker Compose con dos servicios y volúmenes
+
+```yml
+version: "3.8"
+
+services:
+  app:
+    build: .
+    environment:
+      MONGO_URL: "mongodb://db:27017/test"
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - disc:/home/node/app
+    command: nodemon index.js
+
+  db:
+    image: mongo
+```
+
+El compose anterior utiliza un volumen en app, además de una variable de ambiente, un puerto vinculado, un cambio en el comando por defecto y construye una imagen para los contenedores del servicio app.
+
+#### Ejemplo de un Docker Compose con dos servicios y bind mount
+
+```yml
+version: "3.8"
+
+services:
+  app:
+    image: alpine
+    environment:
+      MONGO_URL: "mongodb://db:27017/test"
+    depends_on:
+      - db
+    ports:
+      - "3000-3001:3000"
+    volumes:
+      - .:/home/node/app
+      - /home/node/app/node_modules
+
+  db:
+    image: mongo
+```
+
+El compose anterior utiliza un bind mount, indica una ruta que no debe ser alterada por el bind, además, utiliza una variable de ambiente y un rango de puertos del anfitrión que pueden ser vinculados a los contenedores del servicio app.
+
+#### Ejemplo de un docker-compose.override
+
+```yml
+version: "3.8"
+
+services:
+  app:
+    build: .
+    environment:
+      NUEVA_VARIABLE: "mongodb://db:27017/test"
+```
+
+Al declarar un **docker-compose.override.yml** como el anterior junto a cualquiera de los **docker-compose.yml** se logra que se construya la imagen y se agregue la variable de ambiente nueva a la imagen.
+
+## Subcomandos de Docker Compose
+
+Docker Compose tiene varios subcomandos similares a los usados en la administración regular de Docker, algunos de los más relevantes para utilizar aplicaciones basadas en Docker Compose son:
+
+### Comandos de administración general de una aplicación compose
+
+```bash
+docker-compose [comando] --help
+```
+
+Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+
+### Construir las imágenes necesarias para una aplicación compose
+
+```bash
+docker-compose build [parámetros] [nombre del servicio]
+```
+
+Construye las imágenes que requieren ser construidas según el **compose file**, al especificarse uno o varios servicios solo se construirán las imágenes de los servicios indicados.
+
+### Iniciar una aplicación compose
+
+```bash
+docker-compose up [parámetros] [nombre del servicio]
+```
+
+Levanta la arquitectura descrita por el **compose file** en caso de no indicarse un servicio en concreto, si se indica un servicio solo ese servicio será ejecutado, algunos de los parámetros más útiles al utilizar **docker-compose up** para levantar una arquitectura son:
+
+- **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
+- **--scale [nombre o id del servicio]=[número de contenedores]:** Escala un determinado servicio al número de contenedores indicado.
+
+### Revisar el estado de los contenedores generados por una aplicación compose
+
+```bash
+docker-compose ps [parámetros] [nombre del servicio]
+```
+
+Muestra el estado de los contenedores creados por el **compose file** en caso de no indicarse un servicio en concreto, si se indica un servicio solo se mostrará el estado de los contenedores pertenecientes a ese servicio, algunos de los parámetros más útiles al utilizar **docker-compose ps** para ver el estado de los contenedores pertenecientes a una arquitectura son:
+
+- **--all:** Muestra todos los contenedores de la aplicación independientemente de si están o no ejecutados.
+
+### Revisar los logs de una aplicación compose
+
+```bash
+docker-compose logs [parámetros] [nombre del servicio]
+```
+
+Muestra los logs de todos los contenedores usados por la aplicación en caso de no indicarse un servicio en concreto, si se indica un servicio sólo se mostrarán solo los logs de los contenedores pertenecientes a ese servicio, algunos de los parámetros más útiles al utilizar **docker-compose logs** para ver los logs de una arquitectura son:
+
+- **--follow:** Sirve para hacer follow a los logs de toda la aplicación o de cierto servicio si se indica el servicio.
+- **--tail [número de logs]:** Imprime los últimos logs limitándose al número de logs indicado de toda la aplicación o de cierto servicio si se indica el servicio.
+
+### Ejecutar comandos en servicios de una aplicación compose
+
+```bash
+docker-compose exec [parámetros] [nombre del servicio] [comando]
+```
+
+Ejecuta un comando dentro del o los contenedores pertenecientes a un servicio de una aplicación compose.
+
+### Detener y eliminar todos los servicios de una aplicación compose
+
+```bash
+docker-compose down [parámetros]
+```
+
+Detiene y elimina todos los recursos usados por una aplicación compose.
