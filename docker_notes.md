@@ -443,6 +443,7 @@ docker network create [parámetros] [nombre]
 Crea un nueva red de Docker, algunos de los parámetros más útiles al crear una red con **docker network create** son:
 
 - **--attachable:** Habilita la opción de agregar contendores manualmente a la red.
+- **--driver:** Indica el driver con el que debe crearse la nueva red.
 
 ### Listar redes
 
@@ -509,7 +510,7 @@ docker network rm $(docker network ls -q)
 
 ## Archivos Dockerfile
 
-Los Dockerfile son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse como un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un Dockerfile en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un Dockerfile y sus funciones se listan a continuación:
+Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse como un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un Dockerfile en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un Dockerfile y sus funciones se listan a continuación:
 
 - **FROM [nombre de la imagen]:[versión de la imagen]:** Indica la imagen base, o primera capa que se va a utilizar para construir la nueva imagen, siempre es el primer comando de un Dockerfile.
 - **RUN [comando]:** Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con **RUN** solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un Dockerfile que implemente esta instrucción.
@@ -517,15 +518,16 @@ Los Dockerfile son los archivos que usa Docker al momento de construir una image
 - **COPY [ruta archivo 0, ruta archivo 1, ... ruta archivo n, ruta destino contenedor]:** Copia todos los archivos indicados en la ruta de destino de la imagen, cabe aclarar que Docker solo da acceso a la imagen en tiempo de construcción al directorio especificado como contexto, por lo que los archivos que se quieren copiar a la imagen deben estar dentro del contexto de construcción para poder ser empaquetados dentro de la misma.
 - **EXPOSE [número de puerto]:** Expone un puerto del contenedor permitiendo que ese puerto sea vinculable o bindable a un puerto de la máquina anfitrión.
 - **CMD ["parte 1 del comando", "parte 2 del comando"]:** Exec form para ejecutar un comando, ejecutar procesos con exec form hace que los procesos se ejecuten directamente, lo que pone el proceso indicado como proceso principal del contenedor.
-- **CMD [comando entero]:** bash form para ejecutar un comando, ejecutar procesos con bash form hace que los procesos se ejecuten como procesos hijos de un bash, lo que pone al bash como proceso principal del contenedor en lugar del proceso indicado.
+- **CMD [comando entero]:** Bash form para ejecutar un comando, ejecutar procesos con bash form hace que los procesos se ejecuten como procesos hijos de un bash, lo que pone al bash como proceso principal del contenedor en lugar del proceso indicado.
 - **ENTRYPOINT ["parte 1 del comando", "parte 2 del comando"]:** Exec form para ejecutar un entrypoint, ejecuta el entrypoint como proceso principal.
-- **ENTRYPOINT [comando entero]:** bash form para ejecutar un entrypoint, ejecuta el entrypoint como proceso hijo del bash.
+- **ENTRYPOINT [comando entero]:** Bash form para ejecutar un entrypoint, ejecuta el entrypoint como proceso hijo del bash.
+- **VOLUME [ruta dentro del contenedor]:** Crea un volumen y monta los archivos de la ruta indicada en el volumen nuevo.
 
 ### Tips de Dockerfile
 
 - Docker no construye de nuevo las capas a no ser que haya cambios, esto lo logra utilizando el caché de capas, es importante construir los Dockerfile considerando el caché de capas para facilitar el proceso de desarrollo.
 - Utilizando monitores de scripting y bind mounts, como nodemon, se puede lograr que Docker actualice el código que se está ejecutando en tiempo de ejecución sin tener que reconstruir la imagen de nuevo.
-- En Docker existe un archivo llamado **.dockerignore** que funciona igual que **.gitignore**, su función es evitar que cierto tipo de archivos copien la imagen al construirla.
+- En Docker existe un archivo llamado [**.dockerignore**](https://docs.docker.com/engine/reference/builder/) que funciona igual que **.gitignore**, su función es evitar que cierto tipo de archivos copien la imagen al construirla.
 - Los **entrypoint** a diferencia de **cmd** no pueden ser sobreescritos a no ser que se utilice un flag especial al momento de ejecutar un contenedor, por lo que si el contenedor está destinado a tener solo un uso específico es recomendable usar **entrypoints** en lugar de **cmd** para establecer el comando por defecto.
 - Los **entrypoint** se ejecutan siempre como comandos por defecto al tener prioridad sobre los comandos de **cmd**, además al combinarse **entrypoints** y **cmd** los **entrypoint** utilizan los comandos de **cmd** como parámetros al final del comando del **entrypoint**, por lo que el comando del proceso principal termina siendo el comando del **entrypoint** concatenado con el comando de **cmd**, lo que hace que al no enviar comandos al momento de ejecutar el contenedor esté use lo que hay por defecto en **cmd** como parámetro y al enviar comandos estos se reemplazan en **cmd** y se usan como parámetros al final del comando del **entrypoint**.
 - Cuando cuando se utilizan **entrypoints** y **cmd** en un mismo Dockerfile es importante que ambos utilicen o bash form o exec form, no es recomendable que usen formas diferentes de ejecutar el comando.
@@ -589,18 +591,107 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
 
-## Instalación de Docker compose en Ubuntu
+## Instalación de Docker Compose en Ubuntu
 
-Docker-compose se instala junto a las versiones de escritorio de Windows o Mac, sin embargo en la versión de Ubuntu es necesario instalarlo manualmente con los siguientes comandos, los cuales son extraídos de la guia oficial de [Docker Hub](https://docs.docker.com/compose/install/):
+Docker Compose se instala junto a las versiones de escritorio de Windows o Mac, sin embargo en la versión de Ubuntu es necesario instalarlo manualmente con los siguientes comandos, los cuales son extraídos de la guia oficial de [Docker Hub](https://docs.docker.com/compose/install/):
 
 ```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-## Subcomandos de Docker compose
+## Archivos docker-compose.yml
 
-Docker-compose tiene varios subcomandos similares a los usados en la administración regular de Docker, algunos de los más relevantes son:
+Docker Compose permite usar los 4 recursos de Docker juntos fácilmente desde un solo archivo [**docker-compose.yml**](https://docs.docker.com/compose/compose-file/), usando este archivo también llamado **compose file** se pueden integrar fácilmente recursos de red, volúmenes, imagenes y contenedores sin necesidad de administrar uno a uno cada tipo de recurso, en síntesis lo que permite Docker Compose es describir de forma declarativa la arquitectura de servicios que la aplicación necesita, y Docker se encargará de crear e integrar cada recursos declarado por detrás evitandonos tener que administraba uno a uno los recursos, algunos de los componentes que soporta **Docker Compose** y sus funciones son:
+
+- **version:** Indica la versión del compose file, dependiendo de la versión de Docker Engine se soportan ciertas características y ciertas versiones de compose-file.
+- **services:** Indica que servicios componen la aplicación, básicamente son las partes o componentes que interactúan para formar nuestra aplicación y que funcione correctamente, un servicio no es un container explícitamente ya que un servicio puede componerse de uno o muchos contenedores.
+- **image:** Establece la imagen que se va a utilizar para ejecutar los contenedores de cierto servicio.
+- **environment:** Permite definir variables de ambiente a las que pueden acceder los contenedores de un servicio.
+- **depends_on:** Establece las dependencias entre servicios, si un servicio declara dependencia de otro este no deberá ejecutarse si antes no se ejecuta el o los servicios de los que depende.
+- **ports:** Bindea un puerto o un rango de puertos de la máquina anfitrión con un puerto de uno o varios contenedores.
+- **volumes:** Indica los volúmenes y bind mounts de un servicio.
+- **command:** Cambia el comando por defecto del servicio.
+- **build:** Indica el contexto con el que se debe construir una nueva imagen que se desplegará en todos los contenedores del servicio indicado, el nombre de la nueva imagen se construye en base al nombre del directorio de trabajo y el nombre del servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]**.
+- **networks:** Indica las redes a las que se deben conectar los conteendores de un servicio.
+
+### Tips de Docker Compose
+
+- Al usar Docker Compose Docker por detrás crea una red dedicada a esa arquitectura a la que conecta todos los contenedores de todos los servicios declarados, el nombre de la red se asigna en base al nombre del directorio de trabajo en el siguiente formato **[nombre del directorio de trabajo]\_default**.
+- Al usar Docker Compose Docker por detras trata de asignar nombres únicos a cada contenedor para evitar conflictos a causa de los nombres, los nombres de los contenedores se asigna en base del nombre del directorio de trabajo, el nombre del servicio y un número que diferencia los diferentes contenedores de un servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]\_[número de contenedor]**.
+- Al usar Docker Compose Docker por detrás se asegura que a pesar de los nuevos nombres asignados a los contenedores estos sigan siendo alcanzables por los demás contenedores solo con el nombre del servicio que ejecutan.
+- Junto a **docker-compose.yml** se puede utilizar **docker-compose.override.yml**, la ventaja de utilizar Docker Compose.override es que se puede personalizar el compose-file sin cambiarlo directamente, lo que evita alterar el compose-file de producción pero nos permite probar pequeños cambios en el sin alterarlo directamente, además Docker por defecto tratar de unir y conservar las definiciones de ambos archivos.
+- Las variables de entorno son sencillas de manejar con los archivos **compose** y **compose.override** ya que simplemente se unen las definiciones de ambas y en caso de redefinición en **compose.override** simplemente se sobreescribe el valor de la variable.
+- Para el manejo de los puertos lo recomendable es no utilizar definiciones de puertos fuera de **compose** y en caso de hacerse la definición de los puertos debe estar solo en un archivo.
+- Las dependencias de servicios se usan siempre desde el **compose.override**.
+- Para usar un **compose.override** solo hace falta construir la imagen de forma normal, Docker por defecto detecta el archivo de sobre escritura y lo utiliza.
+- Al poner **image** y **build** en un mismo compose la imagen se construye pero se le asigna el nombre de imagen en lugar del nombre por defecto.
+
+#### Ejemplo de un Docker Compose con dos servicios y volúmenes
+
+```yml
+version: "3.8"
+
+services:
+  app:
+    build: .
+    environment:
+      MONGO_URL: "mongodb://db:27017/test"
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - disc:/home/node/app
+    command: nodemon index.js
+
+  db:
+    image: mongo
+```
+
+El compose anterior utiliza un volumen en app, además de una variable de ambiente, un puerto vinculado, un cambio en el comando por defecto y construye una imagen para los contenedores del servicio app.
+
+#### Ejemplo de un Docker Compose con dos servicios y bind mount
+
+```yml
+version: "3.8"
+
+services:
+  app:
+    image: alpine
+    environment:
+      MONGO_URL: "mongodb://db:27017/test"
+    depends_on:
+      - db
+    ports:
+      - "3000-3001:3000"
+    volumes:
+      - .:/home/node/app
+      - /home/node/app/node_modules
+
+  db:
+    image: mongo
+```
+
+El compose anterior utiliza un bind mount, indica una ruta que no debe ser alterada por el bind, además, utiliza una variable de ambiente y un rango de puertos del anfitrión que pueden ser vinculados a los contenedores del servicio app.
+
+#### Ejemplo de un docker-compose.override
+
+```yml
+version: "3.8"
+
+services:
+  app:
+    build: .
+    environment:
+      NUEVA_VARIABLE: "mongodb://db:27017/test"
+```
+
+Al declarar un **docker-compose.override.yml** como el anterior junto a cualquiera de los **docker-compose.yml** se logra que se construya la imagen y se agregue la variable de ambiente nueva a la imagen.
+
+## Subcomandos de Docker Compose
+
+Docker Compose tiene varios subcomandos similares a los usados en la administración regular de Docker, algunos de los más relevantes para utilizar aplicaciónes basadas en Docker Compose son:
 
 ### Comandos de administración general de compose
 
@@ -666,94 +757,6 @@ docker-compose down [parámetros]
 
 Detiene y elimina todos los recursos usados por una aplicación compose.
 
-## Archivos docker-compose.yml
-
-Docker-compose permite usar los 4 recursos de Docker juntos fácilmente desde un solo archivo **docker-compose.yml**, usando este archivo también llamado **compose file** se pueden integrar fácilmente recursos de red, volúmenes, imagenes y contenedores sin necesidad de administrar uno a uno cada tipo de recurso, en síntesis lo que permite Docker-compose es describir de forma declarativa la arquitectura de servicios que la aplicación necesita, y Docker se encargará de crear e integrar cada recursos declarado por detrás evitandonos tener que administraba uno a uno los recursos, algunos de los componentes que soporta **Docker-compose** y sus funciones son:
-
-- **versión:** Indica la versión del compose file, dependiendo de la versión del compose file se indica a Docker-compose qué features puede o no soportar.
-- **services:** Indica que servicios componen la aplicación, básicamente son las partes o componentes que interactúan para formar nuestra aplicación y que funcione correctamente, un servicio no es un container explícitamente ya que un servicio puede componerse de uno o muchos contenedores.
-- **image:** Establece la imagen que se va a utilizar para ejecutar los contenedores de cierto servicio.
-- **environment:** Permite definir variables de ambiente a las que pueden acceder los contenedores de un servicio.
-- **depends_on:** Establece las dependencias entre servicios, si un servicio declara dependencia de otro este no deberá ejecutarse si antes no se ejecuta el o los servicios de los que depende.
-- **ports:** Bindea un puerto o un rango de puertos de la máquina anfitrión con un puerto de uno o varios contenedores.
-- **volumes:** Indica los volúmenes y bind mounts de un servicio.
-- **command:** Cambia el comando por defecto del servicio.
-- **build:** Indica el contexto con el que se debe construir una nueva imagen que se desplegará en todos los contenedores del servicio indicado, el nombre de la nueva imagen se construye en base al nombre del directorio de trabajo y el nombre del servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]**.
-
-### Tips de Docker-compose
-
-- Al usar Docker-compose Docker por detrás crea una red dedicada a esa arquitectura a la que conecta todos los contenedores de todos los servicios declarados, el nombre de la red se asigna en base al nombre del directorio de trabajo en el siguiente formato **[nombre del directorio de trabajo]\_default**.
-- Al usar Docker-compose Docker por detras trata de asignar nombres únicos a cada contenedor para evitar conflictos a causa de los nombres, los nombres de los contenedores se asigna en base del nombre del directorio de trabajo, el nombre del servicio y un número que diferencia los diferentes contenedores de un servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]\_[número de contenedor]**.
-- Al usar Docker-compose Docker por detrás se asegura que a pesar de los nuevos nombres asignados a los contenedores estos sigan siendo alcanzables por los demás contenedores solo con el nombre del servicio que ejecutan.
-- Junto a **docker-compose.yml** se puede utilizar **docker-compose.override.yml**, la ventaja de utilizar docker-compose.override es que se puede personalizar el compose-file sin cambiarlo directamente, lo que evita alterar el compose-file de producción pero nos permite probar pequeños cambios en el sin alterarlo directamente, además Docker por defecto tratar de unir y conservar las definiciones de ambos archivos.
-- Las variables de entorno son sencillas de manejar con los archivos **compose** y **compose.override** ya que simplemente se unen las definiciones de ambas y en caso de redefinición en **compose.override** simplemente se sobreescribe el valor de la variable.
-- Para el manejo de los puertos lo recomendable es no utilizar definiciones de puertos fuera de **compose** y en caso de hacerse la definición de los puertos debe estar solo en un archivo.
-- Las dependencias de servicios se usan siempre desde el **compose.override**.
-- Para usar un **compose.override** solo hace falta construir la imagen de forma normal, Docker por defecto detecta el archivo de sobre escritura y lo utiliza.
-- Al poner **image** y **build** en un mismo compose la imagen se construye pero se le asigna el nombre de imagen en lugar del nombre por defecto.
-
-#### Ejemplo de un Docker-compose con dos servicios y volúmenes
-
-```yml
-version: "3.8"
-
-services:
-  app:
-    build: .
-    environment:
-      MONGO_URL: "mongodb://db:27017/test"
-    depends_on:
-      - db
-    ports:
-      - "3000:3000"
-    volumes:
-      - disc:/home/node/app
-    command: nodemon index.js
-
-  db:
-    image: mongo
-```
-
-El compose anterior utiliza un volumen en app, además de una variable de ambiente, un puerto vinculado, un cambio en el comando por defecto y construye una imagen para los contenedores del servicio app.
-
-#### Ejemplo de un Docker-compose con dos servicios y bind mount
-
-```yml
-version: "3.8"
-
-services:
-  app:
-    image: alpine
-    environment:
-      MONGO_URL: "mongodb://db:27017/test"
-    depends_on:
-      - db
-    ports:
-      - "3000-3001:3000"
-    volumes:
-      - .:/home/node/app
-      - /home/node/app/node_modules
-
-  db:
-    image: mongo
-```
-
-El compose anterior utiliza un bind mount, indica una ruta que no debe ser alterada por el bind, además, utiliza una variable de ambiente y un rango de puertos del anfitrión que pueden ser vinculados a los contenedores del servicio app.
-
-#### Ejemplo de un Docker-compose.override
-
-```yml
-version: "3.8"
-
-services:
-  app:
-    build: .
-    environment:
-      NUEVA_VARIABLE: "mongodb://db:27017/test"
-```
-
-Al declarar un **docker-compose.override.yml** como el anterior junto a cualquiera de los **docker-compose.yml** se logra que se construya la imagen y se agregue la variable de ambiente nueva a la imagen.
-
 ## Docker Swarm
 
 Docker Swarm es la solución nativa que ofrece Docker para montar aplicaciones basadas en cómputo distribuido y en contenedores, lo que propone Docker Swarm es que al montar un cluster en el que se quieren desplegar aplicaciones contenerizadas bajo el esquema de servicios el cluster debe ser fácilmente administrable, bajo esta premisa Docker Swarm ha llegado hasta el punto en el que el desarrollador puede tratar la totalidad del cluster como si se tratase de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto es que usando Docker Swarm es posible administrar un cluster casi con la facilidad con la que se administra una sola máquina con un solo Docker Daemon, cuando en realidad son varias máquinas cada uno con su propio Docker Daemon. Para conseguir este funcionamiento Docker Swarm se basa en tres conceptos fundamentales, estos tres conceptos son **Swarm**, **Nodos** y **Servicios**, cada uno de estos conceptos corresponde a un tipo de entidad que compone una aplicación basada en Docker Swarm, las definiciones resumidas de cada uno de estos conceptos se listan a continuación:
@@ -800,7 +803,7 @@ Docker Swarm además viene instalado con Docker Engine, por lo que no hace falta
 
 ## Administración de un cluster
 
-El cluster, enjambre o Swarm es lo que permite que una aplicación basad en Docker Swarm escale sobre un hardware virtualmente infinito, es por esto que si bien el cluster no es muy difícil de administrar y no hay muchos comandos con los cuales administrarlo, es importante tener en cuenta los comandos necesarios para administrar y escalar el cluster, ya que del cluster depende que tanto puede escalar la aplicación a nivel de Hardware.
+El cluster, enjambre o Swarm es lo que permite que una aplicación basada en Docker Swarm escale sobre un hardware virtualmente infinito, es por esto que si bien el cluster no es muy difícil de administrar y no hay muchos comandos con los cuales administrarlo, es importante tener en cuenta los comandos necesarios para administrar y escalar el cluster, ya que del cluster depende que tanto puede escalar la aplicación a nivel de Hardware.
 
 ### Comandos básicos de administración de un cluster
 
@@ -880,7 +883,7 @@ Permite actualizar ciertas configuraciones de un nodo, algunos de los parámetro
 
 ## Administración de servicios basados en Docker Swarm
 
-Los servicios son la base de Docker Swarm, al igual que en Docker-compose un servicio es una aplicación contenerizada que está desplegada en uno o más contenedores, en Docker Swarm la ventaja es que estos contenedores pueden estar ejecutándose en cualquier nodo del cluster y además pueden moverse entre nodos fácilmente, es debido a esto que los servicios son altamente disponibles y escalables.
+Los servicios son la base de Docker Swarm, al igual que en Docker Compose un servicio es una aplicación contenerizada que está desplegada en uno o más contenedores, en Docker Swarm la ventaja es que estos contenedores pueden estar ejecutándose en cualquier nodo del cluster y además pueden moverse entre nodos fácilmente, es debido a esto que los servicios son altamente disponibles y escalables, al trabajar con servicios se trabaja implícitamente con contenedores ya que Docker Swarm se encarga de gestionar los contenedores en función de la declaración del servicio.
 
 ### Comandos básicos de administración de servicios
 
@@ -899,9 +902,10 @@ docker service create [parámetros] [nombre o id de la imagen] [comando]
 Permite iniciar un servicio basado en Docker Swarm especificando la imagen y el comando del proceso principal, si no se especifica el comando del proceso principal se usa el proceso principal por defecto, algunos de los parámetros más útiles al iniciar un servicio con **docker service create** son:
 
 - **--name [nombre del servicio]:** Establece el nombre indicado como nombre del servicio.
-- **--publish [puerto del anfitrión]:[puerto del contenedor]:** Publica el puerto de los contenedores en el puerto del anfitrión usando el mesh routing de Docker Swarm.
+- **--publish [puerto del anfitrión]:[puerto del contenedor]:** Utiliza la red ingress y el routing mesh de Docker Swarm para exponer la aplicación.
 - **--replicas [número de réplicas]:** Establece el número de réplicas o contenedores que deben ejecutarse de cierto servicio.
 - **--constraint node.role==[worker|manager]:** Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
+- **--network:** Conecta los servicios a cierta red que tenga un driver overlay, si no se indica una red Docker conectara los servicios a la red ingress por defecto.
 
 ### Visualizar servicios
 
@@ -944,7 +948,7 @@ Actualiza la configuración de un servicio, algunos de los parámetros más úti
 - **--update-failure-action [pause|continue|rollback]:** Cambia la acción por defecto que se debe realizar en caso de fallar una tarea.
 - **--update-max-failure-ratio [porcentaje de fallo]:** Indica el porcentaje de tareas que pueden fallar antes de realizar la acción en caso de fallo.
 - **--rollback-parallelism [número de tareas de restauración paralelo]:** Cambia el número de tareas que se restauran en paralelo, 0 actualiza todo en paralelo.
-- **--constraint-add node.role==[rol]:** Modifica las restricciones de carga de un servicio totalmente en paralelo.
+- **--constraint-add node.role==[worker|manager]:** Modifica las restricciones de carga de un servicio a nodos con cirto rol.
 - **--env-add [nombre de la variable de entorno]=[valor de la variable de entorno]:** Agrega o actualiza el valor de una o varias variables de entorno.
 
 ### Visualizar logs de un servicio
@@ -980,3 +984,98 @@ docker service rm [id o nombre del servicio]
 ```
 
 Elimina un servicio junto con todos sus contenedores y tareas.
+
+## Administración de redes de Docker Swarm
+
+Al utilizar Docker en modo Swarm Docker necesita dos tipos de redes adicionales a las que se usan normalmente, las cuales se usan para comunicar las diferentes tareas o contenedores de un servicio a nivel de nodo y cluster, estas redes son: **docker_gwbridge** e **ingress**, la red docker_gwbrigde por su parte se encarga de comunicar los contenedores del nodo entre ellos y la red ingress, ingress por su parte se encarga de la comunicación de todas las redes docker_gwbrigde a través de todos los nodos del cluster, formando así una red que comunica todos los contenedores de un servicio cuyos contenedores están distribuidos en diferentes nodos, también se diferencian en el alcance y driver, docker_gwbridge está disponible sólo dentro de un nodo y utiliza un driver **bridge** estándar, mientras que ingress está disponible en todos los nodos y utiliza un driver **overlay**, al crear un cluster basado en Docker Swarm las redes docker_gwbridge se crean automáticamente y se conectan a ingress (que es una red creada por defecto), pero es importante saber crear redes con funcionalidades similares a las cuales conectar varios servicios para lograr comunicación entre los contenedores de diferentes servicios sin sobrecargar ingress.
+
+### Crear una red overlay
+
+```bash
+docker network create --driver overlay [nombre de la red]
+```
+
+Crea una red con un driver overlay la cual tiene conectividad con todo el cluster y funciona de forma similar a la red ingress, por lo que uno o varios servicios se pueden conectar a la nueva red.
+
+## Archivos stack-file.yml
+
+Los archivos [**stack-file.yml**](https://docs.docker.com/compose/compose-file/) son compose file, utilizan la misma sintaxis y muchos de los componentes de un compose file normal, pero los stack file se utilizan con un propósito diferente del de los compose file, la principal diferencia es que los stack file sirven para generar esquemas de servicios basados en Docker Swarm, también llamados **Docker Stacks**, por lo que los servicios de un stack file se ejecutan sobre un cluster en lugar de en una sola máquina, los stack file además soportan componentes que no se utilizan en Docker Compose ya que Docker al identificar en Docker Compose el tipo de aplicación ignora los componentes que son válidos solo en los Docker Stacks, algunos de estos nuevos componentes y sus utilidades son:
+
+- **delpoy:** Restringe los nodos donde se pueden ejecutar las tareas de un servicio.
+
+### Tips de Docker Stacks
+
+#### Ejemplo de un stack file
+
+```yml
+version: "3"
+
+services:
+  app:
+    image: alpine
+    environment:
+      MONGO_URL: "mongodb://db:27017/test"
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    deploy:
+      placement:
+        constraints: [node.role==worker]
+
+  db:
+    image: mongo
+```
+
+## Subcomandos de Docker Stacks
+
+Para utilizar stack files como origen de una arquitectura basada en Docker Swarm hay varios subcomandos similares a los usados en la administración regular de Docker Swarm y Docker Compose, algunos de los más relevantes para utilizar aplicaciones basadas en Docker Swarm con stack files son:
+
+### Comandos de administración general de Docker Stacks
+
+```bash
+docker stack [comando] --help
+```
+
+Muestra a grandes rasgos los comandos disponibles para administrar Docker Stacks y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+
+### Iniciar o actualizar un stack
+
+```bash
+docker stack deploy [parámetros] [nombre del nuevo stack]
+```
+
+Inicia o actualiza un stack, algunos de los parámetros más útiles al utilizar **docker stack deploy** para iniciar un stack son:
+
+- **--compose-file [ruta al stack file]:** Establece el compose file que se utilizará para generar el nuevo stack.
+- **--orchestrator [swarm|kubernetes|all]:** Establece el orquestador del stack, por defecto se usa swarm.
+
+### Listar Docker Stacks
+
+```bash
+docker stack ls [parámetros]
+```
+
+### Listar tareas de un stack
+
+```bash
+docker stack ps [parámetros] [nombre del stack]
+```
+
+Lista todas las tareas pertenecientes a un stack.
+
+### Listar servicios de un stack
+
+```bash
+docker stack services [parámetros] [nombre del stack]
+```
+
+Lista todos los servicios pertenecientes a un stack.
+
+### Eliminar un stack
+
+```bash
+docker stack rm [parámetros] [nombre del stack]
+```
+
+Elimina un stack junto con todas sus tareas, contenedores, redes y volúmenes.
