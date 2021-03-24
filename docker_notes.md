@@ -136,7 +136,7 @@ Permite ver la versión de Docker Engine instalada actualmente en la máquina an
 docker info [parámetros]
 ```
 
-Muestra información del Docker Daemon, como el número de imágenes descargadas, el estado de Swarm o incluso la versión del kernel, entre otros.
+Muestra información del Docker Daemon, como el número de imágenes descargadas, el estado del modo Swarm o incluso la versión del kernel, entre otros.
 
 ```bash
 docker stats [parámetros] [id o nombre del contenedor]
@@ -160,17 +160,17 @@ La administración de contenedores es una actividad clave al utilizar Docker ya 
 docker run [parámetros] [imagen] [comando]
 ```
 
-Ejecuta un contenedor usando la imagen especificada y ejecutando el comando indicado como proceso principal, en caso de ser dado un comando, si no es definido un proceso principal ni en la imagen (por defecto) ni por comando el contenedor nunca se inicia ya que un contenedor se detiene cuando su proceso principal finaliza y al no abre proceso principal realmente el contenedor nunca arranca, algunos de los parámetros más útiles al ejecutar un contenedor con **docker run** son:
+Ejecuta un contenedor usando la imagen especificada y ejecutando el comando indicado como proceso principal, en caso de ser dado un comando, si no es definido un comando para ejecutarse como proceso principal ni en la imagen (por defecto) ni por comando el contenedor nunca se inicia ya que un contenedor se detiene cuando su proceso principal finaliza y al no haber un proceso principal realmente el contenedor nunca arranca, algunos de los parámetros más útiles al ejecutar un contenedor con **docker run** son:
 
-- **--name [nombre del nuevo contenedor]:** Permite asignar un nombre personalizado al contenedor el cual puede ser utilizado para referenciar al contenedor como si fuera su id, además es único e irrepetible, en caso de no especificarse un nombre con este parámetro Docker asigna también un nombre al contenedor.
+- **--name [nombre del nuevo contenedor]:** Permite asignar un nombre personalizado al contenedor el cual puede ser utilizado para referenciar al contenedor como si fuera su id, además es único e irrepetible, en caso de no especificarse un nombre con este parámetro Docker asigna un nombre aleatorio al contenedor.
 - **--interactive:** Ejecuta el contenedor y abre una terminal mediante la cual se puede interactuar con el contenedor, al combinarlo con **--tty** se consigue una terminal interactiva entre el anfitrión y el contenedor.
 - **--tty:** Muestra en la salida estándar los resultados de ejecutar un comando, al combinarlo con **--interactive** se consigue una terminal interactiva entre el anfitrión y el contenedor.
 - **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
 - **--publish [puerto del anfitrión]:[puerto del contenedor]:** Expone el puerto designado del contenedor en el puerto designado de la máquina anfitrión.
 - **--rm:** Indica a Docker que ese contenedor debe eliminarse tan pronto como se detiene, es decir al finalizar su proceso principal.
-- **--volume [ruta en el anfitrión]:[ruta en el contenedor]:** Crea un bind ligando los archivos de la ruta del contenedor con los de la ruta del anfitrión.
-- **--mount src=[nombre o id del volumen],dst=[ruta en el contenedor]:** Liga los archivos que están en la ruta designada del contenedor a un volumen de Docker.
-- **--memory [cantidad de memoria ram designada] [g|m]:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que requiera.
+- **--volume [ruta en el anfitrión]:[ruta en el contenedor]:** Crea un bind vinculando la ruta designada del contenedor con la ruta designada del anfitrión.
+- **--mount src=[nombre o id del volumen],dst=[ruta en el contenedor]:** Vincula la ruta designada del contenedor a un volumen de Docker.
+- **--memory [cantidad de memoria ram designada] [g|m]:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que necesite.
 - **--env [nombre de la variable de ambiente]=[valor de la variable de ambiente]:** Establece una variable de ambiente a la que tendrá acceso el contenedor.
 
 #### Apuntes adicionales sobre la ejecución de contenedores
@@ -179,13 +179,13 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando indi
 - Los status de salida con código por encima de 128 indican salidas forzosas y normalmente indican que el cierre de ese contenedor causó que varios procesos que se estaban llevando a cabo se detuvieran sin finalizarse.
 - Un código de salida 137 indica que el proceso fue cerrado por la señal **sigkill**.
 
-### Cambiar nombres de los contenedores
+### Renombrar contenedores
 
 ```bash
 docker rename [nombre o id del contenedor] [nuevo nombre]
 ```
 
-Asigna un nuevo nombre al contenedor especificado.
+Renombra el contenedor indicado.
 
 ### Revisar el estado de los contenedores
 
@@ -193,16 +193,16 @@ Asigna un nuevo nombre al contenedor especificado.
 docker ps [parámetros]
 ```
 
-Muestra todos los contenedores activos en la máquina anfitrión, junto con datos como su id, nombre, nombre de imagen, estatus, puertos expuestos, tiempo de creación y comando del proceso principal, algunos de los parámetros más útiles al visualizar datos de los contenedores con **docker ps** son:
+Muestra todos los contenedores activos en la máquina anfitrión, algunos de los parámetros más útiles al ver los datos de los contenedores activos con **docker ps** son:
 
-- **--all:** Muestra los mismos datos que **docker ps** pero además incluye los contenedores que están actualmente inactivos.
-- **--latest:** Muestra los mismos datos que **docker ps** pero muestra solo los datos del último contenedor activo.
+- **--all:** Incluye los contenedores que están actualmente inactivos.
+- **--latest:** Muestra sólo los datos del último contenedor ejecutado.
 
 ```bash
 docker inspect [parámetros] [nombre o id del contenedor]
 ```
 
-Muestra en un archivo JSON toda la información de la configuración de un contenedor en concreto.
+Muestra en formato JSON toda la información de la configuración del contenedor indicado.
 
 ### Mover archivos y directorio entre el anfitrión y los contenedores
 
@@ -210,13 +210,13 @@ Muestra en un archivo JSON toda la información de la configuración de un conte
 docker cp [parámetros] [ruta host] [nombre o id del contenedor]:[ruta contenedor]
 ```
 
-Copia un archivo o directorio desde la ruta de origen de la máquina anfitrión en la ruta de destino del contenedor designado.
+Copia un archivo o directorio desde la ruta de origen de la máquina anfitrión en la ruta de destino del contenedor indicado.
 
 ```bash
 docker cp [parámetros] [nombre o id del contenedor]:[ruta contenedor] [ruta host]
 ```
 
-Copia un archivo o directorio desde la ruta de origen del contenedor designado en la ruta de destino de la máquina anfitrión.
+Copia un archivo o directorio desde la ruta de origen del contenedor indicado en la ruta de destino de la máquina anfitrión.
 
 ### Visualizar los logs de los contenedores
 
@@ -224,9 +224,9 @@ Copia un archivo o directorio desde la ruta de origen del contenedor designado e
 docker logs [parámetros] [nombre o id del contenedor]
 ```
 
-Sirve para ver los logs de un contenedor especificado, algunos de los parámetros más útiles al ver los logs de un contenedor con **docker logs** son:
+Sirve para ver los logs del contenedor indicado, algunos de los parámetros más útiles al ver los logs de un contenedor con **docker logs** son:
 
-- **--follow:** Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
+- **--follow:** Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitrión a la salida estándar del contenedor para logs para verlos en la medida en la que se imprimen.
 - **--tail [número de logs]:** Imprime los últimos logs limitándose al número de logs indicado.
 
 ### Ejecutar tareas en contenedores
@@ -235,9 +235,9 @@ Sirve para ver los logs de un contenedor especificado, algunos de los parámetro
 docker exec [parámetros] [nombre o id del contenedor] [comando]
 ```
 
-Permite ejecutar un comando en un contenedor activo, algunos de los parámetros más útiles al ejecutar un comando un contenedor con **docker exec** son:
+Permite ejecutar un comando en un contenedor activo, algunos de los parámetros más útiles al ejecutar un comando en un contenedor con **docker exec** son:
 
-- **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
+- **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del comando en el contenedor, ejecutando en el background del contenedor el comando.
 
 #### Comando pré construído para ver procesos dentro de un contenedor
 
@@ -267,7 +267,7 @@ Apaga manualmente un contenedor usando la señal **sigkill**.
 docker rm [parámetros] [nombre o id del contenedor]
 ```
 
-Sirve para borrar contenedores, Docker por defecto no elimina ningún contenedor, al finalizar el proceso principal del contenedor simplemente lo detiene, por lo que es usual tener que borrar contenedores manualmente para mantener en espacio de trabajo ordenado y evitar llenar el almacenamiento con contenedores que no es están usando, algunos de los parámetros más útiles al borrar un contenedor con **docker rm** son:
+Sirve para borrar contenedores, Docker por defecto no elimina ningún contenedor, al finalizar el proceso principal del contenedor simplemente lo detiene, por lo que es usual tener que borrar contenedores manualmente para mantener el espacio de trabajo ordenado y evitar llenar el almacenamiento con contenedores que no es están usando, algunos de los parámetros más útiles al borrar un contenedor con **docker rm** son:
 
 - **--force:** Detiene un contenedor actualmente activo para así poder eliminarlo, la detención del contenedor se fuerza usando la señal **sigkill**.
 
@@ -283,12 +283,11 @@ Borra todos los contenedores inactivos.
 docker rm -f $(docker ps -aq)
 ```
 
-El comando anterior es una extensión de **docker rm** pero tiene la funcionalidad de eliminar todos los contenedores activos o inactivos y para eliminar los activos fuerza su detención antes de eliminarlos con la señal **sigkill**.
+El comando anterior es una extensión de **docker rm** pero tiene la funcionalidad de eliminar todos los contenedores activos o inactivos, para eliminar los activos fuerza su detención antes de eliminarlos con la señal **sigkill**.
 
 ## Administración de imágenes
 
-En términos de relevancia las imágenes en Docker podrían considerarse como el segundo tipo de entidad más relevantes después de los contenedores, estando casi a la par en relevancia, lo que hace a la administración de imágenes el segundo tipo de actividad más relevante al usar Docker, si bien los contenedores son la forma de virtualizar un ambiente aislado sobre el que se ejecutara nuestro proyecto, las imágenes se encargan de indicar la forma en la que el contenedor debe construir ese ambiente, además es gracias a las imágenes que es fácil mover, desplegar y replicar un proyecto las veces que haga falta, sin alterar el funcionamiento del mismo, es por esto que las imágenes son las que aportan a nuestros proyectos las tres características restantes principales de Docker, concretamente las imágenes aportan **escalabilidad**, **portabilidad** y **ligereza** a nuestros proyectos.
-Algunos de los comandos más importantes provistos por Docker para administrar imágenes se listan en esta sección.
+En términos de relevancia las imágenes en Docker podrían considerarse como el segundo tipo de entidad más relevantes después de los contenedores, estando casi a la par en relevancia, lo que hace a la administración de imágenes el segundo tipo de actividad más relevante al usar Docker, si bien los contenedores son la forma de virtualizar un ambiente aislado sobre el que se ejecutara la aplicación, las imágenes se encargan de indicar la forma en la que el contenedor debe construir ese ambiente, además es gracias a las imágenes que es fácil mover, desplegar y replicar un contenedor las veces que haga falta, sin alterar el funcionamiento del mismo, es por esto que las imágenes son las que aportan a las aplicaciones contenerizadas las tres características restantes principales de Docker, concretamente las imágenes aportan **escalabilidad**, **portabilidad** y **ligereza** a nuestros proyectos. Algunos de los comandos más importantes provistos por Docker para administrar imágenes se listan en esta sección.
 
 ### Construir imágenes
 
@@ -307,7 +306,7 @@ Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el c
 docker pull [parámetros] [nombre o id de la imagen]:[tag de la imagen]
 ```
 
-Baja la imagen con el nombre y el tag especificado, si no se especifica un tag se baja la versión más reciente o por defecto de la imagen.
+Baja la imagen con el nombre y el tag especificado, si no se especifica un tag se baja la versión más reciente (latest) o por defecto de la imagen.
 
 ### Subir imágenes
 
@@ -325,13 +324,13 @@ docker push [parámetros] [repositorio o nombre de usuario de Docker Hub]/[nombr
 
 Sube la imagen con el nombre y el tag especificado al repositorio indicado.
 
-### Cambiar tags de imágenes
+### Cambiar tag de imágenes
 
 ```bash
 docker tag [nombre o id de la imagen de origen]:[tag de la imagen de origen] [repositorio o nombre de usuario de Docker Hub]/[nombre o id de la nueva imagen]:[tag de la nueva imagen]
 ```
 
-Crea una nueva imagen que se hace referencia a una ya existente y que se puede publicar en nuestro repositorio.
+Crea una nueva imagen con un nuevo tag que hace referencia a una ya existente y que se puede publicar en nuestro repositorio.
 
 ### Listar imágenes
 
@@ -349,13 +348,13 @@ docker history [parámetros] [nombre o id de la imagen]:[tag de la imagen]
 
 Muestra las capas de una imagen de forma simplificada.
 
-Otra herramienta muy útil para visualizar las capas de una imagen con más profundidad es [dive](https://github.com/wagoodman/dive), dive a diferencia de los comandos nativos de Docker da más información sobre las capas de cada imagen, algunos de los comandos básicos para ver información de las imágenes con dive son:
+Otra herramienta muy útil para visualizar las capas de una imagen con más profundidad es [**dive**](https://github.com/wagoodman/dive), dive a diferencia del CLI de Docker da más información sobre las capas de cada imagen, algunos de los comandos básicos para ver información de las imágenes con dive son:
 
 ```bash
 dive [nombre o id de la imagen]:[tag de la imagen]
 ```
 
-Para abrir los detalles de la imagen con dive, luego de abrir una imagen con dive podemos usar las siguientes combinaciones de teclas para navegar por las secciones de dive:
+Para abrir los detalles de la imagen con dive, luego de abrir una imagen podemos usar las siguientes combinaciones de teclas para navegar por las secciones de dive:
 
 - **tab:** Alternar entre el panel de capas y el panel de archivos.
 - **flechas:** Navegar entre las capas y archivos.
@@ -386,8 +385,7 @@ El comando anterior es una extensión de **docker image rm** pero tiene la funci
 
 ## Administración de volúmenes
 
-Los volúmenes son una parte fundamental al usar Docker para desarrollar una solución ya que son las unidades virtuales de almacenamiento que normalmente usan los contenedores para guardar y compartir datos entre ellos de forma sencilla, usar volúmenes garantiza que los datos almacenados persistirán incluso si se detiene o elimina el contenedor que hacía uso del volumen, cabe aclarar que los volúmenes son espacios de memoria del anfitrión que Docker usa para almacenar archivos de los contenedores, al igual que con los bind, pero a diferencia de los bind los volúmenes solo son administrados únicamente por Docker y no conceden al contenedor acceso al sistema de directorios del anfitrión, lo que los hace más seguros de usar que los bind, es por esto último que los volúmenes son la opción más recomendable al utilizar un medio de almacenamiento de datos del contenedor una solución desplegada para producción.
-Los comandos provistos por Docker para administrar volúmenes se listan en esta sección.
+Los volúmenes son una parte fundamental al usar Docker para desarrollar aplicaciones contenerizadas ya que son las unidades virtuales de almacenamiento que normalmente usan los contenedores para guardar y compartir datos entre ellos de forma sencilla, usar volúmenes garantiza que los datos almacenados persistirán incluso si se detienen o eliminan todos los contenedores que hacían uso del volumen, cabe aclarar que los volúmenes son espacios de memoria del anfitrión que Docker usa para almacenar archivos de los contenedores, al igual que con los bind, pero a diferencia de los bind los volúmenes son administrados únicamente por Docker y no conceden al contenedor acceso al sistema de directorios del anfitrión, lo que los hace más seguros de usar que los bind, es por esto último que los volúmenes son la opción más recomendable para almacenar datos de los contenedores en una solución desplegada para producción. Los comandos provistos por Docker para administrar volúmenes se listan en esta sección.
 
 ### Crear volúmenes
 
@@ -403,7 +401,7 @@ Crea un volúmen y le asigna el nombre indicado.
 docker volume ls [parámetros]
 ```
 
-Lista todos los volúmenes de Docker mostrando su driver y nombre.
+Lista todos los volúmenes disponibles.
 
 ### Eliminar volúmenes
 
@@ -429,8 +427,7 @@ El comando anterior es una extensión de **docker volume rm** pero tiene la func
 
 ## Administración de redes
 
-Las redes son una parte fundamental al usar Docker para desarrollar una solución ya que usándolas se puede lograr que varios contenedores en la misma red se comunican, y cooperan generando un esquema de micro servicios, una de las principales ventajas de usar redes de Docker es que se puede usar directamente el nombre del contenedor para establecer las comunicaciones y a diferencia de el uso de conexiones directas por API usando redes de Docker no hace falta que un contenedor salga a internet para comunicarse con otro.
-Los comandos provistos por Docker para administrar redes se listan en esta sección.
+Las redes son una parte fundamental al usar Docker para desarrollar una aplicación contenerizada ya que usándolas se puede lograr que varios contenedores en la misma red se comunican, y cooperan generando un esquema de micro servicios, una de las principales ventajas de usar redes de Docker es que se puede usar directamente el nombre del contenedor para establecer las comunicaciones y a diferencia de el uso de conexiones directas por API usando redes de Docker no hace falta que un contenedor salga a internet para comunicarse con otro. Los comandos provistos por Docker para administrar redes se listan en esta sección.
 
 ### Crear redes
 
@@ -449,7 +446,7 @@ Crea un nueva red de Docker, algunos de los parámetros más útiles al crear un
 docker network ls [parámetros]
 ```
 
-Lista todas las redes de Docker, mostrando su nombre, tipo de driver, id y alcance:
+Lista todas las redes disponibles.
 
 ### Inspeccionar redes
 
@@ -457,7 +454,7 @@ Lista todas las redes de Docker, mostrando su nombre, tipo de driver, id y alcan
 docker network inspect [parámetros] [nombre o id de la red]
 ```
 
-Muestra todas las configuración de una red en formato JSON, incluidos los contenedores conectados a ella.
+Muestra la configuración de la red indicada en formato JSON y ciertos datos de la red, incluidos los contenedores conectados.
 
 ### Conectar y desconectar redes con contenedores
 
@@ -497,7 +494,7 @@ El comando anterior es una extensión de **docker network rm** pero tiene la fun
 
 ## Comandos pre construidos de limpieza
 
-Los siguientes comandos simplemente son una compilación de los comandos de las secciones anteriores, en conjunto y ejecutados en secuencia eliminan todos los contenedores, imágenes, volúmenes y redes que se hayan creado.
+Los siguientes comandos simplemente son una compilación de los comandos de las secciones anteriores, en conjunto y ejecutados en secuencia eliminan todos los contenedores, imágenes, volúmenes y redes que se hayan creado sin discriminar si son o no residuales.
 
 ```bash
 docker rm -f $(docker ps -aq)
@@ -508,12 +505,12 @@ docker network rm $(docker network ls -q)
 
 ## Archivos Dockerfile
 
-Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse como un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un Dockerfile en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un Dockerfile y sus funciones se listan a continuación:
+Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un Dockerfile en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un Dockerfile y sus funciones se listan a continuación:
 
 - **FROM [nombre de la imagen]:[versión de la imagen]:** Indica la imagen base, o primera capa que se va a utilizar para construir la nueva imagen, siempre es el primer comando de un Dockerfile.
 - **RUN [comando]:** Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con **RUN** solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un Dockerfile que implemente esta instrucción.
 - **WORKDIR [ruta dentro del contenedor]:** Establece un directorio de trabajo que será el directorio en el que se posicionará el contenedor al iniciar su ejecución.
-- **COPY [ruta archivo 0, ruta archivo 1, ... ruta archivo n, ruta destino contenedor]:** Copia todos los archivos indicados en la ruta de destino de la imagen, cabe aclarar que Docker solo da acceso a la imagen en tiempo de construcción al directorio especificado como contexto, por lo que los archivos que se quieren copiar a la imagen deben estar dentro del contexto de construcción para poder ser empaquetados dentro de la misma.
+- **COPY [ruta archivo 0, ruta archivo 1, ... ruta archivo n, ruta destino contenedor]:** Copia todos los archivos indicados en la ruta de destino de la imagen, cabe aclarar que Docker en tiempo de construcción solo da acceso a la imagen al directorio especificado como contexto, por lo que los archivos que se quieren copiar a la imagen deben estar dentro del contexto de construcción para poder ser empaquetados dentro de la misma.
 - **EXPOSE [número de puerto]:** Expone un puerto del contenedor permitiendo que ese puerto sea vinculable o bindable a un puerto de la máquina anfitrión.
 - **CMD ["parte 1 del comando", "parte 2 del comando"]:** Exec form para ejecutar un comando, ejecutar procesos con exec form hace que los procesos se ejecuten directamente, lo que pone el proceso indicado como proceso principal del contenedor.
 - **CMD [comando entero]:** Bash form para ejecutar un comando, ejecutar procesos con bash form hace que los procesos se ejecuten como procesos hijos de un bash, lo que pone al bash como proceso principal del contenedor en lugar del proceso indicado.
@@ -523,11 +520,11 @@ Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los 
 
 ### Tips de Dockerfile
 
-- Docker no construye de nuevo las capas a no ser que haya cambios, esto lo logra utilizando el caché de capas, es importante construir los Dockerfile considerando el caché de capas para facilitar el proceso de desarrollo.
+- Docker no construye de nuevo las capas a no ser que haya cambios, esto lo logra utilizando el caché de capas, considerar el caché de capas al momento de construir un Dockerfile puede facilitar el desarrollo, mejorando considerablemente el tiempo en el que de construye una imagen, ya que se puede ahorrar la reconstrucción de ciertas capas usando el cache.
 - Utilizando monitores de scripting y bind mounts, como nodemon, se puede lograr que Docker actualice el código que se está ejecutando en tiempo de ejecución sin tener que reconstruir la imagen de nuevo.
-- En Docker existe un archivo llamado [**.dockerignore**](https://docs.docker.com/engine/reference/builder/) que funciona igual que **.gitignore**, su función es evitar que cierto tipo de archivos copien la imagen al construirla.
-- Los **entrypoint** a diferencia de **cmd** no pueden ser sobreescritos a no ser que se utilice un flag especial al momento de ejecutar un contenedor, por lo que si el contenedor está destinado a tener solo un uso específico es recomendable usar **entrypoints** en lugar de **cmd** para establecer el comando por defecto.
-- Los **entrypoint** se ejecutan siempre como comandos por defecto al tener prioridad sobre los comandos de **cmd**, además al combinarse **entrypoints** y **cmd** los **entrypoint** utilizan los comandos de **cmd** como parámetros al final del comando del **entrypoint**, por lo que el comando del proceso principal termina siendo el comando del **entrypoint** concatenado con el comando de **cmd**, lo que hace que al no enviar comandos al momento de ejecutar el contenedor esté use lo que hay por defecto en **cmd** como parámetro y al enviar comandos estos se reemplazan en **cmd** y se usan como parámetros al final del comando del **entrypoint**.
+- En Docker existe un archivo llamado [**.dockerignore**](https://docs.docker.com/engine/reference/builder/) que funciona igual que [**.gitignore**](https://git-scm.com/docs/gitignore), su función es evitar que ciertos archivos se copien en la imagen al momento de construirla.
+- Los comandos ejecutados por **entrypoints** a diferencia de los ejecutados por **cmd** no pueden ser sobreescritos a no ser que se utilice un flag especial al momento de ejecutar un contenedor, por lo que si el contenedor está destinado a tener solo un uso específico es recomendable usar **entrypoints** en lugar de **cmd** para establecer el comando por defecto.
+- Los comandos ejecutados por **entrypoints** se ejecutan siempre como comandos por defecto al tener prioridad sobre los comandos ejecutados por **cmd**, además al combinarse **entrypoints** y **cmd** los comandos ejecutados por **entrypoints** utilizan los comandos de **cmd** como parámetros al final del comando del **entrypoint**, por lo que el comando del proceso principal termina siendo el comando del **entrypoint** concatenado con el comando de **cmd**, lo que hace que al no enviar comandos al momento de ejecutar el contenedor esté use lo que hay por defecto en **cmd** como parámetro y al enviar comandos estos se reemplazan en **cmd** y se usan como parámetros al final del comando del **entrypoint**.
 - Cuando cuando se utilizan **entrypoints** y **cmd** en un mismo Dockerfile es importante que ambos utilicen o bash form o exec form, no es recomendable que usen formas diferentes de ejecutar el comando.
 - En Docker se pueden hacer construcciones con múltiples etapas en los Dockerfile, al utilizar múltiples etapas se pueden crear imágenes previas a la imagen final de producción, la utilidad de utilizar construcciones con múltiples etapas es que se pueden generar imágenes de pruebas que contiene código adicional para las pruebas e imágenes finales, que son las imágenes resultantes de superar todas las etapas previas sin errores y contiene solo el codigo de produccion, si en algun momento de una construcción multi etapa falla la la construcción de una capa la construcción se detiene en ese punto.
 - El resultado de construir una imagen con un Dockerfile multi etapa siempre es la imagen resultante de la etapa final.
@@ -545,6 +542,8 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
 
+El efecto de utilizar el caché por capas en el dockerfile anterior copiando al principio solo los archivos de dependencias, instalarlas y luego copiando de nuevo todos los archivos, es que al momento de instalar dependencias se pueda utilizar el caché siempre que no hayan habido cambios en las declaraciones de las dependencias, si se copiaran todos los archivos y luego se instalarán dependencias siempre sería necesario instalar dependencias, ya que Docker identificó cambios en la capa en la que se copian los archivos a pesar de que no sean los archivos de dependencias, por lo que no usaría cache en esa etapa y por lo tanto tampoco en la de instalación de dependencias, además del caché pr dependencias en el dockerfile anterior se expone la aplicación mediante el puerto 3000 y se inicia un proceso usando un comando CMD en exec form.
+
 #### Ejemplo de .dockerignore
 
 ```ignore
@@ -559,6 +558,8 @@ npm-debug.log*
 README.md
 ```
 
+El principal efecto de el .dockerignore anterior es evitar que la imagen de la aplicación se llene de archivos innecesarios para su ejecución como los pertenecientes a git y además evita que ciertos archivos que podrían generar errores como los pertenecientes al directorio **node_modules** se copien en imagen.
+
 #### Ejemplo de entrypoint y cmd en Dockerfile
 
 ```dockerfile
@@ -566,6 +567,8 @@ FROM ubuntu:trusty
 ENTRYPOINT ["/bin/ping", "-c", "3"]
 CMD ["localhost"]
 ```
+
+El efecto de utilizar comandos mediante entrypoints y cmd en el dockerfile anterior es que se puede cambiar la dirección a la que se hace ping al ejecutar un contenedor o al modificar el comando del contenedor sin poder alterar el resto del comando.
 
 #### Ejemplo de un Dockerfile multi etapa
 
@@ -588,3 +591,5 @@ COPY --from=builder ["/usr/src/index.js", "/usr/src/"]
 EXPOSE 3000
 CMD ["node", "index.js"]
 ```
+
+El efecto de utilizar un dockerfile multi etapa en el dockerfile anterior es que en la primera etapa se copien los archivos y se realicen las pruebas necesarias, si se pasan las pruebas se construye una imagen final en base a los archivos de la imagen de prueba de la etapa 1.
