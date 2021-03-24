@@ -1,10 +1,11 @@
 # Docker Compose
 
-Docker Compose permite usar los 4 recursos de Docker juntos fácilmente desde un solo archivo [**docker-compose.yml**](https://docs.docker.com/compose/compose-file/), usando este archivo también llamado **compose file** se pueden integrar fácilmente recursos de red, volúmenes, imagenes y contenedores sin necesidad de administrar uno a uno cada tipo de recurso, en síntesis lo que permite Docker Compose es describir de forma declarativa la arquitectura de servicios que la aplicación necesita, y Docker se encargará de crear e integrar cada recursos declarado por detrás evitandonos tener que administraba uno a uno los recursos.
+Docker Compose permite usar los 4 recursos principales de Docker juntos fácilmente desde un solo archivo [**docker-compose.yml**](https://docs.docker.com/compose/compose-file/), usando este archivo también llamado **compose file** se pueden integrar fácilmente recursos de red, volúmenes, imagenes y contenedores sin necesidad de administrar uno a uno cada tipo de recurso, en síntesis lo que permite Docker Compose es describir de forma declarativa la arquitectura de servicios que la aplicación necesita, y Docker se encargará de crear e integrar cada recursos declarado por detrás evitando que el desarrollador tenga que administraba uno a uno los recursos necesarios para levantar una aplicación basada en servicios contenerizados.\
+Docker Compose se basa en servicios, no en contenedores, un servicio se basa en una o más aplicaciones contenerizadas creadas a partir de la misma imagen, es decir que puede haber réplicas de un contenedor en un mismo servicio, en Docker compose se manejan servicios para así dar a los desarrolladores la posibilidad de escalar el número de contenedores que realizan la misma función.
 
 ## Instalación de Docker Compose en Ubuntu
 
-Docker Compose se instala junto a las versiones de escritorio de Windows o Mac, sin embargo en la versión de Ubuntu es necesario instalarlo manualmente con los siguientes comandos, los cuales son extraídos de la guia oficial de [Docker Hub](https://docs.docker.com/compose/install/):
+Docker Compose se instala junto a las versiones de escritorio de Windows o Mac, sin embargo, en la versión de Ubuntu es necesario instalarlo manualmente con los siguientes comandos, los cuales son extraídos de la guia oficial de [Docker Hub](https://docs.docker.com/compose/install/):
 
 ```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -13,9 +14,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 ## Archivos docker-compose.yml
 
-Algunos de los componentes que soporta **Docker Compose** y sus funciones son:
+Algunos de los componentes que soporta Docker Compose en los archivos **docker-compose.yml** y sus funciones son:
 
-- **version:** Indica la versión del compose file, dependiendo de la versión de Docker Engine se soportan ciertas características y ciertas versiones de compose-file.
+- **version:** Indica la versión del **compose file**, dependiendo de la versión de Docker Engine se soportan ciertas características y ciertas versiones de compose-file.
 - **services:** Indica que servicios componen la aplicación, básicamente son las partes o componentes que interactúan para formar nuestra aplicación y que funcione correctamente, un servicio no es un container explícitamente ya que un servicio puede componerse de uno o muchos contenedores.
 - **image:** Establece la imagen que se va a utilizar para ejecutar los contenedores de cierto servicio.
 - **environment:** Permite definir variables de ambiente a las que pueden acceder los contenedores de un servicio.
@@ -25,6 +26,8 @@ Algunos de los componentes que soporta **Docker Compose** y sus funciones son:
 - **command:** Cambia el comando por defecto del servicio.
 - **build:** Indica el contexto con el que se debe construir una nueva imagen que se desplegará en todos los contenedores del servicio indicado, el nombre de la nueva imagen se construye en base al nombre del directorio de trabajo y el nombre del servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]**.
 - **networks:** Indica las redes a las que se deben conectar los contenedores de un servicio.
+
+Los archivos **docker-compose.yml** son sumamente sensibles a la indentación con la que se declara cada uno de sus componentes, por lo que es necesario tener especial cuidado con la indentación cuando se declaran esquemas de servicios basados en **compose file**.
 
 ### Tips de Docker Compose
 

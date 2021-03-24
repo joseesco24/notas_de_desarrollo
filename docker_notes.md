@@ -295,10 +295,10 @@ En términos de relevancia las imágenes en Docker podrían considerarse como el
 docker build [parámetros] [ruta del contexto]
 ```
 
-Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, Dockerfile y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, es importante que siempre en el contexto haya un Dockerfile, ya que el Dockerfile es el que indica la forma en la que se construye una imagen, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
+Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, **Dockerfile** y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, es importante que siempre en el contexto haya un **Dockerfile**, ya que el **Dockerfile** es el que indica la forma en la que se construye una imagen, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
 
 - **--tag [nombre de la nueva imagen]:[tag de la nueva imagen]:** Permite personalizar el nombre y tag de la nueva imagen que será construida.
-- **--file [ruta del Dockerfile]:** Permite cambiar o especificar la ruta al Dockerfile con el cual se construirá la imagen.
+- **--file [ruta del Dockerfile]:** Permite cambiar o especificar la ruta al **Dockerfile** con el cual se construirá la imagen.
 
 ### Bajar imágenes
 
@@ -505,10 +505,10 @@ docker network rm $(docker network ls -q)
 
 ## Archivos Dockerfile
 
-Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un Dockerfile en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un Dockerfile y sus funciones se listan a continuación:
+Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un **Dockerfile** en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un **Dockerfile** y sus funciones se listan a continuación:
 
-- **FROM [nombre de la imagen]:[versión de la imagen]:** Indica la imagen base, o primera capa que se va a utilizar para construir la nueva imagen, siempre es el primer comando de un Dockerfile.
-- **RUN [comando]:** Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con **RUN** solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un Dockerfile que implemente esta instrucción.
+- **FROM [nombre de la imagen]:[versión de la imagen]:** Indica la imagen base, o primera capa que se va a utilizar para construir la nueva imagen, siempre es el primer comando de un **Dockerfile**.
+- **RUN [comando]:** Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con **RUN** solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un **Dockerfile** que implemente esta instrucción.
 - **WORKDIR [ruta dentro del contenedor]:** Establece un directorio de trabajo que será el directorio en el que se posicionará el contenedor al iniciar su ejecución.
 - **COPY [ruta archivo 0, ruta archivo 1, ... ruta archivo n, ruta destino contenedor]:** Copia todos los archivos indicados en la ruta de destino de la imagen, cabe aclarar que Docker en tiempo de construcción solo da acceso a la imagen al directorio especificado como contexto, por lo que los archivos que se quieren copiar a la imagen deben estar dentro del contexto de construcción para poder ser empaquetados dentro de la misma.
 - **EXPOSE [número de puerto]:** Expone un puerto del contenedor permitiendo que ese puerto sea vinculable o bindable a un puerto de la máquina anfitrión.
@@ -520,14 +520,14 @@ Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los 
 
 ### Tips de Dockerfile
 
-- Docker no construye de nuevo las capas a no ser que haya cambios, esto lo logra utilizando el caché de capas, considerar el caché de capas al momento de construir un Dockerfile puede facilitar el desarrollo, mejorando considerablemente el tiempo en el que de construye una imagen, ya que se puede ahorrar la reconstrucción de ciertas capas usando el cache.
+- Docker no construye de nuevo las capas a no ser que haya cambios, esto lo logra utilizando el caché de capas, considerar el caché de capas al momento de construir un **Dockerfile** puede facilitar el desarrollo, mejorando considerablemente el tiempo en el que de construye una imagen, ya que se puede ahorrar la reconstrucción de ciertas capas usando el cache.
 - Utilizando monitores de scripting y bind mounts, como nodemon, se puede lograr que Docker actualice el código que se está ejecutando en tiempo de ejecución sin tener que reconstruir la imagen de nuevo.
 - En Docker existe un archivo llamado [**.dockerignore**](https://docs.docker.com/engine/reference/builder/) que funciona igual que [**.gitignore**](https://git-scm.com/docs/gitignore), su función es evitar que ciertos archivos se copien en la imagen al momento de construirla.
 - Los comandos ejecutados por **entrypoints** a diferencia de los ejecutados por **cmd** no pueden ser sobreescritos a no ser que se utilice un flag especial al momento de ejecutar un contenedor, por lo que si el contenedor está destinado a tener solo un uso específico es recomendable usar **entrypoints** en lugar de **cmd** para establecer el comando por defecto.
 - Los comandos ejecutados por **entrypoints** se ejecutan siempre como comandos por defecto al tener prioridad sobre los comandos ejecutados por **cmd**, además al combinarse **entrypoints** y **cmd** los comandos ejecutados por **entrypoints** utilizan los comandos de **cmd** como parámetros al final del comando del **entrypoint**, por lo que el comando del proceso principal termina siendo el comando del **entrypoint** concatenado con el comando de **cmd**, lo que hace que al no enviar comandos al momento de ejecutar el contenedor esté use lo que hay por defecto en **cmd** como parámetro y al enviar comandos estos se reemplazan en **cmd** y se usan como parámetros al final del comando del **entrypoint**.
-- Cuando cuando se utilizan **entrypoints** y **cmd** en un mismo Dockerfile es importante que ambos utilicen o bash form o exec form, no es recomendable que usen formas diferentes de ejecutar el comando.
-- En Docker se pueden hacer construcciones con múltiples etapas en los Dockerfile, al utilizar múltiples etapas se pueden crear imágenes previas a la imagen final de producción, la utilidad de utilizar construcciones con múltiples etapas es que se pueden generar imágenes de pruebas que contiene código adicional para las pruebas e imágenes finales, que son las imágenes resultantes de superar todas las etapas previas sin errores y contiene solo el codigo de produccion, si en algun momento de una construcción multi etapa falla la la construcción de una capa la construcción se detiene en ese punto.
-- El resultado de construir una imagen con un Dockerfile multi etapa siempre es la imagen resultante de la etapa final.
+- Cuando cuando se utilizan **entrypoints** y **cmd** en un mismo **Dockerfile** es importante que ambos utilicen o bash form o exec form, no es recomendable que usen formas diferentes de ejecutar el comando.
+- En Docker se pueden hacer construcciones con múltiples etapas en los **Dockerfile**, al utilizar múltiples etapas se pueden crear imágenes previas a la imagen final de producción, la utilidad de utilizar construcciones con múltiples etapas es que se pueden generar imágenes de pruebas que contiene código adicional para las pruebas e imágenes finales, que son las imágenes resultantes de superar todas las etapas previas sin errores y contiene solo el codigo de produccion, si en algun momento de una construcción multi etapa falla la la construcción de una capa la construcción se detiene en ese punto.
+- El resultado de construir una imagen con un **Dockerfile** multi etapa siempre es la imagen resultante de la etapa final.
 - Cuando se realizan construcciones con múltiples etapas se utiliza el indicativo **as** junto a **FROM** para nombrar la imagen previa y además se puede utilizar **--from=nombre** para que una imagen posterior referencia una imagen previa.
 
 #### Ejemplo de cache por capas en Dockerfile
@@ -542,7 +542,7 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
 
-El efecto de utilizar el caché por capas en el dockerfile anterior copiando al principio solo los archivos de dependencias, instalarlas y luego copiando de nuevo todos los archivos, es que al momento de instalar dependencias se pueda utilizar el caché siempre que no hayan habido cambios en las declaraciones de las dependencias, si se copiaran todos los archivos y luego se instalarán dependencias siempre sería necesario instalar dependencias, ya que Docker identificó cambios en la capa en la que se copian los archivos a pesar de que no sean los archivos de dependencias, por lo que no usaría cache en esa etapa y por lo tanto tampoco en la de instalación de dependencias, además del caché pr dependencias en el dockerfile anterior se expone la aplicación mediante el puerto 3000 y se inicia un proceso usando un comando CMD en exec form.
+El efecto de utilizar el caché por capas en el **Dockerfile** anterior copiando al principio solo los archivos de dependencias, instalarlas y luego copiando de nuevo todos los archivos, es que al momento de instalar dependencias se pueda utilizar el caché siempre que no hayan habido cambios en las declaraciones de las dependencias, si se copiaran todos los archivos y luego se instalarán dependencias siempre sería necesario instalar dependencias, ya que Docker identificó cambios en la capa en la que se copian los archivos a pesar de que no sean los archivos de dependencias, por lo que no usaría cache en esa etapa y por lo tanto tampoco en la de instalación de dependencias, además del caché pr dependencias en el **Dockerfile** anterior se expone la aplicación mediante el puerto 3000 y se inicia un proceso usando un comando CMD en exec form.
 
 #### Ejemplo de .dockerignore
 
@@ -568,7 +568,7 @@ ENTRYPOINT ["/bin/ping", "-c", "3"]
 CMD ["localhost"]
 ```
 
-El efecto de utilizar comandos mediante entrypoints y cmd en el dockerfile anterior es que se puede cambiar la dirección a la que se hace ping al ejecutar un contenedor o al modificar el comando del contenedor sin poder alterar el resto del comando.
+El efecto de utilizar comandos mediante entrypoints y cmd en el **Dockerfile** anterior es que se puede cambiar la dirección a la que se hace ping al ejecutar un contenedor o al modificar el comando del contenedor sin poder alterar el resto del comando.
 
 #### Ejemplo de un Dockerfile multi etapa
 
@@ -592,4 +592,4 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
 
-El efecto de utilizar un dockerfile multi etapa en el dockerfile anterior es que en la primera etapa se copien los archivos y se realicen las pruebas necesarias, si se pasan las pruebas se construye una imagen final en base a los archivos de la imagen de prueba de la etapa 1.
+El efecto de utilizar un **Dockerfile** multi etapa en el **Dockerfile** anterior es que en la primera etapa se copien los archivos y se realicen las pruebas necesarias, si se pasan las pruebas se construye una imagen final en base a los archivos de la imagen de prueba de la etapa 1.
