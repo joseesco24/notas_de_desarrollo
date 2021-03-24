@@ -613,7 +613,7 @@ Docker Compose permite usar los 4 recursos de Docker juntos fácilmente desde un
 - **volumes:** Indica los volúmenes y bind mounts de un servicio.
 - **command:** Cambia el comando por defecto del servicio.
 - **build:** Indica el contexto con el que se debe construir una nueva imagen que se desplegará en todos los contenedores del servicio indicado, el nombre de la nueva imagen se construye en base al nombre del directorio de trabajo y el nombre del servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]**.
-- **networks:** Indica las redes a las que se deben conectar los conteendores de un servicio.
+- **networks:** Indica las redes a las que se deben conectar los contenedores de un servicio.
 
 ### Tips de Docker Compose
 
@@ -691,7 +691,7 @@ Al declarar un **docker-compose.override.yml** como el anterior junto a cualquie
 
 ## Subcomandos de Docker Compose
 
-Docker Compose tiene varios subcomandos similares a los usados en la administración regular de Docker, algunos de los más relevantes para utilizar aplicaciónes basadas en Docker Compose son:
+Docker Compose tiene varios subcomandos similares a los usados en la administración regular de Docker, algunos de los más relevantes para utilizar aplicaciones basadas en Docker Compose son:
 
 ### Comandos de administración general de compose
 
@@ -948,7 +948,7 @@ Actualiza la configuración de un servicio, algunos de los parámetros más úti
 - **--update-failure-action [pause|continue|rollback]:** Cambia la acción por defecto que se debe realizar en caso de fallar una tarea.
 - **--update-max-failure-ratio [porcentaje de fallo]:** Indica el porcentaje de tareas que pueden fallar antes de realizar la acción en caso de fallo.
 - **--rollback-parallelism [número de tareas de restauración paralelo]:** Cambia el número de tareas que se restauran en paralelo, 0 actualiza todo en paralelo.
-- **--constraint-add node.role==[worker|manager]:** Modifica las restricciones de carga de un servicio a nodos con cirto rol.
+- **--constraint-add node.role==[worker|manager]:** Modifica las restricciones de carga de un servicio a nodos con cierto rol.
 - **--env-add [nombre de la variable de entorno]=[valor de la variable de entorno]:** Agrega o actualiza el valor de una o varias variables de entorno.
 
 ### Visualizar logs de un servicio
