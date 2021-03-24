@@ -858,7 +858,7 @@ docker node ls [parámetros]
 
 Lista los nodos pertenecientes a un cluster, mostrando su id, nombre, estatus, disponibilidad, su versión de Docker Engine y si es manager o worker, además, se indica con \* el nodo en el que se está actualmente.
 
-### Inspeccionar un nodo conectado a un cluster
+### Inspeccionar un nodo
 
 ```bash
 docker node inspect [parámetros] [id o nombre del nodo]
@@ -868,7 +868,7 @@ Muestra en detalle la configuración de un nodo en un archivo JSON, algunos de l
 
 - **--pretty:** Cambia el formato JSON con el que se muestran los datos por un formato clásico de consola que es más fácil de leer, pero omite ciertas partes de la configuración al cambiar el formato del texto.
 
-### Actualizar las configuraciones de uno o varios nodos conectados a un cluster
+### Actualizar las configuraciones de un nodo
 
 ```bash
 docker node update [parámetros] [id o nombre del nodo]
@@ -929,7 +929,7 @@ Muestra en detalle la configuración de un servicio en un archivo JSON, algunos 
 
 - **--pretty:** Cambia el formato JSON con el que se muestran los datos por un formato clásico de consola que es más fácil de leer, pero omite ciertas partes de la configuración al cambiar el formato del texto.
 
-### Modificar un servicio basado en Swarm
+### Modificar la configuración de un servicio
 
 ```bash
 docker service update [parámetros] [id o nombre del servicio]
