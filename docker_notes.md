@@ -693,15 +693,15 @@ Al declarar un **docker-compose.override.yml** como el anterior junto a cualquie
 
 Docker Compose tiene varios subcomandos similares a los usados en la administración regular de Docker, algunos de los más relevantes para utilizar aplicaciones basadas en Docker Compose son:
 
-### Comandos de administración general de compose
+### Comandos de administración general de una aplicación compose
 
 ```bash
 docker-compose [comando] --help
 ```
 
-Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
 
-### Construir las imágenes necesarias para una aplicación de compose
+### Construir las imágenes necesarias para una aplicación compose
 
 ```bash
 docker-compose build [parámetros] [nombre del servicio]
@@ -709,7 +709,7 @@ docker-compose build [parámetros] [nombre del servicio]
 
 Construye las imágenes que requieren ser construidas según el **compose file**, al especificarse uno o varios servicios solo se construirán las imágenes de los servicios indicados.
 
-### Iniciar una aplicación con compose
+### Iniciar una aplicación compose
 
 ```bash
 docker-compose up [parámetros] [nombre del servicio]
@@ -720,7 +720,7 @@ Levanta la arquitectura descrita por el **compose file** en caso de no indicarse
 - **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
 - **--scale [nombre o id del servicio]=[número de contenedores]:** Escala un determinado servicio al número de contenedores indicado.
 
-### Revisar el estado de los contenedores generados por compose
+### Revisar el estado de los contenedores generados por una aplicación compose
 
 ```bash
 docker-compose ps [parámetros] [nombre del servicio]
@@ -853,7 +853,7 @@ docker node [comando] --help
 
 Muestra a grandes rasgos los comandos disponibles para administrar los nodos de un cluster y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
 
-### Listar los nodos conectados a un cluster
+### Listar los nodos conectados al cluster
 
 ```bash
 docker node ls [parámetros]
@@ -1031,7 +1031,7 @@ services:
 
 Para utilizar stack files como origen de una arquitectura basada en Docker Swarm hay varios subcomandos similares a los usados en la administración regular de Docker Swarm y Docker Compose, algunos de los más relevantes para utilizar aplicaciones basadas en Docker Swarm con stack files son:
 
-### Comandos de administración general de Docker Stacks
+### Comandos de administración general de un stack
 
 ```bash
 docker stack [comando] --help
@@ -1050,7 +1050,7 @@ Inicia o actualiza un stack, algunos de los parámetros más útiles al utilizar
 - **--compose-file [ruta al stack file]:** Establece el compose file que se utilizará para generar el nuevo stack.
 - **--orchestrator [swarm|kubernetes|all]:** Establece el orquestador del stack, por defecto se usa swarm.
 
-### Listar Docker Stacks
+### Listar stacks
 
 ```bash
 docker stack ls [parámetros]
