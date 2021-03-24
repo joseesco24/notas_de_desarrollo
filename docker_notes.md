@@ -19,9 +19,9 @@ Además de las ventajas ya expuestas otra ventaja que también tiene usar Docker
 
 Docker se divide en 3 capas con las que es necesario interactuar de cierta forma para para acceder a todas las funcionalidades de Docker y sacarles provecho, las cuales son:
 
-- **Docker server o Docker daemon:** Es el núcleo de Docker, se encarga de manejar todas las entidades que administra Docker.
-- **Rest API:** Permite comunicar el Docker daemon con el CLI ya sea local o remoto, además de con otras interfaces que necesiten interactuar con el Docker daemon, como programas de administración de contenedores, es importante resaltar que cada lenguaje posee su forma de acceder al Docker daemon mediante el uso de esta API y que es la única forma de interactuar con el Docker daemon.
-- **Docker CLI o cliente:** Interfaz de línea de comandos que se utiliza de forma local para comunicarse con el Docker daemon, es la forma más sencilla de usar Docker.
+- **Docker server o Docker Daemon:** Es el núcleo de Docker, se encarga de manejar todas las entidades que administra Docker.
+- **Rest API:** Permite comunicar el Docker Daemon con el CLI ya sea local o remoto, además de con otras interfaces que necesiten interactuar con el Docker Daemon, como programas de administración de contenedores, es importante resaltar que cada lenguaje posee su forma de acceder al Docker Daemon mediante el uso de esta API y que es la única forma de interactuar con el Docker Daemon.
+- **Docker CLI o cliente:** Interfaz de línea de comandos que se utiliza de forma local para comunicarse con el Docker Daemon, es la forma más sencilla de usar Docker.
 
 Además de las capas con las que es necesario interactuar para usar Docker también es importante tener claros los recursos de los que dispone Docker para desplegar y construir aplicaciones, los cuales son:
 
@@ -36,7 +36,7 @@ Para realizar la instalación de Docker en MacOS o en Windows basta con descarga
 
 ## Instalación de Docker en Ubuntu
 
-Esta pequeña guía de instalación está basada en la [guía oficial](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker Hub para instalar Docker Engine en **Ubuntu** mediante el sistema de repositorios, cabe aclarar que en Linux no hace falta instalar Docker desktop como en Mac o en Windows, con solo Docker Engine es suficiente y además la manipulación del Docker daemon en Linux se hace solo por consola, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de Ubuntu:
+Esta pequeña guía de instalación está basada en la [guía oficial](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker Hub para instalar Docker Engine en **Ubuntu** mediante el sistema de repositorios, cabe aclarar que en Linux no hace falta instalar Docker desktop como en Mac o en Windows, con solo Docker Engine es suficiente y además la manipulación del Docker Daemon en Linux se hace solo por consola, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de Ubuntu:
 
 - Ubuntu Focal 20.04 (LTS)
 - Ubuntu Groovy 20.10
@@ -98,13 +98,13 @@ docker info
 
 ### En caso de errores
 
-Un error comun al instalar Docker en Ubuntu es que al realizar la instalacion solo el usuario root posee permisos para ejecutar acciones manipulando el Docker daemon, por lo tanto si tratamos de usar alguno de los comandos de Docker con nuestro usuario obtendremos un mensaje de error de denegación de permisos, como el presente a continuación.
+Un error comun al instalar Docker en Ubuntu es que al realizar la instalacion solo el usuario root posee permisos para ejecutar acciones manipulando el Docker Daemon, por lo tanto si tratamos de usar alguno de los comandos de Docker con nuestro usuario obtendremos un mensaje de error de denegación de permisos, como el presente a continuación.
 
 ```bash
-docker: Got permission denied while trying to connect to the Docker daemon socket atunix:///var/run/docker.sock: Post http:/%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create: dial unix/var/run/docker.sock: connect: permission denied.See 'docker run --help'.
+docker: Got permission denied while trying to connect to the Docker Daemon socket atunix:///var/run/docker.sock: Post http:/%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create: dial unix/var/run/docker.sock: connect: permission denied.See 'docker run --help'.
 ```
 
-Para solucionar este problema simplemente debemos indicar a Docker que nuestro usuario también va a interactuar con el Docker daemon, esto lo podemos realizar fácilmente con los siguientes comandos.
+Para solucionar este problema simplemente debemos indicar a Docker que nuestro usuario también va a interactuar con el Docker Daemon, esto lo podemos realizar fácilmente con los siguientes comandos.
 
 ```bash
 sudo addgroup --system docker
@@ -756,11 +756,11 @@ Al declarar un **docker-compose.override.yml** como el anterior junto a cualquie
 
 ## Docker Swarm
 
-Docker Swarm es la solución nativa que ofrece Docker para montar aplicaciones basadas en cómputo distribuido y en contenedores, lo que propone Docker Swarm es que al montar un cluster en el que se quieren desplegar aplicaciones contenerizadas bajo el esquema de servicios el cluster debe ser fácilmente administrable, bajo esta premisa Docker Swarm ha llegado hasta el punto en el que el desarrollador puede tratar la totalidad del cluster como si se tratase de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto es que usando Docker Swarm es posible administrar un cluster casi con la facilidad con la que se administra una sola máquina con un solo Docker daemon, cuando en realidad son varias máquinas cada uno con su propio Docker daemon. Para conseguir este funcionamiento Docker Swarm se basa en tres conceptos fundamentales, estos tres conceptos son **Swarm**, **Nodos** y **Servicios**, cada uno de estos conceptos corresponde a un tipo de entidad que compone una aplicación basada en Docker Swarm, las definiciones resumidas de cada uno de estos conceptos se listan a continuación:
+Docker Swarm es la solución nativa que ofrece Docker para montar aplicaciones basadas en cómputo distribuido y en contenedores, lo que propone Docker Swarm es que al montar un cluster en el que se quieren desplegar aplicaciones contenerizadas bajo el esquema de servicios el cluster debe ser fácilmente administrable, bajo esta premisa Docker Swarm ha llegado hasta el punto en el que el desarrollador puede tratar la totalidad del cluster como si se tratase de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto es que usando Docker Swarm es posible administrar un cluster casi con la facilidad con la que se administra una sola máquina con un solo Docker Daemon, cuando en realidad son varias máquinas cada uno con su propio Docker Daemon. Para conseguir este funcionamiento Docker Swarm se basa en tres conceptos fundamentales, estos tres conceptos son **Swarm**, **Nodos** y **Servicios**, cada uno de estos conceptos corresponde a un tipo de entidad que compone una aplicación basada en Docker Swarm, las definiciones resumidas de cada uno de estos conceptos se listan a continuación:
 
 - **Swarm:** Swarm, cluster o enjambre son referencias del mismo concepto, una agrupación de varias máquinas que cooperan para realizar la misma tarea, en el caso de Docker Swarm, desplegar contenedores de una aplicación para aumentar su disponibilidad y escalabilidad.
-- **Nodos:** Los nodos son todas las máquinas que componen el Swarm, cluster o enjambre, entre los nodos se reparten las tareas que deben ser ejecutadas, en el caso de Docker Swarm, los contenedores que deben ser ejecutados y la gestión de recursos del cluster.
-- **Servicios:** Los servicios son uno o varios contendores que ejecutan la misma aplicación en diferentes nodos en un mismo Swarm, con el objetivo de que ese servicio tenga una muy alta disponibilidad y además sea altamente escalable.
+- **Nodos:** Los nodos son todas las máquinas que componen el Swarm, cluster o enjambre, entre los nodos se reparten las tareas que deben ser ejecutadas, en el caso de Docker Swarm, los contenedores que deben ser ejecutados y la gestión de recursos necesaria para mantener el correcto funcionamiento del cluster.
+- **Servicios:** Los servicios son uno o varios contendores que ejecutan la misma aplicación en diferentes nodos en un mismo cluster, con el objetivo de que ese servicio tenga una muy alta disponibilidad y además sea altamente escalable.
 
 Es gracias a la división de las labores de administración de la aplicación en estas tres entidades que las aplicaciones desplegadas con Docker Swarm son muy fáciles de administrar, ya que se pueden administrar como entidades separadas a pesar de que forman parte de una misma aplicación, siempre tomando en cuenta la forma en la cual alterar una entidad afectará el comportamiento de la aplicación y de las demás entidades.\
 Al utilizar Docker Swarm las máquinas que componen el cluster o nodos se divide en dos tipos, **Managers** y **Workers**, siendo los Managers los encargados de gestionar los recursos el cluster, mientras que los Workers se encargaran de ejecutar las tareas que les son asignadas por los Managers, las funciones específicas de los dos tipos de nodo se lista a continuación:
