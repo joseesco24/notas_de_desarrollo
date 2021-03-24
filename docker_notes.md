@@ -10,7 +10,7 @@ Implementar Docker en nuestros proyectos les otorga una capa adicional de abstra
 
 Además de las ventajas ya expuestas otra ventaja que también tiene usar Docker es que los contenedores a diferencia de las máquinas virtuales tiene un costo de administración mínimo y además se destruyen, construyen y despliegan con mucha facilidad. Las aplicaciones contenerizadas con Docker (que emplean Docker para construir y desplegar software) tienen varias características, pero los principales son las siguientes:
 
-- **Son flexibles:** Docker engine puede ejecutarse en casi cualquier parte.
+- **Son flexibles:** Docker Engine puede ejecutarse en casi cualquier parte.
 - **Son livianas:** Al utilizar la arquitectura por capas y reutilizar partes del OS del anfitrión no hace falta empacar las partes más pesadas del OS usado en las imágenes.
 - **Son portables:** Las imágenes creadas con Docker se ejecutan de la misma forma en cualquier máquina independientemente de su software y hardware, limitándose únicamente por el uso del hardware.
 - **Tienen un bajo acoplamiento:** Cada aplicación contenerizada es una aplicación autocontenida, no requiere de recursos externos al contenedor para funcionar.
@@ -25,8 +25,8 @@ Docker se divide en 3 capas con las que es necesario interactuar de cierta forma
 
 Además de las capas con las que es necesario interactuar para usar Docker también es importante tener claros los recursos de los que dispone Docker para desplegar y construir aplicaciones, los cuales son:
 
-- **Contenedores:** Son la clave del funcionamiento de Docker, son ambientes autocontenidos que aprovechan partes del sistema operativo de la máquina anfitrión para dar a nuestras aplicaciones ambientes de ejecución iguales y aislados de forma lógica en cualquier anfitrión con Docker engine instalado.
-- **Imágenes:** Las imágenes son la forma en la cual Docker puede empaquetar, transportar y replicar el funcionamiento de un contenedor en cualquier máquina que tenga Docker engine instalado.
+- **Contenedores:** Son la clave del funcionamiento de Docker, son ambientes autocontenidos que aprovechan partes del sistema operativo de la máquina anfitrión para dar a nuestras aplicaciones ambientes de ejecución iguales y aislados de forma lógica en cualquier anfitrión con Docker Engine instalado.
+- **Imágenes:** Las imágenes son la forma en la cual Docker puede empaquetar, transportar y replicar el funcionamiento de un contenedor en cualquier máquina que tenga Docker Engine instalado.
 - **Redes:** Las redes internas de Docker permiten que las diferentes aplicaciones desplegadas en diferentes contenedores puedan interactuar entre sí.
 - **Volúmenes de almacenamiento:** Los volúmenes de almacenamiento son la forma que provee Docker para que una aplicación desplegada en un contenedor puede almacenar datos para que otro contenedor pueda usarlos o simplemente para poder usarlos en ejecuciones posteriores, los volúmenes de almacenamiento son totalmente administrados por Docker, lo que los hace inaccesibles para la máquina anfitrión.
 
@@ -36,7 +36,7 @@ Para realizar la instalación de Docker en MacOS o en Windows basta con descarga
 
 ## Instalación de Docker en Ubuntu
 
-Esta pequeña guía de instalación está basada en la [guía oficial](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker Hub para instalar Docker engine en **Ubuntu** mediante el sistema de repositorios, cabe aclarar que en Linux no hace falta instalar Docker desktop como en Mac o en Windows, con solo Docker engine es suficiente y además la manipulación del Docker daemon en Linux se hace solo por consola, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de Ubuntu:
+Esta pequeña guía de instalación está basada en la [guía oficial](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker Hub para instalar Docker Engine en **Ubuntu** mediante el sistema de repositorios, cabe aclarar que en Linux no hace falta instalar Docker desktop como en Mac o en Windows, con solo Docker Engine es suficiente y además la manipulación del Docker daemon en Linux se hace solo por consola, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de Ubuntu:
 
 - Ubuntu Focal 20.04 (LTS)
 - Ubuntu Groovy 20.10
@@ -57,7 +57,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
-Luego de haber desinstalado las versiones viejas de Docker se configuran los repositorios necesarios para instalar Docker engine.
+Luego de haber desinstalado las versiones viejas de Docker se configuran los repositorios necesarios para instalar Docker Engine.
 
 ```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -69,24 +69,24 @@ Tras configurar los repositorios necesarios lo siguiente es agregar la llave GPG
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg]https://download.docker.com/linux/ubuntu(lsb_release -cs) stable" | sudo tee/etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
-Una vez configurados los repositorios necesarios y la llave GPG oficial de Docker lo siguiente es configurar el repositorio estable desde el cual se instalará Docker engine.
+Una vez configurados los repositorios necesarios y la llave GPG oficial de Docker lo siguiente es configurar el repositorio estable desde el cual se instalará Docker Engine.
 
 ```bash
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 ```
 
-Por último se utilizan los comandos anteriores para actualizar el índice de paquetes de apt y luego instalar Docker engine.
+Por último se utilizan los comandos anteriores para actualizar el índice de paquetes de apt y luego instalar Docker Engine.
 
 ### Comprobación de la instalación
 
-Una forma sencilla de comprobar el funcionamiento de Docker engine es utilizando la imagen de Hello-World, para hacer esto se ejecuta el siguiente comando.
+Una forma sencilla de comprobar el funcionamiento de Docker Engine es utilizando la imagen de Hello-World, para hacer esto se ejecuta el siguiente comando.
 
 ```bash
 docker run hello-world
 ```
 
-Otras alternativas más simples para comprobar el funcionamiento de la instalación es tratando de visualizar la información del Docker engine o su versión para esto se puede ejecutar cualquiera de los siguientes comandos.
+Otras alternativas más simples para comprobar el funcionamiento de la instalación es tratando de visualizar la información del Docker Engine o su versión para esto se puede ejecutar cualquiera de los siguientes comandos.
 
 ```bash
 docker --version
@@ -756,33 +756,33 @@ Al declarar un **docker-compose.override.yml** como el anterior junto a cualquie
 
 ## Docker Swarm
 
-Las soluciones basadas en Docker Swarm tienen 3 componentes fundamentales, es importante entenderlos antes de entrar a hablar de Docker Swarm ya que teniendo claros sus componentes es más fácil entender el comportamiento y los beneficios que dan al sumarse y comportarse como uno solo, resumidamente estos componentes son:
+Docker Swarm es la solución nativa que ofrece Docker para montar aplicaciones basadas en cómputo distribuido y en contenedores, lo que propone Docker Swarm es que al montar un cluster en el que se quieren desplegar aplicaciones contenerizadas bajo el esquema de servicios el cluster debe ser fácilmente administrable, bajo esta premisa Docker Swarm ha llegado hasta el punto en el que el desarrollador puede tratar la totalidad del cluster como si se tratase de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto es que usando Docker Swarm es posible administrar un cluster casi con la facilidad con la que se administra una sola máquina con un solo Docker daemon, cuando en realidad son varias máquinas cada uno con su propio Docker daemon. Para conseguir este funcionamiento Docker Swarm se basa en tres conceptos fundamentales, estos tres conceptos son **Swarm**, **Nodos** y **Servicios**, cada uno de estos conceptos corresponde a un tipo de entidad que compone una aplicación basada en Docker Swarm, las definiciones resumidas de cada uno de estos conceptos se listan a continuación:
 
 - **Swarm:** Swarm, cluster o enjambre son referencias del mismo concepto, una agrupación de varias máquinas que cooperan para realizar la misma tarea, en el caso de Docker Swarm, desplegar contenedores de una aplicación para aumentar su disponibilidad y escalabilidad.
-- **Nodos:** Los nodos son todas las máquinas o computadores que componen el Swarm, cluster o enjambre, entre los nodos se reparten las tareas que deben ser ejecutadas, en el caso de Docker Swarm, los contenedores que deben ser ejecutados.
-- **Servicios:** Los servicios son uno o varios contendores que ejecutan la misma aplicación en diferentes nodos en un mismo Swarm con el objetivo de que ese servicio tenga una muy alta disponibilidad y además sea altamente escalable.
+- **Nodos:** Los nodos son todas las máquinas que componen el Swarm, cluster o enjambre, entre los nodos se reparten las tareas que deben ser ejecutadas, en el caso de Docker Swarm, los contenedores que deben ser ejecutados y la gestión de recursos del cluster.
+- **Servicios:** Los servicios son uno o varios contendores que ejecutan la misma aplicación en diferentes nodos en un mismo Swarm, con el objetivo de que ese servicio tenga una muy alta disponibilidad y además sea altamente escalable.
 
-Docker Swarm es la solución nativa que ofrece Docker para montar una solución de cómputo distribuido o clusterizada basada en contenedores, lo que propone Docker Swarm es que al montar un cluster en el que queremos desplegar aplicaciones contenerizadas bajo el esquema de servicios el cluster debe ser fácilmente administrable, bajo esta premisa Docker Swarm ha llegado hasta el punto en el que el desarrollador puede tratar la totalidad del cluster como si se tratase de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto es que usando Docker Swarm es posible administrar clústeres casi con la facilidad con la que se administra uno solo computador con un solo Docker daemon, cuando en realidad son varios computadores cada uno con su propio Docker daemon, es por esto que las aplicaciones desplegadas con Swarm son muy fáciles de administrar y además al utilizar cómputo distribuido tienen disponibilidades y escalabilidades virtualmente infinitas.\
-Al utilizar Docker Swarm los computadores del cluster o nodos se divide en dos tipos de máquinas, Managers y Workers, siendo los Managers los encargados de dirigir o orquestar el Swarm en sí, mientras que los Workers se encargaran de ejecutar las tareas asignadas por los Managers, las funciones específicas de los dos tipos de nodo se lista a continuación:
+Es gracias a la división de las labores de administración de la aplicación en estas tres entidades que las aplicaciones desplegadas con Docker Swarm son muy fáciles de administrar, ya que se pueden administrar como entidades separadas a pesar de que forman parte de una misma aplicación, siempre tomando en cuenta la forma en la cual alterar una entidad afectará el comportamiento de la aplicación y de las demás entidades.\
+Al utilizar Docker Swarm las máquinas que componen el cluster o nodos se divide en dos tipos, **Managers** y **Workers**, siendo los Managers los encargados de gestionar los recursos el cluster, mientras que los Workers se encargaran de ejecutar las tareas que les son asignadas por los Managers, las funciones específicas de los dos tipos de nodo se lista a continuación:
 
 - **Managers:** Gestiona las comunicaciones, distribuyen las tareas, gestionan los recursos y se encargan de re posicionar contenedores y tareas en caso de caídas de algún nodo del cluster.
 - **Workers:** Ejecutan los contenedores de la aplicación.
 
-Por lo general hay más nodos Worker que Manager, ya que los Worker son el núcleo de la aplicación al ser los que ejecutan la aplicacion como tal, mientras que los Manager están dedicados exclusivamente a gestionar el cluster, si bien los manager también pueden ejecutar contendores de la aplicación no es recomendable ya que esto generaría una competencia de recursos entre las tareas de gestión del Swarm y de ejecución de contenedores de la aplicación, lo que podría generar errores en la gestión del Swarm y en consecuencia en la totalidad de la aplicación.\
-Las únicas restricciones al momento de crear una aplicación usando Swarm es que todos los nodos deben estar en la misma red o subred y deben ser visibles entre ellos y además todos tiene que tener instalado el Dcoker daemon, idealmente de la misma versión.\
-Antes de desplegar una aplicación con Docker Swarm lo adecuado es revisar que la aplicación cumpla ciertos factores para poder sacarle todo el provecho al cluster Swarm, si bien hay muchos factores a considerar, hay consenso en [12 factores clave](https://12factor.net/) que deben ser tomados en cuenta antes de decidir si una aplicación está lista o no para ser desplegada con Swarm, muy resumidamente los 12 factores son:
+Por lo general en una aplicación basado en Docker Swarm hay más nodos Worker que Manager, ya que los Worker son el núcleo de la aplicación al ser los que ejecutan la aplicacion como tal, mientras que los Manager están dedicados exclusivamente a gestionar el cluster, si bien los manager también pueden ejecutar contendores de la aplicación no es recomendable, ya que esto generaría una competencia de recursos entre las tareas de gestión del cluster y de ejecución de contenedores de la aplicación, lo que podría generar errores en la gestión del cluster y en consecuencia en la totalidad de la aplicación.\
+Las únicas restricciones al momento de crear una aplicación usando Docker Swarm es que todos los nodos deben estar en la misma red o subred y deben ser visibles entre ellos, además todos tiene que tener instalado el Docker Daemon, idealmente de la misma versión.\
+Antes de desplegar una aplicación basada en Docker Swarm lo adecuado es revisar que la aplicación cumpla ciertos factores para poder sacarle todo el provecho al cluster, si bien hay muchos factores a considerar, hay consenso en [12 factores clave](https://12factor.net/) que deben ser tomados en cuenta antes de decidir si una aplicación está lista o no para ser desplegada con Docker Swarm, muy resumidamente los 12 factores son:
 
 1. El código fuente de la aplicación debe estar en un repositorio versionado y además debe haber una paridad de 1 a 1 entre el repositorio y la aplicación, por lo que no puede haber código de varias aplicaciones diferentes en el repositorio.
 
 1. Las dependencias deben estar declaradas explícitamente en un archivo de dependencias, el cual debe estar empaquetado junto al código fuente de la aplicación, siempre debe asumirse que las dependencias no están instaladas por lo que es necesario instalarlas con su archivo de dependencias correspondiente.
 
-1. Las definiciones de configuración de la aplicación deben estar empaquetadas junto a la aplicación y la aplicación debe estar diseñada para que bajo ninguna circunstancia la configuración varía en función del servidor.
+1. Las definiciones de configuración de la aplicación deben estar empaquetadas junto a la aplicación y la aplicación debe estar diseñada para que bajo ninguna circunstancia la configuración cambie en función del servidor.
 
 1. Los servicios de apoyo con los que interactúa la aplicación se tratan como aplicaciones externas a las que la aplicación se conecta, no como componentes o complementos de la aplicación como tal.
 
 1. Se deben separar estrictamente las etapas de construcción, liberación y ejecución, no debe haber procesos en etapas que no les corresponden, por ejemplo, un proceso de construcción jamás debe ocurrir en una etapa de ejecución, máximo en una etapa de ejecución se pueden hacer configuraciones.
 
-1. La aplicación tiene que poder ejecutarse como un proceso stateless, es decir que no debe depender de ciertos estados de memoria o archivos que ya están en la máquina.
+1. La aplicación tiene que poder ejecutarse como un proceso stateless, es decir que no debe depender de ciertos estados de memoria o archivos que ya están en la máquina y en caso de necesitar archivos deben ser capaces de generarlos.
 
 1. Las aplicaciones deben exponerse a sí mismas mediante puertos vinculados entre el host y la aplicación, siempre evitando utilizar intermediarios.
 
@@ -796,19 +796,19 @@ Antes de desplegar una aplicación con Docker Swarm lo adecuado es revisar que l
 
 1. Todas las labores de administración deben poder realizarse sin alterar la ejecución de la aplicación, es decir que no debe ser necesario reiniciar la aplicación en cierto modo o con cierto estado para poder administrar.
 
-Docker Swarm además viene instalado con Docker engine, por lo que no hace falta instalarlo una vez ya está instalado Docker engine.
+Docker Swarm además viene instalado con Docker Engine, por lo que no hace falta instalarlo una vez ya está instalado Docker Engine.
 
-## Administración de un cluster Swarm
+## Administración de un cluster
 
-El cluster, enjambre o Swarm es lo que permite que una aplicación basad en Docker Swarm escale sobre un hardware virtualmente infinito, es por esto que si bien el cluster no es muy difícil de administrar es importante tener en cuenta los comandos necesarios para administrar y escalar el cluster.
+El cluster, enjambre o Swarm es lo que permite que una aplicación basad en Docker Swarm escale sobre un hardware virtualmente infinito, es por esto que si bien el cluster no es muy difícil de administrar y no hay muchos comandos con los cuales administrarlo, es importante tener en cuenta los comandos necesarios para administrar y escalar el cluster, ya que del cluster depende que tanto puede escalar la aplicación a nivel de Hardware.
 
-### Comandos básicos de administracion de un cluster
+### Comandos básicos de administración de un cluster
 
 ```bash
 docker swarm [comando] --help
 ```
 
-Muestra a grandes rasgos los comandos disponibles para administrar el swarm y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+Muestra a grandes rasgos los comandos disponibles para administrar el cluster y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
 
 ### Iniciar un cluster
 
@@ -816,9 +816,9 @@ Muestra a grandes rasgos los comandos disponibles para administrar el swarm y su
 docker swarm init [parámetros]
 ```
 
-Inicia un swarm utilizando la máquina actual como manager, algunos de los parámetros más útiles al utilizar **docker swarm init** para iniciar un enjambre son:
+Inicia un cluster utilizando la máquina actual como el primer manager del cluster, algunos de los parámetros más útiles al utilizar **docker swarm init** para iniciar un cluster son:
 
-- **--advertise-addr [ip]:** Al iniciar un Swarm en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del Swarm.
+- **--advertise-addr [ip]:** Al iniciar un cluster en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del cluster.
 
 ### Conectar máquinas al cluster
 
@@ -826,7 +826,7 @@ Inicia un swarm utilizando la máquina actual como manager, algunos de los pará
 docker swarm join-token [parametros] [worker|manager]
 ```
 
-Genera un token que es utilizado para agregar una nueva máquina al cluster, hay dos tipos de tokens, uno para agregar managers y otro para agregar workers, al utilizar este comando además de imprimir el token se imprime el comando que permitirá utilizarlo para unir la máquina al cluster.
+Genera un token que es utilizado para agregar una nueva máquina al cluster, hay dos tipos de tokens, uno para agregar managers y otro para agregar workers, al utilizar este comando además de imprimir el token se imprime el comando que permitirá utilizarlo para unir una máquina nueva al cluster.
 
 ### Desconectar máquinas del cluster
 
@@ -838,9 +838,9 @@ Permite a la máquina actual abandonar el cluster, para dejar el cluster con **d
 
 - **--force:** Permite forzar a la máquina actual a abandonar el cluster, cuando se requiere que un manager abandone el cluster suele ser necesario utilizar este parámetro, ya que Docker Swarm no permite que los manager abandonen el cluster fácilmente por seguridad.
 
-## Administración de nodos pertenecientes a un cluster Swarm
+## Administración de nodos pertenecientes a un cluster
 
-Los nodos son las maquinas que estan conectadas al Swarm, no hay muchas opciones para administrar nodos, pero varios de estos comandos son muy útiles y es bueno tomarlos en cuenta, además, la administración de nodos sólo puede hacerse desde un manager, ya que los workers no tienen acceso a estas acciones.
+Los nodos son las maquinas que estan conectadas al cluster, no hay muchas opciones para administrar nodos, pero varios de estos comandos son muy útiles y es bueno tomarlos en cuenta, además, la administración de nodos sólo puede hacerse desde un manager, ya que los workers no suelen tener acceso a estas acciones.
 
 ### Comandos básicos de administración de nodos
 
@@ -848,17 +848,17 @@ Los nodos son las maquinas que estan conectadas al Swarm, no hay muchas opciones
 docker node [comando] --help
 ```
 
-Muestra a grandes rasgos los comandos disponibles para administrar los nodos de un Swarm y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+Muestra a grandes rasgos los comandos disponibles para administrar los nodos de un cluster y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
 
-### Listar nodos conectados al Swarm
+### Listar los nodos conectados a un cluster
 
 ```bash
-docker no los [parámetros]
+docker node ls [parámetros]
 ```
 
-Lista los nodos pertenecientes a un Swarm, mostrando su id, nombre, estatus, disponibilidad, su versión de engine y si es manager o worker, además, se indica con \* el nodo en el que se está actualmente.
+Lista los nodos pertenecientes a un cluster, mostrando su id, nombre, estatus, disponibilidad, su versión de Docker Engine y si es manager o worker, además, se indica con \* el nodo en el que se está actualmente.
 
-### Inspeccionar un nodo conectado al Swarm
+### Inspeccionar un nodo conectado a un cluster
 
 ```bash
 docker node inspect [parámetros] [id o nombre del nodo]
@@ -868,19 +868,19 @@ Muestra en detalle la configuración de un nodo en un archivo JSON, algunos de l
 
 - **--pretty:** Cambia el formato JSON con el que se muestran los datos por un formato clásico de consola que es más fácil de leer, pero omite ciertas partes de la configuración al cambiar el formato del texto.
 
-### Actualizar las configuraciones de uno o varios nodos conectados al Swarm
+### Actualizar las configuraciones de uno o varios nodos conectados a un cluster
 
 ```bash
 docker node update [parámetros] [id o nombre del nodo]
 ```
 
-Permite actualizar ciertas configuraciones de los nodos, algunos de los parámetros más útiles al actualizar un nodo con **docker node update** son:
+Permite actualizar ciertas configuraciones de un nodo, algunos de los parámetros más útiles al actualizar la configuración de un nodo con **docker node update** son:
 
-- **--availability ["active"|"pause"|"drain"]:** Permite cambiar la disponibilidad de un nodo, en estado activo se le pueden asignar tareas al nodo sin problema, en estado pausado el nodo no recibe tareas y en estado de drenado se sacan del nodo todas las tareas y se envían a otros nodos antes de ser puesto el nodo en estado pausado.
+- **--availability [active|pause|drain]:** Permite cambiar la disponibilidad de un nodo, en estado activo se le pueden asignar tareas al nodo sin problema, en estado pausado el nodo no recibe tareas y en estado de drenado se sacan del nodo todas las tareas y se envían a otros nodos antes de ser puesto el nodo en estado pausado.
 
-## Administración de servicios basados en Swarm
+## Administración de servicios basados en Docker Swarm
 
-Los servicios son la base de Swarm, al igual que en Docker-compose un servicio es una aplicación contenerizada que está desplegada en uno o más contenedores, en Swarm la venta es que estos contenedores pueden estar ejecutándose en cualquier nodo del cluster y además pueden moverse entre nodos fácilmente, lo que hace a los servicios altamente disponibles y escalables.
+Los servicios son la base de Docker Swarm, al igual que en Docker-compose un servicio es una aplicación contenerizada que está desplegada en uno o más contenedores, en Docker Swarm la ventaja es que estos contenedores pueden estar ejecutándose en cualquier nodo del cluster y además pueden moverse entre nodos fácilmente, es debido a esto que los servicios son altamente disponibles y escalables.
 
 ### Comandos básicos de administración de servicios
 
@@ -888,30 +888,30 @@ Los servicios son la base de Swarm, al igual que en Docker-compose un servicio e
 docker service [comando] --help
 ```
 
-Muestra a grandes rasgos los comandos disponibles para administrar servicios y sus usos al no especificar un comando en concreto, al especificar el comando del que se necesita más información se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+Muestra a grandes rasgos los comandos disponibles para administrar servicios y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
 
-### Iniciar un servicio basado en Swarm
+### Iniciar un servicio
 
 ```bash
 docker service create [parámetros] [nombre o id de la imagen] [comando]
 ```
 
-Permite iniciar un servicio basado en swarm especificando la imagen y el comando del proceso principal, si no se especifica el comando del proceso principal se usa el proceso principal por defecto, algunos de los parámetros más útiles al iniciar un servicio con **docker service create** son:
+Permite iniciar un servicio basado en Docker Swarm especificando la imagen y el comando del proceso principal, si no se especifica el comando del proceso principal se usa el proceso principal por defecto, algunos de los parámetros más útiles al iniciar un servicio con **docker service create** son:
 
 - **--name [nombre del servicio]:** Establece el nombre indicado como nombre del servicio.
 - **--publish [puerto del anfitrión]:[puerto del contenedor]:** Publica el puerto de los contenedores en el puerto del anfitrión usando el mesh routing de Docker Swarm.
 - **--replicas [número de réplicas]:** Establece el número de réplicas o contenedores que deben ejecutarse de cierto servicio.
 - **--constraint node.role==[worker|manager]:** Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
 
-### Visualizar servicios basados en Swarm
+### Visualizar servicios
 
 ```bash
 docker service ls [parámetros]
 ```
 
-Lista los servicios del cluster junto con su id, nombre, modo, número de réplicas, imagen y puertos.
+Lista todos los servicios del cluster junto con su id, nombre, modo, número de réplicas, imagen y puertos.
 
-### Visualizar tareas de un servicio basado en Swarm
+### Visualizar tareas de un servicio
 
 ```bash
 docker service ps [parámetros] [id o nombre del servicio]
@@ -919,7 +919,7 @@ docker service ps [parámetros] [id o nombre del servicio]
 
 Muestra las tareas de uno o más servicios, además de su id, nombre, imagen, nodo de ejecución, estado actual y deseado, errores y puertos.
 
-### Inspeccionar un servicio basado en Swarm
+### Inspeccionar un servicio
 
 ```bash
 docker service inspect [parámetros] [id o nombre del servicio]
@@ -935,19 +935,19 @@ Muestra en detalle la configuración de un servicio en un archivo JSON, algunos 
 docker service update [parámetros] [id o nombre del servicio]
 ```
 
-Actualiza la configuración de un servicio, algunos de los parámetros más útiles al actualizar un servicio con **docker service update** son:
+Actualiza la configuración de un servicio, algunos de los parámetros más útiles al actualizar las configuraciones de un servicio con **docker service update** son:
 
 - **--args [comando]:** Cambia el comando o los parámetros de la tarea principal según la configuración de la imagen del servicio.
 - **--replicas [número de réplicas]:** Actualiza el número de réplicas de servicio.
 - **--update-parallelism [número de tareas en paralelo]:** Cambia el número de tareas que se actualizan en paralelo, 0 actualiza todo en paralelo.
-- **--update-order [start-first|stop-first]:** Cambia el orden en el que se actualizan los servicios, con stop-first las tareas de un servicio se apagan antes de iniciar las nuevas tareas, con start-first las tareas viejas no se apagan hasta que las nuevas están arriba.
+- **--update-order [start-first|stop-first]:** Cambia el orden en el que se actualizan las tareas, con stop-first las tareas se finalizan antes de iniciar las nuevas tareas, con start-first las tareas viejas no se apagan hasta que las nuevas están arriba.
 - **--update-failure-action [pause|continue|rollback]:** Cambia la acción por defecto que se debe realizar en caso de fallar una tarea.
 - **--update-max-failure-ratio [porcentaje de fallo]:** Indica el porcentaje de tareas que pueden fallar antes de realizar la acción en caso de fallo.
 - **--rollback-parallelism [número de tareas de restauración paralelo]:** Cambia el número de tareas que se restauran en paralelo, 0 actualiza todo en paralelo.
 - **--constraint-add node.role==[rol]:** Modifica las restricciones de carga de un servicio totalmente en paralelo.
 - **--env-add [nombre de la variable de entorno]=[valor de la variable de entorno]:** Agrega o actualiza el valor de una o varias variables de entorno.
 
-### Visualizar logs de un servicio basado en Swarm
+### Visualizar logs de un servicio
 
 ```bash
 docker service logs [parámetros] [id o nombre del servicio|id o nombre de la tarea]
@@ -957,7 +957,7 @@ Muestra los logs de los de un servicio o tarea, algunos de los parámetros más 
 
 - **--follow:** Permite hacer follow de los logs del servicio o tarea, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
 
-### Escalar un servicio basado en Swarm
+### Escalar un servicio
 
 ```bash
 docker service scale [parámetros] [id o nombre del servicio]=[número de réplicas]
@@ -965,7 +965,7 @@ docker service scale [parámetros] [id o nombre del servicio]=[número de répli
 
 Permite escalar uno o varios servicios estableciendo el número de réplicas necesarias por cada servicio.
 
-### Restaurar un servicio basado en Swarm a su estado anterior
+### Restaurar un servicio a su estado anterior
 
 ```bash
 docker service rollback [parámetros] [id o nombre del servicio]
@@ -973,10 +973,10 @@ docker service rollback [parámetros] [id o nombre del servicio]
 
 Permite restaurar un servicio a su estado anterior.
 
-### Eliminar un servicio basado en Swarm
+### Eliminar un servicio
 
 ```bash
 docker service rm [id o nombre del servicio]
 ```
 
-Elimina un servicio del Swarm junto con todos sus contenedores y tareas.
+Elimina un servicio junto con todos sus contenedores y tareas.
