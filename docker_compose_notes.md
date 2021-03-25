@@ -5,7 +5,7 @@ Docker Compose se basa en servicios, no en contenedores, un servicio en Docker p
 
 ## Instalación de Docker Compose en Ubuntu
 
-Docker Compose se instala junto a las versiones de escritorio de Windows o Mac, sin embargo, en la versión de Ubuntu es necesario instalarlo manualmente con los siguientes comandos, los cuales son extraídos de la guia oficial de [Docker Hub](https://docs.docker.com/compose/install/):
+Docker Compose se instala junto a las versiones de escritorio de Windows o Mac, sin embargo, en la versión de Ubuntu es necesario instalarlo manualmente con los siguientes comandos, los cuales son extraídos de la guia oficial de [**Docker Hub**](https://docs.docker.com/compose/install/):
 
 ```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose

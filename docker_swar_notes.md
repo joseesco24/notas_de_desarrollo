@@ -9,12 +9,12 @@ Docker Swarm es la solución nativa que ofrece Docker para montar aplicaciones b
 Es gracias a la división de las labores de administración de la aplicación en estas tres entidades que las aplicaciones desplegadas con Docker Swarm son muy fáciles de administrar, ya que se pueden administrar como entidades separadas a pesar de que forman parte de una misma aplicación, siempre tomando en cuenta la forma en la cual alterar una entidad afectará el comportamiento de la aplicación y de las demás entidades.\
 Al utilizar Docker Swarm las máquinas que componen el cluster o nodos se divide en dos tipos, **Managers** y **Workers**, siendo los Managers los encargados de gestionar los recursos el cluster, mientras que los Workers se encargaran de ejecutar las tareas que les son asignadas por los Managers, las funciones específicas de los dos tipos de nodo se lista a continuación:
 
-- **Managers:** Gestiona las comunicaciones, distribuyen las tareas, gestionan los recursos y se encargan de re posicionar contenedores y tareas en caso de caídas de algún nodo del cluster.
-- **Workers:** Ejecutan los contenedores de la aplicación.
+- **Managers:** Gestiona las comunicaciones, distribuyen las tareas, gestionan los recursos y se encargan de re posicionar contenedores y tareas en caso de caídas de algún nodo del cluster, el número de managers siempre debe ser impar, ya que de los manager solo un manager es el líder del cluster y además el manager líder se rota periódicamente utilizando el algoritmo [**raft**](https://www.freecodecamp.org/news/in-search-of-an-understandable-consensus-algorithm-a-summary-4bc294c97e0d/), debe haber solo un líder ya que así se evita conflictos en la administración del cluster, por esto en un cluster productivo deben haber minimo 3 maquinas asumiendo el rol de manager.
+- **Workers:** Ejecutan los contenedores de la aplicación, además los workers se pueden dividir en diferentes grupos según ciertas características de los servicios y de la máquina que los va a ejecutar, como la capacidad de la CPU.
 
 Por lo general en una aplicación basado en Docker Swarm hay más nodos Worker que Manager, ya que los Worker son el núcleo de la aplicación al ser los que ejecutan la aplicacion como tal, mientras que los Manager están dedicados exclusivamente a gestionar el cluster, si bien los manager también pueden ejecutar contendores de la aplicación no es recomendable, ya que esto generaría una competencia de recursos entre las tareas de gestión del cluster y de ejecución de contenedores de la aplicación, lo que podría generar errores en la gestión del cluster y en consecuencia en la totalidad de la aplicación.\
 Las únicas restricciones al momento de crear una aplicación usando Docker Swarm es que todos los nodos deben estar en la misma red o subred y deben ser visibles entre ellos, además todos tiene que tener instalado el Docker Daemon, idealmente de la misma versión.\
-Antes de desplegar una aplicación basada en Docker Swarm lo adecuado es revisar que la aplicación cumpla ciertos factores para poder sacarle todo el provecho al cluster, si bien hay muchos factores a considerar, hay consenso en [12 factores clave](https://12factor.net/) que deben ser tomados en cuenta antes de decidir si una aplicación está lista o no para ser desplegada con Docker Swarm, muy resumidamente los 12 factores son:
+Antes de desplegar una aplicación basada en Docker Swarm lo adecuado es revisar que la aplicación cumpla ciertos factores para poder sacarle todo el provecho al cluster, si bien hay muchos factores a considerar, hay consenso en [**12 factores clave**](https://12factor.net/) que deben ser tomados en cuenta antes de decidir si una aplicación está lista o no para ser desplegada con Docker Swarm, muy resumidamente los 12 factores son:
 
 1. El código fuente de la aplicación debe estar en un repositorio versionado y además debe haber una paridad de 1 a 1 entre el repositorio y la aplicación, por lo que no puede haber código de varias aplicaciones diferentes en el repositorio.
 
@@ -40,7 +40,8 @@ Antes de desplegar una aplicación basada en Docker Swarm lo adecuado es revisar
 
 1. Todas las labores de administración deben poder realizarse sin alterar la ejecución de la aplicación, es decir que no debe ser necesario reiniciar la aplicación en cierto modo o con cierto estado para poder administrar.
 
-Docker Swarm además viene instalado con Docker Engine, por lo que no hace falta instalarlo una vez ya está instalado Docker Engine.
+Docker Swarm además viene instalado con Docker Engine, por lo que no hace falta instalarlo una vez ya está instalado Docker Engine, Docker Swarm además admite instalar plugins y clientes para administrar los contenedores y demás recursos de forma gráfica como [**portainer**](https://www.portainer.io/), ademas de agragar servicios para relizar monitoreo como [**swarmprom**](https://github.com/stefanprodan/swarmprom) o gestionar recursos como [**docker-cleanup**](https://github.com/meltwater/docker-cleanup).\
+Al gestionar una solución productiva basada en Docker Swarm es sumamente importante mantener los nodos limpios, es decir sin imágenes, contenedores o demás recursos residuales que ocupen disco, gestionar los logs de los servicios para que no llenen los discos de los nodos y poder visualizar el estado del cluster.
 
 ## Administración de un cluster
 
@@ -147,6 +148,8 @@ Permite iniciar un servicio basado en Docker Swarm especificando la imagen y el 
 - **--replicas [número de réplicas]:** Establece el número de réplicas o contenedores que deben ejecutarse de cierto servicio.
 - **--constraint node.role==[worker|manager]:** Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
 - **--network:** Conecta los servicios a cierta red que tenga un driver overlay, si no se indica una red Docker conectara los servicios a la red ingress por defecto.
+- **--label [metadatos]:** Permite agregar un listado de metadatos útiles para los otros servicios que necesitan encontrar el nuevo servicio.
+  **--mode [replicated|global|replicated-job|global-job]:** Cambia el modo en el que se ejecuta un servicio.
 
 ### Visualizar servicios
 
@@ -191,6 +194,7 @@ Actualiza la configuración de un servicio, algunos de los parámetros más úti
 - **--rollback-parallelism [número de tareas de restauración paralelo]:** Cambia el número de tareas que se restauran en paralelo, 0 actualiza todo en paralelo.
 - **--constraint-add node.role==[worker|manager]:** Modifica las restricciones de carga de un servicio a nodos con cierto rol.
 - **--env-add [nombre de la variable de entorno]=[valor de la variable de entorno]:** Agrega o actualiza el valor de una o varias variables de entorno.
+- **--image [nombre o id de la imagen]:** Cambia en tiempo de ejecución la imagen que ejecutan los contenedores de un servicio.
 
 ### Visualizar logs de un servicio
 
@@ -240,13 +244,19 @@ Crea una red con un driver overlay la cual tiene conectividad con todo el cluste
 
 ## Archivos stack-file.yml
 
-Los archivos [**stack-file.yml**](https://docs.docker.com/compose/compose-file/) son compose file, utilizan la misma sintaxis y muchos de los componentes de un compose file normal, pero los stack file se utilizan con un propósito diferente del de los compose file, la principal diferencia es que los stack file sirven para generar esquemas de servicios basados en Docker Swarm, también llamados **Docker Stacks**, por lo que los servicios de un stack file se ejecutan sobre un cluster en lugar de en una sola máquina, los stack file además soportan componentes que no se utilizan en Docker Compose ya que Docker al identificar en Docker Compose el tipo de aplicación ignora los componentes que son válidos solo en los Docker Stacks, algunos de estos nuevos componentes y sus utilidades son:
+Los archivos [**stack-file.yml**](https://docs.docker.com/compose/compose-file/) son en realidad Compose File, utilizan la misma sintaxis y los mismos componentes de un Compose File normal, pero los Stack File utilizan configuraciones adicionales a las de los Compose File dedicadas a los [**Stacks**](https://docs.docker.com/compose/compose-file/compose-file-v3/#deploy), la principal diferencia es que los Stack File sirven para generar esquemas de servicios basados en Docker Swarm sobre más de una máquina en el cluster, a diferencia de compose, que cumplia la misma función, pero solo en una máquina, los Stack File además soportan componentes que Docker Compose ignora y de la misma forma Docker Compose utiliza ciertos componentes que los Stack Files ignoran, algunos de estos nuevos componentes y sus utilidades son:
 
-- **delpoy:** Restringe los nodos donde se pueden ejecutar las tareas de un servicio.
+- **delpoy:** Establece la sección de las configuraciones del Compose File que corresponde al despliegue de un stack, todas las demás configuraciones dirigidas al stack tiene que estar debajo de esta etiqueta.
+- **placement:** Establece las restricciones del despliegue de las tareas del servicio.
+- **réplicas:** Establece el número de tareas replicadas para ese servicio.
 
 ### Tips de Docker Stacks
 
-#### Ejemplo de un stack file
+- Los stacks a diferencia de Compose son agrupaciones de servicios, en lugar de ser objetos propios de Docker como en Compose, donde cada Compose es un objeto de Docker.
+- Al tener desplegados varios servicios con uno o varios stacks sobre un cluster se debe utilizar un servicio de reverse proxy como [**traefik**](https://traefik.io/) para lograr que usando un solo dominio se puedan redireccionar todas las peticiones a los diferentes servicios disponibles en el cluster, para esto, además, es necesario es que el servicio de reverse proxy este contenerizado, desplegado sobre un manager y que esté en la misma red de los servicios a los que debe redireccionar las peticiones, además para balancear la carga entre los servicios traefik necesita un socket daemon para ver los eventos de Docker Swarm, por lo que debemos compartir la ruta usando un bind (--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock) y adicionalmente al ser un proxy http público debe exponerse en el puerto 80.
+- La principal diferencia entre un stack y un servicio es que un stack está por encima de un servicio, de tal modo que al igual que un servicio tiene tareas un stack puede tener diferentes servicios.
+
+#### Ejemplo de un Stack File
 
 ```yml
 version: "3"
@@ -261,6 +271,7 @@ services:
     ports:
       - "3000:3000"
     deploy:
+      replicas: 6
       placement:
         constraints: [node.role==worker]
 
@@ -270,7 +281,7 @@ services:
 
 ## Subcomandos de Docker Stacks
 
-Para utilizar stack files como origen de una arquitectura basada en Docker Swarm hay varios subcomandos similares a los usados en la administración regular de Docker Swarm y Docker Compose, algunos de los más relevantes para utilizar aplicaciones basadas en Docker Swarm con stack files son:
+Para utilizar Stack Files como origen de una arquitectura basada en Docker Swarm hay varios subcomandos similares a los usados en la administración regular de Docker Swarm y Docker Compose, algunos de los más relevantes para utilizar aplicaciones basadas en Docker Swarm con Stack Files son:
 
 ### Comandos de administración general de un stack
 
@@ -288,7 +299,7 @@ docker stack deploy [parámetros] [nombre del nuevo stack]
 
 Inicia o actualiza un stack, algunos de los parámetros más útiles al utilizar **docker stack deploy** para iniciar un stack son:
 
-- **--compose-file [ruta al stack file]:** Establece el compose file que se utilizará para generar el nuevo stack.
+- **--compose-file [ruta al Stack File]:** Establece el Compose File que se utilizará para generar el nuevo stack.
 - **--orchestrator [swarm|kubernetes|all]:** Establece el orquestador del stack, por defecto se usa swarm.
 
 ### Listar stacks
