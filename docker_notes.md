@@ -46,7 +46,9 @@ Esta pequeña guía de instalación está basada en la [guía oficial](https://d
 ## Comandos de instalación de Docker
 
 ```bash
-sudo apt-get remove -y docker docker-engine docker.io containerd runc
+sudo apt-get update
+
+sudo apt-get remove docker docker-engine docker.io containerd runc
 ```
 
 Antes de iniciar con la instalación es necesario eliminar cualquier instalación previa de Docker que se haya hecho en la máquina anfitrión, si no han habido instalaciones previas de Docker en la máquina anfitrión se puede omitir el primer comando.
@@ -54,7 +56,7 @@ Antes de iniciar con la instalación es necesario eliminar cualquier instalació
 ```bash
 sudo apt-get update
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
 ```
 
 Luego de haber desinstalado las versiones anteriores de Docker se configuran los repositorios necesarios para instalar Docker Engine.
@@ -66,13 +68,14 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 Tras configurar los repositorios necesarios lo siguiente es descargar la llave GPG oficial de Docker.
 
 ```bash
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg]https://download.docker.com/linux/ubuntu(lsb_release -cs) stable" | sudo tee/etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
 Una vez descargada la llave GPG lo siguiente es agregarla al archivo null.
 
 ```bash
 sudo apt-get update
+
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 ```
 
