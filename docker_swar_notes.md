@@ -1,6 +1,6 @@
 # Docker Swarm
 
-[**Docker Swarm**](https://docs.docker.com/engine/swarm/) es la solución nativa que ofrece Docker para montar aplicaciones basadas en cómputo distribuido y en contenedores, lo que propone Docker Swarm es que al montar un cluster en el que se quieren desplegar aplicaciones contenerizadas bajo el esquema de servicios el cluster debe ser fácilmente administrable, bajo esta premisa Docker Swarm ha llegado hasta el punto en el que el desarrollador puede tratar la totalidad del cluster como si se tratase de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto es que usando Docker Swarm es posible administrar un cluster casi con la facilidad con la que se administra una sola máquina con un solo Docker Daemon, cuando en realidad son varias máquinas cada uno con su propio Docker Daemon. Para conseguir este funcionamiento Docker Swarm se basa en tres conceptos fundamentales, estos tres conceptos son **Swarm**, **Nodos** y **Servicios**, cada uno de estos conceptos corresponde a un tipo de entidad que compone una aplicación basada en Docker Swarm, las definiciones resumidas de cada uno de estos conceptos se listan a continuación:
+[**Docker Swarm**](https://docs.docker.com/engine/swarm/) es la solución nativa que ofrece Docker para montar aplicaciones basadas en cómputo distribuido y en contenedores, lo que propone Docker Swarm es que al montar un cluster en el que se quieren desplegar aplicaciones contenerizadas bajo el esquema de servicios el cluster debe ser fácilmente administrable, bajo esta premisa Docker Swarm ha llegado hasta el punto en el que un desarrollador puede tratar la totalidad del cluster como si se tratase de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto es que usando Docker Swarm es posible administrar un cluster casi con la facilidad con la que se administra una sola máquina con un solo Docker Daemon, cuando en realidad son varias máquinas cada uno con su propio Docker Daemon. Para conseguir este funcionamiento Docker Swarm se basa en tres conceptos fundamentales, estos tres conceptos son **Swarm**, **Nodos** y **Servicios**, cada uno de estos conceptos corresponde a un tipo de entidad que compone una aplicación basada en Docker Swarm, las definiciones resumidas de cada uno de estos conceptos se listan a continuación:
 
 - **Swarm:** Swarm, cluster o enjambre son referencias del mismo concepto, una agrupación de varias máquinas que cooperan para realizar la misma tarea, en el caso de Docker Swarm, desplegar contenedores de una aplicación para aumentar su disponibilidad y escalabilidad.
 - **Nodos:** Los nodos son todas las máquinas que componen el Swarm, cluster o enjambre, entre los nodos se reparten las tareas que deben ser ejecutadas, en el caso de Docker Swarm, los contenedores que deben ser ejecutados y la gestión de recursos necesaria para mantener el correcto funcionamiento del cluster.
@@ -9,7 +9,7 @@
 Es gracias a la división de las labores de administración de la aplicación en estas tres entidades que las aplicaciones desplegadas con Docker Swarm son muy fáciles de administrar, ya que se pueden administrar como entidades separadas a pesar de que forman parte de una misma aplicación, siempre tomando en cuenta la forma en la cual alterar una entidad afectará el comportamiento de la aplicación y de las demás entidades.\
 Al utilizar Docker Swarm las máquinas que componen el cluster o nodos se divide en dos tipos, **Managers** y **Workers**, siendo los Managers los encargados de gestionar los recursos el cluster, mientras que los Workers se encargaran de ejecutar las tareas que les son asignadas por los Managers, las funciones específicas de los dos tipos de nodo se lista a continuación:
 
-- **Managers:** Gestiona las comunicaciones, distribuyen las tareas, gestionan los recursos y se encargan de re posicionar contenedores y tareas en caso de caídas de algún nodo del cluster, el número de managers siempre debe ser impar, ya que de los manager solo un manager es el líder del cluster y además el manager líder se rota periódicamente utilizando el algoritmo [**raft**](https://www.freecodecamp.org/news/in-search-of-an-understandable-consensus-algorithm-a-summary-4bc294c97e0d/), debe haber solo un líder ya que así se evita conflictos en la administración del cluster, por esto en un cluster productivo deben haber minimo 3 maquinas asumiendo el rol de manager.
+- **Managers:** Gestiona las comunicaciones, distribuyen las tareas, gestionan los recursos y se encargan de re posicionar contenedores y tareas en caso de caídas de algún nodo del cluster, el número de managers siempre debe ser impar, ya que de los manager solo uno es el líder del cluster y además el manager líder se rota periódicamente utilizando el algoritmo [**raft**](https://www.freecodecamp.org/news/in-search-of-an-understandable-consensus-algorithm-a-summary-4bc294c97e0d/), debe haber solo un líder ya que así se evita conflictos en la administración del cluster, por esto en un cluster productivo deben haber minimo 3 maquinas asumiendo el rol de manager.
 - **Workers:** Ejecutan los contenedores de la aplicación, además los workers se pueden dividir en diferentes grupos según ciertas características de los servicios y de la máquina que los va a ejecutar, como la capacidad de la CPU.
 
 Por lo general en una aplicación basado en Docker Swarm hay más nodos Worker que Manager, ya que los Worker son el núcleo de la aplicación al ser los que ejecutan la aplicacion como tal, mientras que los Manager están dedicados exclusivamente a gestionar el cluster, si bien los manager también pueden ejecutar contendores de la aplicación no es recomendable, ya que esto generaría una competencia de recursos entre las tareas de gestión del cluster y de ejecución de contenedores de la aplicación, lo que podría generar errores en la gestión del cluster y en consecuencia en la totalidad de la aplicación.\
@@ -232,7 +232,7 @@ Elimina un servicio junto con todos sus contenedores y tareas.
 
 ## Administración de redes de Docker Swarm
 
-Al utilizar Docker en modo Swarm Docker necesita dos tipos de redes adicionales a las que se usan normalmente, las cuales se usan para comunicar las diferentes tareas o contenedores de un servicio a nivel de nodo y cluster, estas redes son: **docker_gwbridge** e **ingress**, la red docker_gwbrigde por su parte se encarga de comunicar los contenedores del nodo entre ellos y la red ingress, ingress por su parte se encarga de la comunicación de todas las redes docker_gwbrigde a través de todos los nodos del cluster, formando así una red que comunica todos los contenedores de un servicio cuyos contenedores están distribuidos en diferentes nodos, también se diferencian en el alcance y driver, docker_gwbridge está disponible sólo dentro de un nodo y utiliza un driver **bridge** estándar, mientras que ingress está disponible en todos los nodos y utiliza un driver **overlay**, al crear un cluster basado en Docker Swarm las redes docker_gwbridge se crean automáticamente y se conectan a ingress (que es una red creada por defecto), pero es importante saber crear redes con funcionalidades similares a las cuales conectar varios servicios para lograr comunicación entre los contenedores de diferentes servicios sin sobrecargar ingress.
+Al utilizar Docker en modo Swarm Docker necesita dos tipos de redes adicionales a las que se usan normalmente, las cuales se usan para comunicar las diferentes tareas o contenedores de un servicio a nivel de nodo y cluster, estas redes son: **docker_gwbridge** e **ingress**, la red docker_gwbrigde por su parte se encarga de comunicar los contenedores del nodo entre ellos y la red ingress, ingress por su parte se encarga de la comunicación de todas las redes docker_gwbrigde a través de todos los nodos del cluster, formando así una red que comunica todos los contenedores de un servicio cuyos contenedores están distribuidos en diferentes nodos, también se diferencian en el alcance y driver, docker_gwbridge está disponible sólo dentro de un nodo y utiliza un driver **bridge** estándar, mientras que ingress está disponible en todos los nodos y utiliza un driver **overlay**, al crear un cluster basado en Docker Swarm las redes docker_gwbridge se crean automáticamente y se conectan a ingress (que es una red creada por defecto), pero también es posible crear redes con funcionalidades similares a la red ingress a las cuales conectar varios servicios para lograr comunicación entre los contenedores de diferentes servicios sin sobrecargar ingress, esto se logra simplemente creando una red con un driver **overlay**.
 
 ### Crear una red overlay
 
@@ -241,93 +241,3 @@ docker network create --driver overlay [nombre de la red]
 ```
 
 Crea una red con un driver overlay la cual tiene conectividad con todo el cluster y funciona de forma similar a la red ingress, por lo que uno o varios servicios se pueden conectar a la nueva red.
-
-## Archivos stack-file.yml
-
-Los archivos [**stack-file.yml**](https://docs.docker.com/compose/compose-file/) son en realidad Compose File, utilizan la misma sintaxis y los mismos componentes de un Compose File normal, pero los Stack File utilizan configuraciones adicionales a las de los Compose File dedicadas a los [**Stacks**](https://docs.docker.com/compose/compose-file/compose-file-v3/#deploy), la principal diferencia es que los Stack File sirven para generar esquemas de servicios basados en Docker Swarm sobre más de una máquina en el cluster, a diferencia de compose, que cumplia la misma función, pero solo en una máquina, los Stack File además soportan componentes que Docker Compose ignora y de la misma forma Docker Compose utiliza ciertos componentes que los Stack Files ignoran, algunos de estos nuevos componentes y sus utilidades son:
-
-- **delpoy:** Establece la sección de las configuraciones del Compose File que corresponde al despliegue de un stack, todas las demás configuraciones dirigidas al stack tiene que estar debajo de esta etiqueta.
-- **placement:** Establece las restricciones del despliegue de las tareas del servicio.
-- **réplicas:** Establece el número de tareas replicadas para ese servicio.
-
-### Tips de Docker Stacks
-
-- Los stacks a diferencia de Compose son agrupaciones de servicios, en lugar de ser objetos propios de Docker como en Compose, donde cada Compose es un objeto de Docker.
-- Al tener desplegados varios servicios con uno o varios stacks sobre un cluster se debe utilizar un servicio de reverse proxy como [**traefik**](https://traefik.io/) para lograr que usando un solo dominio se puedan redireccionar todas las peticiones a los diferentes servicios disponibles en el cluster, para esto, además, es necesario es que el servicio de reverse proxy este contenerizado, desplegado sobre un manager y que esté en la misma red de los servicios a los que debe redireccionar las peticiones, además para balancear la carga entre los servicios traefik necesita un socket daemon para ver los eventos de Docker Swarm, por lo que debemos compartir la ruta usando un bind (--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock) y adicionalmente al ser un proxy http público debe exponerse en el puerto 80.
-- La principal diferencia entre un stack y un servicio es que un stack está por encima de un servicio, de tal modo que al igual que un servicio tiene tareas un stack puede tener diferentes servicios.
-
-#### Ejemplo de un Stack File
-
-```yml
-version: "3"
-
-services:
-  app:
-    image: alpine
-    environment:
-      MONGO_URL: "mongodb://db:27017/test"
-    depends_on:
-      - db
-    ports:
-      - "3000:3000"
-    deploy:
-      replicas: 6
-      placement:
-        constraints: [node.role==worker]
-
-  db:
-    image: mongo
-```
-
-## Subcomandos de Docker Stacks
-
-Para utilizar Stack Files como origen de una arquitectura basada en Docker Swarm hay varios subcomandos similares a los usados en la administración regular de Docker Swarm y Docker Compose, algunos de los más relevantes para utilizar aplicaciones basadas en Docker Swarm con Stack Files son:
-
-### Comandos de administración general de un stack
-
-```bash
-docker stack [comando] --help
-```
-
-Muestra a grandes rasgos los comandos disponibles para administrar Docker Stacks y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
-
-### Iniciar o actualizar un stack
-
-```bash
-docker stack deploy [parámetros] [nombre del nuevo stack]
-```
-
-Inicia o actualiza un stack, algunos de los parámetros más útiles al utilizar **docker stack deploy** para iniciar un stack son:
-
-- **--compose-file [ruta al Stack File]:** Establece el Compose File que se utilizará para generar el nuevo stack.
-- **--orchestrator [swarm|kubernetes|all]:** Establece el orquestador del stack, por defecto se usa swarm.
-
-### Listar stacks
-
-```bash
-docker stack ls [parámetros]
-```
-
-### Listar tareas de un stack
-
-```bash
-docker stack ps [parámetros] [nombre del stack]
-```
-
-Lista todas las tareas pertenecientes a un stack.
-
-### Listar servicios de un stack
-
-```bash
-docker stack services [parámetros] [nombre del stack]
-```
-
-Lista todos los servicios pertenecientes a un stack.
-
-### Eliminar un stack
-
-```bash
-docker stack rm [parámetros] [nombre del stack]
-```
-
-Elimina un stack junto con todas sus tareas, contenedores, redes y volúmenes.
