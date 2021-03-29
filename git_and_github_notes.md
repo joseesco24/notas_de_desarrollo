@@ -32,7 +32,7 @@ Inicia un repositorio git en la carpeta actual.
 ### Agregar archivos al repositorio
 
 ```bash
-git add [ruta archivo o directorio]
+git add [ruta del archivo o directorio]
 ```
 
 Agrega al repositorio un archivo o directorio, por lo que el archivo o directorio entra en estado de stage, y es tomado en cuenta en la base de datos de cambios.
@@ -62,10 +62,10 @@ Muestra el estatus de la base de datos de cambios del repositorio.
 ### Mostrar todos los cambios históricos hechos en el repositorio
 
 ```bash
-git show
+git show [archivo]
 ```
 
-Muestra todos los cambios históricos hechos en el repositorio, incluyendo las líneas en las que se han hecho cambios, cuando se han hecho los cambios y quién los hizo.
+Muestra todos los cambios históricos hechos en el repositorio o en un archivo, centrándose en los que se han hecho cambios, cuando se han hecho los cambios y quién los hizo.
 
 ### Mostrar todos los cambios históricos hechos en un archivo
 
@@ -73,7 +73,7 @@ Muestra todos los cambios históricos hechos en el repositorio, incluyendo las l
 git log [archivo]
 ```
 
-Muestra todos los cambios históricos hechos en un archivo en concreto, incluyendo las líneas en las que se han hecho cambios, cuando se han hecho los cambios y quién los hizo.
+Muestra todos los cambios históricos hechos en el repositorio o en un archivo, centrándose en el histórico de los cambios y sus fechas.
 
 ### Eliminar archivos del repositorio
 
@@ -83,7 +83,7 @@ git rm [parámetros] [archivo]
 
 Elimina del repositorio un archivo o directorio, por lo que el archivo o directorio sale del estado de stage, y deja de ser tomado en cuenta en la base de datos de cambios.
 
-## Configuración de Git
+### Configuración de Git
 
 ```bash
 git config [parámetros] [configuraciones]
@@ -98,3 +98,11 @@ Algunos de los parámetros configurables más importantes de un repositorio son:
 
 - **user.name=[nombre del usuario]:** Cambia el nombre del usuario.
 - **user.email=[correo del usuario]:** Cambia el correo electrónico del usuario.
+
+### Comparacion de versiones
+
+```bash
+git diff [version antigua] [version nueva]
+```
+
+Muestra los cambios entre una version y otra del archivo.
