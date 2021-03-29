@@ -1,6 +1,6 @@
 # Git y GitHub
 
-[**Git**](https://git-scm.com/) es el sistema de versionamiento o control de versiones más popular del mundo, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto, sin guardar el archivo completo ya que muchas veces los cambios son muy simples, de tal modo que Git guarda los cambios de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial de un archivo del proyecto, GitHub por su parte permite que este versionamiento además se haga en una nube dedicada al versionamiento de archivos, y además permite trabajo colaborativo sobre los archivos del proyecto.
+[**Git**](https://git-scm.com/) es el sistema de control de versiones más popular actualmente, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto, sin guardar el archivo completo ya que muchas veces los cambios son muy simples, de tal modo que Git guarda los cambios de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial de un archivo del proyecto, GitHub por su parte permite que este versionamiento además se haga en una nube dedicada al versionamiento de archivos, y además permite trabajo colaborativo sobre los archivos del proyecto.\
 Git soporta versionamiento de archivos binarios, pero el versionamiento no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utiliza solo para archivos de texto plano.
 
 ## Comandos básicos
@@ -35,21 +35,21 @@ Inicia un repositorio git en la carpeta actual.
 git add [ruta del archivo o directorio]
 ```
 
-Agrega al repositorio un archivo o directorio, por lo que el archivo o directorio entra en estado de stage, y es tomado en cuenta en la base de datos de cambios.
+Agrega al area de staging el archivo o directorio.
 
 ```bash
 git add .
 ```
 
-Lo más normal es usar **git add .** para agregar todos los archivos de la carpeta a la base de datos de cambios del repositorio.
+Lo más normal es usar **git add .** para agregar todos los archivos de la carpeta al area de staging.
 
 ### Registrar cambios en el repositorio
 
 ```bash
-git commit -m "[comentario]"
+git commit --message "[comentario]"
 ```
 
-Envía los últimos cambios al repositorio para que este los registre en la base de datos de cambios, los cambios además se registran con un comentario, que idealmente debe indicar qué cambios se realizaron en la última versión.
+Envía los últimos cambios desde staging al repositorio para que este los registre en la base de datos de cambios, los cambios además se registran con un comentario, que idealmente debe indicar qué cambios se realizaron en la última versión.
 
 ### Comprobar el estatus del repositorio
 
@@ -81,7 +81,7 @@ Muestra todos los cambios históricos hechos en el repositorio o en un archivo, 
 git rm [parámetros] [archivo]
 ```
 
-Elimina del repositorio un archivo o directorio, por lo que el archivo o directorio sale del estado de stage, y deja de ser tomado en cuenta en la base de datos de cambios.
+Elimina un archivo o directorio del area de staging, por lo que el archivo ya no podra pasar al repositorio a no ser que se agregue de nuevo al area de staging.
 
 ### Configuración de Git
 
