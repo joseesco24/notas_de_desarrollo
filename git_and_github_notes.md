@@ -82,7 +82,7 @@ Muestra el estatus de la base de datos de cambios del repositorio.
 git diff [parámetros] [Id del commit antiguo] [Id del commit nuevo]
 ```
 
-Muestra los cambios entre una versión y otra del repositorio usando dos Id de los diferentes **commits**.
+Muestra los cambios entre una versión y otra del repositorio usando dos Id de los diferentes **commits**, si no se indican los **commits** con los que se quiere hacer el diff por defecto el diff se realiza entre el directorio de trabajo y el área de staging.
 
 ### Mostrar los logs de un archivo o repositorio
 
@@ -90,7 +90,9 @@ Muestra los cambios entre una versión y otra del repositorio usando dos Id de l
 git log [parámetros]
 ```
 
-Muestra todos los cambios históricos hechos en el repositorio al no incluir parámetros, log se centra en mostrar los Id de cada **commit**, pero también muestra la fecha, el autor y el comentario del **commit**, además de mostrar cual es el **commit** **Head** actualmente.
+Muestra todos los cambios históricos hechos en el repositorio al no incluir parámetros, log se centra en mostrar los Id de cada **commit**, pero también muestra la fecha, el autor y el comentario del **commit**, además de mostrar cual es el **commit** **Head** actualmente, algunos de los parámetros más útiles al usar **git log** son:
+
+- **--stat:** Muestra los archivos en los que se hicieron cambios en cada log, además del número de Bytes que se cambiaron.
 
 ### Mostrar los cambios de un archivo o repositorio
 
@@ -122,15 +124,15 @@ Las ramas permiten dividir el código fuente de una aplicación en diferentes l�
 - **merge:** Un merge es una operación que se realiza cuando se une el código de dos ramas diferentes para generar una nueva versión.
 - **conflicto:** Un conflicto es lo que sucede cuando al realizar un merge los cambios de una rama dañan el funcionamiento de la otra rama, por lo que la nueva versión no funciona correctamente, o simplemente los cambios son incompatibles, por lo que no se puede realizar el merge correctamente.
 
-### Moverse entre ramas y versiones
+### Moverse entre versiones
 
 ```bash
-git checkout [parámetros] [nombre de la rama|Id del commit]
+git checkout [parámetros] [nombre de la rama|Id del commit] [nombre del archivo]
 ```
 
-Permite traer temporalmente los cambios de una rama, **commit** o archivo de una versión específica al directorio de trabajo.
+Permite traer temporalmente los cambios de una rama, o versión especificada al directorio de trabajo, si no se indica un archivo se traen todos los cambios de la versión o rama especificada, para conservar los cambios basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por checkout se hace un nuevo checkout apuntando a la última versión.
 
-### Hacer que el repositorio regrese a una versión anterior
+### Regresar a versiones anteriores del repositorio
 
 ```bash
 git reset [modo] [Id del commit]
