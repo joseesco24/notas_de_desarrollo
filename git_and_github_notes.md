@@ -37,7 +37,7 @@ git config [parámetros] [configuraciones]
 Permite aplicar ciertas configuraciones a un repositorio, algunos de los parámetros más útiles al utilizar **git config** para configurar un repositorio son:
 
 - **--global:** Indica a Git que esa configuración será aplicada a todos los repositorios de la máquina.
-- **--list:** Muestra la configuración actual del repositorio.
+- **-l, --list:** Muestra la configuración actual del repositorio.
 
 Algunos de los parámetros configurables más importantes de un repositorio son:
 
@@ -68,7 +68,8 @@ git commit [parámetros]
 
 Envía los últimos cambios desde el área de staging al repositorio para que este los registre en su base de datos de cambios, creando así una nueva versión basándose en los cambios realizados sobre uno o varios archivos, al crear una nueva versión a esta se le asigna un Id de versión y los cambios realizados en los archivo que son visibles para todos en el repositorio, por defecto los **commit** se realizan sobre la rama **master** si no se cambia la rama de trabajo actual, algunos de los parámetros más útiles al utilizar **git commit** para enviar los cambios del área de staging al repositorio son:
 
-- **--message "[comentario]":** Permite agregar un mensaje al **commit**, idealmente todos los **commits** deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión del versionamiento y los cambios hechos.
+- **-m, --message "[comentario]":** Permite agregar un mensaje al **commit**, idealmente todos los **commits** deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión del versionamiento y los cambios hechos.
+- **-a, --all:** Indica a Git que al hacer el **commit** pase al área de staging todos los cambios en los archivos que han sido previamente rastreados, es equivalente a realizar un **add** solo sobre los archivos que ya han sido registrados y luego un **commit** estándar, por lo que sí se han agregado nuevos archivos desde el último **commit** si es necesario utilizar **add** primero incluso usando este parámetro.
 
 ### Comprobar el estatus de la base de datos de cambios del repositorio
 
@@ -112,7 +113,7 @@ git rm [parámetros] [nombre del archivo]
 
 Elimina uno o varios archivos del área de staging o del repositorio, **git rm** necesita alguno de los siguientes parámetros para ejecutarse correctamente:
 
-- **--force:** Elimina los archivos del repositorio y del directorio de trabajo. el repositorio guarda el registro de la existencia de los archivos, por lo que pueden ser recuperados de ser necesario.
+- **-f, --force:** Elimina los archivos del repositorio y del directorio de trabajo. el repositorio guarda el registro de la existencia de los archivos, por lo que pueden ser recuperados de ser necesario.
 - **--cached:** Elimina uno o varios archivos del área de staging, por lo que para pasarlos al repositorio hará falta volver a enviarlos al área de staging antes con un **commit**.
 
 Algunos de los parámetros opcionales más útiles al utilizar **git rm** para eliminar archivos del área de staging o del repositorio son:
@@ -129,7 +130,7 @@ Las ramas permiten dividir el código fuente de una aplicación en diferentes l�
 ### Moverse entre versiones
 
 ```bash
-git checkout [parámetros] [nombre de la rama|Id del commit] [nombre del archivo]
+git checkout [parámetros] [nombre de la rama|Id del commit|HEAD] [nombre del archivo]
 ```
 
 Permite traer temporalmente los cambios de una rama, o versión especificada al directorio de trabajo, si no se indica un archivo se traen todos los cambios de la versión o rama especificada, para conservar los cambios basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por el checkout se hace un nuevo checkout apuntando a la última versión o **Head**.
