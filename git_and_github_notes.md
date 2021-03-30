@@ -1,14 +1,16 @@
 # Git y GitHub
 
-[**Git**](https://git-scm.com/) es el sistema de control de versiones más popular actualmente, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la final, lo que hace posible ver la evolución de los archivos con cada actualización sin almacenar cada versión completa, GitHub por su parte permite que este versionamiento además se haga en una nube dedicada al versionamiento de archivos, y además permite trabajo colaborativo sobre los archivos de un proyecto.\
-Git soporta versionamiento de archivos binarios, pero el versionamiento no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan Git y GitHub solo para archivos de texto plano, como el código.
+[**Git**](https://git-scm.com/) es el sistema de control de versiones más popular actualmente, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la final, lo que hace posible ver la evolución de los archivos con cada actualización sin almacenar cada versión completa, para esto Git emplea al interior de cada repositorio una base de datos que guarda los cambios de forma incremental, la cual se actualiza con cada versión nueva que llega al repositorio. GitHub por su parte permite que este versionamiento además se haga en una nube dedicada al versionamiento de archivos, y además permite trabajo colaborativo sobre los archivos de un proyecto.\
+Git y GitHub soportan versionamiento de archivos binarios, pero el versionamiento de archivos binarios no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan Git y GitHub solo para archivos de texto plano, como el código.
 
-## Comandos básicos Git
+## Flujo de trabajo básico en Git
 
-Cuando se versionan archivos con Git estos pueden estar almacenados en tres posibles áreas, la primera es el **directorio de trabajo**, que simplemente es el directorio dentro de la máquina local en el que se inició el repositorio, la segunda área es el **área de staging**, que es un área de almacenamiento en la ram de la máquina local donde se preparan los cambios para ser agregados al repositorio y por ultimo esta el **repositorio**, que es un área de almacenamiento local o remota donde se guardan los archivos y se registran sus respectivos cambios a través de cada versión, dependiendo del nivel en el que esté un cambio este se puede considerar como **no rastreado** cuando solo está presente en el **directorio de trabajo**, **en espera** cuando está presente en el **directorio de trabajo** y el **área de staging** y **rastreado** cuando pasa a estar en **las tres áreas** luego de ser subido al **repositorio**, algunos de los conceptos más útiles al trabajar con Git de forma básica son:
+![Local git repository basic workflow](/images/local_git_repository_basic_workflow.png)
 
-- **commit:** Un commit es lo que sucede cuando un cambio pasa del área de staging al repositorio, es decir que pasa de estra **en espera** a estar **rastreado**, al ser aceptado un cambio como una nueva versión, se le asigna un número de versión o Id que identifica esa nueva versión basada en los últimos cambios, y además se registran otros metadatos como la fecha, hora y el usuario que hizo el commit, por lo que cada cambio en Git es rastreable por su Id y por los otros metadatos como la fecha o la hora, que son almacenados al hacer el commit.
-- **Head:** Los archivos del Head corresponden con los últimos cambios que fueron rastreados por la base de datos del repositorio mediante un **commit**.
+Cuando se versionan archivos con repositorios Git locales los cambios pueden estar almacenados en tres posibles áreas, la primera es el **directorio de trabajo**, que simplemente es el directorio dentro de la máquina local en el que se inició el repositorio, la segunda área es el **área de staging**, que es un área de almacenamiento en la ram de la máquina local donde se preparan los cambios para ser agregados al repositorio y por ultimo esta el **repositorio**, que es un área de almacenamiento local o remota donde se guardan los archivos y se registran sus respectivos cambios a través de cada versión, dependiendo del nivel en el que esté un cambio este se puede considerar como **no rastreado** cuando solo está presente en el **directorio de trabajo**, **en espera** cuando está presente en el **directorio de trabajo** y el **área de staging** y **rastreado** cuando pasa a estar en **las tres áreas** luego de ser enviado del **área de staging** al **repositorio**, algunos de los conceptos más útiles al trabajar con Git de forma básica son:
+
+- **commit:** Un commit es lo que sucede cuando un cambio pasa del área de staging al repositorio, es decir que pasa de estra **en espera** a estar **rastreado** por la base de datos de cambios del repositorio, al ser aceptado un cambio como una nueva versión con un commit, Git le asigna un número de versión o Id que identifica esa nueva versión, y además se registran otros metadatos como la fecha, hora y el usuario que hizo el commit, por lo que cada cambio en Git es rastreable por su Id y por los otros metadatos que son almacenados al hacer el commit.
+- **Head:** Los archivos del Head corresponden con los últimos cambios que fueron rastreados por el repositorio mediante un **commit**.
 
 ### Mostrar comandos populares de git
 
@@ -16,7 +18,7 @@ Cuando se versionan archivos con Git estos pueden estar almacenados en tres posi
 git
 ```
 
-Muestra algunos de los comandos más comunes usados en git junto con sus respectivas descripciones.
+Muestra algunos de los comandos más comunes usados en git junto con una breve descripción de sus funciones.
 
 ### Mostrar ayuda de un comando
 
@@ -24,7 +26,7 @@ Muestra algunos de los comandos más comunes usados en git junto con sus respect
 git [comando] --help
 ```
 
-Muestra los parámetros que acepta un comando, además de una breve descripción de la función del comando, si no se incluye un comando antes de **--help** es equivalente a **git**.
+Muestra todos los parámetros que acepta un comando, además de una descripción muy detallada de la función del comando, si no se incluye un comando antes de **--help** es equivalente a **git**.
 
 ### Configuración de Git
 
@@ -42,13 +44,13 @@ Algunos de los parámetros configurables más importantes de un repositorio son:
 - **user.email=[correo del usuario]:** Cambia el correo electrónico del usuario.
 - **user.name=[nombre del usuario]:** Cambia el nombre del usuario.
 
-### Iniciar un repositorio
+### Iniciar o finalizar un repositorio
 
 ```bash
 git init [parámetros]
 ```
 
-Inicia un repositorio git en el directorio actual.
+Inicia un repositorio git en el directorio actual o lo elimina si el repositorio ya está creado, en caso de iniciarse el repositorio Git internamente crea el área de staging del repositorio y el repositorio, sin tocar el directorio de trabajo, el repositorio se crea dentro del directorio de trabajo en una carpeta oculta llamada **.git** y el área de staging se crea en la ram, si se utiliza git init para finalizar el repositorio Git elimina el área de staging y el repositorio, sin tocar el directorio de trabajo.
 
 ### Agregar archivos al área de staging del repositorio
 
@@ -64,11 +66,11 @@ Inicia el rastreo de uno o varios archivos agregandolos al área de staging del 
 git commit [parámetros]
 ```
 
-Envía los últimos cambios desde el área de staging al repositorio para que este los registre en su base de datos de cambios, creando así una nueva versión de uno o varios archivos basándose en los últimos cambios realizados, solo cuando se realiza un **commit** se asigna al cambio un número de **commit** y los cambios realizados en un archivo son visibles para todos en el repositorio, y por defecto el **commit** se realiza sobre la rama **master** si no se indica otra rama, algunos de los parámetros más útiles al utilizar **git commit** para enviar los cambios del área de staging al repositorio son:
+Envía los últimos cambios desde el área de staging al repositorio para que este los registre en su base de datos de cambios, creando así una nueva versión basándose en los cambios realizados sobre uno o varios archivos, al crear una nueva versión a esta se le asigna un Id de versión y los cambios realizados en los archivo que son visibles para todos en el repositorio, por defecto los **commit** se realizan sobre la rama **master** si no se cambia la rama de trabajo actual, algunos de los parámetros más útiles al utilizar **git commit** para enviar los cambios del área de staging al repositorio son:
 
 - **--message "[comentario]":** Permite agregar un mensaje al **commit**, idealmente todos los **commits** deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión del versionamiento y los cambios hechos.
 
-### Comprobar el estatus de cambios del repositorio
+### Comprobar el estatus de la base de datos de cambios del repositorio
 
 ```bash
 git status
@@ -76,15 +78,15 @@ git status
 
 Muestra el estatus de la base de datos de cambios del repositorio.
 
-### Comparación de versiones
+### Comparar cambios entre versiones de diferentes archivos
 
 ```bash
 git diff [parámetros] [Id del commit antiguo] [Id del commit nuevo]
 ```
 
-Muestra los cambios entre una versión y otra del repositorio usando dos Id de los diferentes **commits**, si no se indican los **commits** con los que se quiere hacer el diff por defecto el diff se realiza entre el directorio de trabajo y el área de staging.
+Muestra los cambios entre una versión y otra del repositorio usando dos Id de los diferentes **commits**, si no se indican los **commits** con los que se quiere hacer el diff, usando su Id, por defecto el diff se realiza entre el directorio de trabajo y el área de staging.
 
-### Mostrar los logs de un archivo o repositorio
+### Mostrar los logs del repositorio
 
 ```bash
 git log [parámetros]
@@ -94,7 +96,7 @@ Muestra todos los cambios históricos hechos en el repositorio al no incluir par
 
 - **--stat:** Muestra los archivos en los que se hicieron cambios en cada log, además del número de Bytes que se cambiaron.
 
-### Mostrar los cambios de un archivo o repositorio
+### Mostrar los cambios del repositorio
 
 ```bash
 git show [parámetros]
@@ -102,7 +104,7 @@ git show [parámetros]
 
 Muestra todos los cambios históricos hechos en el repositorio al no incluir parámetros, show se centra en los cambios de las líneas realizados en los archivos, por lo que siempre muestra un diff entre el commit actual y el anterior de los archivos modificados en el último commit, ademas show muestra también toda la información que muestra log.
 
-### Eliminar archivos del repositorio
+### Eliminar archivos del área de staging o del repositorio
 
 ```bash
 git rm [parámetros] [nombre del archivo]
@@ -117,9 +119,9 @@ Algunos de los parámetros opcionales más útiles al utilizar **git rm** para e
 
 - **-r:** Habilita la remoción recursiva cuando le es dado el nombre de un directorio.
 
-## Comandos para administrar ramas y versiones de Git
+## Administración de ramas y versiones en Git
 
-Las ramas permiten dividir el código fuente de una aplicación en diferentes líneas separadas cronológicamente que luego se unen para formar una solo código fuente, por defecto Git trabaja sobre la rama **master** pero normalmente cuando se trabaja en un equipo de desarrollo se utilizan diferentes ramas para que diferentes miembros del equipo trabajen en simultáneo en diferentes partes o funcionalidades de una misma aplicación, algunos de los conceptos más útiles al trabajar con ramas de Git son:
+Las ramas permiten dividir el código fuente de una aplicación en diferentes líneas separadas cronológicamente que luego se unen para formar una solo código fuente, por defecto Git trabaja sobre la rama **master** pero normalmente cuando se trabaja en un equipo de desarrollo se utilizan diferentes ramas para que varios miembros del equipo trabajen en simultáneo en partes o funcionalidades distintas de una misma aplicación, algunos de los conceptos más útiles al trabajar con ramas de Git son:
 
 - **merge:** Un merge es una operación que se realiza cuando se une el código de dos ramas diferentes para generar una nueva versión.
 - **conflicto:** Un conflicto es lo que sucede cuando al realizar un merge los cambios de una rama dañan el funcionamiento de la otra rama, por lo que la nueva versión no funciona correctamente, o simplemente los cambios son incompatibles, por lo que no se puede realizar el merge correctamente.
@@ -130,7 +132,15 @@ Las ramas permiten dividir el código fuente de una aplicación en diferentes l�
 git checkout [parámetros] [nombre de la rama|Id del commit] [nombre del archivo]
 ```
 
-Permite traer temporalmente los cambios de una rama, o versión especificada al directorio de trabajo, si no se indica un archivo se traen todos los cambios de la versión o rama especificada, para conservar los cambios basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por checkout se hace un nuevo checkout apuntando a la última versión.
+Permite traer temporalmente los cambios de una rama, o versión especificada al directorio de trabajo, si no se indica un archivo se traen todos los cambios de la versión o rama especificada, para conservar los cambios basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por el checkout se hace un nuevo checkout apuntando a la última versión o **Head**.
+
+### Fusionar ramas
+
+```bash
+git merge [parámetros] [nombre de la rama]
+```
+
+Fusiona los archivos de la rama actual con los de la rama indicada.
 
 ### Regresar a versiones anteriores del repositorio
 
@@ -143,3 +153,39 @@ Mueve el **Head** del **commit** actual al **commit** indicado, dependiendo del 
 - **--soft:** Elimina los cambios en el repositorio, mantiene los cambios del área de staging y mantiene los cambios en el directorio de trabajo, por lo que los cambios hechos luego del **commit** indicado en el área de staging y en el directorio de trabajo pueden agregarse al repositorio posteriormente con un **add** y un **commit**.
 - **--mixed:** Es el modo por defecto, Elimina los cambios en el repositorio, elimina los cambios del área de staging, pero mantiene los cambios en el directorio de trabajo, por lo que los cambios hechos luego del **commit** indicado en el directorio de trabajo pueden agregarse al repositorio posteriormente con un **add** y un **commit**.
 - **--hard:** Elimina los cambios en el repositorio, elimina los cambios del área de staging y elimina los cambios del directorio de trabajo, por lo que ninguno de los cambios hechos luego del **commit** podrán agregarse posteriormente al repositorio.
+
+## Administración de repositorios remotos con Git y GitHub
+
+Un repositorio remoto es lo que se utiliza en la mayoría de casos en los que un desarrollo es el producto del trabajo de varios desarrolladores que trabajan en equipo para construir una sola aplicación, por lo tanto, al utilizar un repositorio remoto como GitHub o GitLab lo que se hace es agregar una cuarta área adicional a las tres que se usan al trabajar con un repositorio Git local, que es la del servidor remoto al que se envían los cambios luego de ser **rastreados** por el repositorio local con un **commit** para que todas las personas del equipo puedan ver y trabajar sobre los cambios más recientes realizados en el repositorio remoto.
+
+### Clonar un repositorio remoto
+
+```bash
+git clone [parámetros] [url del repositorio]
+```
+
+Crea una copia de todos los archivos del repositorio remoto en el repositorio local y en el directorio de trabajo, sin cambiar nada en área de staging.
+
+### Subir cambios del repositorio local al repositorio remoto
+
+```bash
+git push [parámetros]
+```
+
+Envía todos los cambios hechos en el repositorio local al repositorio remoto, por lo tanto si se quieren enviar cambios recientes del directorio local al repositorio remoto primero se realizan un **add**, un **commit** y luego un **push**.
+
+### Traer los cambios del repositorio remoto al repositorio local
+
+```bash
+git fetch [parámetros]
+```
+
+Hace una copia del repositorio remoto en el repositorio local, sin alterar el área de staging ni el directorio de trabajo, por lo que si se quieren traer los cambios no solo al repositorio local si no también al directorio de trabajo hace falta realizar también un **merge**.
+
+### Traer los cambios repositorio remoto al repositorio local y al directorio de trabajo
+
+```bash
+git pull [parámetros]
+```
+
+Hace una copia del repositorio remoto en el repositorio local, y en el directorio de trabajo sin alterar el área de staging, es equivalente a hacer un **fetch** en simultáneo con un **merge** entre el directorio local y el repositorio local, el cual ya fue actualizado con los últimos cambios en el repositorio remoto mediante **fetch**.
