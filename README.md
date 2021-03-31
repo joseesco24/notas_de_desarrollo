@@ -5,6 +5,6 @@ Also, some of these notes have some cool diagrams that I draw to make each note 
 
 <br>
 <p align="center">
-<img src="images/images_readme.gif" width="30%" height="auto"/>
+<img src="images/images_readme.gif" width="20%" height="auto"/>
 </p>
 <br>
