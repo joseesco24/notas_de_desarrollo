@@ -1,7 +1,7 @@
 # Git y GitHub
 
-[**Git**](https://git-scm.com/doc) es el sistema de versionamiento más popular actualmente, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la final, lo que hace posible ver la evolución de los archivos con cada actualización sin almacenar cada versión completa, para esto Git emplea al interior de cada repositorio una base de datos que guarda los cambios de forma incremental, la cual se actualiza con cada versión nueva que llega al repositorio. [**GitHub**](https://docs.github.com/es) por su parte es el ssitema de versionamiento remoto más popular actualmente, GitHub además permite trabajo colaborativo sobre los archivos de un repositorio remoto.\
-Git y GitHub soportan versionamiento de archivos binarios, pero el versionamiento de archivos binarios no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan Git y GitHub solo para archivos de texto plano, como el código.
+[**Git**](https://git-scm.com/doc) es el sistema de versionamiento más popular actualmente, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la final, lo que hace posible ver la evolución de los archivos con cada actualización sin almacenar cada versión completa, para esto Git emplea al interior de cada repositorio una base de datos que guarda los cambios de forma incremental, la cual se actualiza con cada versión nueva que llega al repositorio. [**GitHub**](https://docs.github.com/es) por su parte es el ssitema de versionamiento remoto más popular actualmente, **GitHub** además permite trabajo colaborativo sobre los archivos de un repositorio remoto.\
+Git y **GitHub** soportan versionamiento de archivos binarios, pero el versionamiento de archivos binarios no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan Git y **GitHub** solo para archivos de texto plano, como el código.
 
 ## Flujo de trabajo básico en Git
 
@@ -217,36 +217,58 @@ Mueve el **Head** del **commit** actual al **commit** indicado, dependiendo del 
 <img src="images/remote_git_repository_basic_workflow.png" width="100%" height="auto"/>
 </p>
 
-Un repositorio remoto es lo que se utiliza en la mayoría de casos en los que un desarrollo es el producto del trabajo de varios desarrolladores que trabajan en equipo para construir una sola aplicación, por lo tanto, al utilizar un repositorio remoto como GitHub o GitLab lo que se hace es agregar una cuarta área adicional a las tres que se usan al trabajar con un repositorio Git local, que es la del servidor remoto al que se envían los cambios luego de ser **rastreados** por el repositorio local con un **commit** para que todas las personas del equipo puedan ver y trabajar sobre los cambios más recientes realizados en el repositorio remoto.
+Un repositorio remoto es lo que se utiliza en la mayoría de casos en los que un desarrollo es el producto del trabajo de varios desarrolladores que trabajan en equipo para construir una sola aplicación, por lo tanto, al utilizar un repositorio remoto como **GitHub** o **GitLab** lo que se hace es agregar una cuarta área adicional a las tres que se usan al trabajar con un repositorio Git local, que es la del servidor remoto al que se envían con un **push** los cambios luego de ser **rastreados** por el repositorio local con un **commit** para que todas las personas del equipo puedan ver y trabajar sobre los cambios más recientes realizados en el repositorio remoto.
+Las guías para crear repositorios remotos con [**GitHub**](https://guides.github.com/) y [**GitLab**](https://docs.gitlab.com/) estan enlazadas a sus nombres en este comentario.
+
+### Administrar repositorios remotos
+
+```bash
+git remote [sub comandos] --verbose
+```
+
+Permite realizar varias acciones en los diferentes repositorios remotos vinculados basados en Git según el sub comando indicado, si no se da algún subcomando muestra un listado de los repositorios remotos vinculados, se puede incluir un único parámetro al utilizar **git remote** sin sub comandos:
+
+- **-v, --verbose:** Hace que se muestran las urls además de los nombres asignados a los repositorios remotos al listarlos.
+
+#### Agregar repositorio remoto al repositorio local
+
+```bash
+git remote add [nombre del repositorio remoto] [url del repositorio remoto]
+```
+
+Vincula al repositorio local un repositorio remoto, el cual se puede llamar posteriormente con el nombre dado, normalmente **origin**, para realizar acciones como **push**, **pull** o **fetch**.
 
 ### Clonar un repositorio remoto
 
 ```bash
-git clone [parámetros] [url del repositorio]
+git clone [parámetros] [url del repositorio remoto]
 ```
 
-Crea una copia de todos los archivos del repositorio remoto en el repositorio local y en el directorio de trabajo, sin cambiar nada en área de staging.
-
-### Subir cambios del repositorio local al repositorio remoto
-
-```bash
-git push [parámetros]
-```
-
-Envía todos los cambios hechos en el repositorio local al repositorio remoto, por lo tanto si se quieren enviar cambios recientes del directorio local al repositorio remoto primero se realizan un **add**, un **commit** y luego un **push**.
+Crea una copia de todos los archivos del repositorio remoto en el repositorio local y en el directorio de trabajo, sin cambiar nada en el área de staging, además vincula la copia local con la remota, por lo que si se tiene los permisos se pueden hacer acciones como **push**, **pull** o **fetch** sin realizar configuraciones adicionales.
 
 ### Traer los cambios del repositorio remoto al repositorio local
 
 ```bash
-git fetch [parámetros]
+git fetch [parámetros] [nombre del repositorio remoto] [rama del repositorio local]
 ```
 
-Hace una copia del repositorio remoto en el repositorio local, sin alterar el área de staging ni el directorio de trabajo, por lo que si se quieren traer los cambios no solo al repositorio local si no también al directorio de trabajo hace falta realizar también un **merge**.
+Actualiza una rama del repositorio local con los últimos cambios de la misma rama del repositorio remoto, sin alterar el área de staging ni el directorio de trabajo, por lo que si se quieren traer los cambios no solo al repositorio local si no también al directorio de trabajo hace falta realizar también un **merge**.
 
 ### Traer los cambios repositorio remoto al repositorio local y al directorio de trabajo
 
 ```bash
-git pull [parámetros]
+git pull [parámetros] [nombre del repositorio remoto] [rama del repositorio local]
 ```
 
-Hace una copia del repositorio remoto en el repositorio local, y en el directorio de trabajo sin alterar el área de staging, es equivalente a hacer un **fetch** en simultáneo con un **merge** entre el directorio local y el repositorio local, el cual ya fue actualizado con los últimos cambios en el repositorio remoto mediante **fetch**.
+Actualiza una rama del repositorio local con los últimos cambios de la misma rama del repositorio remoto, y tambien trae los cambios al directorio de trabajo sin alterar el área de staging, es equivalente a hacer un **fetch** en simultáneo con un **merge** entre el directorio local y el repositorio local, el cual ya fue actualizado con los últimos cambios en el repositorio remoto mediante **fetch**.
+
+### Subir cambios del repositorio local al repositorio remoto
+
+```bash
+git push [parámetros] [nombre del repositorio remoto] [nombre de la rama]
+```
+
+Envía los cambios hechos en una rama del repositorio local al repositorio remoto, por lo tanto si se quieren enviar los cambios más recientes del directorio local al repositorio remoto primero se realizan un **pull**, un **add**, un **commit** y luego un **push**, esta secuencia de comandos se usa para traer los cambios más recientes del repositorio remoto al local, para enviar los cambios del repositorio local al área de staging luego al repositorio local y por último al repositorio remoto, algunos de los parámetros más útiles al utilizar **git push** son:
+
+- **--all:** Actualiza todas las ramas del repositorio remoto con los cambios de las ramas del repositorio local, al utilizar este parámetro no hace falta indicar el nombre de una rama en concreto.
+- **-u, --set-upstream:**
