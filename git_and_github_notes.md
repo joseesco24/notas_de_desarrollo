@@ -160,6 +160,8 @@ Mueve el **Head** del **commit** actual al **commit** indicado, dependiendo del 
 
 ## Administración de repositorios remotos con Git y GitHub
 
+![Remote git repository basic workflow](/images/remote_git_repository_basic_workflow.png)
+
 Un repositorio remoto es lo que se utiliza en la mayoría de casos en los que un desarrollo es el producto del trabajo de varios desarrolladores que trabajan en equipo para construir una sola aplicación, por lo tanto, al utilizar un repositorio remoto como GitHub o GitLab lo que se hace es agregar una cuarta área adicional a las tres que se usan al trabajar con un repositorio Git local, que es la del servidor remoto al que se envían los cambios luego de ser **rastreados** por el repositorio local con un **commit** para que todas las personas del equipo puedan ver y trabajar sobre los cambios más recientes realizados en el repositorio remoto.
 
 ### Clonar un repositorio remoto
