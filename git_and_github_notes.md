@@ -122,7 +122,7 @@ Algunos de los parámetros opcionales más útiles al utilizar **git rm** para e
 
 ## Administración de ramas y versiones en Git
 
-![Git branches system](/images/git_branches_system.png)
+<img src="images/git_branches_system.png" width="100%" height="auto" style="padding: 0px; margin: 0px; border: none; line-height:0;"/>
 
 Las ramas permiten dividir el código fuente de una aplicación en diferentes líneas separadas cronológicamente que luego se unen para formar una solo código fuente, por defecto Git trabaja sobre la rama **master** pero normalmente cuando se trabaja en un equipo de desarrollo se utilizan diferentes ramas para que varios miembros del equipo trabajen en simultáneo en partes o funcionalidades distintas de una misma aplicación. Cuando se crea una rama nueva basicamente lo que se hace es crear una copia de la última versión de la rama master de una nueva rama separada, y los cambios que se realicen en esta nueva rama no serán visibles en master hasta que no se fusionan las dos ramas con una operación llamada **merge**.
 \. algunos de los conceptos más útiles al trabajar con ramas de Git son:
