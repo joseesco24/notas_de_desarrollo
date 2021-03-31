@@ -5,7 +5,7 @@ Git y GitHub soportan versionamiento de archivos binarios, pero el versionamient
 
 ## Flujo de trabajo básico en Git
 
-![Local git repository basic workflow](/images/local_git_repository_basic_workflow.png)
+<img src="images/local_git_repository_basic_workflow.png" width="100%" height="auto" style="padding: 0px; margin: 0px; border: none;"/>
 
 Cuando se versionan archivos con repositorios Git locales los cambios pueden estar almacenados en tres posibles áreas, la primera es el **directorio de trabajo**, que simplemente es el directorio dentro de la máquina local en el que se inició el repositorio, la segunda área es el **área de staging**, que es un área de almacenamiento en la ram de la máquina local donde se preparan los cambios para ser agregados al repositorio y por ultimo esta el **repositorio**, que es un área de almacenamiento local o remota donde se guardan los archivos y se registran sus respectivos cambios a través de cada versión, dependiendo del nivel en el que esté un cambio este se puede considerar como **no rastreado** cuando solo está presente en el **directorio de trabajo**, **en espera** cuando está presente en el **directorio de trabajo** y el **área de staging** y **rastreado** cuando pasa a estar en **las tres áreas** luego de ser enviado del **área de staging** al **repositorio**, algunos de los conceptos más útiles al trabajar con Git de forma básica son:
 
@@ -122,7 +122,7 @@ Algunos de los parámetros opcionales más útiles al utilizar **git rm** para e
 
 ## Administración de ramas y versiones en Git
 
-<img src="images/git_branches_system.png" width="100%" height="auto" style="padding: 0px; margin: 0px; border: none; line-height:0;"/>
+<img src="images/git_branches_system.png" width="100%" height="auto" style="padding: 0px; margin: 0px; border: none;"/>
 
 Las ramas permiten dividir el código fuente de una aplicación en diferentes líneas separadas cronológicamente que luego se unen para formar una solo código fuente, por defecto Git trabaja sobre la rama **master** pero normalmente cuando se trabaja en un equipo de desarrollo se utilizan diferentes ramas para que varios miembros del equipo trabajen en simultáneo en partes o funcionalidades distintas de una misma aplicación. Cuando se crea una rama nueva basicamente lo que se hace es crear una copia de la última versión de la rama master de una nueva rama separada, y los cambios que se realicen en esta nueva rama no serán visibles en master hasta que no se fusionan las dos ramas con una operación llamada **merge**.
 \. algunos de los conceptos más útiles al trabajar con ramas de Git son:
@@ -160,7 +160,7 @@ Mueve el **Head** del **commit** actual al **commit** indicado, dependiendo del 
 
 ## Administración de repositorios remotos con Git y GitHub
 
-![Remote git repository basic workflow](/images/remote_git_repository_basic_workflow.png)
+<img src="images/remote_git_repository_basic_workflow.png" width="100%" height="auto" style="padding: 0px; margin: 0px; border: none;"/>
 
 Un repositorio remoto es lo que se utiliza en la mayoría de casos en los que un desarrollo es el producto del trabajo de varios desarrolladores que trabajan en equipo para construir una sola aplicación, por lo tanto, al utilizar un repositorio remoto como GitHub o GitLab lo que se hace es agregar una cuarta área adicional a las tres que se usan al trabajar con un repositorio Git local, que es la del servidor remoto al que se envían los cambios luego de ser **rastreados** por el repositorio local con un **commit** para que todas las personas del equipo puedan ver y trabajar sobre los cambios más recientes realizados en el repositorio remoto.
 
