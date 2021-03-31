@@ -12,7 +12,7 @@ Git y GitHub soportan versionamiento de archivos binarios, pero el versionamient
 Cuando se versionan archivos con repositorios Git locales los cambios pueden estar almacenados en tres posibles áreas, la primera es el **directorio de trabajo**, que simplemente es el directorio dentro de la máquina local en el que se inició el repositorio, la segunda área es el **área de staging**, que es un área de almacenamiento en la ram de la máquina local donde se preparan los cambios para ser agregados al repositorio y por ultimo esta el **repositorio**, que es un área de almacenamiento local o remota donde se guardan los archivos y se registran sus respectivos cambios a través de cada versión, dependiendo del nivel en el que esté un cambio este se puede considerar como **no rastreado** cuando solo está presente en el **directorio de trabajo**, **en espera** cuando está presente en el **directorio de trabajo** y el **área de staging** y **rastreado** cuando pasa a estar en **las tres áreas** luego de ser enviado del **área de staging** al **repositorio**, algunos de los conceptos más útiles al trabajar con Git de forma básica son:
 
 - **commit:** Un commit es lo que sucede cuando un cambio pasa del área de staging al repositorio, es decir que pasa de estra **en espera** a estar **rastreado** por la base de datos de cambios del repositorio, al ser aceptado un cambio como una nueva versión con un commit, Git le asigna un número de versión o Id que identifica esa nueva versión, y además se registran otros metadatos como la fecha, hora y el usuario que hizo el commit, por lo que cada cambio en Git es rastreable por su Id y por los otros metadatos que son almacenados al hacer el commit.
-- **Head:** Los archivos del Head corresponden con los últimos cambios que fueron rastreados por el repositorio mediante un **commit**.
+- **Head:** Es la última versión rastreada por el repositorio mediante un **commit** en la rama actual.
 
 ### Mostrar comandos populares de git
 
@@ -70,7 +70,7 @@ git commit [parámetros]
 
 Envía los últimos cambios desde el área de staging al repositorio para que este los registre en su base de datos de cambios, creando así una nueva versión basándose en los cambios realizados sobre uno o varios archivos, al crear una nueva versión a esta se le asigna un Id de versión y los cambios realizados en los archivo que son visibles para todos en el repositorio, por defecto los **commit** se realizan sobre la rama **master** si no se cambia la rama de trabajo actual, algunos de los parámetros más útiles al utilizar **git commit** para enviar los cambios del área de staging al repositorio son:
 
-- **-m, --message "[comentario]":** Permite agregar un mensaje al **commit**, idealmente todos los **commits** deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión del versionamiento y los cambios hechos.
+- **-m, --message "[mensaje]":** Permite agregar un mensaje al **commit**, idealmente todos los **commits** deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión del versionamiento y los cambios hechos.
 - **-a, --all:** Indica a Git que al hacer el **commit** pase al área de staging todos los cambios en los archivos que han sido previamente rastreados, es equivalente a realizar un **add** solo sobre los archivos que ya han sido registrados y luego un **commit** estándar, por lo que sí se han agregado nuevos archivos desde el último **commit** si es necesario utilizar **add** primero incluso usando este parámetro.
 
 ### Comprobar el estatus de la base de datos de cambios del repositorio
@@ -134,13 +134,24 @@ Las ramas permiten dividir el código fuente de una aplicación en diferentes l�
 - **merge:** Un merge es una operación que se realiza cuando se une el código de dos ramas diferentes para generar una nueva versión.
 - **conflicto:** Un conflicto es lo que sucede cuando al realizar un merge los cambios de una rama dañan el funcionamiento de la otra rama, por lo que la nueva versión no funciona correctamente, o simplemente los cambios son incompatibles, por lo que no se puede realizar el merge correctamente.
 
-### Moverse entre versiones
+### Crear listar y eliminar ramas
 
 ```bash
-git checkout [parámetros] [nombre de la rama|Id del commit|HEAD] [nombre del archivo]
+git branch [parámetros] [nombre de la rama]
 ```
 
-Permite traer temporalmente los cambios de una rama, o versión especificada al directorio de trabajo, si no se indica un archivo se traen todos los cambios de la versión o rama especificada, para conservar los cambios basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por el checkout se hace un nuevo checkout apuntando a la última versión o **Head**.
+Lista, crea o elimina ramas del repositorio, la acción por defecto si no se dan parámetros adicionales y se da un nombre es crear una nueva rama con el nombre indicado, si no se dan parámetros y nombres lista las ramas y resalta la rama actual, algunos de los parámetros más útiles al usar **git branch** son:
+
+- **-l, --list [patron]:** Modifica la función del comando para listar las ramas locales, adicionalmente se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
+- **-r, --remotes:** Modifica la función del comando para listar las ramas remotas, al combinarlo con **--list** se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
+- **-a, --all:** Modifica la función del comando para listar ramas locales y remotas, al combinarlo con **--list** se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
+- **-d, --delete:** Modifica la función del comando para eliminar ramas, para eliminar una rama sin errores usando este parámetro la rama primero se debe haber sincronizado con el repositorio remoto.
+- **-m, --move [nuevo nombre]:** Renombra una rama.
+- **-c, --copy [nombre de copia de la rama]:** Copia una rama actual en otra.
+- **-f, --force:** Restablece el estado de la rama indicada a su estado inicial, incluso si el nombre inicial de la rama fue asignado a otra rama que actualmente existe, al usare con **--delete** permite borrar una rama independientemente de su estatus, al combinarse con **--move** permite renombrar una rama incluso si el nombre nuevo ya existe y al combinarse con **--copy** permite copiar una rama incluso si el nombre de la copia ya existe.
+- **-D:** Atajo para la combinación de **--delete --force**.
+- **-M:** Atajo para la combinación de **--move --force**.
+- **-C:** Atajo para la combinación de **--copy --force**.
 
 ### Fusionar ramas
 
@@ -148,7 +159,45 @@ Permite traer temporalmente los cambios de una rama, o versión especificada al 
 git merge [parámetros] [nombre de la rama]
 ```
 
-Fusiona los archivos de la rama actual con los de la rama indicada.
+Fusiona los archivos de la rama indicada con la rama actual, algunos de los parámetros más útiles al usar **git merge** son:
+
+- **-m [mensaje]:** Un merge por defecto genera una nueva versión y un commit, por lo que es necesario que haya un mensaje que indique los cambios que se hicieron en el último commit.
+
+Al fusionar dos o más ramas con **merge** pueden presentarse conflictos cuando en las ramas se alteran las mismas líneas de diferentes formas, para solventar estos conflictos se deben borrar todas las líneas que no correspondan con los cambios que se desean conservar en la rama, la forma en la que Git representa un conflicto en un archivo es usando **<<<<<<< HEAD** para indicar donde inicia el código de la rama actual, **>>>>>>> new_branch_to_merge_later** para indicar donde finaliza el código de la rama que se quiere fusionar con la rama actual (en este caso **new_branch_to_merge_later**) y **=======** para indicar el final del código de la rama actual y el inicio del de la rama que se quiere fusionar, un ejemplo de cómo se representa un conflicto por Git sería el siguiente:
+
+```python
+<<<<<<< HEAD
+print("HolaMundo")
+=======
+print("HelloWorld")
+>>>>>>> new_branch_to_merge_later
+```
+
+En este caso suponiendo que se quiera conservar el mensaje que diga **HolaMundo** en la rama actual se eliminará el resto del código, dejando como resultado:
+
+```python
+print("HolaMundo")
+```
+
+En caso contrario el resultado sería:
+
+```python
+print("HelloWorld")
+```
+
+Algunos editores tienen herramientas para resolución de conflictos integradas, pero simplemente consisten en lo mismo, borrar las partes que no se quieren conservar dejando en el archivo solo las que se quieren conservar.
+
+### Moverse entre ramas o restaurar versiones de archivos
+
+```bash
+git checkout [parámetros] [nombre de la rama|Id del commit|HEAD] [nombre del archivo]
+```
+
+```bash
+git checkout [parámetros] [nombre de la rama]
+```
+
+Permite moverse entre ramas, o restaurar versiones especificadas de un archivo en el directorio de trabajo, si no se indica un archivo la acción por defecto es cambiar entre ramas, para conservar los cambios luego de restaurar un archivo basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por el checkout se hace un nuevo checkout apuntando a la última versión o **Head** para descartarlos.
 
 ### Regresar a versiones anteriores del repositorio
 
