@@ -1,7 +1,7 @@
 # Git y GitHub
 
 [**Git**](https://git-scm.com/doc) es el sistema de versionamiento más popular actualmente, **Git** permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la final, lo que hace posible ver la evolución de los archivos con cada actualización sin almacenar cada versión completa, para esto **Git** emplea al interior de cada repositorio una base de datos que guarda los cambios de forma incremental, la cual se actualiza con cada versión nueva que llega al repositorio. [**GitHub**](https://docs.github.com/es) por su parte es el sistema de versionamiento remoto más popular actualmente, **GitHub** además permite trabajo colaborativo sobre los archivos de un repositorio remoto.\
-Git y **GitHub** soportan versionamiento de archivos binarios, pero el versionamiento de archivos binarios no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan **Git** y **GitHub** solo para archivos de texto plano, como el código.
+**Git** y **GitHub** soportan versionamiento de archivos binarios, pero el versionamiento de archivos binarios no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan **Git** y **GitHub** solo para archivos de texto plano, como el código.
 
 <br>
 
@@ -150,8 +150,7 @@ Algunos de los parámetros opcionales más útiles al utilizar **git rm** para e
 
 - **-r:** Habilita la remoción recursiva cuando le es dado el nombre de un directorio.
 
-<br>
-<br>
+<br><br>
 
 ## Administración de ramas y versiones en Git
 
@@ -169,20 +168,44 @@ Las ramas permiten dividir el código fuente de una aplicación en diferentes l�
 
 ### Administrar ramas
 
+El comando **git branch** se emplea para realizar las principales acciones que realiza git en relación con ramas, como crear, listar y eliminar ramas, además de otras adicionales, como crear copias de ramas o renombrar ramas.
+
+#### Crear ramas
+
 ```bash
 git branch [parámetros] [nombre de la rama]
 ```
 
-Lista, crea o elimina ramas del repositorio, la acción por defecto si no se dan parámetros adicionales y se da un nombre es crear una nueva rama con el nombre indicado, si no se dan parámetros y nombres lista las ramas y resalta la rama actual, algunos de los parámetros más útiles al usar **git branch** son:
+La acción por defecto de **git branch** si no se dan parámetros y se da un nombre es crear una nueva rama con el nombre indicado.
 
-- **-l, --list [patron]:** Modifica la función del comando para listar las ramas locales, adicionalmente se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
+#### Listar ramas
+
+```bash
+git branch [parámetros]
+```
+
+La acción por defecto de **git branch** si no se dan parámetros y no se da un nombre es listar las ramas disponibles resaltando la rama actual, algunos de los parámetros más útiles para listar ramas usando **git branch** son:
+
+- **-l, --list [patron]:** Es equivalente a usar **git branch** sin parámetros, pero adicionalmente se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
 - **-r, --remotes:** Modifica la función del comando para listar las ramas remotas, al combinarlo con **--list** se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
 - **-a, --all:** Modifica la función del comando para listar ramas locales y remotas, al combinarlo con **--list** se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
-- **-d, --delete:** Modifica la función del comando para eliminar ramas, para eliminar una rama sin errores usando este parámetro la rama primero se debe haber sincronizado con el repositorio remoto.
-- **-m, --move [nuevo nombre]:** Renombra una rama.
-- **-c, --copy [nombre de copia de la rama]:** Copia una rama actual en otra.
-- **-f, --force:** Restablece el estado de la rama indicada a su estado inicial, incluso si el nombre inicial de la rama fue asignado a otra rama que actualmente existe, al usare con **--delete** permite borrar una rama independientemente de su estatus, al combinarse con **--move** permite renombrar una rama incluso si el nombre nuevo ya existe y al combinarse con **--copy** permite copiar una rama incluso si el nombre de la copia ya existe.
+
+#### Eliminar ramas
+
+```bash
+git branch --delete [parámetros adicionales]
+```
+
+Para eliminar una rama se debe usar el comando **git branch** junto al parámetro **-d** o **--delete**, usando este parámetro en cualquiera de sus dos formas se modifica la función del comando para eliminar ramas, sin embargo, para eliminar una rama sin errores usando este parámetro la rama primero se debe haber sincronizado con el repositorio remoto en caso de tener uno, algunos de los parámetros adicionales más útiles para eliminar ramas usando **git branch** en combinación con el parámetro **-d** o **--delete** son:
+
+- **-f, --force:** Al usare con **--delete** permite borrar una rama independientemente de su estatus.
 - **-D:** Atajo para la combinación de **--delete --force**.
+
+#### Parámetros adicionales
+
+- **-m, --move [nuevo nombre]:** Renombra la rama actual.
+- **-c, --copy [nombre de copia de la rama]:** Crear una copia de la rama actual.
+- **-f, --force:** Restablece el estado de la rama actual a su estado inicial, incluso si el nombre inicial de la rama fue asignado a otra rama que aún existe, al combinarse con **--move** permite renombrar la rama actual incluso si el nombre nuevo ya existe y al combinarse con **--copy** permite crear una copia de la rama actual incluso si el nombre de la copia ya existe.
 - **-M:** Atajo para la combinación de **--move --force**.
 - **-C:** Atajo para la combinación de **--copy --force**.
 
@@ -246,9 +269,9 @@ Traer los archivos de una rama al directorio de trabajo y cambiar la rama actual
 
 <br>
 
-### Administrar tags de versión
+### Administrar tags
 
-Los tag son una manera de etiquetar estados de un repositorio, se usan comúnmente para indicar las versiones o releases de un proyecto mantenido con **Git**, sin embargo, el versionamiento no afecta internamente al proyecto, solo establece etiquetas asociadas a los releases, usualmente el etiquetado de versiones usando tags se hace siguiendo el [**versionamiento semántico**](https://semver.org/lang/es/), que es uno de los más populares y sencillos de usar.
+Los tag son una manera de etiquetar estados de un repositorio, se usan comúnmente para indicar las versiones o releases de un proyecto mantenido con **Git**, sin embargo, el versionamiento no afecta internamente al proyecto, solo establece etiquetas asociadas a los releases, usualmente el etiquetado de versiones usando tags se hace siguiendo el [**versionamiento semántico**](https://semver.org/lang/es/), que es uno de los más populares y sencillos de usar, la mayor parte de las acciones que se realizan en Git con relación a los tags se realizan usando el comando **git tag**.
 
 #### Crear tags
 
@@ -308,8 +331,7 @@ Mueve el **Head** del **commit** actual al **commit** indicado, dependiendo del 
 - **--mixed:** Es el modo por defecto, Elimina los cambios en el repositorio, elimina los cambios del área de staging, pero mantiene los cambios en el directorio de trabajo, por lo que los cambios hechos luego del **commit** indicado en el directorio de trabajo pueden agregarse al repositorio posteriormente con un **add** y un **commit**.
 - **--hard:** Elimina los cambios en el repositorio, elimina los cambios del área de staging y elimina los cambios del directorio de trabajo, por lo que ninguno de los cambios hechos luego del **commit** podrán agregarse posteriormente al repositorio.
 
-<br>
-<br>
+<br><br>
 
 ## Administración de repositorios remotos con Git y GitHub
 
@@ -331,8 +353,6 @@ git remote [sub comandos] --verbose
 Permite realizar varias acciones en los diferentes repositorios remotos vinculados basados en **Git** según el sub comando indicado, si no se da algún subcomando muestra un listado de los repositorios remotos vinculados, se puede incluir un único parámetro al utilizar **git remote** sin sub comandos:
 
 - **-v, --verbose:** Hace que se muestran las urls además de los nombres asignados a los repositorios remotos al listarlos.
-
-<br>
 
 #### Agregar repositorio remoto al repositorio local
 
@@ -395,8 +415,7 @@ Envía los cambios hechos en los tags o en una rama del repositorio local al rep
 - **--all:** Actualiza todas las ramas del repositorio remoto con los cambios de las ramas del repositorio local, al utilizar este parámetro no hace falta indicar el nombre de una rama en concreto.
 - **-u, --set-upstream:**
 
-<br>
-<br>
+<br><br>
 
 ## Conexión con **GitHub** usando protocolo SSH
 
