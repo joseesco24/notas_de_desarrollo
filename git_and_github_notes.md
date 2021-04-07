@@ -3,6 +3,8 @@
 [**Git**](https://git-scm.com/doc) es el sistema de versionamiento más popular actualmente, **Git** permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la final, lo que hace posible ver la evolución de los archivos con cada actualización sin almacenar cada versión completa, para esto **Git** emplea al interior de cada repositorio una base de datos que guarda los cambios de forma incremental, la cual se actualiza con cada versión nueva que llega al repositorio. [**GitHub**](https://docs.github.com/es) por su parte es el sistema de versionamiento remoto más popular actualmente, **GitHub** además permite trabajo colaborativo sobre los archivos de un repositorio remoto.\
 Git y **GitHub** soportan versionamiento de archivos binarios, pero el versionamiento de archivos binarios no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan **Git** y **GitHub** solo para archivos de texto plano, como el código.
 
+<br>
+
 ## Flujo de trabajo básico en Git
 
 <p align="center">
@@ -14,6 +16,8 @@ Cuando se versionan archivos con repositorios **Git** locales los cambios pueden
 - **commit:** Un commit es lo que sucede cuando un cambio pasa del área de staging al repositorio, es decir que pasa de estra **en espera** a estar **rastreado** por la base de datos de cambios del repositorio, al ser aceptado un cambio como una nueva versión con un commit, **Git** le asigna un número de versión o Id que identifica esa nueva versión, y además se registran otros metadatos como la fecha, hora y el usuario que hizo el commit, por lo que cada cambio en **Git** es rastreable por su Id y por los otros metadatos que son almacenados al hacer el commit.
 - **Head:** Es la última versión rastreada por el repositorio mediante un **commit** en la rama actual.
 
+<br>
+
 ### Mostrar comandos populares de git
 
 ```bash
@@ -22,6 +26,8 @@ git
 
 Muestra algunos de los comandos más comunes usados en **Git** junto con una breve descripción de sus funciones.
 
+<br>
+
 ### Mostrar ayuda de un comando
 
 ```bash
@@ -29,6 +35,8 @@ git [comando] --help
 ```
 
 Muestra todos los parámetros que acepta un comando, además de una descripción muy detallada de la función del comando, si no se incluye un comando antes de **--help** es equivalente a **git**.
+
+<br>
 
 ### Configuración de Git
 
@@ -46,6 +54,8 @@ Algunos de los parámetros configurables más importantes de un repositorio son:
 - **user.email=[correo del usuario]:** Cambia el correo electrónico del usuario.
 - **user.name=[nombre del usuario]:** Cambia el nombre del usuario.
 
+<br>
+
 ### Iniciar o finalizar un repositorio
 
 ```bash
@@ -54,6 +64,8 @@ git init [parámetros]
 
 Inicia un repositorio **Git** en el directorio actual o lo elimina si el repositorio ya está creado, en caso de iniciarse el repositorio **Git** internamente crea el área de staging del repositorio y el repositorio, sin tocar el directorio de trabajo, el repositorio se crea dentro del directorio de trabajo en una carpeta oculta llamada **.git** y el área de staging se crea en la ram, si se utiliza **Git** init para finalizar el repositorio **Git** elimina el área de staging y el repositorio, sin tocar el directorio de trabajo.
 
+<br>
+
 ### Agregar archivos al área de staging del repositorio
 
 ```bash
@@ -61,6 +73,8 @@ git add [parámetros] [ruta del archivo o directorio]
 ```
 
 Inicia el rastreo de uno o varios archivos agregandolos al área de staging del repositorio. Lo más normal es usar **.** como ruta para rastrear y agregar todos los archivos de la carpeta actual al área de staging.
+
+<br>
 
 ### Registrar cambios en el repositorio
 
@@ -73,6 +87,8 @@ Envía los últimos cambios desde el área de staging al repositorio para que es
 - **-m, --message "[mensaje]":** Permite agregar un mensaje al **commit**, idealmente todos los **commits** deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión del versionamiento y los cambios hechos.
 - **-a, --all:** Indica a **Git** que al hacer el **commit** pase al área de staging todos los cambios en los archivos que han sido previamente rastreados, es equivalente a realizar un **add** solo sobre los archivos que ya han sido registrados y luego un **commit** estándar, por lo que sí se han agregado nuevos archivos desde el último **commit** si es necesario utilizar **add** primero incluso usando este parámetro.
 
+<br>
+
 ### Comprobar el estatus de la base de datos de cambios del repositorio
 
 ```bash
@@ -81,13 +97,17 @@ git status
 
 Muestra el estatus de la base de datos de cambios del repositorio.
 
-### Comparar cambios entre versiones de diferentes archivos
+<br>
+
+### Comparar cambios entre versiones del repositorio
 
 ```bash
 git diff [parámetros] [Id del commit antiguo] [Id del commit nuevo]
 ```
 
 Muestra los cambios entre una versión y otra del repositorio usando dos Id de los diferentes **commits**, si no se indican los **commits** con los que se quiere hacer el diff, usando su Id, por defecto el diff se realiza entre el directorio de trabajo y el área de staging.
+
+<br>
 
 ### Mostrar los logs del repositorio
 
@@ -103,6 +123,8 @@ Muestra todos los cambios históricos hechos en el repositorio al no incluir par
 - **--oneline:** Muestra una sola línea de texto de cada log.
 - **--decorate:** Decora las líneas del grafo.
 
+<br>
+
 ### Mostrar los cambios del repositorio
 
 ```bash
@@ -110,6 +132,8 @@ git show [parámetros]
 ```
 
 Muestra todos los cambios históricos hechos en el repositorio al no incluir parámetros, show se centra en los cambios de las líneas realizados en los archivos, por lo que siempre muestra un diff entre el commit actual y el anterior de los archivos modificados en el último commit, ademas show muestra también toda la información que muestra log.
+
+<br>
 
 ### Eliminar archivos del área de staging o del repositorio
 
@@ -126,6 +150,9 @@ Algunos de los parámetros opcionales más útiles al utilizar **git rm** para e
 
 - **-r:** Habilita la remoción recursiva cuando le es dado el nombre de un directorio.
 
+<br>
+<br>
+
 ## Administración de ramas y versiones en Git
 
 <p align="center">
@@ -137,6 +164,8 @@ Las ramas permiten dividir el código fuente de una aplicación en diferentes l�
 
 - **merge:** Un merge es una operación que se realiza cuando se une el código de dos ramas diferentes para generar una nueva versión.
 - **conflicto:** Un conflicto es lo que sucede cuando al realizar un merge los cambios de una rama dañan el funcionamiento de la otra rama, por lo que la nueva versión no funciona correctamente, o simplemente los cambios son incompatibles, por lo que no se puede realizar el merge correctamente.
+
+<br>
 
 ### Administrar ramas
 
@@ -156,6 +185,8 @@ Lista, crea o elimina ramas del repositorio, la acción por defecto si no se dan
 - **-D:** Atajo para la combinación de **--delete --force**.
 - **-M:** Atajo para la combinación de **--move --force**.
 - **-C:** Atajo para la combinación de **--copy --force**.
+
+<br>
 
 ### Fusionar ramas
 
@@ -191,6 +222,8 @@ print("HelloWorld")
 
 Algunos editores tienen herramientas para resolución de conflictos integradas, pero simplemente consisten en lo mismo, borrar las partes que no se quieren conservar dejando en el archivo solo las que se quieren conservar.
 
+<br>
+
 ### Moverse entre ramas y versiones
 
 El comando **git checkout** actualiza los archivos del directorio de trabajo para que correspondan con los de una rama o una versión específica del repositorio.
@@ -210,6 +243,8 @@ git checkout [parámetros] [nombre de la rama]
 ```
 
 Traer los archivos de una rama al directorio de trabajo y cambiar la rama actual.
+
+<br>
 
 ### Administrar tags de versión
 
@@ -259,6 +294,8 @@ Al usar el comando **git tag** con el parámetro **-d** se elimina el tag corres
 git push [nombre del repositorio remoto] :refs/tags/[nombre del tag]
 ```
 
+<br>
+
 ### Regresar a versiones anteriores del repositorio
 
 ```bash
@@ -271,6 +308,9 @@ Mueve el **Head** del **commit** actual al **commit** indicado, dependiendo del 
 - **--mixed:** Es el modo por defecto, Elimina los cambios en el repositorio, elimina los cambios del área de staging, pero mantiene los cambios en el directorio de trabajo, por lo que los cambios hechos luego del **commit** indicado en el directorio de trabajo pueden agregarse al repositorio posteriormente con un **add** y un **commit**.
 - **--hard:** Elimina los cambios en el repositorio, elimina los cambios del área de staging y elimina los cambios del directorio de trabajo, por lo que ninguno de los cambios hechos luego del **commit** podrán agregarse posteriormente al repositorio.
 
+<br>
+<br>
+
 ## Administración de repositorios remotos con Git y GitHub
 
 <p align="center">
@@ -279,6 +319,8 @@ Mueve el **Head** del **commit** actual al **commit** indicado, dependiendo del 
 
 Un repositorio remoto es lo que se utiliza en la mayoría de casos en los que un desarrollo es el producto del trabajo de varios desarrolladores que trabajan en equipo para construir una sola aplicación, por lo tanto, al utilizar un repositorio remoto como **GitHub** o **GitLab** lo que se hace es agregar una cuarta área adicional a las tres que se usan al trabajar con un repositorio **Git** local, que es la del servidor remoto al que se envían con un **push** los cambios luego de ser **rastreados** por el repositorio local con un **commit** para que todas las personas del equipo puedan ver y trabajar sobre los cambios más recientes realizados en el repositorio remoto.\
 Las guías para crear repositorios remotos con [**GitHub**](https://guides.github.com/) y [**GitLab**](https://docs.gitlab.com/) estan enlazadas a sus nombres en este comentario.
+
+<br>
 
 ### Administrar repositorios remotos
 
@@ -290,6 +332,8 @@ Permite realizar varias acciones en los diferentes repositorios remotos vinculad
 
 - **-v, --verbose:** Hace que se muestran las urls además de los nombres asignados a los repositorios remotos al listarlos.
 
+<br>
+
 #### Agregar repositorio remoto al repositorio local
 
 ```bash
@@ -297,6 +341,8 @@ git remote add [nombre del repositorio remoto] [url del repositorio remoto]
 ```
 
 Vincula al repositorio local un repositorio remoto, el cual se puede llamar posteriormente con el nombre dado, normalmente **origin**, para realizar acciones como **push**, **pull** o **fetch**.
+
+<br>
 
 ### Cambiar la url de un repositorio remoto
 
@@ -306,6 +352,8 @@ git remote set-url [nombre del repositorio remoto] [url del repositorio remoto]
 
 Cambia la url del repositorio remoto, es especialmente útil cuando se quiere cambiar la conexión de un repositorio de protocolo HTTPS a SSH.
 
+<br>
+
 ### Clonar un repositorio remoto
 
 ```bash
@@ -313,6 +361,8 @@ git clone [parámetros] [url del repositorio remoto]
 ```
 
 Crea una copia de todos los archivos del repositorio remoto en el repositorio local y en el directorio de trabajo, sin cambiar nada en el área de staging, además vincula la copia local con la remota, por lo que si se tiene los permisos se pueden hacer acciones como **push**, **pull** o **fetch** sin realizar configuraciones adicionales.
+
+<br>
 
 ### Traer los cambios del repositorio remoto al repositorio local
 
@@ -322,6 +372,8 @@ git fetch [parámetros] [nombre del repositorio remoto] [rama del repositorio lo
 
 Actualiza una rama del repositorio local con los últimos cambios de la misma rama del repositorio remoto, sin alterar el área de staging ni el directorio de trabajo, por lo que si se quieren traer los cambios no solo al repositorio local si no también al directorio de trabajo hace falta realizar también un **merge**.
 
+<br>
+
 ### Traer los cambios repositorio remoto al repositorio local y al directorio de trabajo
 
 ```bash
@@ -329,6 +381,8 @@ git pull [parámetros] [nombre del repositorio remoto] [rama del repositorio loc
 ```
 
 Actualiza una rama del repositorio local con los últimos cambios de la misma rama del repositorio remoto, y tambien trae los cambios al directorio de trabajo sin alterar el área de staging, es equivalente a hacer un **fetch** en simultáneo con un **merge** entre el directorio local y el repositorio local, el cual ya fue actualizado con los últimos cambios en el repositorio remoto mediante **fetch**.
+
+<br>
 
 ### Subir cambios del repositorio local al repositorio remoto
 
@@ -341,6 +395,9 @@ Envía los cambios hechos en los tags o en una rama del repositorio local al rep
 - **--all:** Actualiza todas las ramas del repositorio remoto con los cambios de las ramas del repositorio local, al utilizar este parámetro no hace falta indicar el nombre de una rama en concreto.
 - **-u, --set-upstream:**
 
+<br>
+<br>
+
 ## Conexión con **GitHub** usando protocolo SSH
 
 <p align="center">
@@ -350,6 +407,8 @@ Envía los cambios hechos en los tags o en una rama del repositorio local al rep
 Establecer que las conexiones a un repositorio en **GitHub** se hagan con el protocolo SSH en lugar del HTTPS permiten agregar al repositorio una capa adicional de seguridad, ya que de esta forma los archivos enviados entre el repositorio remoto y cualquier otra máquina están totalmente cifrados y protegidos, **GitHub** usa una llave privada y una llave pública para conseguir este cifrado, el cual se basa en una serie de algoritmos de cifrado y descifrado asimétricos usando el par de llaves para cifrar y descifrar los archivos, de tal forma que para poder descifrar cualquier archivo cifrado con una llave pública es necesario tener la contraparte privada de esa llave, la cual se crea y vincula al mismo tiempo en el que se crea la llave pública, la llave privada bajo ninguna circunstancia debe salir de la máquina que establece la conexión SSH con **GitHub**. Para crear una conexión SSH bilateral, cifrada y segura entre cualquier máquina y **GitHub** hace falta por lo tanto crear las dos llaves en la máquina que va a establecer la conexión, una privada y una pública, la llave pública se comparte con **GitHub** y **GitHub** compartirá su llave pública de vuelta, cifrada con la llave pública enviada previamente, de esta forma tanto en la máquina que va a establecer la conexión como en **GitHub** hay una llave privada y una pública, lo que permite a **GitHub** descifrar los dato enviados desde la máquina local y a la máquina local descifrar los datos de **GitHub** para así establecer una conexión bilateral totalmente segura a través de internet.\
 Las llaves SSH se asocian a un usuario, sin embargo, si se quiere acceder a los repositorios del mismo usuario desde diferentes dispositivos lo adecuado es tener una llave diferente por cada dispositivo. Las llaves SSH en **GitHub** se agregan en la sección **profile>settings>SSH and GPG keys** tras agregar la llave SSH al usuario será necesario cambiar la url local del repositorio remoto para usar una conexión SSH en lugar de la típica HTTPS, hacer un **pull** para traer los cambios de protocolo y una autenticación para usar SSH en lugar de HTTPS.
 
+<br>
+
 ### Crear par de llaves
 
 ```bash
@@ -358,6 +417,8 @@ ssh-keygen -t rsa -b 4096 -C "[Correo electrónico vinculado al usuario de GitHu
 
 Genera un par de llaves, al crear las llaves permite agregar un password a las llaves para tener más seguridad al usarlas. Al generarse el par de llaves la llave privada se deja sin extensión y la pública tendrá una extensión **.pub**.
 
+<br>
+
 ### Comprobar funcionamiento del servidor SSH
 
 ```bash
@@ -365,6 +426,8 @@ eval $(ssh-agent -s)
 ```
 
 Verifica que el servicio encargado de las llaves SSH esté activo.
+
+<br>
 
 ### Agregar llave al servidor SSH
 
