@@ -191,17 +191,17 @@ print("HelloWorld")
 
 Algunos editores tienen herramientas para resolución de conflictos integradas, pero simplemente consisten en lo mismo, borrar las partes que no se quieren conservar dejando en el archivo solo las que se quieren conservar.
 
-### Moverse entre ramas y versiones de archivos
+### Moverse entre ramas y versiones
 
-El comando **git checkout** actualiza los archivos del directorio de trabajo para que correspondan con los de una rama o una versión específica del repositorio, para conservar los cambios luego de restaurar un archivo basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por el checkout basta con hacer un nuevo checkout apuntando a la última versión o **Head** para descartarlos.
+El comando **git checkout** actualiza los archivos del directorio de trabajo para que correspondan con los de una rama o una versión específica del repositorio.
 
-#### Moverse entre versiones de archivos
+#### Moverse entre versiones
 
 ```bash
 git checkout [parámetros] [Id del commit|HEAD] [nombre del archivo]
 ```
 
-Permite traer versiones especificadas de un archivo al directorio de trabajo, si no se indica un archivo se traerán todos los archivos de la versión indicada al directorio de trabajo.
+Traer versiones especificadas de un archivo al directorio de trabajo, si no se indica un archivo al final del comando se traerán todos los archivos de la versión indicada al directorio de trabajo, para conservar los cambios luego de traer uno o varios archivos al directorio de trabajo basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por el checkout basta con hacer un nuevo checkout apuntando a la última versión o **HEAD** para descartarlos.
 
 #### Moverse entre ramas
 
@@ -209,7 +209,7 @@ Permite traer versiones especificadas de un archivo al directorio de trabajo, si
 git checkout [parámetros] [nombre de la rama]
 ```
 
-Permite traer los archivos de una rama al directorio de trabajo, si no se indica un archivo se traerán todos los archivos de la versión indicada al directorio de trabajo.
+Traer los archivos de una rama al directorio de trabajo y cambiar la rama actual.
 
 ### Administrar tags de versión
 
