@@ -100,8 +100,8 @@ Muestra todos los cambios históricos hechos en el repositorio al no incluir par
 - **--stat:** Muestra los archivos en los que se hicieron cambios en cada log, además del número de Bytes que se cambiaron.
 - **--all:** Muestra todos los cambios que han ocurrido.
 - **--graph:** Muestra las ramas de las que ha salido cada commit.
-- **--oneline:** Muestra una sola linea de texto de cda log.
-- **--decorate:** Decora las lineas del grafo.
+- **--oneline:** Muestra una sola línea de texto de cada log.
+- **--decorate:** Decora las líneas del grafo.
 
 ### Mostrar los cambios del repositorio
 
@@ -138,7 +138,7 @@ Las ramas permiten dividir el código fuente de una aplicación en diferentes l�
 - **merge:** Un merge es una operación que se realiza cuando se une el código de dos ramas diferentes para generar una nueva versión.
 - **conflicto:** Un conflicto es lo que sucede cuando al realizar un merge los cambios de una rama dañan el funcionamiento de la otra rama, por lo que la nueva versión no funciona correctamente, o simplemente los cambios son incompatibles, por lo que no se puede realizar el merge correctamente.
 
-### Crear listar y eliminar ramas
+### Administrar ramas
 
 ```bash
 git branch [parámetros] [nombre de la rama]
@@ -167,7 +167,7 @@ Fusiona los archivos de la rama indicada con la rama actual, algunos de los par�
 
 - **-m [mensaje]:** Un merge por defecto genera una nueva versión y un commit, por lo que es necesario que haya un mensaje que indique los cambios que se hicieron en el último commit.
 
-Al fusionar dos o más ramas con **merge** pueden presentarse conflictos cuando en las ramas se alteran las mismas líneas de diferentes formas, para solventar estos conflictos se deben borrar todas las líneas que no correspondan con los cambios que se desean conservar en la rama, la forma en la que **Git** representa un conflicto en un archivo es usando **<<<<<<< HEAD** para indicar donde inicia el código de la rama actual, **>>>>>>> new_branch_to_merge_later** para indicar donde finaliza el código de la rama que se quiere fusionar con la rama actual (en este caso **new_branch_to_merge_later**) y **=======** para indicar el final del código de la rama actual y el inicio del de la rama que se quiere fusionar, un ejemplo de cómo se representa un conflicto por **Git** sería el siguiente:
+Al fusionar dos o más ramas con **merge** pueden presentarse conflictos cuando en las ramas se alteran las mismas líneas de diferentes formas, para solventar estos conflictos se deben borrar todas las líneas que no correspondan con los cambios que se desean conservar en la rama, la forma en la que **Git** representa un conflicto en un archivo es usando **<<<<<<< HEAD** para indicar donde inicia el código de la rama actual, **>>>>>>> new_branch_to_merge_later** para indicar donde finaliza el código de la rama que se quiere fusionar con la rama actual (en este caso **new_branch_to_merge_later**) y **=======** para indicar el final del código de la rama actual y el inicio del de la rama que se quiere fusionar, un ejemplo de cómo se representa un conflicto en **Git** sería el siguiente:
 
 ```python
 <<<<<<< HEAD
@@ -191,7 +191,7 @@ print("HelloWorld")
 
 Algunos editores tienen herramientas para resolución de conflictos integradas, pero simplemente consisten en lo mismo, borrar las partes que no se quieren conservar dejando en el archivo solo las que se quieren conservar.
 
-### Moverse entre ramas o restaurar versiones de archivos
+### Moverse entre ramas y versiones de archivos
 
 ```bash
 git checkout [parámetros] [nombre de la rama|Id del commit|HEAD] [nombre del archivo]
@@ -203,23 +203,53 @@ git checkout [parámetros] [nombre de la rama]
 
 Permite moverse entre ramas, o restaurar versiones especificadas de un archivo en el directorio de trabajo, si no se indica un archivo la acción por defecto es cambiar entre ramas, para conservar los cambios luego de restaurar un archivo basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por el checkout se hace un nuevo checkout apuntando a la última versión o **Head** para descartarlos.
 
-### Crear, listar, borrar o verificar tags de commits
+### Administrar tags de versión
+
+Los tag son una manera de etiquetar estados de un repositorio, se usan comúnmente para indicar las versiones o releases de un proyecto mantenido con **Git**, sin embargo, el versionamiento no afecta internamente al proyecto, solo establece etiquetas asociadas a los releases, usualmente el etiquetado de versiones usando tags se hace siguiendo el [**versionamiento semántico**](https://semver.org/lang/es/), que es uno de los más populares y sencillos de usar.
+
+#### Crear tags
 
 ```bash
-git tag [parámetros] [id del commit]
+git tag -a [nombre del tag] -m [mensaje] [id del commit]
 ```
 
-Permite crear, listar, borrar o verificar un tag, por defecto el comportamiento del comando es listar tags si se usa sin parametros. Algunos de los parámetros opcionales más útiles al utilizar **git tag** son:
+El comando base para administrar tags en **Git** es **git tag**, incluyendo los parámetros **-a** y **-m** se crea un nuevo tag agregando un nombre de tag y un mensaje de tag, adicionalmente para crear un nuevo tag en **Git** hay que indicar a qué commit estará asociado el nuevo tag, el nuevo tag será creado, pero solo será registrado de forma local, para enviar el nuevo tag a **GitHub** hace falta usar una variación del comando **git push** ya que los tags no son considerados como cambios, por lo que el comando regular no envía los tags a **GitHub**.
 
-- **-a [nombre del tag]:** Modifica el tag que se agragara al commit indicado al crear un nuevo tag.
-- **-m [mensaje]:** Modifica el mensaje asociado al tag al crear un nuevo tag.
-- **-d [nombre del tag]:** Elimina el tag indicado.
+```bash
+git push [nombre del repositorio remoto] --tags
+```
+
+Al crear un nuevo tag es útil usar antes el siguiente comando para ver de forma "gráfica" la evolución del proyecto basándose en ramas, ids de commit y mensajes.
+
+```bash
+git log --all --graph --decorate --oneline
+```
+
+#### Listar tags
+
+```bash
+git tag
+```
+
+Al usar el comando **git tag** sin incluir parámetros adicionales se listan todos los tags del repositorio.
 
 ```bash
 git show-ref --tags
 ```
 
-Muestra el tag con el id del commit asociado.
+El comando **git show-ref** seguido por el parámetro **--tags** tiene un comportamiento similar a **git tag** con la ventaja de que además lista el id del commit que corresponde con cada tag.
+
+#### Eliminar tags
+
+```bash
+git tag -d [nombre del tag]
+```
+
+Al usar el comando **git tag** con el parámetro **-d** se elimina el tag correspondiente con el nombre de tag indicado, sin embargo esto solo ocurre en el repositorio local, para eliminar un tag en **GitHub** hace falta usar una variación del comando **git push** indicando además de los parámetros usuales el nombre del tag que se va a eliminar, esto se debe a que **GitHub** trata de conservar los tags, ya que usualmente están asociados a releases, por lo que no es normal ni adecuado eliminar un tag de **GitHub**.
+
+```bash
+git push [nombre del repositorio remoto] :refs/tags/[nombre del tag]
+```
 
 ### Regresar a versiones anteriores del repositorio
 
@@ -295,7 +325,7 @@ Actualiza una rama del repositorio local con los últimos cambios de la misma ra
 ### Subir cambios del repositorio local al repositorio remoto
 
 ```bash
-git push [parámetros] [nombre del repositorio remoto] [nombre de la rama|--tags|:refs/tags/[nombre del tag]]
+git push [parámetros] [nombre del repositorio remoto] [nombre de la rama]
 ```
 
 Envía los cambios hechos en los tags o en una rama del repositorio local al repositorio remoto, por lo tanto si se quieren enviar los cambios más recientes del directorio local al repositorio remoto primero se realizan un **pull**, un **add**, un **commit** y luego un **push**, esta secuencia de comandos se usa para traer los cambios más recientes del repositorio remoto al local, para enviar los cambios del repositorio local al área de staging luego al repositorio local y por último al repositorio remoto, algunos de los parámetros más útiles al utilizar **git push** son:
