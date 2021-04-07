@@ -190,6 +190,20 @@ La acción por defecto de **git branch** si no se dan parámetros y no se da un 
 - **-r, --remotes:** Modifica la función del comando para listar las ramas remotas, al combinarlo con **--list** se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
 - **-a, --all:** Modifica la función del comando para listar ramas locales y remotas, al combinarlo con **--list** se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
 
+Para ver las ramas también se puede usar el siguiente comando, el cual muestra de forma "gráfica" la evolución del proyecto basándose en ramas, ids de commit y mensajes de commit.
+
+```bash
+git log --all --graph --decorate --oneline
+```
+
+Otro comando alternativo para ver la historia de las ramas es **git show-branch**, este comando además de mostrar las ramas muestra también el historial de los commits del repositorio distinguiendo las ramas.
+
+```bash
+git show-branch [parámetros]
+```
+
+- **-a, --all:** Modifica la función del comando para listar todo el historial de commits y ramas disponibles.
+
 #### Eliminar ramas
 
 ```bash
@@ -202,6 +216,8 @@ Para eliminar una rama se debe usar el comando **git branch** junto al parámetr
 - **-D:** Atajo para la combinación de **--delete --force**.
 
 #### Parámetros adicionales
+
+Algunos de los parámetros adicionales que también acepta **git branch** para tener funciones adicionales son:
 
 - **-m, --move [nuevo nombre]:** Renombra la rama actual.
 - **-c, --copy [nombre de copia de la rama]:** Crear una copia de la rama actual.
