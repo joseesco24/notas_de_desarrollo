@@ -98,6 +98,10 @@ git log [parámetros]
 Muestra todos los cambios históricos hechos en el repositorio al no incluir parámetros, log se centra en mostrar los Id de cada **commit**, pero también muestra la fecha, el autor y el comentario del **commit**, además de mostrar cual es el **commit** **Head** actualmente, algunos de los parámetros más útiles al usar **git log** son:
 
 - **--stat:** Muestra los archivos en los que se hicieron cambios en cada log, además del número de Bytes que se cambiaron.
+- **--all:** Muestra todos los cambios que han ocurrido.
+- **--graph:** Muestra las ramas de las que ha salido cada commit.
+- **--oneline:** Muestra una sola linea de texto de cda log.
+- **--decorate:** Decora las lineas del grafo.
 
 ### Mostrar los cambios del repositorio
 
@@ -199,6 +203,24 @@ git checkout [parámetros] [nombre de la rama]
 
 Permite moverse entre ramas, o restaurar versiones especificadas de un archivo en el directorio de trabajo, si no se indica un archivo la acción por defecto es cambiar entre ramas, para conservar los cambios luego de restaurar un archivo basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por el checkout se hace un nuevo checkout apuntando a la última versión o **Head** para descartarlos.
 
+### Crear, listar, borrar o verificar tags de commits
+
+```bash
+git tag [parámetros] [id del commit]
+```
+
+Permite crear, listar, borrar o verificar un tag, por defecto el comportamiento del comando es listar tags si se usa sin parametros. Algunos de los parámetros opcionales más útiles al utilizar **git tag** son:
+
+- **-a [nombre del tag]:** Modifica el tag que se agragara al commit indicado al crear un nuevo tag.
+- **-m [mensaje]:** Modifica el mensaje asociado al tag al crear un nuevo tag.
+- **-d [nombre del tag]:** Elimina el tag indicado.
+
+```bash
+git show-ref --tags
+```
+
+Muestra el tag con el id del commit asociado.
+
 ### Regresar a versiones anteriores del repositorio
 
 ```bash
@@ -273,10 +295,10 @@ Actualiza una rama del repositorio local con los últimos cambios de la misma ra
 ### Subir cambios del repositorio local al repositorio remoto
 
 ```bash
-git push [parámetros] [nombre del repositorio remoto] [nombre de la rama]
+git push [parámetros] [nombre del repositorio remoto] [nombre de la rama|--tags|:refs/tags/[nombre del tag]]
 ```
 
-Envía los cambios hechos en una rama del repositorio local al repositorio remoto, por lo tanto si se quieren enviar los cambios más recientes del directorio local al repositorio remoto primero se realizan un **pull**, un **add**, un **commit** y luego un **push**, esta secuencia de comandos se usa para traer los cambios más recientes del repositorio remoto al local, para enviar los cambios del repositorio local al área de staging luego al repositorio local y por último al repositorio remoto, algunos de los parámetros más útiles al utilizar **git push** son:
+Envía los cambios hechos en los tags o en una rama del repositorio local al repositorio remoto, por lo tanto si se quieren enviar los cambios más recientes del directorio local al repositorio remoto primero se realizan un **pull**, un **add**, un **commit** y luego un **push**, esta secuencia de comandos se usa para traer los cambios más recientes del repositorio remoto al local, para enviar los cambios del repositorio local al área de staging luego al repositorio local y por último al repositorio remoto, algunos de los parámetros más útiles al utilizar **git push** son:
 
 - **--all:** Actualiza todas las ramas del repositorio remoto con los cambios de las ramas del repositorio local, al utilizar este parámetro no hace falta indicar el nombre de una rama en concreto.
 - **-u, --set-upstream:**
@@ -287,7 +309,7 @@ Envía los cambios hechos en una rama del repositorio local al repositorio remot
 <img src="images/github_ssh_connection.png" width="100%" height="auto"/>
 </p>
 
-Establecer que las conexiones a un repositorio en GitHub se hagan con el protocolo SSH en lugar del HTTPS permiten agregar al repositorio una capa adicional de seguridad, ya que de esta forma los archivos enviados entre el repositorio remoto y cualquier otra máquina están totalmente cifrados y protegidos, **GitHub** usa una llave privada y una llave pública para conseguir este cifrado, el cual se basa en una serie de algoritmos de cifrado y descifrado asimétricos usando el par de llaves para cifrar y descifrar los archivos, de tal forma que para poder descifrar cualquier archivo cifrado con una llave pública es necesario tener la contraparte privada de esa llave, la cual se crea y vincula al mismo tiempo en el que se crea la llave pública, la llave privada bajo ninguna circunstancia debe salir de la máquina que establece la conexión SSH con **GitHub**. Para crear una conexión SSH bilateral, cifrada y segura entre cualquier máquina y **GitHub** hace falta por lo tanto crear las dos llaves en la máquina que va a establecer la conexión, una privada y una pública, la llave pública se comparte con **GitHub** y **GitHub** compartirá su llave pública de vuelta, cifrada con la llave pública enviada previamente, de esta forma tanto en la máquina que va a establecer la conexión como en **GitHub** hay una llave privada y una pública, lo que permite a **GitHub** descifrar los dato enviados desde la máquina local y a la máquina local descifrar los datos de **GitHub** para así establecer una conexión bilateral totalmente segura a través de internet.\
+Establecer que las conexiones a un repositorio en **GitHub** se hagan con el protocolo SSH en lugar del HTTPS permiten agregar al repositorio una capa adicional de seguridad, ya que de esta forma los archivos enviados entre el repositorio remoto y cualquier otra máquina están totalmente cifrados y protegidos, **GitHub** usa una llave privada y una llave pública para conseguir este cifrado, el cual se basa en una serie de algoritmos de cifrado y descifrado asimétricos usando el par de llaves para cifrar y descifrar los archivos, de tal forma que para poder descifrar cualquier archivo cifrado con una llave pública es necesario tener la contraparte privada de esa llave, la cual se crea y vincula al mismo tiempo en el que se crea la llave pública, la llave privada bajo ninguna circunstancia debe salir de la máquina que establece la conexión SSH con **GitHub**. Para crear una conexión SSH bilateral, cifrada y segura entre cualquier máquina y **GitHub** hace falta por lo tanto crear las dos llaves en la máquina que va a establecer la conexión, una privada y una pública, la llave pública se comparte con **GitHub** y **GitHub** compartirá su llave pública de vuelta, cifrada con la llave pública enviada previamente, de esta forma tanto en la máquina que va a establecer la conexión como en **GitHub** hay una llave privada y una pública, lo que permite a **GitHub** descifrar los dato enviados desde la máquina local y a la máquina local descifrar los datos de **GitHub** para así establecer una conexión bilateral totalmente segura a través de internet.\
 Las llaves SSH se asocian a un usuario, sin embargo, si se quiere acceder a los repositorios del mismo usuario desde diferentes dispositivos lo adecuado es tener una llave diferente por cada dispositivo. Las llaves SSH en **GitHub** se agregan en la sección **profile>settings>SSH and GPG keys** tras agregar la llave SSH al usuario será necesario cambiar la url local del repositorio remoto para usar una conexión SSH en lugar de la típica HTTPS, hacer un **pull** para traer los cambios de protocolo y una autenticación para usar SSH en lugar de HTTPS.
 
 ### Crear par de llaves
