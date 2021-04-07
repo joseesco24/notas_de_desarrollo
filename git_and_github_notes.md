@@ -193,15 +193,23 @@ Algunos editores tienen herramientas para resolución de conflictos integradas, 
 
 ### Moverse entre ramas y versiones de archivos
 
+El comando **git checkout** actualiza los archivos del directorio de trabajo para que correspondan con los de una rama o una versión específica del repositorio, para conservar los cambios luego de restaurar un archivo basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por el checkout basta con hacer un nuevo checkout apuntando a la última versión o **Head** para descartarlos.
+
+#### Moverse entre versiones de archivos
+
 ```bash
-git checkout [parámetros] [nombre de la rama|Id del commit|HEAD] [nombre del archivo]
+git checkout [parámetros] [Id del commit|HEAD] [nombre del archivo]
 ```
+
+Permite traer versiones especificadas de un archivo al directorio de trabajo, si no se indica un archivo se traerán todos los archivos de la versión indicada al directorio de trabajo.
+
+#### Moverse entre ramas
 
 ```bash
 git checkout [parámetros] [nombre de la rama]
 ```
 
-Permite moverse entre ramas, o restaurar versiones especificadas de un archivo en el directorio de trabajo, si no se indica un archivo la acción por defecto es cambiar entre ramas, para conservar los cambios luego de restaurar un archivo basta con hacer un **add** y un **commit**, si no se quieren conservar los cambios hechos por el checkout se hace un nuevo checkout apuntando a la última versión o **Head** para descartarlos.
+Permite traer los archivos de una rama al directorio de trabajo, si no se indica un archivo se traerán todos los archivos de la versión indicada al directorio de trabajo.
 
 ### Administrar tags de versión
 
