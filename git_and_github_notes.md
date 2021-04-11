@@ -396,7 +396,9 @@ Cambia la url del repositorio remoto, es especialmente útil cuando se quiere ca
 git clone [parámetros] [url del repositorio remoto]
 ```
 
-Crea una copia de todos los archivos del repositorio remoto en el repositorio local y en el directorio de trabajo, sin cambiar nada en el área de staging, además vincula la copia local con la remota, por lo que si se tiene los permisos se pueden hacer acciones como **push**, **pull** o **fetch** sin realizar configuraciones adicionales.
+Crea una copia de todos los archivos del repositorio remoto en el repositorio local y en el directorio de trabajo, sin cambiar nada en el área de staging, además vincula la copia local con la remota, por lo que si se tiene los permisos se pueden hacer acciones como **push**, **pull** o **fetch** sin realizar configuraciones adicionales, algunos de los parámetros más útiles al clonar un repositorio con **git clone** son:
+
+- **-o [nombre del repositorio remoto], --origin [nombre del repositorio remoto]:** Cambia el nombre de referencia del repositorio remoto para no usar **origin** como nombre de referencia.
 
 <br>
 
@@ -433,7 +435,7 @@ Envía los cambios hechos en una rama del repositorio local al repositorio remot
 
 <br><br>
 
-## Conexión con **GitHub** usando protocolo SSH
+## Conexión con GitHub usando protocolo SSH
 
 <p align="center">
 <img src="images/github_ssh_connection.png" width="100%" height="auto"/>
@@ -441,7 +443,7 @@ Envía los cambios hechos en una rama del repositorio local al repositorio remot
 
 Establecer que las conexiones a un repositorio en **GitHub** se hagan con el protocolo SSH en lugar del HTTPS permiten agregar al repositorio una capa adicional de seguridad, ya que de esta forma los archivos enviados entre el repositorio remoto y cualquier otra máquina están totalmente cifrados y protegidos, **GitHub** usa una llave privada y una llave pública para conseguir este cifrado, el cual se basa en una serie de algoritmos de cifrado y descifrado asimétricos usando el par de llaves para cifrar y descifrar los archivos, de tal forma que para poder descifrar cualquier archivo cifrado con una llave pública es necesario tener la contraparte privada de esa llave, la cual se crea y vincula al mismo tiempo en el que se crea la llave pública, la llave privada bajo ninguna circunstancia debe salir de la máquina que establece la conexión SSH con **GitHub**. Para crear una conexión SSH bilateral, cifrada y segura entre cualquier máquina y **GitHub** hace falta por lo tanto crear las dos llaves en la máquina que va a establecer la conexión, una privada y una pública, la llave pública se comparte con **GitHub** y **GitHub** compartirá su llave pública de vuelta, cifrada con la llave pública enviada previamente, de esta forma tanto en la máquina que va a establecer la conexión como en **GitHub** hay una llave privada y una pública, lo que permite a **GitHub** descifrar los dato enviados desde la máquina local y a la máquina local descifrar los datos de **GitHub** para así establecer una conexión bilateral totalmente segura a través de internet.\
 Las llaves SSH se asocian a un usuario, sin embargo, si se quiere acceder a los repositorios del mismo usuario desde diferentes dispositivos lo adecuado es tener una llave diferente por cada dispositivo. Las llaves SSH en **GitHub** se agregan en la sección **profile>settings>SSH and GPG keys** tras agregar la llave SSH al usuario será necesario cambiar la url local del repositorio remoto para usar una conexión SSH en lugar de la típica HTTPS, hacer un **pull** para traer los cambios de protocolo y una autenticación para usar SSH en lugar de HTTPS.\
-Usar SSH en lugar de HTTPS además evita tener que hacer login con cdad pull request.
+Usar SSH en lugar de HTTPS además evita tener que hacer login con cdad Pull Request.
 
 <br>
 
@@ -472,3 +474,33 @@ ssh-add ~/.ssh/id_rsa
 ```
 
 Agrega al servidor SSH las llaves privadas para así usarlas posteriormente para descifrar mensajes en conexiones SSH hechas con la contraparte pública de la llave.
+
+## Pull Requests en GitHub
+
+<p align="center">
+<img src="images/github_pull_request_system.png" width="100%" height="auto"/>
+</p>
+
+Los Pull Request o PR (en **GitLab** se llaman Merge Request o MR) son un sistema de revisión de código propio de **GitHub**, que permite que un colaborador pide que revisen sus cambios antes de hacer merge a una rama, normalmente master. Al hacer un Pull Request se genera una conversación que pueden seguir los demás miembros del repositorio, así como, comentar, autorizar o rechazar los cambios del PR.
+
+El flujo de trabajo normal de un Pull Request es el siguiente
+
+1. Se realizan en un rama paralela todos los cambios.
+1. Se suben a **GitHub** los cambios.
+1. En **GitHub** se hace el Pull Request comparando la rama master con la rama en la que se hicieron los cambios.
+1. Uno, o varios colaboradores revisan que el código sea correcto y dan feedback.
+1. El colaborador hace los cambios que desea en la rama y lo vuelve a subir al remoto.
+1. Se aceptan los cambios en **GitHub**.
+1. Se hace merge a master desde **GitHub**.
+
+## Forks en GitHub
+
+<p align="center">
+<img src="images/github_fork_system.png" width="100%" height="auto"/>
+</p>
+
+Los Forks son una característica única de **GitHub** que permite crear una copia exacta del estado actual de un repositorio directamente en **GitHub**, éste repositorio podrá servir como otro origen y se podrá clonar (como cualquier otro repositorio), en pocas palabras, un Fork se puede utilizar como un repositorio git cualquiera, un Fork es una bifurcación del repositorio completo, tiene una historia en común, pero pueden variar los cambios, ya que ambos proyectos podrán ser modificados en paralelo y para estar al día hace falta mantener el Fork actualizado respecto al original. Al hacer un Fork de un proyecto en **GitHub**, quien hace el Fork pasa a ser dueño del repositorio Fork y puede trabajar en éste con todos los permisos, pero es un repositorio completamente diferente al original, teniendo algunas historias en común.\
+Los Forks son importantes porque es la manera en la que funciona el open source, ya que, una persona puede no ser colaborador de un proyecto, pero puede contribuir al mismo, haciendo mejor software que pueda ser utilizado por cualquiera.\
+Al hacer un Fork, **GitHub** sabe que se hizo el Fork del proyecto, por lo que se le permite al colaborador hacer Pull Request desde su repositorio propio al original.
+
+Para mantener actualizado un Fork hay dos opciones, desde **GitHub** se pueden hacer merges desde master al Fork, pero también se puede configurar el repositorio original como un segundo repositorio remoto en el repositorio local en el que se está trabajando el Fork, desde el cual se pueden traer y hacer merge de los cambios más recientes del repositorio original, para esto se usa el comando **git remote add** apuntando hacia el repositorio original.
