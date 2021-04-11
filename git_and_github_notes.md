@@ -508,3 +508,32 @@ Los Forks son importantes porque es la manera en la que funciona el open source,
 Al hacer un Fork, **GitHub** sabe que se hizo el Fork del proyecto, por lo que se le permite al colaborador hacer Pull Request desde su repositorio propio al original.
 
 Para mantener actualizado un Fork hay dos opciones, desde **GitHub** se pueden hacer merges desde master al Fork, pero también se puede configurar el repositorio original como un segundo repositorio remoto en el repositorio local en el que se está trabajando el Fork, desde el cual se pueden traer y hacer merge de los cambios más recientes del repositorio original, para esto se usa el comando **git remote add** apuntando hacia el repositorio original.
+
+<br>
+
+## Uso del archivo .gitignore en Git
+
+```ignore
+
+# Archivos de NodeJS
+node_modules
+
+# Archivos de Docker
+.dockerignore
+Dockerfile
+
+# Archivos de logs
+*.log
+
+# Imágenes
+*.jpg
+
+```
+
+Los archivos [**.gitignore**](https://git-scm.com/docs/gitignore) permiten controlar que archivos son y no enviados al repositorio desde el directorio de trabajo según ciertos criterios de búsqueda establecidos en el archivo. Por diversas razones, no todos los archivos que se agregan a un proyecto deben guardarse en el repositorio, ésto se debe a que hay archivos que no deben ser visibles para todo el mundo, y hay archivos que al estar en el repositorio hacen más lento el proceso de desarrollo, como los archivos binarios de gran tamaño (también conocidos como blob, que es la abreviatura de binary large object).
+
+Las razones principales para tomar la decisión de no agregar un archivo a un repositorio Git son:
+
+- Es un archivo con contraseñas.
+- Es un blob.
+- Son archivos que se generan corriendo comandos.
