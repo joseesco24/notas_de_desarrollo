@@ -8,7 +8,7 @@
 ## Flujo de trabajo básico en Git
 
 <p align="center">
-<img src="imagenes/flujo_basico_con_repositorios_locales_git.png" width="100%" height="auto"/>
+<img src="imagenes/local_git_repository_basic_workflow.png" width="100%" height="auto"/>
 </p>
 
 Cuando se versionan archivos con repositorios **Git** locales los cambios pueden estar almacenados en tres posibles áreas, la primera es el **directorio de trabajo**, que simplemente es el directorio dentro de la máquina local en el que se inició el repositorio, la segunda área es el **área de staging**, que es un área de almacenamiento en la ram de la máquina local donde se preparan los cambios para ser agregados al repositorio y por ultimo esta el **repositorio**, que es un área de almacenamiento local o remota donde se guardan los archivos y se registran sus respectivos cambios a través de cada versión, dependiendo del nivel en el que esté un cambio este se puede considerar como **no rastreado** cuando solo está presente en el **directorio de trabajo**, **en espera** cuando está presente en el **directorio de trabajo** y el **área de staging** y **rastreado** cuando pasa a estar en **las tres áreas** luego de ser enviado del **área de staging** al **repositorio**, algunos de los conceptos más útiles al trabajar con **Git** de forma básica son:
@@ -155,7 +155,7 @@ Algunos de los parámetros opcionales más útiles al utilizar **git rm** para e
 ## Administración de ramas y versiones en Git
 
 <p align="center">
-<img src="imagenes/sistema_de_ramas_de_git.png" width="100%" height="auto"/>
+<img src="imagenes/git_branches_system.png" width="100%" height="auto"/>
 </p>
 
 Las ramas permiten dividir el código fuente de una aplicación en diferentes líneas separadas cronológicamente que luego se unen para formar una solo código fuente, por defecto **Git** trabaja sobre la rama **master** pero normalmente cuando se trabaja en un equipo de desarrollo se utilizan diferentes ramas para que varios miembros del equipo trabajen en simultáneo en partes o funcionalidades distintas de una misma aplicación. Cuando se crea una rama nueva basicamente lo que se hace es crear una copia de la última versión de la rama master de una nueva rama separada, y los cambios que se realicen en esta nueva rama no serán visibles en master hasta que no se fusionan las dos ramas con una operación llamada **merge**.
@@ -352,7 +352,7 @@ Mueve el **Head** del **commit** actual al **commit** indicado, dependiendo del 
 ## Administración de repositorios remotos con Git y GitHub
 
 <p align="center">
-<img src="imagenes/flujo_basico_con_repositorios_remotos_github.png" width="100%" height="auto"/>
+<img src="imagenes/remote_git_repository_basic_workflow.png" width="100%" height="auto"/>
 </p>
 
 Un repositorio remoto es lo que se utiliza en la mayoría de casos en los que un desarrollo es el producto del trabajo de varios desarrolladores que trabajan en equipo para construir una sola aplicación, por lo tanto, al utilizar un repositorio remoto como **GitHub** o **GitLab** lo que se hace es agregar una cuarta área adicional a las tres que se usan al trabajar con un repositorio **Git** local, que es la del servidor remoto al que se envían con un **push** los cambios luego de ser **rastreados** por el repositorio local con un **commit** para que todas las personas del equipo puedan ver y trabajar sobre los cambios más recientes realizados en el repositorio remoto.\
@@ -438,7 +438,7 @@ Envía los cambios hechos en una rama del repositorio local al repositorio remot
 ## Conexión con GitHub usando protocolo SSH
 
 <p align="center">
-<img src="imagenes/sistema_de_conexion_ssh_de_github.png" width="100%" height="auto"/>
+<img src="imagenes/github_ssh_connection.png" width="100%" height="auto"/>
 </p>
 
 Establecer que las conexiones a un repositorio en **GitHub** se hagan con el protocolo SSH en lugar del HTTPS permiten agregar al repositorio una capa adicional de seguridad, ya que de esta forma los archivos enviados entre el repositorio remoto y cualquier otra máquina están totalmente cifrados y protegidos, **GitHub** usa una llave privada y una llave pública para conseguir este cifrado, el cual se basa en una serie de algoritmos de cifrado y descifrado asimétricos usando el par de llaves para cifrar y descifrar los archivos, de tal forma que para poder descifrar cualquier archivo cifrado con una llave pública es necesario tener la contraparte privada de esa llave, la cual se crea y vincula al mismo tiempo en el que se crea la llave pública, la llave privada bajo ninguna circunstancia debe salir de la máquina que establece la conexión SSH con **GitHub**. Para crear una conexión SSH bilateral, cifrada y segura entre cualquier máquina y **GitHub** hace falta por lo tanto crear las dos llaves en la máquina que va a establecer la conexión, una privada y una pública, la llave pública se comparte con **GitHub** y **GitHub** compartirá su llave pública de vuelta, cifrada con la llave pública enviada previamente, de esta forma tanto en la máquina que va a establecer la conexión como en **GitHub** hay una llave privada y una pública, lo que permite a **GitHub** descifrar los dato enviados desde la máquina local y a la máquina local descifrar los datos de **GitHub** para así establecer una conexión bilateral totalmente segura a través de internet.\
@@ -480,7 +480,7 @@ Agrega al servidor SSH las llaves privadas para así usarlas posteriormente para
 ## Pull Requests en GitHub
 
 <p align="center">
-<img src="imagenes/sistema_de_pull_requests_de_github.png" width="100%" height="auto"/>
+<img src="imagenes/github_pull_request_system.png" width="100%" height="auto"/>
 </p>
 
 Los Pull Request o PR (en **GitLab** se llaman Merge Request o MR) son un sistema de revisión de código propio de **GitHub**, que permite que un colaborador pide que revisen sus cambios antes de hacer merge a una rama, normalmente master. Al hacer un Pull Request se genera una conversación que pueden seguir los demás miembros del repositorio, así como, comentar, autorizar o rechazar los cambios del PR.
@@ -500,7 +500,7 @@ El flujo de trabajo normal de un Pull Request es el siguiente
 ## Forks en GitHub
 
 <p align="center">
-<img src="imagenes/sistema_de_forks_de_github.png" width="100%" height="auto"/>
+<img src="imagenes/github_fork_system.png" width="100%" height="auto"/>
 </p>
 
 Los Forks son una característica única de **GitHub** que permite crear una copia exacta del estado actual de un repositorio directamente en **GitHub**, éste repositorio podrá servir como otro origen y se podrá clonar (como cualquier otro repositorio), en pocas palabras, un Fork se puede utilizar como un repositorio git cualquiera, un Fork es una bifurcación del repositorio completo, tiene una historia en común, pero pueden variar los cambios, ya que ambos proyectos podrán ser modificados en paralelo y para estar al día hace falta mantener el Fork actualizado respecto al original. Al hacer un Fork de un proyecto en **GitHub**, quien hace el Fork pasa a ser dueño del repositorio Fork y puede trabajar en éste con todos los permisos, pero es un repositorio completamente diferente al original, teniendo algunas historias en común.\
