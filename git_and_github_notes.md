@@ -475,6 +475,8 @@ ssh-add ~/.ssh/id_rsa
 
 Agrega al servidor SSH las llaves privadas para así usarlas posteriormente para descifrar mensajes en conexiones SSH hechas con la contraparte pública de la llave.
 
+<br>
+
 ## Pull Requests en GitHub
 
 <p align="center">
@@ -492,6 +494,8 @@ El flujo de trabajo normal de un Pull Request es el siguiente
 1. El colaborador hace los cambios que desea en la rama y lo vuelve a subir al remoto.
 1. Se aceptan los cambios en **GitHub**.
 1. Se hace merge a master desde **GitHub**.
+
+<br>
 
 ## Forks en GitHub
 
