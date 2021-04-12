@@ -86,7 +86,7 @@ Envía los últimos cambios desde el área de staging al repositorio para que es
 
 - **-m, --message "[mensaje]":** Permite agregar un mensaje al **commit**, idealmente todos los **commits** deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión del versionamiento y los cambios hechos.
 - **-a, --all:** Indica a **Git** que al hacer el **commit** pase al área de staging todos los cambios en los archivos que han sido previamente rastreados, es equivalente a realizar un **add** solo sobre los archivos que ya han sido registrados y luego un **commit** estándar, por lo que sí se han agregado nuevos archivos desde el último **commit** si es necesario utilizar **add** primero incluso usando este parámetro.
-- **--amend**: Permite "remendar" el último commit pegando los últimos cambios.
+- **--amend:** Permite "remendar" el último commit pegando los últimos cambios.
 
 <br>
 
@@ -126,6 +126,18 @@ Muestra todos los cambios históricos hechos en el repositorio al no incluir par
 
 <br>
 
+### Mostrar los logs completos del repositorio
+
+```bash
+git reflog [parámetros]
+```
+
+Muestra todos los cambios históricos hechos en el repositorio al no incluir parámetros, incluso los que se eliminaron en la historia mediante un rebase o un reset, reflog se centra en mostrar los Id de cada **commit**, pero también muestra el comentario del **commit**.
+
+- **--all:** Muestra todos los cambios que han ocurrido en el repositorio, no sólo los generados por commits.
+
+<br>
+
 ### Mostrar los cambios del repositorio
 
 ```bash
@@ -144,10 +156,10 @@ git clean [parámetros]
 
 Elimina todos los archivos no rastreados por el repositorio del directorio de trabajo, **git clean** no funciona sin ciertos parámetros que se usan para confirmar la limpieza, además, **git clean** ignora los archivos filtrados en el .gitignore, algunos de los parámetros más útiles al usar **git clean** son:
 
-- **-n, --dry-run**: No elimina nada, solo muestra que se borraría en caso de ejecutarse el comando.
-- **-d**: Permite incluir directorios no rastreados en el repositorio dentro de los criterios de la limpieza.
-- **-f, --force**: Es uno de los parámetros que habilita a **git clean** para eliminar archivos.
-- **-i, --interactive**: Es el segundo parámetro que permite a **git clean** para eliminar archivos, además de eliminar archivos los elimina de forma interactiva demostrando y confirmando que se va a borrar.
+- **-n, --dry-run:** No elimina nada, solo muestra que se borraría en caso de ejecutarse el comando.
+- **-d:** Permite incluir directorios no rastreados en el repositorio dentro de los criterios de la limpieza.
+- **-f, --force:** Es uno de los parámetros que habilita a **git clean** para eliminar archivos.
+- **-i, --interactive:** Es el segundo parámetro que permite a **git clean** para eliminar archivos, además de eliminar archivos los elimina de forma interactiva demostrando y confirmando que se va a borrar.
 
 <br>
 
