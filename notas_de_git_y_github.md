@@ -53,6 +53,7 @@ Algunos de los parámetros configurables más importantes de un repositorio son:
 
 - **user.email=[correo del usuario]:** Cambia el correo electrónico del usuario.
 - **user.name=[nombre del usuario]:** Cambia el nombre del usuario.
+- **alias.[nombre del alias] "comando":** Permite agregar a git alias para nuevos comandos.
 
 <br>
 
@@ -84,7 +85,7 @@ git commit [parámetros]
 
 Envía los últimos cambios desde el área de staging al repositorio para que este los registre en su base de datos de cambios, creando así una nueva versión basándose en los cambios realizados sobre uno o varios archivos, al crear una nueva versión a esta se le asigna un Id de versión y los cambios realizados en los archivo que son visibles para todos en el repositorio, por defecto los **commit** se realizan sobre la rama **master** si no se cambia la rama de trabajo actual, algunos de los parámetros más útiles al utilizar **git commit** para enviar los cambios del área de staging al repositorio son:
 
-- **-m, --message "[mensaje]":** Permite agregar un mensaje al **commit**, idealmente todos los **commits** deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión del versionamiento y los cambios hechos.
+- **-m, --message "mensaje":** Permite agregar un mensaje al **commit**, idealmente todos los **commits** deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión del versionamiento y los cambios hechos.
 - **-a, --all:** Indica a **Git** que al hacer el **commit** pase al área de staging todos los cambios en los archivos que han sido previamente rastreados, es equivalente a realizar un **add** solo sobre los archivos que ya han sido registrados y luego un **commit** estándar, por lo que sí se han agregado nuevos archivos desde el último **commit** si es necesario utilizar **add** primero incluso usando este parámetro.
 - **--amend:** Permite "remendar" el último commit pegando los últimos cambios.
 
@@ -123,6 +124,7 @@ Muestra todos los cambios históricos hechos en el repositorio al no incluir par
 - **--graph:** Muestra las ramas de las que ha salido cada commit.
 - **--oneline:** Muestra una sola línea de texto de cada log.
 - **--decorate:** Decora las líneas del grafo.
+- **-S:** Permite buscar una secuencia de caracteres en la historia del repositorio.
 
 <br>
 
@@ -547,7 +549,7 @@ Los pasos para establecer una conexión SSH segura entre el repositorio y la má
 ### 1. Crear el par de llaves
 
 ```bash
-ssh-keygen -t rsa -b 4096 -C "[Correo electrónico vinculado al usuario de GitHub]"
+ssh-keygen -t rsa -b 4096 -C "Correo electrónico vinculado al usuario de GitHub"
 ```
 
 El primer paso para usar SSH en lugar de HTTPS es generar un par de llaves SSH, al crear las llaves hay que vincular el correo del usuario de **GitHub** y además se puede agregar un password a la llave privada para tener más seguridad al usarla. Al generarse el par de llaves la llave privada se guarda sin extensión y la pública se guarda con la extensión **.pub**. En sistemas Linux ambas llaves son almacenadas en **~/.ssh/id_rsa** si no se indica otra ruta.
