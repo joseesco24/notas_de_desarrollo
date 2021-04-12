@@ -462,7 +462,7 @@ El primer paso para usar SSH en lugar de HTTPS es generar un par de llaves SSH, 
 eval $(ssh-agent -s)
 ```
 
-Tras generar el par de llaves hay que verificar que el servicio encargado de manejar las llaves SSH esté activo.
+Tras generar el par de llaves hay que verificar que el servidor encargado de manejar las llaves SSH esté activo.
 
 <br>
 
@@ -472,7 +472,7 @@ Tras generar el par de llaves hay que verificar que el servicio encargado de man
 ssh-add [ruta en la que se guardaron las llaves en el paso 1]
 ```
 
-Tras tener el servicio de SSH activo hay que agregar al servicio SSH las llaves privadas para así usarlas posteriormente para descifrar mensajes de conexiones SSH hechas con la contraparte pública de la llave.
+Tras verificar que el servidor SSH este activo hay que indicarle al servidor que hay un nuevo par de llaves, para así usarlas posteriormente para descifrar mensajes de conexiones SSH hechas con la contraparte pública de la llave.
 
 <br>
 
