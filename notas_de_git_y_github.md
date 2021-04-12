@@ -86,6 +86,7 @@ Envía los últimos cambios desde el área de staging al repositorio para que es
 
 - **-m, --message "[mensaje]":** Permite agregar un mensaje al **commit**, idealmente todos los **commits** deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión del versionamiento y los cambios hechos.
 - **-a, --all:** Indica a **Git** que al hacer el **commit** pase al área de staging todos los cambios en los archivos que han sido previamente rastreados, es equivalente a realizar un **add** solo sobre los archivos que ya han sido registrados y luego un **commit** estándar, por lo que sí se han agregado nuevos archivos desde el último **commit** si es necesario utilizar **add** primero incluso usando este parámetro.
+- **--amend**: Permite "remendar" el último commit pegando los últimos cambios.
 
 <br>
 
@@ -407,6 +408,16 @@ Al usar el comando **git tag** con el parámetro **-d** se elimina el tag corres
 ```bash
 git push [nombre del repositorio remoto] :refs/tags/[nombre del tag]
 ```
+
+<br>
+
+### Traer a una rama cambios viejos de otra
+
+```bash
+git cherry-pick [parámetros] [Id del commit]
+```
+
+Permite traer los cambios de un commit específico a la rama actual sin tener que hacer un merge completo.
 
 <br>
 
