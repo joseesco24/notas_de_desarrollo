@@ -87,7 +87,7 @@ Envía los últimos cambios desde el área de staging al repositorio para que es
 
 - **-m, --message "mensaje":** Permite agregar un mensaje al commit, idealmente todos los commits deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión de los cambios hechos.
 - **-a, --all:** Indica a Git que al hacer el commit pase al área de staging todos los cambios en los archivos que han sido previamente rastreados antes de hacer el commit, es equivalente a realizar un **git add** solo sobre los archivos que ya han sido registrados y luego un **git commit** estándar, por lo que sí se han agregado nuevos archivos desde el último commit si es necesario utilizar un **git add** primero, incluso usando este parámetro.
-- **--amend:** Permite "remendar" el último commit pegando los últimos cambios al ultimo commit.
+- **--amend:** Permite "remendar" el último commit pegando los últimos cambios al último commit.
 
 <br>
 
@@ -598,7 +598,7 @@ Como último paso hay que actualizar la url del repositorio local reemplazandola
 <img src="imagenes/sistema_de_pull_requests_de_github.png" width="100%" height="auto"/>
 </p>
 
-Los Pull Request o PR (tambien llamados Merge Request o MR en GitLab) son un sistema de revisión de código propio de GitHub, que permite que un colaborador pide que revisen sus cambios antes de hacer merge a una rama, normalmente master. Al hacer un Pull Request se genera una conversación que pueden seguir los demás miembros del repositorio, así como, comentar, autorizar o rechazar los cambios del PR.
+Los Pull Request o PR (también llamados Merge Request o MR en GitLab) son un sistema de revisión de código propio de GitHub, que permite que un colaborador pide que revisen sus cambios antes de hacer merge a una rama, normalmente master. Al hacer un Pull Request se genera una conversación que pueden seguir los demás miembros del repositorio, así como, comentar, autorizar o rechazar los cambios del PR.
 
 El flujo de trabajo normal de un Pull Request es el siguiente
 
