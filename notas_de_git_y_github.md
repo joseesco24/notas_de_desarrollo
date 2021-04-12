@@ -441,39 +441,54 @@ Envía los cambios hechos en una rama del repositorio local al repositorio remot
 <img src="imagenes/sistema_de_conexion_ssh_de_github.png" width="100%" height="auto"/>
 </p>
 
-Establecer que las conexiones a un repositorio en **GitHub** se hagan con el protocolo SSH en lugar del HTTPS permiten agregar al repositorio una capa adicional de seguridad, ya que de esta forma los archivos enviados entre el repositorio remoto y cualquier otra máquina están totalmente cifrados y protegidos, **GitHub** usa una llave privada y una llave pública para conseguir este cifrado, el cual se basa en una serie de algoritmos de cifrado y descifrado asimétricos usando el par de llaves para cifrar y descifrar los archivos, de tal forma que para poder descifrar cualquier archivo cifrado con una llave pública es necesario tener la contraparte privada de esa llave, la cual se crea y vincula al mismo tiempo en el que se crea la llave pública, la llave privada bajo ninguna circunstancia debe salir de la máquina que establece la conexión SSH con **GitHub**. Para crear una conexión SSH bilateral, cifrada y segura entre cualquier máquina y **GitHub** hace falta por lo tanto crear las dos llaves en la máquina que va a establecer la conexión, una privada y una pública, la llave pública se comparte con **GitHub** y **GitHub** compartirá su llave pública de vuelta, cifrada con la llave pública enviada previamente, de esta forma tanto en la máquina que va a establecer la conexión como en **GitHub** hay una llave privada y una pública, lo que permite a **GitHub** descifrar los dato enviados desde la máquina local y a la máquina local descifrar los datos de **GitHub** para así establecer una conexión bilateral totalmente segura a través de internet.\
-Las llaves SSH se asocian a un usuario, sin embargo, si se quiere acceder a los repositorios del mismo usuario desde diferentes dispositivos lo adecuado es tener una llave diferente por cada dispositivo. Las llaves SSH en **GitHub** se agregan en la sección **profile>settings>SSH and GPG keys** tras agregar la llave SSH al usuario será necesario cambiar la url local del repositorio remoto para usar una conexión SSH en lugar de la típica HTTPS, hacer un **pull** para traer los cambios de protocolo y una autenticación para usar SSH en lugar de HTTPS.\
-Usar SSH en lugar de HTTPS además evita tener que hacer login con cdad Pull Request.
+Establecer que las conexiones a un repositorio en **GitHub** se hagan con el protocolo SSH en lugar del HTTPS permiten agregar al repositorio una capa adicional de seguridad, ya que de esta forma los archivos enviados entre el repositorio remoto y cualquier otra máquina están totalmente cifrados y protegidos, **GitHub** usa una llave privada y una llave pública para conseguir este cifrado, el cual se basa en una serie de algoritmos de cifrado y descifrado asimétricos usando el par de llaves para cifrar y descifrar los archivos, de tal forma que para poder descifrar cualquier archivo cifrado con una llave pública es necesario tener la contraparte privada de esa llave, la cual se crea y "vincula" a la llave pública cuando se crean el par de llaves, la llave privada bajo ninguna circunstancia debe salir de la máquina que establece la conexión SSH con **GitHub**. Para crear una conexión SSH bilateral, cifrada y segura entre cualquier máquina y **GitHub** hace falta por lo tanto crear las dos llaves en la máquina que va a establecer la conexión, una privada y una pública, la llave pública se comparte con **GitHub** y **GitHub** compartirá su llave pública de vuelta, cifrada con la llave pública enviada previamente, de esta forma tanto en la máquina que va a establecer la conexión como en **GitHub** hay una llave privada y una pública, lo que permite a **GitHub** descifrar los archivos enviados desde la máquina local y a la máquina local descifrar los datos de **GitHub** para así establecer una conexión bilateral totalmente segura a través de internet.\
+Los pasos para establecer una conexión SSH segura entre el repositorio y la máquina son:
 
 <br>
 
-### Crear par de llaves
+### 1. Crear el par de llaves
 
 ```bash
 ssh-keygen -t rsa -b 4096 -C "[Correo electrónico vinculado al usuario de GitHub]"
 ```
 
-Genera un par de llaves, al crear las llaves permite agregar un password a las llaves para tener más seguridad al usarlas. Al generarse el par de llaves la llave privada se deja sin extensión y la pública tendrá una extensión **.pub**.
+El primer paso para usar SSH en lugar de HTTPS es generar un par de llaves SSH, al crear las llaves hay que vincular el correo del usuario de **GitHub** y además se puede agregar un password a la llave privada para tener más seguridad al usarla. Al generarse el par de llaves la llave privada se guarda sin extensión y la pública se guarda con la extensión **.pub**. En sistemas Linux ambas llaves son almacenadas en **~/.ssh/id_rsa** si no se indica otra ruta.
 
 <br>
 
-### Comprobar funcionamiento del servidor SSH
+### 2. Comprobar funcionamiento del servidor SSH
 
 ```bash
 eval $(ssh-agent -s)
 ```
 
-Verifica que el servicio encargado de las llaves SSH esté activo.
+Tras generar el par de llaves hay que verificar que el servicio encargado de manejar las llaves SSH esté activo.
 
 <br>
 
-### Agregar llave al servidor SSH
+### 3. Agregar llave al servidor SSH
 
 ```bash
-ssh-add ~/.ssh/id_rsa
+ssh-add [ruta en la que se guardaron las llaves en el paso 1]
 ```
 
-Agrega al servidor SSH las llaves privadas para así usarlas posteriormente para descifrar mensajes en conexiones SSH hechas con la contraparte pública de la llave.
+Tras tener el servicio de SSH activo hay que agregar al servicio SSH las llaves privadas para así usarlas posteriormente para descifrar mensajes de conexiones SSH hechas con la contraparte pública de la llave.
+
+<br>
+
+### 4. Agregar a GitHub la llave pública
+
+Ya teniendo toda la configuración local hay que enviar la llave pública a **GitHub**, para agregar la llave pública hay que copiar el contenido de la llave publica, entrar al usuario de **GitHub** con el que se va a hacer la conexión SSH, en el usuario hay que ir a **Profile > Settings > SSH and GPG keys** seleccionar la opción que dice **New SSH Key** y pegar el contenido de la llave pública.
+
+<br>
+
+### 5. Cambiar la url del repositorio remoto para usar la conexión SSH
+
+```bash
+git remote set-url [nombre del repositorio remoto] [url del repositorio remoto]
+```
+
+Como último paso hay que actualizar la url del repositorio local reemplazandola por la url que usa el repositorio para conexiones SSH, si al clonar el repositorio se clona usando SSH no hace falta hacer este paso.
 
 <br>
 
@@ -537,3 +552,5 @@ Las razones principales para tomar la decisión de no agregar un archivo a un re
 - Es un archivo con contraseñas.
 - Es un blob.
 - Son archivos que se generan corriendo comandos.
+
+<br>
