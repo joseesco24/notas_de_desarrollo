@@ -14,7 +14,7 @@
 Cuando se versionan archivos con repositorios **Git** locales los cambios pueden estar almacenados en tres posibles áreas, la primera es el **directorio de trabajo**, que simplemente es el directorio dentro de la máquina local en el que se inició el repositorio, la segunda área es el **área de staging**, que es un área de almacenamiento en la ram de la máquina local donde se preparan los cambios para ser agregados al repositorio y por ultimo esta el **repositorio**, que es un área de almacenamiento local o remota donde se guardan los archivos y se registran sus respectivos cambios a través de cada versión, dependiendo del nivel en el que esté un cambio este se puede considerar como **no rastreado** cuando solo está presente en el **directorio de trabajo**, **en espera** cuando está presente en el **directorio de trabajo** y el **área de staging** y **rastreado** cuando pasa a estar en **las tres áreas** luego de ser enviado del **área de staging** al **repositorio**, algunos de los conceptos más útiles al trabajar con **Git** de forma básica son:
 
 - **commit:** Un commit es lo que sucede cuando un cambio pasa del área de staging al repositorio, es decir que pasa de estra **en espera** a estar **rastreado** por la base de datos de cambios del repositorio, al ser aceptado un cambio como una nueva versión con un commit, **Git** le asigna un número de versión o Id que identifica esa nueva versión, y además se registran otros metadatos como la fecha, hora y el usuario que hizo el commit, por lo que cada cambio en **Git** es rastreable por su Id y por los otros metadatos que son almacenados al hacer el commit.
-- **Head:** Es la última versión rastreada por el repositorio mediante un **commit** en la rama actual.
+- **HEAD:** Es la última versión rastreada por el repositorio mediante un **commit** en la rama actual.
 
 <br>
 
@@ -115,7 +115,7 @@ Muestra los cambios entre una versión y otra del repositorio basadas en la mism
 git log [parámetros]
 ```
 
-Muestra todos los cambios históricos hechos en el repositorio al no incluir parámetros, log se centra en mostrar los Id de cada **commit**, pero también muestra la fecha, el autor y el comentario del **commit**, además de mostrar cual es el **commit** **Head** actualmente, algunos de los parámetros más útiles al usar **git log** son:
+Muestra todos los cambios históricos hechos en el repositorio al no incluir parámetros, log se centra en mostrar los Id de cada **commit**, pero también muestra la fecha, el autor y el comentario del **commit**, además de mostrar cual es el **commit** **HEAD** actualmente, algunos de los parámetros más útiles al usar **git log** son:
 
 - **--stat:** Muestra los archivos en los que se hicieron cambios en cada log, además del número de Bytes que se cambiaron.
 - **--all:** Muestra todos los cambios que han ocurrido.
@@ -285,6 +285,66 @@ Traer los archivos de una rama al directorio de trabajo y cambiar la rama actual
 
 <br>
 
+### Hacer rebase a una rama
+
+```bash
+git rebase [rama a la que se enviaran los cambios de la rama actual]
+```
+
+Rebase permiten pegar una rama al final de otra sin dejar registros de la rama que se pegó a la rama principal, la forma correcta de realizar un rebase es realizando rebas primero de la rama de cambios a la rama principal, luego de la rama principal a la rama de cambios y por último se elimina la rama en la que se hicieron los cambios, el resultado es que los cambios en la historia se ven como si jamás hubiera estado la rama de cambios, y además no se sabe quién hizo los cambios ya que no hay historia.
+
+**Nota:** Rebase es muy mala práctica en repositorios remotos ya que se reescribe la historia de una rama y no hay registros de los cambios al final.
+
+<br>
+
+### Administrar la reserva de cambios de Git
+
+La reserva de cambios de **Git** o stash permite guardar temporalmente en un listado de los cambios que aún no están listos para ser enviados al repositorio, es bastante útil en escenarios en los que se necesitan archivos de otras ramas diferentes a la rama en la que están los cambios, pero estos no están listos para un commit, por lo que no se puede hacer un checkout ya que hacerlo sin un commit eliminaría los cambios, al hacer un stash en un rama todos los cambios hechos en el directorio de trabajo de esa rama luego del HEAD son enviados a la lista de stashs, lo que además permite volver al HEAD de forma rápida y segura sin perder los cambios, los stash son extremadamente útiles cuando se quieren realizar pequeñas pruebas o experimentos en los que no vale la pena crear una nueva rama.
+
+```bash
+git stash push
+```
+
+Envía los cambios posteriores al HEAD de la rama a la lista de stash.
+
+```bash
+git stash list
+```
+
+Muestra toda la lista de stashs.
+
+```bash
+git stash show [id del stash]
+```
+
+Muestra con un diff las diferencias entre un stash respecto al HEAD de la rama en la que se realizó el stash, si no se indica el stash el diff muestra los cambios usando el stash más reciente.
+
+```bash
+git stash pop [id del stash]
+```
+
+Remueve un stash de la lista de stashs y aplica los cambios los cambios en el directorio de trabajo actual, si no se indica el stash se aplica usando el más antiguo, es importante que el directorio de trabajo coincida con el directorio de trabajo del stash, por lo que al hacer un pop es necesario estar en la misma rama en la que se estaba posicionado cuando se inició el stash con push.
+
+```bash
+git stash drop [id del stash]
+```
+
+Elimina un stash de la lista de stashs, si no se indica un stash elimina el último.
+
+```bash
+git stash branch [nombre de la rama] [id del stash]
+```
+
+Crear una nueva rama con el nombre indicado la cual parte del último commit antes del stash, aplica todos los cambios del stash a la rama y realiza un checkout a la nueva rama, en caso de no indicarse un stash utiliza el stash más reciente.
+
+```bash
+git stash clear
+```
+
+Elimina todos los stash en la lista de stashs.
+
+<br>
+
 ### Administrar tags
 
 Los tag son una manera de etiquetar estados de un repositorio, se usan comúnmente para indicar las versiones o releases de un proyecto mantenido con **Git**, sin embargo, el versionamiento no afecta internamente al proyecto, solo establece etiquetas asociadas a los releases, usualmente el etiquetado de versiones usando tags se hace siguiendo el [**versionamiento semántico**](https://semver.org/lang/es/), que es uno de los más populares y sencillos de usar, la mayor parte de las acciones que se realizan en Git con relación a los tags se realizan usando el comando **git tag**.
@@ -341,7 +401,7 @@ git push [nombre del repositorio remoto] :refs/tags/[nombre del tag]
 git reset [modo] [Id del commit]
 ```
 
-Mueve el **Head** del **commit** actual al **commit** indicado, dependiendo del modo al cambiar el **Head** todo los cambios luego de ese **commit** son descartados o se envían al área de staging para poder rastrearlos en el repositorio después, entre otras opciones que cambian según el modo, algunos de los modos más usados son:
+Mueve el **HEAD** del **commit** actual al **commit** indicado, dependiendo del modo al cambiar el **HEAD** todo los cambios luego de ese **commit** son descartados o se envían al área de staging para poder rastrearlos en el repositorio después, entre otras opciones que cambian según el modo, algunos de los modos más usados son:
 
 - **--soft:** Elimina los cambios en el repositorio, mantiene los cambios del área de staging y mantiene los cambios en el directorio de trabajo, por lo que los cambios hechos luego del **commit** indicado en el área de staging y en el directorio de trabajo pueden agregarse al repositorio posteriormente con un **add** y un **commit**.
 - **--mixed:** Es el modo por defecto, Elimina los cambios en el repositorio, elimina los cambios del área de staging, pero mantiene los cambios en el directorio de trabajo, por lo que los cambios hechos luego del **commit** indicado en el directorio de trabajo pueden agregarse al repositorio posteriormente con un **add** y un **commit**.
