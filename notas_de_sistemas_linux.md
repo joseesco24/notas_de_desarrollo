@@ -255,3 +255,47 @@ bash script.sh
 ```
 
 <br>
+
+### Manejo de argumentos en scripts Bash
+
+Los argumentos que son enviados a un script Bash se almacenan en una lista, donde cada argumento puede ser referenciado mediante su posición, para enviar argumentos basta con escribir cada argumento luego de la instrucción de ejecución del script con un espacio, cuando se quieren enviar cadenas como parámetros es necesario enviar la cadena entre comillas ya que si la cadena tiene espacios y no es enviada entre comillas será interpretada por el script como varios parámetros.
+
+```bash
+bash script.sh "primer argumento" 2
+```
+
+```bash
+./script.sh "primer argumento" 2
+```
+
+Para acceder a un argumento de la lista de argumentos se debe usar el signo **$** y el número del argumento, el cual debe ser mayor a cero y menor a diez, si el número del argumento es de un solo dígito (0<n<10) no hace falta usar llaves, si el número del argumento es de más de un dígito (n>=10) es necesario usar llaves antes de indicar el número del argumento.
+
+```bash
+$1
+```
+
+```bash
+${10}
+```
+
+Además de poder acceder por número de argumento se pueden usar ciertas instrucciones para obtener más información respecto a los parámetros recibidos por el script.
+
+Obtener el nombre del script.
+
+```bash
+$0
+```
+
+Obtener el conteo de los argumentos.
+
+```bash
+$#
+```
+
+Obtener todos los argumentos
+
+```bash
+$*
+```
+
+<br>
