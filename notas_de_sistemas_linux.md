@@ -31,9 +31,9 @@ Crear programas en Bash permite ejecutar múltiples comandos de forma secuencial
 
 <br>
 
-### Crear scripts Bash
+### Crear un script Bash
 
-Al crear un nuevo script Bash este debe cumplir dos condiciones, el archivo en el que se guarda el script debe tener la extensión **.sh** y el nombre del script debe ser único para evitar conflictos entre el script nuevo y alguno otro del sistema operativo, para garantizar que el nombre del archivo sea único se puede usar el comando **type** como se muestra a continuación, suponiendo que el nombre del script será **script**.
+Los scripts Bash al igual que cualquier otro tipo de script se crean como archivos de texto plano, sin embargo, al crear un script Bash este debe cumplir dos condiciones, el archivo en el que se guarda el script debe tener la extensión **.sh** y el nombre del script debe ser único para evitar conflictos entre el script nuevo y alguno otro que ya esté presente en el sistema, para garantizar que el nombre del archivo sea único se puede usar el comando **type** como se muestra a continuación, suponiendo que el nombre del script será **script**.
 
 ```bash
 type script.sh
@@ -53,7 +53,7 @@ type -t script.sh
 
 <br>
 
-### Establecer permisos de ejecución para scripts Bash
+### Dar permisos de ejecución a un script Bash
 
 Luego de crear el script es necesario darle al script permisos de ejecución, ya que de otra forma el script no podrá ejecutarse, hay varias formas de dar permisos de ejecución a un script, algunas de estas se listan a continuación.
 
@@ -63,7 +63,7 @@ Luego de crear el script es necesario darle al script permisos de ejecución, ya
 
 <br>
 
-### Establecer Bash como intérprete de comandos de un script
+### Establecer Bash como intérprete de comandos del script
 
 Antes de empezar a escribir un script Bash en cualquier sistema Linux es necesario indicar que el intérprete del script será Bash, la forma correcta de indicar que el intérprete del script en Bash es agregando la ruta hacia Bash en la primera línea del script, como se muestra a continuación.
 
@@ -73,7 +73,7 @@ Antes de empezar a escribir un script Bash en cualquier sistema Linux es necesar
 
 <br>
 
-### Declaración de variables en scripts Bash
+### Declarar variables en scripts Bash
 
 Las variables que puede usar un script Bash pueden ser de dos tipos, **variables de usuario** y **variables de entorno**. Las variables de usuario son variables que son accesibles sólo dentro de un programa específico, mientras que las de entorno son variables que son accesibles en todo el sistema, por todos los usuarios del sistema. En ambos casos las variables se definen iniciando con el nombre de la variable y no hace falta definir el tipo de dato de la variable, con la diferencia de que las variables de usuario por lo general se definen con todas las letras del nombre de la variable en minúsculas mientras que las de entorno se definen por lo general con todas las letras del nombre en mayúsculas.\
 Para declarar que una variable dentro de un script será una variable de entorno hace falta, además, de definir la variable y su valor usar el comando **export**, con esta instrucción la variable pasa de ser de usuario a ser de entorno, por lo que inmediatamente después del comando **export** la variable ya es accesible por todo el sistema y por todos los usuarios del sistema.
@@ -93,7 +93,7 @@ export VARIABLE_DE_ENTORNO
 
 <br>
 
-### Recuperación de variables en scripts Bash
+### Recuperar variables en scripts Bash
 
 Tras definir cualquier variable de usuario o de entorno lo normal es querer recuperar ese valor posteriormente ya que por lo general se usa para afectar la ejecución del script, en ambos casos para recuperar el valor de una variable se usa el signo "$" antes del nombre de la variable que se quiere recuperar, las variables de usuario solo serán accesibles dentro del script en el que se declararon, mientras que las variables de entorno que fueron definidas con el comando **export** serán accesibles también por otros scripts o mediante la terminal independientemente del usuario del sistema.
 
