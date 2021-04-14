@@ -77,6 +77,8 @@ Antes de empezar a escribir un script Bash en cualquier sistema Linux es necesar
 
 Las variables que puede usar un script Bash pueden ser de dos tipos, **variables de usuario** y **variables de entorno**. Las variables de usuario son variables que son accesibles sólo dentro de un programa específico, mientras que las de entorno son variables que son accesibles en todo el sistema, por todos los usuarios del sistema. En ambos casos las variables se definen iniciando con el nombre de la variable y no hace falta definir el tipo de dato de la variable, con la diferencia de que las variables de usuario por lo general se definen con todas las letras del nombre de la variable en minúsculas mientras que las de entorno se definen por lo general con todas las letras del nombre en mayúsculas.
 
+<br>
+
 #### Declaración de variables
 
 Para declarar que una variable dentro de un script será una variable de entorno hace falta, además, de definir la variable y su valor usar el comando **export**, con esta instrucción la variable pasa de ser de usuario a ser de entorno, por lo que inmediatamente después del comando **export** la variable ya es accesible por todo el sistema y por todos los usuarios del sistema.
@@ -93,6 +95,8 @@ Declaración de una variable de entorno en un script Bash.
 VARIABLE_DE_ENTORNO="Hola Mundo"
 export VARIABLE_DE_ENTORNO
 ```
+
+<br>
 
 #### Recuperación de variables
 
