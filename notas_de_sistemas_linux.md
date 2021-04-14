@@ -29,11 +29,57 @@ En los sistemas Linux existen varios tipos de shell de las cuales el usuario pue
 
 Crear programas en Bash permite ejecutar múltiples comandos de forma secuencial para automatizar tareas específicas. Los comandos de un script Bash son colocados en un archivo de textos de manera secuencial para poder ejecutarlos a posterioridad.
 
-Antes de empezar a escribir un script Bash en cualquier sistema Linux es necesario indicar que el intérprete del script será Bash, la forma correcta de indicar que el intérprete del script es Bash es agregando la ruta hacia Bash en la primera línea del script, como se muestra a continuación.
+<br>
+
+### Crear scripts Bash
+
+Al crear un nuevo script Bash este debe cumplir dos condiciones, el archivo en el que se guarda el script debe tener la extensión **.sh** y el nombre del script debe ser único para evitar conflictos entre el script nuevo y alguno otro del sistema operativo, para garantizar que el nombre del archivo sea único se puede usar el comando **type** como se muestra a continuación, suponiendo que el nombre del script será **script**.
+
+```bash
+type script.sh
+```
+
+Usando el parámetro -a se pueden ver todos los archivos encontrados.
+
+```bash
+type -a script.sh
+```
+
+Usando el parámetro -t se puede verificar el tipo de archivo.
+
+```bash
+type -t script.sh
+```
+
+<br>
+
+### Establecer permisos de ejecución para scripts Bash
+
+Luego de crear el script es necesario darle al script permisos de ejecución, ya que de otra forma el script no podrá ejecutarse, hay varias formas de dar permisos de ejecución a un script, algunas de estas se listan a continuación.
 
 ```bash
 # !/bin/bash
 ```
+
+<br>
+
+### Establecer Bash como intérprete de comandos de un script
+
+Antes de empezar a escribir un script Bash en cualquier sistema Linux es necesario indicar que el intérprete del script será Bash, la forma correcta de indicar que el intérprete del script en Bash es agregando la ruta hacia Bash en la primera línea del script, como se muestra a continuación.
+
+```bash
+# !/bin/bash
+```
+
+<br>
+
+### Declaracion y alcance de variables en scripts Bash
+
+Las variables que puede usar un script Bash pueden ser de dos tipos, **variables de usuario** y **variables de sistema operativo**
+
+<br>
+
+### Ejecutar un script Bash
 
 Las dos formas de ejecutar un Script Bash en Linux son:
 
