@@ -65,7 +65,7 @@ Luego de crear el script es necesario darle al script permisos de ejecución, ya
 
 ### Establecer Bash como intérprete de comandos del script
 
-Antes de empezar a escribir un script Bash en cualquier sistema Linux es necesario indicar que el intérprete del script será Bash, la forma correcta de indicar que el intérprete del script en Bash es agregando la ruta hacia Bash en la primera línea del script, como se muestra a continuación.
+Antes de empezar a escribir un script Bash en cualquier sistema Linux es necesario indicar que el intérprete del script o shell será Bash, la forma correcta de indicar que el intérprete del script será Bash es agregando la ruta hacia Bash en la primera línea del script, como se muestra a continuación.
 
 ```bash
 # !/bin/bash
@@ -109,6 +109,135 @@ Recuperación de una variable de entorno.
 ```bash
 echo $VARIABLE_DE_ENTORNO
 Hola Mundo
+```
+
+<br>
+
+### Operadores aritméticos en scripts Bash
+
+Asumiendo que se definen dos variables numA y numB las operaciones aritméticas básicas en Bash se definen de la siguiente forma.
+
+```bash
+numA=4
+numB=10
+```
+
+Suma.
+
+```bash
+resultado=$((numA+numB))
+```
+
+Resta.
+
+```bash
+resultado=$((numA-numB))
+```
+
+Multiplicación.
+
+```bash
+resultado=$((numA*numB))
+```
+
+División.
+
+```bash
+resultado=$((numA/numB))
+```
+
+Residuo.
+
+```bash
+resultado=$((numA%numB))
+```
+
+<br>
+
+### Operadores relacionales en scripts Bash
+
+Asumiendo que se definen dos variables numA y numB las operaciones relacionales básicas en Bash se definen de la siguiente forma.
+
+```bash
+numA=4
+numB=10
+```
+
+Operador mayor.
+
+```bash
+resultado=$((numA>numB))
+```
+
+Operador menor.
+
+```bash
+resultado=$((numA<numB))
+```
+
+Operador mayor o igual.
+
+```bash
+resultado=$((numA>=numB))
+```
+
+Operador menor o igual.
+
+```bash
+resultado=$((numA<=numB))
+```
+
+Operador igual.
+
+```bash
+resultado=$((numA==numB))
+```
+
+Operador diferente.
+
+```bash
+resultado=$((numA!=numB))
+```
+
+<br>
+
+### Operadores de asignación en scripts Bash
+
+Asumiendo que se definen dos variables numA y numB las operaciones de asignación básicas en Bash se definen de la siguiente forma.
+
+```bash
+numA=4
+numB=10
+```
+
+Sumar a numA numB.
+
+```bash
+resultado=$((numA+=numB))
+```
+
+Restar a numA numB.
+
+```bash
+resultado=$((numA-=numB))
+```
+
+Multiplicar a numA por numB.
+
+```bash
+resultado=$((numA*=numB))
+```
+
+Dividir a numA entre numB.
+
+```bash
+resultado=$((numA/=numB))
+```
+
+Residuo de numA entre numB.
+
+```bash
+resultado=$((numA%=numB))
 ```
 
 <br>
