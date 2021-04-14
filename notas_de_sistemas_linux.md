@@ -73,9 +73,44 @@ Antes de empezar a escribir un script Bash en cualquier sistema Linux es necesar
 
 <br>
 
-### Declaracion y alcance de variables en scripts Bash
+### Declaración y alcance de variables en scripts Bash
 
-Las variables que puede usar un script Bash pueden ser de dos tipos, **variables de usuario** y **variables de sistema operativo**
+Las variables que puede usar un script Bash pueden ser de dos tipos, **variables de usuario** y **variables de entorno**. Las variables de usuario son variables que son accesibles sólo dentro de un programa específico, mientras que las de entorno son variables que son accesibles en todo el sistema, por todos los usuarios del sistema. En ambos casos las variables se definen iniciando con el nombre de la variable y no hace falta definir el tipo de dato de la variable, con la diferencia de que las variables de usuario por lo general se definen con todas las letras del nombre de la variable en minúsculas mientras que las de entorno se definen por lo general con todas las letras del nombre en mayúsculas.
+
+#### Declaración de variables
+
+Para declarar que una variable dentro de un script será una variable de entorno hace falta, además, de definir la variable y su valor usar el comando **export**, con esta instrucción la variable pasa de ser de usuario a ser de entorno, por lo que inmediatamente después del comando **export** la variable ya es accesible por todo el sistema y por todos los usuarios del sistema.
+
+Declaración de una variable de usuario en un script Bash.
+
+```bash
+variable_de_usuario="Hola Mundo"
+```
+
+Declaración de una variable de entorno en un script Bash.
+
+```bash
+VARIABLE_DE_ENTORNO="Hola Mundo"
+export VARIABLE_DE_ENTORNO
+```
+
+#### Recuperación de variables
+
+Luego de definir cualquier variable de usuario o de entorno lo normal es querer recuperar ese valor posteriormente ya que por lo general se usa para afectar la ejecución del script, en ambos casos para recuperar el valor de una variable se usa el signo "$" antes del nombre de la variable que se quiere recuperar.
+
+Recuperación de una variable de usuario.
+
+```bash
+echo $variable_de_usuario
+Hola Mundo
+```
+
+Recuperación de una variable de entorno.
+
+```bash
+echo $VARIABLE_DE_ENTORNO
+Hola Mundo
+```
 
 <br>
 
