@@ -302,13 +302,13 @@ $*
 
 ### Manejo de opciones en scripts Bash
 
-Las opciones en los scripts Bash se usan para modificar el funcionamiento del script, por lo que son sumamente importantes, para validar opciones en scripts Bash es necesario iterar sobre todos los argumentos que recibe el script en busca de las opciones definidas para el script.
+Las opciones en los scripts Bash se usan para modificar el funcionamiento del script, por lo que son sumamente importantes. Usualmente las opciones son antecedidas por un **-** o un **--**. Para validar opciones en scripts Bash es necesario que los scripts internamente iteren sobre el listado de todos los argumentos que reciben en busca de las opciones definidas.
 
 ```bash
 
 for var in "$*"; do
     case "$var" in
-    --all) echo "opción -a";;
+    --all) echo "opción --all";;
     -a) echo "opción -a";;
     -b) echo "opción -b";;
     -c) echo "opción -c";;
