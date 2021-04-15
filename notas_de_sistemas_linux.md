@@ -359,4 +359,19 @@ Algunos de los parámetros más utilizados junto a read son:
 - **-n [número de caracteres]:** Permite leer como máximo cierto número de caracteres.
 - **-r:** Toma el botón de retroceso o backspace como un carácter y no borra ningún otro carácter previamente escrito.
 
+Para validar que los datos ingresados por el usuario sean datos de cierto tipo en Bash es necesario hacer una comprobación de datos usando expresiones regulares, además, para comparar la entrada con la expresión regular se debe utilizar el siguiente formato especial **if [[ $variable =~ $expresionRegular ]]**.
+
+```bash
+
+id_regex='^[0-9]{10}$'
+read -p "ID: " u_id
+
+if [[ $u_id =~ $id_regex ]]; then
+    echo -e "ID ($u_id) - status:\t\t\tAPPROVED"
+else
+    echo -e "ID ($u_id) - status:\t\t\t\tDENIED (check format)"
+fi
+
+```
+
 <br>
