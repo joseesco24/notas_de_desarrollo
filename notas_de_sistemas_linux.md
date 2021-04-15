@@ -399,9 +399,9 @@ fi
 
 <br>
 
-### Condicionales if/else en scripts Bash
+### Sentencias if/else en scripts Bash
 
-Los condicionales en los scripts Bash tienen la particularidad de que al usar **if** o **elif** siempre la sentencia del condicional debe ir entre corchetes y además debe haber un espacio entre los corchetes y la sentencia del condicional al iniciar y finalizar la sentencia.
+Las sentencias if/else en Bash tienen la particularidad de que al usar **if** o **elif** siempre la sentencia del condicional debe ir entre corchetes y además debe haber un espacio entre los corchetes y la sentencia del condicional al iniciar y finalizar la sentencia.
 
 ```bash
 if [ condicion_1 ]; then
@@ -415,22 +415,6 @@ else
 fi
 ```
 
-Al anidar condicionales en Bash la estructura general es la siguiente.
-
-```bash
-if [ condicion_1 ]; then
-    if [ condicion_2 ]; then
-        echo -e "Se cumplieron condicion_1 y condicion_2"
-    elif [ condicion_3 ]; then
-        echo -e "Se cumplieron condicion_1 y condicion_3"
-    else
-    echo -e "Se cumplio condicion_1"
-    fi
-else
-    echo -e "No se cumplio condicion_1"
-fi
-```
-
 **Nota:** Cuando se comparan dos números se utiliza el operador relacional **==**, cuando se comparan cadenas se utiliza **=**.
 
 <br>
@@ -441,7 +425,10 @@ Las sentencias case en Bash son muy similares a la sentencia switch de otros len
 
 ```bash
 case "$var" in
-"A") echo "opción A";;
+"A") 
+    echo "opción A"
+    echo "linea dos de la opción A"
+    ;;
 "B") echo "opción B";;
 "C") echo "opción C";;
 "D") echo "opción D";;
@@ -452,7 +439,7 @@ esac
 
 <br>
 
-### Declarar arreglos en scripts Bash
+### Manejo de arreglos en scripts Bash
 
 En Bash los arreglos pueden contener una cantidad de valores finita independientemente de su tipo de dato, además, los arreglos en Bash son dinámicos, es decir que incluso luego de establecer ciertos datos dentro del arreglo este puede seguir aumentando o disminuyendo sin ningún inconveniente.
 
@@ -525,6 +512,8 @@ do
 done
 ```
 
+<br>
+
 ### Ciclos while en scripts Bash
 
 Los ciclos while permiten ejecutar un listado de comandos mientras no se cumpla una condición dada.
@@ -535,6 +524,18 @@ while [ $numero -le 20 ]
 do
       numero=$(( numero + 1 ))
 done
+```
+
+### Sentencias break y continue en Bash
+
+Las sentencias **break** rompen los ciclos, mientras que las sentencias **continue** hacen que los ciclos pasen a la siguiente iteración.
+
+```bash
+break;
+```
+
+```bash
+continue;
 ```
 
 <br>
