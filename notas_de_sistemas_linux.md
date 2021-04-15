@@ -27,29 +27,41 @@ En los sistemas Linux existen varios tipos de shell de las cuales el usuario pue
 
 ## Scripts Bash
 
-Crear programas en Bash permite ejecutar múltiples comandos de forma secuencial para automatizar tareas específicas. Los comandos de un script Bash son colocados en un archivo de textos de manera secuencial para poder ejecutarlos a posterioridad.
+Bash no es solamente un shell o intérprete de comandos con el que se interactúa mediante una terminal y que permite dar instrucciones al kernel del sistema operativo, Bash también es un lenguaje de de programación interpretado completo que permite crear programas que ejecutan múltiples comandos de forma secuencial para automatizar tareas específicas dentro del sistema operativo, Bash como lenguaje de programación tiene la ventaja de ser compatible con casi cualquier sistema operativo basado en Linux, ya que es el shell por defecto de la gran mayoría de este tipo de sistemas, lo que lo hace un lenguaje de programación extremadamente útil para crear programas de automatización de tareas en sistemas operativos con kernel Linux, la principal característica de este lenguaje es que al programar con el se puede usar cualquier comando que normalmente se ingresaría en una terminal, lo que le da una gran potencia y usabilidad, agregando a esto la sintaxis propia de Bash, que es muy similar a la de otros lenguajes de programación, los programas en Bash llegan a ser fáciles de escribir y pueden ser muy útiles y polivalentes.
 
 <br>
 
 ### Crear un script Bash
 
-Los scripts Bash al igual que cualquier otro tipo de script se crean como archivos de texto plano, sin embargo, al crear un script Bash este debe cumplir dos condiciones, el archivo en el que se guarda el script debe tener la extensión **.sh** y el nombre del script debe ser único para evitar conflictos entre el script nuevo y alguno otro que ya esté presente en el sistema, para garantizar que el nombre del archivo sea único se puede usar el comando **type** como se muestra a continuación, suponiendo que el nombre del script será **script**.
+Los scripts Bash al igual que cualquier otro tipo de script se crean como archivos de texto plano, la unica condicion que deben respetar los scripts Bash al igual que los scripts de los demás lenguajes de programacion es la extensión del archivo, que en el caso de Bash debe ser **sh**.
+
+```bash
+touch nuevo_script.shOtorgación de permisos de ejecución usando el sistema octal.
+```
 
 <br>
 
 ### Otorgar permisos de ejecución al script
 
-Luego de crear el script es necesario darle al script permisos de ejecución, ya que de otra forma el script no podrá ejecutarse, hay varias formas de dar permisos de ejecución a un script, algunas de estas se listan a continuación.
+Para poder ejecutar un script Bash es necesario darle al script permisos de ejecución, al igual que con cualquier otro tipo de script, ya que de otra forma el script no podrá ejecutarse, algunas de las formas más sencillas de dar permiso de ejecución a un script se listan a continuación.
+
+Otorgacion de permisos de ejecución usando el sistema octal.
 
 ```bash
-# !/bin/bash
+chmod 755 nuevo_script.sh
+```
+
+Otorgación de permisos de ejecución usando sintaxis simplificada.
+
+```bash
+chmod +x nuevo_script.sh
 ```
 
 <br>
 
 ### Establecer Bash como intérprete del script
 
-Antes de empezar a escribir un script Bash en cualquier sistema Linux es necesario indicar que el intérprete del script o shell será Bash, la forma correcta de indicar que el intérprete del script será Bash es agregando la ruta hacia Bash en la primera línea del script, como se muestra a continuación.
+Antes de empezar a escribir cualquier programa interpretado ejecutabe en un sistema Linux es necesario establecer el intérprete del programa, la forma más sencilla de establecerlo es mediante la secuancia de caracteres **#!** también conocida como **Shebang** seguida por la ruta del intérprete del programa, en el caso de los scripts Bash se puede establecer que el script es será interpretado por Bash de la siguiente forma.
 
 ```bash
 # !/bin/bash
@@ -79,16 +91,16 @@ export VARIABLE_DE_ENTORNO
 
 ### Lectura de variables en Bash
 
-Tras definir cualquier variable de usuario o de entorno lo normal es querer recuperar ese valor posteriormente ya que por lo general se usa para afectar la ejecución del script, en ambos casos para recuperar el valor de una variable se usa el signo "$" antes del nombre de la variable que se quiere recuperar, las variables de usuario solo serán accesibles dentro del script en el que se declararon, mientras que las variables de entorno que fueron definidas con el comando **export** serán accesibles también por otros scripts o mediante la terminal independientemente del usuario del sistema.
+Tras definir cualquier variable de usuario o de entorno lo normal es querer leer ese valor posteriormente ya que por lo general se usa para afectar la ejecución del script, en ambos casos para leer el valor de una variable se usa el signo **$** antes del nombre de la variable que se quiere leer, las variables de usuario solo serán accesibles dentro del script en el que se declararon, mientras que las variables de entorno que fueron definidas con el comando **export** serán accesibles también por otros scripts o mediante la terminal, independientemente del usuario del sistema que la quiera leer.
 
-Recuperación de una variable de usuario.
+Lectura de una variable de usuario.
 
 ```bash
 echo $variable_de_usuario
 Hola Mundo
 ```
 
-Recuperación de una variable de entorno.
+Lectura de una variable de entorno.
 
 ```bash
 echo $VARIABLE_DE_ENTORNO
@@ -99,13 +111,15 @@ Hola Mundo
 
 ### Sustitución de comandos en variables en Bash
 
-La sustitución de comandos en variables permite ejecutar un comando y almacenar el resultado en una variable.
+La sustitución de comandos en variables es uno de los mecanismos más útiles de Bash ya que permite ejecutar un comando y almacenar el resultado de la ejecución de forma textual en una variable o incluso reemplazarlo e imprimirlo en un texto. Las dos formas de sustituir comandos en variables se muestran a continuación.
 
-Las dos formas de sustituir comandos en variables son:
+Sustitución de comandos usando ``.
 
 ```bash
 ubicacionActual=`pwd`
 ```
+
+Sustitución de comandos usando $().
 
 ```bash
 ubicacionActual=$(pwd)
@@ -115,9 +129,9 @@ ubicacionActual=$(pwd)
 
 ### Capturar entradas del usuario en Bash
 
-La captura de información del usuario es un proceso fundamental para desarrollar programas Bash interactivos, es decir, programas que cambian su ejecución o sus procesos en función de cierta información que es suministrada al programa por el usuario durante su ejecución, para capturar información del usuario en un script Bash se usa el comando **read**, las entradas capturadas por read se almacenen en la variable **REPLY** a no ser que se modifique el comportamiento de red con el parámetro **-p** el cual emite una frase para pedir la entrada además de guardarla en una variable específica.
+La captura de entradas del usuario es un proceso fundamental para desarrollar programas Bash interactivos, es decir, programas que cambian su ejecución o sus procesos en función de cierta información que es suministrada al programa por el usuario mediante la línea de comandos durante su ejecución, para capturar entradas del usuario en un script Bash se usa el comando **read**, las entradas capturadas por read se almacenen en la variable **REPLY** por defecto, este comportamiento se puede modificar con el parámetro **-p** de read, el cual emite una frase para pedir al usuario la entrada y además guardar la entrada suministrada en una variable específica. Las dos formas de capturar entradas del usuario con read se muestra a continuación.
 
-Las dos formas de hacer solicitar y capturar entradas en Bash son:
+Captura con read sin usar parámetros adicionales.
 
 ```bash
 echo -n "Ingrese el valor 1:"
@@ -127,6 +141,8 @@ echo -n "Ingrese el valor 2:"
 read
 valor_2=$REPLY
 ```
+
+Captura con read usando el parámetro -p.
 
 ```bash
 read -p "Ingrese el valor 1:" valor_1
@@ -277,6 +293,10 @@ resultado=$((numA%=numB))
 
 <br>
 
+### Manejo de secuencias en Bash
+
+<br>
+
 ### Manejo de arreglos en Bash
 
 En Bash los arreglos pueden contener una cantidad de valores finita independientemente de su tipo de dato, además, los arreglos en Bash son dinámicos, es decir que incluso luego de establecer ciertos datos dentro del arreglo este puede seguir aumentando o disminuyendo sin ningún inconveniente.
@@ -328,10 +348,6 @@ unset arreglo_numeros[0]
 unset arreglo_cadenas[0]
 unset arreglo_rangos[0]
 ```
-
-<br>
-
-### Manejo de secuencias en Bash
 
 <br>
 
@@ -389,7 +405,7 @@ case "$var" in
 "B") echo "opción B";;
 "C") echo "opción C";;
 "D") echo "opción D";;
-{E-G}) echo "la opción aún no está implementada"
+{E..G}) echo "la opción aún no está implementada"
 *) echo "opcion no encontrada";;
 esac
 ```
