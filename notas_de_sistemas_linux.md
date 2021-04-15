@@ -278,6 +278,25 @@ $1
 ${10}
 ```
 
+### Manejo de opciones en scripts Bash
+
+Las opciones en los scripts Bash se usan para modificar el funcionamiento del script, por lo que son sumamente importantes, para validar opciones en scripts Bash es necesario iterar sobre todos los argumentos que recibe el script en busca de las opciones definidas para el script.
+
+```bash
+
+for var in "$*"; do
+    case "$var" in
+    --all) echo "opción -a";;
+    -a) echo "opción -a";;
+    -b) echo "opción -b";;
+    -c) echo "opción -c";;
+    *) echo "opción no encontrada";;
+    esac
+    shift
+done
+
+```
+
 Además de poder acceder por número de argumento se pueden usar ciertas instrucciones para obtener más información respecto a los parámetros recibidos por el script.
 
 Obtener el nombre del script.
@@ -300,7 +319,7 @@ $*
 
 <br>
 
-### Sustitucion de comandos en variables en scripts Bash
+### Sustitución de comandos en variables en scripts Bash
 
 La sustitución de comandos en variables permite ejecutar un comando y almacenar el resultado en una variable.
 
@@ -332,7 +351,7 @@ bash -x script.sh
 
 <br>
 
-### Capturar informacion del usuario en scripts Bash
+### Capturar información del usuario en scripts Bash
 
 La captura de información del usuario es un proceso fundamental para desarrollar programas Bash interactivos, es decir, programas que cambian su ejecución o sus procesos en función de cierta información que es suministrada al programa por el usuario durante su ejecución, para capturar información del usuario en un script Bash se usa el comando **read**, las entradas capturadas por read se almacenen en la variable **REPLY** a no ser que se modifique el comportamiento de red con el parámetro **-p** el cual emite una frase para pedir la entrada además de guardarla en una variable específica.
 
@@ -359,7 +378,7 @@ Algunos de los parámetros más utilizados junto a read son:
 - **-n [número de caracteres]:** Permite leer como máximo cierto número de caracteres.
 - **-r:** Toma el botón de retroceso o backspace como un carácter y no borra ningún otro carácter previamente escrito.
 
-Para validar que los datos ingresados por el usuario sean datos de cierto tipo en Bash es necesario hacer una comprobación de datos usando expresiones regulares, además, para comparar la entrada con la expresión regular se debe utilizar el siguiente formato especial **if [[ $variable =~ $expresionRegular ]]**.
+Para validar que los datos ingresados por el usuario sean datos de cierto tipo en Bash es necesario hacer una comprobación de datos usando expresiones regulares, además, para comparar la entrada con la expresión regular se debe utilizar el siguiente formato especial **if [[$variable =~ $expresionRegular]]**.
 
 ```bash
 
@@ -367,9 +386,9 @@ id_regex='^[0-9]{10}$'
 read -p "ID: " u_id
 
 if [[ $u_id =~ $id_regex ]]; then
-    echo -e "ID ($u_id) - status:\t\t\tAPPROVED"
+    echo -e "Id válida"
 else
-    echo -e "ID ($u_id) - status:\t\t\t\tDENIED (check format)"
+    echo -e "Id no válida"
 fi
 
 ```
