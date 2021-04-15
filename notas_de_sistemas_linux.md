@@ -278,25 +278,6 @@ $1
 ${10}
 ```
 
-### Manejo de opciones en scripts Bash
-
-Las opciones en los scripts Bash se usan para modificar el funcionamiento del script, por lo que son sumamente importantes, para validar opciones en scripts Bash es necesario iterar sobre todos los argumentos que recibe el script en busca de las opciones definidas para el script.
-
-```bash
-
-for var in "$*"; do
-    case "$var" in
-    --all) echo "opción -a";;
-    -a) echo "opción -a";;
-    -b) echo "opción -b";;
-    -c) echo "opción -c";;
-    *) echo "opción no encontrada";;
-    esac
-    shift
-done
-
-```
-
 Además de poder acceder por número de argumento se pueden usar ciertas instrucciones para obtener más información respecto a los parámetros recibidos por el script.
 
 Obtener el nombre del script.
@@ -315,6 +296,27 @@ Obtener todos los argumentos
 
 ```bash
 $*
+```
+
+<br>
+
+### Manejo de opciones en scripts Bash
+
+Las opciones en los scripts Bash se usan para modificar el funcionamiento del script, por lo que son sumamente importantes, para validar opciones en scripts Bash es necesario iterar sobre todos los argumentos que recibe el script en busca de las opciones definidas para el script.
+
+```bash
+
+for var in "$*"; do
+    case "$var" in
+    --all) echo "opción -a";;
+    -a) echo "opción -a";;
+    -b) echo "opción -b";;
+    -c) echo "opción -c";;
+    *) echo "opción no encontrada";;
+    esac
+    shift
+done
+
 ```
 
 <br>
