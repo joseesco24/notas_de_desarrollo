@@ -36,7 +36,7 @@ Bash no es solamente un shell o intérprete de comandos con el que se interactú
 Los scripts Bash al igual que cualquier otro tipo de script se crean como archivos de texto plano, la unica condicion que deben respetar los scripts Bash al igual que los scripts de los demás lenguajes de programacion es la extensión del archivo, que en el caso de Bash debe ser **sh**.
 
 ```bash
-touch nuevo_script.shOtorgación de permisos de ejecución usando el sistema octal.
+touch nuevo_script.sh
 ```
 
 <br>
