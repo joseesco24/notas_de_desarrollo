@@ -315,3 +315,19 @@ ubicacionActual=$(pwd)
 ```
 
 <br>
+
+### Depuración en scripts Bash
+
+La depuración es el proceso de identificar y corregir errores de programación. Bash provee ciertos comandos que permiten ejecutar un script al tiempo que emite los resultados del mismo en la línea de comandos.
+
+Las dos formas de hacer depuración en Bash son:
+
+```bash
+bash -v script.sh
+```
+
+```bash
+bash -x script.sh
+```
+
+<br>
