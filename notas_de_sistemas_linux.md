@@ -299,3 +299,19 @@ $*
 ```
 
 <br>
+
+### Sustitucion de comandos en variables en scripts Bash
+
+La sustitución de comandos en variables permite ejecutar un comando y almacenar el resultado en una variable.
+
+Las dos formas de sustituir comandos en variables son:
+
+```bash
+ubicacionActual=`pwd`
+```
+
+```bash
+ubicacionActual=$(pwd)
+```
+
+<br>
