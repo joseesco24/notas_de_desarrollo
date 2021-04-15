@@ -331,3 +331,32 @@ bash -x script.sh
 ```
 
 <br>
+
+### Capturar informacion del usuario en scripts Bash
+
+La captura de información del usuario es un proceso fundamental para desarrollar programas Bash interactivos, es decir, programas que cambian su ejecución o sus procesos en función de cierta información que es suministrada al programa por el usuario durante su ejecución, para capturar información del usuario en un script Bash se usa el comando **read**, las entradas capturadas por read se almacenen en la variable **REPLY** a no ser que se modifique el comportamiento de red con el parámetro **-p** el cual emite una frase para pedir la entrada además de guardarla en una variable específica.
+
+Las dos formas de hacer solicitar y capturar entradas en Bash son:
+
+```bash
+echo -n "Ingrese el valor 1:"
+read
+valor_1=$REPLY
+echo -n "Ingrese el valor 2:"
+read
+valor_2=$REPLY
+```
+
+```bash
+read -p "Ingrese el valor 1:" valor_1
+read -p "Ingrese el valor 2:" valor_1
+```
+
+Algunos de los parámetros más utilizados junto a read son:
+
+- **-p:** Permite ingresar una frase o prompt antes de pedir una entrada.
+- **-s:** Modo Sigiloso. No muestra ningún carácter en la terminal, útil para contraseñas o información sensible.
+- **-n [número de caracteres]:** Permite leer como máximo cierto número de caracteres.
+- **-r:** Toma el botón de retroceso o backspace como un carácter y no borra ningún otro carácter previamente escrito.
+
+<br>
