@@ -311,7 +311,6 @@ $*
 Las opciones en los scripts Bash se usan para modificar el funcionamiento del script, por lo que son sumamente importantes. Usualmente las opciones son antecedidas por un **-** o un **--**. Para validar opciones en scripts Bash es necesario que los scripts internamente iteren sobre el listado de todos los argumentos que reciben en busca de las opciones definidas.
 
 ```bash
-
 for var in "$*"; do
     case "$var" in
     --all) echo "opción --all";;
@@ -322,7 +321,6 @@ for var in "$*"; do
     esac
     shift
 done
-
 ```
 
 <br>
@@ -389,7 +387,6 @@ Algunos de los parámetros más utilizados junto a read son:
 Para validar que los datos ingresados por el usuario sean datos de cierto tipo en Bash es necesario hacer una comprobación de datos usando expresiones regulares, además, para comparar la entrada con la expresión regular se debe utilizar el siguiente formato especial **if [[$variable =~ $expresionRegular]]**.
 
 ```bash
-
 id_regex='^[0-9]{10}$'
 read -p "ID: " u_id
 
@@ -398,7 +395,6 @@ if [[ $u_id =~ $id_regex ]]; then
 else
     echo -e "Id no válida"
 fi
-
 ```
 
 <br>
@@ -408,7 +404,6 @@ fi
 Los condicionales en los scripts Bash tienen la particularidad de que al usar **if** o **elif** siempre la sentencia del condicional debe ir entre corchetes y además debe haber un espacio entre los corchetes y la sentencia del condicional al iniciar y finalizar la sentencia.
 
 ```bash
-
 if [ condicion_1 ]; then
     echo -e "Se cumplio condicion_1"
 elif [ condicion_2 ]; then
@@ -418,13 +413,11 @@ elif [ condicion_3 ] && [ condicion_4 ]; then
 else
     echo -e "No se cumplieron ni condicion_1 ni condicion_2"
 fi
-
 ```
 
 Al anidar condicionales en Bash la estructura general es la siguiente.
 
 ```bash
-
 if [ condicion_1 ]; then
     if [ condicion_2 ]; then
         echo -e "Se cumplieron condicion_1 y condicion_2"
@@ -436,7 +429,6 @@ if [ condicion_1 ]; then
 else
     echo -e "No se cumplio condicion_1"
 fi
-
 ```
 
 **Nota:** Cuando se comparan dos números se utiliza el operador relacional **==**, cuando se comparan cadenas se utiliza **=**.
@@ -510,6 +502,39 @@ Eliminar valores de un arreglo.
 unset arreglo_numeros[0]
 unset arreglo_cadenas[0]
 unset arreglo_rangos[0]
+```
+
+<br>
+
+### Ciclos for en scripts Bash
+
+Los ciclos for en Bash permiten iterar sobre **listas de valores** o ejecutar un listado de instrucciones cierto número de veces.
+
+```bash
+arreglo_numeros=(1 2 3 4 5 6 7 8)
+for i in ${arreglo_numeros[*]}
+do
+    echo "Número: $i"
+done
+```
+
+```bash
+for ((i=1; i<10; i++))
+do
+    echo "Número: $i"
+done
+```
+
+### Ciclos while en scripts Bash
+
+Los ciclos while permiten ejecutar un listado de comandos mientras no se cumpla una condición dada.
+
+```bash
+numero=1
+while [ $numero -le 20 ]
+do
+      numero=$(( numero + 1 ))
+done
 ```
 
 <br>
