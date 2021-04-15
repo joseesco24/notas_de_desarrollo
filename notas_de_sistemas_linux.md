@@ -167,36 +167,42 @@ Operador mayor.
 
 ```bash
 resultado=$((numA>numB))
+resultado=$((numA -gt numB))
 ```
 
 Operador menor.
 
 ```bash
 resultado=$((numA<numB))
+resultado=$((numA -lt numB))
 ```
 
 Operador mayor o igual.
 
 ```bash
 resultado=$((numA>=numB))
+resultado=$((numA -ge numB))
 ```
 
 Operador menor o igual.
 
 ```bash
 resultado=$((numA<=numB))
+resultado=$((numA -le numB))
 ```
 
 Operador igual.
 
 ```bash
 resultado=$((numA==numB))
+resultado=$((numA -eq numB))
 ```
 
 Operador diferente.
 
 ```bash
 resultado=$((numA!=numB))
+resultado=$((numA -ne numB))
 ```
 
 <br>
@@ -394,5 +400,45 @@ else
 fi
 
 ```
+
+<br>
+
+### Condicionales if/else en scripts Bash
+
+Los condicionales en los scripts Bash tienen la particularidad de que al usar **if** o **elif** siempre la sentencia del condicional debe ir entre corchetes y además debe haber un espacio entre los corchetes y la sentencia del condicional al iniciar y finalizar la sentencia.
+
+```bash
+
+if [ condicion_1 ]; then
+    echo -e "Se cumplio condicion_1"
+elif [ condicion_2 ]; then
+    echo -e "Se cumplio condicion_2"
+elif [ condicion_3 ] && [ condicion_4 ]; then
+    echo -e "Se cumplieron condicion_3 y condicion_4"
+else
+    echo -e "No se cumplieron ni condicion_1 ni condicion_2"
+fi
+
+```
+
+Al anidar condicionales en Bash la estructura general es la siguiente.
+
+```bash
+
+if [ condicion_1 ]; then
+    if [ condicion_2 ]; then
+        echo -e "Se cumplieron condicion_1 y condicion_2"
+    elif [ condicion_3 ]; then
+        echo -e "Se cumplieron condicion_1 y condicion_3"
+    else
+    echo -e "Se cumplio condicion_1"
+    fi
+else
+    echo -e "No se cumplio condicion_1"
+fi
+
+```
+
+**Nota:** Cuando se comparan dos números se utiliza el operador relacional **==**, cuando se comparan cadenas se utiliza **=**.
 
 <br>
