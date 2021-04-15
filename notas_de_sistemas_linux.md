@@ -57,7 +57,7 @@ Antes de empezar a escribir un script Bash en cualquier sistema Linux es necesar
 
 <br>
 
-### Declaracion de variables en Bash
+### Declaración de variables en Bash
 
 Las variables que puede usar un script Bash pueden ser de dos tipos, **variables de usuario** y **variables de entorno**. Las variables de usuario son variables que son accesibles sólo dentro de un programa específico, mientras que las de entorno son variables que son accesibles en todo el sistema, por todos los usuarios del sistema. En ambos casos las variables se definen iniciando con el nombre de la variable y no hace falta definir el tipo de dato de la variable, con la diferencia de que las variables de usuario por lo general se definen con todas las letras del nombre de la variable en minúsculas mientras que las de entorno se definen por lo general con todas las letras del nombre en mayúsculas.\
 Para declarar que una variable dentro de un script será una variable de entorno hace falta, además, de definir la variable y su valor usar el comando **export**, con esta instrucción la variable pasa de ser de usuario a ser de entorno, por lo que inmediatamente después del comando **export** la variable ya es accesible por todo el sistema y por todos los usuarios del sistema.
@@ -139,19 +139,6 @@ Algunos de los parámetros más utilizados junto a read son:
 - **-s:** Modo Sigiloso. No muestra ningún carácter en la terminal, útil para contraseñas o información sensible.
 - **-n [número de caracteres]:** Permite leer como máximo cierto número de caracteres.
 - **-r:** Toma el botón de retroceso o backspace como un carácter y no borra ningún otro carácter previamente escrito.
-
-Para validar que los datos ingresados por el usuario sean datos de cierto tipo en Bash es necesario hacer una comprobación de datos usando expresiones regulares, además, para comparar la entrada con la expresión regular se debe utilizar el siguiente formato especial **if [[$variable =~ $expresionRegular]]**.
-
-```bash
-id_regex='^[0-9]{10}$'
-read -p "ID: " u_id
-
-if [[ $u_id =~ $id_regex ]]; then
-    echo -e "Id válida"
-else
-    echo -e "Id no válida"
-fi
-```
 
 <br>
 
@@ -290,6 +277,68 @@ resultado=$((numA%=numB))
 
 <br>
 
+### Manejo de arreglos en Bash
+
+En Bash los arreglos pueden contener una cantidad de valores finita independientemente de su tipo de dato, además, los arreglos en Bash son dinámicos, es decir que incluso luego de establecer ciertos datos dentro del arreglo este puede seguir aumentando o disminuyendo sin ningún inconveniente.
+
+Declarar valores de un arreglo.
+
+```bash
+arreglo_numeros=(1 2 3 4 5 6 7 8)
+arreglo_cadenas=(perro, gato)
+arreglo_rangos=({A…Z} {10…20})
+```
+
+Imprimir valores de un arreglo.
+
+```bash
+echo -e "arreglo de números: ${arreglo_numeros[*]}"
+echo -e "arreglo de cadenas: ${arreglo_cadenas[*]}"
+echo -e "arreglo mixto generado con rangos: ${arreglo_rangos[*]}"
+```
+
+Imprimir tamaño de un arreglo.
+
+```bash
+echo -e "tamaño del arreglo de números: ${#arreglo_numeros[*]}"
+echo -e "tamaño del arreglo de cadenas: ${#arreglo_cadenas[*]}"
+echo -e "tamaño del arreglo mixto generado con rangos: ${#arreglo_rangos[*]}"
+```
+
+Imprimir índices de un arreglo.
+
+```bash
+echo -e "posición 0  del arreglo de números: ${arreglo_numeros[0]}"
+echo -e "posición 1  del arreglo de cadenas: ${arreglo_cadenas[1]}"
+echo -e "posición 2  del arreglo mixto generado con rangos: ${arreglo_rangos[2]}"
+```
+
+Agregar valores a un arreglo.
+
+```bash
+arreglo_numeros[0]=9
+arreglo_cadenas[0]=cabra
+arreglo_rangos[0]=11
+```
+
+Eliminar valores de un arreglo.
+
+```bash
+unset arreglo_numeros[0]
+unset arreglo_cadenas[0]
+unset arreglo_rangos[0]
+```
+
+<br>
+
+### Manejo de secuencias en Bash
+
+<br>
+
+### Manejo de tablas en Bash
+
+<br>
+
 ### Condicionales con if y else en Bash
 
 Las sentencias if/else en Bash tienen la particularidad de que al usar **if** o **elif** siempre la sentencia del condicional debe ir entre corchetes y además debe haber un espacio entre los corchetes y la sentencia del condicional al iniciar y finalizar la sentencia.
@@ -307,6 +356,23 @@ fi
 ```
 
 **Nota:** Cuando se comparan dos números se utiliza el operador relacional **==**, cuando se comparan cadenas se utiliza **=**.
+
+<br>
+
+### Validación de entradas del usuario con condicionales if en Bash
+
+Para validar que los datos ingresados por el usuario sean datos de cierto tipo en Bash es necesario hacer una comprobación de datos usando expresiones regulares, además, para comparar la entrada con la expresión regular se debe utilizar el siguiente formato especial **if [[$variable =~ $expresionRegular]]**.
+
+```bash
+id_regex='^[0-9]{10}$'
+read -p "ID: " u_id
+
+if [[ $u_id =~ $id_regex ]]; then
+    echo -e "Id válida"
+else
+    echo -e "Id no válida"
+fi
+```
 
 <br>
 
@@ -375,60 +441,6 @@ break;
 
 ```bash
 continue;
-```
-
-<br>
-
-### Manejo de arreglos en Bash
-
-En Bash los arreglos pueden contener una cantidad de valores finita independientemente de su tipo de dato, además, los arreglos en Bash son dinámicos, es decir que incluso luego de establecer ciertos datos dentro del arreglo este puede seguir aumentando o disminuyendo sin ningún inconveniente.
-
-Declarar valores de un arreglo.
-
-```bash
-arreglo_numeros=(1 2 3 4 5 6 7 8)
-arreglo_cadenas=(perro, gato)
-arreglo_rangos=({A…Z} {10…20})
-```
-
-Imprimir valores de un arreglo.
-
-```bash
-echo -e "arreglo de números: ${arreglo_numeros[*]}"
-echo -e "arreglo de cadenas: ${arreglo_cadenas[*]}"
-echo -e "arreglo mixto generado con rangos: ${arreglo_rangos[*]}"
-```
-
-Imprimir tamaño de un arreglo.
-
-```bash
-echo -e "tamaño del arreglo de números: ${#arreglo_numeros[*]}"
-echo -e "tamaño del arreglo de cadenas: ${#arreglo_cadenas[*]}"
-echo -e "tamaño del arreglo mixto generado con rangos: ${#arreglo_rangos[*]}"
-```
-
-Imprimir índices de un arreglo.
-
-```bash
-echo -e "posición 0  del arreglo de números: ${arreglo_numeros[0]}"
-echo -e "posición 1  del arreglo de cadenas: ${arreglo_cadenas[1]}"
-echo -e "posición 2  del arreglo mixto generado con rangos: ${arreglo_rangos[2]}"
-```
-
-Agregar valores a un arreglo.
-
-```bash
-arreglo_numeros[0]=9
-arreglo_cadenas[0]=cabra
-arreglo_rangos[0]=11
-```
-
-Eliminar valores de un arreglo.
-
-```bash
-unset arreglo_numeros[0]
-unset arreglo_cadenas[0]
-unset arreglo_rangos[0]
 ```
 
 <br>
