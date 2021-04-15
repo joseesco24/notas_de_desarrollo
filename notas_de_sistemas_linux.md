@@ -318,7 +318,7 @@ for var in "$*"; do
     -a) echo "opción -a";;
     -b) echo "opción -b";;
     -c) echo "opción -c";;
-    *) echo "opción no encontrada";;
+    *) echo "opcion no encontrada";;
     esac
     shift
 done
@@ -440,5 +440,76 @@ fi
 ```
 
 **Nota:** Cuando se comparan dos números se utiliza el operador relacional **==**, cuando se comparan cadenas se utiliza **=**.
+
+<br>
+
+### Sentencia case en scripts Bash
+
+Las sentencias case en Bash son muy similares a la sentencia switch de otros lenguajes de programación, permite evaluar varios casos para un valor simple o un rango de valores.
+
+```bash
+case "$var" in
+"A") echo "opción A";;
+"B") echo "opción B";;
+"C") echo "opción C";;
+"D") echo "opción D";;
+{E-G}) echo "la opción aún no está implementada"
+*) echo "opcion no encontrada";;
+esac
+```
+
+<br>
+
+### Declarar arreglos en scripts Bash
+
+En Bash los arreglos pueden contener una cantidad de valores finita independientemente de su tipo de dato, además, los arreglos en Bash son dinámicos, es decir que incluso luego de establecer ciertos datos dentro del arreglo este puede seguir aumentando o disminuyendo sin ningún inconveniente.
+
+Declarar valores de un arreglo.
+
+```bash
+arreglo_numeros=(1 2 3 4 5 6 7 8)
+arreglo_cadenas=(perro, gato)
+arreglo_rangos=({A…Z} {10…20})
+```
+
+Imprimir valores de un arreglo.
+
+```bash
+echo -e "arreglo de numeros: ${arreglo_numeros[*]}"
+echo -e "arreglo de cadenas: ${arreglo_cadenas[*]}"
+echo -e "arreglo mixto generado con rangos: ${arreglo_rangos[*]}"
+```
+
+Imprimir tamaño de un arreglo.
+
+```bash
+echo -e "tamaño del arreglo de numeros: ${#arreglo_numeros[*]}"
+echo -e "tamaño del arreglo de cadenas: ${#arreglo_cadenas[*]}"
+echo -e "tamaño del arreglo mixto generado con rangos: ${#arreglo_rangos[*]}"
+```
+
+Imprimir indices de un arreglo.
+
+```bash
+echo -e "posicion 0  del arreglo de numeros: ${arreglo_numeros[0]}"
+echo -e "posicion 1  del arreglo de cadenas: ${arreglo_cadenas[1]}"
+echo -e "posicion 2  del arreglo mixto generado con rangos: ${arreglo_rangos[2]}"
+```
+
+Agregar valores a un arreglo.
+
+```bash
+arreglo_numeros[0]=9
+arreglo_cadenas[0]=cabra
+arreglo_rangos[0]=11
+```
+
+Eliminar valores de un arreglo.
+
+```bash
+unset arreglo_numeros[0]
+unset arreglo_cadenas[0]
+unset arreglo_rangos[0]
+```
 
 <br>
