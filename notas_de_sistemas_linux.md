@@ -67,6 +67,12 @@ Antes de empezar a escribir cualquier programa interpretado ejecutabe en un sist
 # !/bin/bash
 ```
 
+Luego de declarar el intérprete en el **Shebang** se puede incluir el siguiente comando para que el programa se detenga si cualquier operación que realice falla.
+
+```bash
+set -e
+```
+
 <br>
 
 ### Declaración de variables en Bash
@@ -113,13 +119,13 @@ Hola Mundo
 
 La sustitución de comandos en variables es uno de los mecanismos más útiles de Bash ya que permite ejecutar un comando y almacenar el resultado de la ejecución de forma textual en una variable o incluso reemplazarlo e imprimirlo en un texto. Las dos formas de sustituir comandos en variables se muestran a continuación.
 
-Sustitución de comandos usando ``.
+Sustitución de comandos usando comillas.
 
 ```bash
 ubicacionActual=`pwd`
 ```
 
-Sustitución de comandos usando $().
+Sustitución de comandos usando parentesis.
 
 ```bash
 ubicacionActual=$(pwd)
@@ -295,24 +301,30 @@ resultado=$((numA%=numB))
 
 ### Manejo de secuencias en Bash
 
-Las secuencias en Bash son listas en las que todos los elementos de la lista sigue un cierto patrón, como por ejemplo en un conteo del 1 al 10, la forma más sencilla de declarar una secuencia es usando la notación basada en llaves, las secuencias con notación de llaves pueden ser reemplazadas en cadenas usando expansión de llaves para generar cadenas nuevas y además adicionando un tercer elemento en el caso de las secuencias numéricas puede agregarse un paso.
+Las secuencias en Bash son listas en las que todos los elementos de la lista sigue un cierto patrón, como por ejemplo en un conteo del 1 al 10, en el que los valores incrementan de 1 en 1, la forma más sencilla de declarar una secuencia es usando la notación basada en llaves, las secuencias con notación de llaves pueden ser reemplazadas en cadenas usando expansión de llaves para generar cadenas nuevas y además adicionando un tercer elemento en el caso de las secuencias numéricas puede agregarse un paso. Usando notación de llaves también se pueden generar secuencias alfabéticas con la notación de llaves.
+
+Generación de una secuencia simple del 1 al 10.
 
 ```bash
 echo {1..10}
 1 2 3 4 5 6 7 8 9 10
 ```
 
+Generación de una secuencia con paso 2 del 1 al 10.
+
 ```bash
 echo {1..10..2}
 1 3 5 7 9
 ```
+
+Generación de una secuencia de nombres usando reemplazo por expansión de llaves.
 
 ```bash
 echo archivo_{1..4}.sh
 archivo_1.sh archivo_2.sh archivo_3.sh archivo_4.sh
 ```
 
-Usando notación de llaves también se pueden generar secuencias alfabéticas.
+Generación de una secuencia simple de caracteres alfabeticos.
 
 ```bash
 echo {a..f}
@@ -323,7 +335,7 @@ a b c d e f
 
 ### Manejo de arreglos en Bash
 
-En Bash los arreglos pueden contener una cantidad de valores finita independientemente de su tipo de dato, además, los arreglos en Bash son dinámicos, es decir que incluso luego de establecer ciertos datos dentro del arreglo este puede seguir aumentando o disminuyendo sin ningún inconveniente.
+En Bash los arreglos pueden contener cualquier tipo de dato y además puede haber más de un tipo de dato por arreglo, los arreglos en Bash también tienen la característica de ser dinámicos, es decir que incluso luego de establecer ciertos datos dentro del arreglo este puede seguir aumentando o disminuyendo sin ningún inconveniente.
 
 Declarar valores de un arreglo.
 
@@ -389,19 +401,19 @@ declare -A ppa_instalations=(
 )
 ```
 
-Lectura de todas las llaves de la tabla.
+Imprimir todas las llaves de la tabla.
 
 ```bash
 echo -e "Llaves en la tabla ${!ppa_instalations[*]}"
 ```
 
-Lectura de todos los ítems de la tabla.
+Imprimir todos los ítems de la tabla.
 
 ```bash
 echo -e "Ítems en la tabla ${ppa_instalations[*]}"
 ```
 
-Lectura de un ítem basándose en la llave.
+Imprimir un ítem de la tabla basándose en su llave.
 
 ```bash
 echo -e "Ítems basado en la llave ${ppa_instalations[llave]}"
@@ -429,7 +441,7 @@ fi
 
 <br>
 
-### Validación de entradas del usuario con condicionales if en Bash
+### Validación de entradas del usuario con condicionales if y regex en Bash
 
 Para validar que los datos ingresados por el usuario sean datos de cierto tipo en Bash es necesario hacer una comprobación de datos usando expresiones regulares, además, para comparar la entrada con la expresión regular se debe utilizar el siguiente formato especial **if [[$variable =~ $expresionRegular]]**.
 
@@ -468,7 +480,7 @@ esac
 
 ### Ciclos while en Bash
 
-Los ciclos while permiten ejecutar un listado de comandos mientras no se cumpla una condición dada.
+Los ciclos while en Bash al igual que en otros lenguajes de programación permiten ejecutar una secuencia de comandos mientras no se cumpla una condición dada.
 
 ```bash
 numero=1
@@ -482,7 +494,9 @@ done
 
 ### Ciclos for en Bash
 
-Los ciclos for en Bash permiten iterar sobre una listas de valores o ejecutar una secuencia de instrucciones cierto número de veces.
+Los ciclos for en Bash al igual que en otros lenguajes de programación permiten iterar sobre una listas de valores o ejecutar una secuencia de comandos cierto número de veces.
+
+Iteración de ciclo for sobre lista de valores.
 
 ```bash
 arreglo_numeros=(1 2 3 4 5 6 7 8)
@@ -491,6 +505,8 @@ do
     echo "Número: $i"
 done
 ```
+
+Iteración de ciclo for n veces.
 
 ```bash
 for ((i=1; i<10; i++))
@@ -503,7 +519,7 @@ done
 
 ### Sentencias break y continue en Bash
 
-Las sentencias **break** rompen los ciclos, mientras que las sentencias **continue** hacen que los ciclos pasen a la siguiente iteración.
+En Bash las sentencias **break** rompen los ciclos, mientras que las sentencias **continue** hacen que los ciclos pasen a la siguiente iteración omitiendo el resto de instrucciones en la secuencia que hay por ejecutar en la iteración actual.
 
 ```bash
 break;
@@ -531,7 +547,7 @@ bash script.sh
 
 ### Manejo de argumentos en Bash
 
-Los argumentos que son enviados a un script Bash se almacenan en una lista, donde cada argumento puede ser referenciado mediante su posición, al igual que los argumentos recibidos por una función, para enviar argumentos basta con escribir cada argumento luego de la instrucción de ejecución del script con un espacio, cuando se quieren enviar cadenas como parámetros es necesario enviar la cadena entre comillas ya que si la cadena tiene espacios y no es enviada entre comillas será interpretada por el script como varios parámetros.
+Los argumentos que son enviados a un script Bash se almacenan en una lista, donde cada argumento puede ser referenciado mediante su posición, para enviar argumentos basta con escribir cada argumento luego de la instrucción de ejecución del script con un espacio, cuando se quieren enviar cadenas como parámetros es necesario enviar la cadena entre comillas ya que si la cadena tiene espacios y no es enviada entre comillas será interpretada por el script como varios parámetros.
 
 ```bash
 bash script.sh "primer argumento" 2
@@ -575,7 +591,7 @@ $*
 
 ### Creación de funciones en Bash
 
-En Bash es necesario que las funciones se definan antes de llamarlas.
+En Bash como en cualquier lenguaje de programación interpretado es necesario que las funciones se definen antes de llamarlas, ya que de otra forma la función no existirá en memoria al momento de llamarla.
 
 ```bash
 nueva_funcion () {
@@ -588,7 +604,7 @@ nueva_funcion () {
 nueva_funcion
 ```
 
-Además al enviar parámetros a una función ésta accede a los parámetros por índices, como si se tratara de un arreglo.
+Al enviar parámetros a una función ésta accede a los parámetros por índices, como si se tratara del listado de parametros que recibe un script Bash al iniciar su ejecución.
 
 ```bash
 nueva_funcion_a () {
@@ -624,7 +640,7 @@ done
 
 ### Depuración en Bash
 
-La depuración es el proceso de identificar y corregir errores de programación. Bash provee ciertos comandos que permiten ejecutar un script al tiempo que emite los resultados del mismo en la línea de comandos.
+La depuración es el proceso de identificar y corregir errores de programación. Bash provee ciertos comandos que permiten ejecutar un script al tiempo que emite los resultados del mismo en la línea de comandos separando los comandos de sus salidas.
 
 Las dos formas de hacer depuración en Bash son:
 
@@ -634,26 +650,6 @@ bash -v script.sh
 
 ```bash
 bash -x script.sh
-```
-
-<br>
-
-### Creación de archivos en Bash
-
-Para crear nuevos archivos en Bash se usa el comando touch.
-
-```bash
-touch nuevo_archivo.txt
-```
-
-<br>
-
-### Creación de directorios en Bash
-
-Para crear directorios en Bash se usa el comando mkdir.
-
-```bash
-mkdir nuevo_directorio
 ```
 
 <br>
@@ -698,43 +694,6 @@ cat <<EOM > archivo.txt
 valores escritos
 con cat
 EOM
-```
-
-<br>
-
-### Compresión de archivos y directorios en Bash
-
-```bash
-tar czf nuevo_archivo_comprimido.tar.gz directorio
-tar xzf nuevo_archivo_comprimido.tar.gz
-```
-
-```bash
-gzip nuevo_archivo_comprimido.gz archivo.txt
-gzip -d nuevo_archivo_comprimido.gz
-```
-
-```bash
-zip nuevo_archivo_comprimido.zip archivo.txt
-unzip nuevo_archivo_comprimido.zip
-```
-
-<br>
-
-### Transferencia de archivos y directorios en Bash
-
-```bash
-rsync
-```
-
-```bash
-scp
-```
-
-### Descarga de archivos de internet desde Bash
-
-```bash
-wget "link de descarga directa"
 ```
 
 <br>
