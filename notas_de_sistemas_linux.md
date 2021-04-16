@@ -295,6 +295,30 @@ resultado=$((numA%=numB))
 
 ### Manejo de secuencias en Bash
 
+Las secuencias en Bash son listas en las que todos los elementos de la lista sigue un cierto patrón, como por ejemplo en un conteo del 1 al 10, la forma más sencilla de declarar una secuencia es usando la notación basada en llaves, las secuencias con notación de llaves pueden ser reemplazadas en cadenas usando expansión de llaves para generar cadenas nuevas y además adicionando un tercer elemento en el caso de las secuencias numéricas puede agregarse un paso.
+
+```bash
+echo {1..10}
+1 2 3 4 5 6 7 8 9 10
+```
+
+```bash
+echo {1..10..2}
+1 3 5 7 9
+```
+
+```bash
+echo archivo_{1..4}.sh
+archivo_1.sh archivo_2.sh archivo_3.sh archivo_4.sh
+```
+
+Usando notación de llaves también se pueden generar secuencias alfabéticas.
+
+```bash
+echo {a..f}
+a b c d e f
+```
+
 <br>
 
 ### Manejo de arreglos en Bash
@@ -353,11 +377,41 @@ unset arreglo_rangos[0]
 
 ### Manejo de tablas en Bash
 
+En sus versiones más recientes Bash soporta el uso de tablas o diccionarios, los cuales se basan en usar una llave para acceder a un valor, la forma de declarar un diccionario en Bash es la siguiente.
+
+```bash
+declare -A ppa_instalations=(
+    ["indicator-sysmonitor"]="ppa:fossfreedom/indicator-sysmonitor"
+    ["timeshift"]="ppa:teejee2008/timeshift"
+    ["neofetch"]="ppa:dawidd0811/neofetch"
+    ["tilix"]="ppa:ubuntuhandbook1/tilix"
+    ["python3.7"]="ppa:deadsnakes/ppa"
+)
+```
+
+Lectura de todas las llaves de la tabla.
+
+```bash
+echo -e "Llaves en la tabla ${!ppa_instalations[*]}"
+```
+
+Lectura de todos los ítems de la tabla.
+
+```bash
+echo -e "Ítems en la tabla ${ppa_instalations[*]}"
+```
+
+Lectura de un ítem basándose en la llave.
+
+```bash
+echo -e "Ítems basado en la llave ${ppa_instalations[llave]}"
+```
+
 <br>
 
 ### Condicionales con if y else en Bash
 
-Las sentencias if/else en Bash tienen la particularidad de que al usar **if** o **elif** siempre la sentencia del condicional debe ir entre corchetes y además debe haber un espacio entre los corchetes y la sentencia del condicional al iniciar y finalizar la sentencia.
+Los condicionales if else en Bash tienen la particularidad de que al usar **if** o **elif** siempre la sentencia del condicional debe ir entre corchetes y además debe haber un espacio entre los corchetes y la sentencia del condicional al iniciar y finalizar.
 
 ```bash
 if [ condicion_1 ]; then
@@ -428,7 +482,7 @@ done
 
 ### Ciclos for en Bash
 
-Los ciclos for en Bash permiten iterar sobre **listas de valores** o ejecutar un listado de instrucciones cierto número de veces.
+Los ciclos for en Bash permiten iterar sobre una listas de valores o ejecutar una secuencia de instrucciones cierto número de veces.
 
 ```bash
 arreglo_numeros=(1 2 3 4 5 6 7 8)
@@ -461,34 +515,6 @@ continue;
 
 <br>
 
-### Creación de funciones en Bash
-
-En Bash es necesario que las funciones se definan antes de llamarlas.
-
-```bash
-nueva_funcion () {
-    echo -e "Hola desde la nueva función"
-    ...
-}
-```
-
-```bash
-nueva_funcion
-```
-
-```bash
-nueva_funcion_a () {
-    echo -e "Hola desde la nueva función, el argumento recibido es $1"
-    ...
-}
-```
-
-```bash
-nueva_funcion_a "argumento_1"
-```
-
-<br>
-
 ### Ejecutar un script Bash
 
 Las dos formas de ejecutar un Script Bash en Linux son:
@@ -505,7 +531,7 @@ bash script.sh
 
 ### Manejo de argumentos en Bash
 
-Los argumentos que son enviados a un script Bash se almacenan en una lista, donde cada argumento puede ser referenciado mediante su posición, para enviar argumentos basta con escribir cada argumento luego de la instrucción de ejecución del script con un espacio, cuando se quieren enviar cadenas como parámetros es necesario enviar la cadena entre comillas ya que si la cadena tiene espacios y no es enviada entre comillas será interpretada por el script como varios parámetros.
+Los argumentos que son enviados a un script Bash se almacenan en una lista, donde cada argumento puede ser referenciado mediante su posición, al igual que los argumentos recibidos por una función, para enviar argumentos basta con escribir cada argumento luego de la instrucción de ejecución del script con un espacio, cuando se quieren enviar cadenas como parámetros es necesario enviar la cadena entre comillas ya que si la cadena tiene espacios y no es enviada entre comillas será interpretada por el script como varios parámetros.
 
 ```bash
 bash script.sh "primer argumento" 2
@@ -547,14 +573,44 @@ $*
 
 <br>
 
+### Creación de funciones en Bash
+
+En Bash es necesario que las funciones se definan antes de llamarlas.
+
+```bash
+nueva_funcion () {
+    echo -e "Hola desde la nueva función"
+    ...
+}
+```
+
+```bash
+nueva_funcion
+```
+
+Además al enviar parámetros a una función ésta accede a los parámetros por índices, como si se tratara de un arreglo.
+
+```bash
+nueva_funcion_a () {
+    echo -e "Hola desde la nueva función, el argumento recibido es $1"
+    ...
+}
+```
+
+```bash
+nueva_funcion_a "argumento_1"
+```
+
+<br>
+
 ### Manejo de opciones en Bash
 
-Las opciones en los scripts Bash se usan para modificar el funcionamiento del script, por lo que son sumamente importantes. Usualmente las opciones son antecedidas por un **-** o un **--**. Para validar opciones en scripts Bash es necesario que los scripts internamente iteren sobre el listado de todos los argumentos que reciben en busca de las opciones definidas.
+Las opciones en los scripts Bash se usan para modificar el funcionamiento del script, por lo que son sumamente importantes. Las opciones en Bash son antecedidas por un **-**, también se puede usar la notación **--** pero en este caso Bash lo interpretará como una cadena. Para validar opciones en scripts Bash es necesario que los scripts internamente iteren sobre el listado de todos los argumentos que reciben en busca de las opciones definidas.
 
 ```bash
 for var in "$*"; do
     case "$var" in
-    --all) echo "opción --all";;
+    "--all") echo "opción --all";;
     -a) echo "opción -a";;
     -b) echo "opción -b";;
     -c) echo "opción -c";;
@@ -584,6 +640,8 @@ bash -x script.sh
 
 ### Creación de archivos en Bash
 
+Para crear nuevos archivos en Bash se usa el comando touch.
+
 ```bash
 touch nuevo_archivo.txt
 ```
@@ -591,6 +649,8 @@ touch nuevo_archivo.txt
 <br>
 
 ### Creación de directorios en Bash
+
+Para crear directorios en Bash se usa el comando mkdir.
 
 ```bash
 mkdir nuevo_directorio
@@ -600,13 +660,21 @@ mkdir nuevo_directorio
 
 ### Lectura de archivos con Bash
 
+La lectura de archivos suele ser algo normal al programar en Bash, normalmente se emplea el comando cat para leer archivos, pero en caso de necesitar leer line a línea se usa la palabra reservada **IFS** con un while para iterar sobre las líneas del archivo.
+
+Lectura normal con cat.
+
 ```bash
 cat archivo.txt
 ```
 
+Lectura normal con cat y sustitución de variable.
+
 ```bash
 contenido = $(cat archivo.txt)
 ```
+
+Lectura linea a linea con IFS y while.
 
 ```bash
 while IFS= read linea
@@ -619,7 +687,7 @@ done < archivo.txt
 
 ### Escritura de archivos con Bash
 
-Para escribir en archivos desde Bash se puede usar dos opciones, el operador **>>** junto a echo o **EOM**: End Of Message y **EOF**: End Of File junto a cat, la principal ventaja de usar EOM o EOF respecto al operador >> es que tanto EOM como EOF permiten escribir múltiples líneas directamente, mientras que con el operador >> sería necesario iterar para escribir múltiples líneas.
+Para escribir en archivos desde Bash se puede usar dos opciones, el operador **>** junto a echo o **EOM**: End Of Message y **EOF**: End Of File junto a cat, la principal ventaja de usar EOM o EOF respecto al operador >> es que tanto EOM como EOF permiten escribir múltiples líneas directamente, mientras que con el operador >> sería necesario iterar para escribir múltiples líneas.
 
 ```bash
 echo "valores escritos con echo" > archivo.txt
