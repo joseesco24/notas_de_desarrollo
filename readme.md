@@ -4,3 +4,5 @@ El único propósito de este repositorio es guardar y tener disponibles notas ú
 
 **Para mi yo del futuro**:\
 En caso de que lo olvides, las gráficas de todas las notas están hechas para verse bien solo con un fondo oscuro.
+
+<br>
