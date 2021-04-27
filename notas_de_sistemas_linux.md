@@ -23,6 +23,16 @@ En los sistemas Linux existen varios tipos de shell de las cuales el usuario pue
 
 ## Comandos Bash
 
+Los comandos Bash son un conjunto de instrucciones y parámetros utilizados para la administración y configuración de los sistemas Linux, además de para realizar otras tareas específicas relacionadas con el sistema operativo.
+
+<br>
+
+### Comandos básicos
+
+<br>
+
+### Comandos de compresión de archivos
+
 <br><br>
 
 ## Scripts Bash
@@ -696,4 +706,4 @@ con cat
 EOM
 ```
 
-<br>
+<br><br>

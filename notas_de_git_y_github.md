@@ -653,4 +653,4 @@ Las razones principales para tomar la decisión de no agregar un archivo a un re
 - Es un blob.
 - Son archivos que se generan corriendo comandos.
 
-<br>
+<br><br>
