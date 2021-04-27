@@ -250,6 +250,14 @@ docker exec [nombre o id del contenedor] ps -ef
 
 El comando anterior es una extensión de **docker exec** que muestra los procesos que se están ejecutando dentro del contenedor indicado.
 
+#### Comando pré construído para ver usar el shell de un contenedor
+
+```bash
+docker exec -it [nombre o id del contenedor] /bin/bash
+```
+
+El comando anterior es una extensión de **docker exec** que permite usar de forma interactiva el shell de un contenedor.
+
 ### Apagar contenedores
 
 ```bash
