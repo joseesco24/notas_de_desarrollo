@@ -177,24 +177,24 @@ Los documntos de filtors son la parte mas importante de las busquedas en MongoDB
 
 #### equal
 
-```JSON
-(
+```mongo
+db.inventory.find(
     {item: "canvas"}
 )
 ```
 
 #### lower than
 
-```JSON
-(
+```mongo
+db.inventory.find(
     qty: {$lt: 30}
 )
 ```
 
 #### and
 
-```JSON
-({
+```mongo
+db.inventory.find({
     item: "canvas",
     qty: {$lt:30}
 })
@@ -202,8 +202,8 @@ Los documntos de filtors son la parte mas importante de las busquedas en MongoDB
 
 #### or
 
-```JSON
-({
+```mongo
+db.inventory.find({
     $or:[
         {status: "A"},
         {qty: {$lt:30}}
