@@ -26,6 +26,22 @@ Otra de las razones para que MongoDB sea tan usado como motor de base de datos e
 
 <br>
 
+## MongoDB compass
+
+[**MongoDB compass**](https://docs.mongodb.com/compass/current/) es la interfaz gráfica de MongoDB, al igual que el shell de MongoDB permite realizar todo tipo de operaciones, con la ventaja de tener una interfaz gráfica más amigable, para conectar compass es necesario usar la siguiente sintaxis.
+
+```Unknown
+mongodb://[ip de la máquina que tiene MongoDB server]:[puerto en el que está expuesto mongo, normalmente 27017]
+```
+
+Ejemplo:
+
+```Unknown
+mongodb://127.0.0.1:27017
+```
+
+<br>
+
 ## MongoDB shell
 
 El shell de MongoDB o [**MongoDB shell**](https://docs.mongodb.com/manual/mongo/) es una interfaz interactiva de JavaScript y es la forma más sencilla de interactuar con el MongoDB Server, además de poder realizar acciones simples también se pueden crear script para MongoDB shell, por lo que se pueden automatizar varios tipos de tareas o consultas en concreto.
