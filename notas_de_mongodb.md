@@ -169,6 +169,8 @@ El metodo find ademas se puede combinar con otros metodos como:
 - **pretty():** para imprimir de una forma mas legible los documentos resultantes de la busqueda.
 - **count():** para contar el numero de documentos resultantes de la busqueda.
 
+<br>
+
 ### Documentos JSON de filtros
 
 Los documntos de filtors son la parte mas importante de las busquedas en MongoDB, ya que estos condicionan los parametros que debe tener un documento al momento de buscar en una colección, los documentos de filtros permiten varios tipos de operaciones, algunas de las mas importantes se listan a continuación.
@@ -193,7 +195,7 @@ db.inventory.find(
 
 ```bash
 db.inventory.find({
-    item: "canvas", 
+    item: "canvas",
     qty: {$lt:30}
 })
 ```
@@ -203,9 +205,9 @@ db.inventory.find({
 ```bash
 db.inventory.find({
     $or:[
-        {status: "A"}, 
-        {qty: {$lt:30}} 
-        ] 
+        {status: "A"},
+        {qty: {$lt:30}}
+        ]
 })
 ```
 
