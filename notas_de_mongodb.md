@@ -28,13 +28,13 @@ Otra de las razones para que MongoDB sea tan usado como motor de base de datos e
 
 ## MongoDB shell
 
-El shell de MongoDB o [**MongoDB shell**](https://docs.mongodb.com/manual/mongo/) es la forma mas sencilla de interactuar con el MongoDB Server, además de poder realizar acciones simples también se pueden crear script para MongoDB shell, por lo que se pueden automatizar varios tipos de tareas o consultas en concreto.
+El shell de MongoDB o [**MongoDB shell**](https://docs.mongodb.com/manual/mongo/) es una interfaz interactiva de JavaScript y es la forma más sencilla de interactuar con el MongoDB Server, además de poder realizar acciones simples también se pueden crear script para MongoDB shell, por lo que se pueden automatizar varios tipos de tareas o consultas en concreto.
 
 <br>
 
 ### Iniciar shell
 
-```bash
+```Unknown
 mongo
 ```
 
@@ -50,7 +50,7 @@ ctrl + l
 
 ### Ver bases de datos disponibles
 
-```JavaScript
+```Unknown
 show dbs
 ```
 
@@ -66,7 +66,7 @@ use [nombre de la nueva base de datos]
 
 ### Ver nombre de la base de datos a la que está conectado el shell
 
-```JavaScript
+```Unknown
 db
 ```
 
@@ -74,7 +74,7 @@ db
 
 ### Ver colecciones disponibles en la base de datos
 
-```JavaScript
+```Unknown
 show collections
 ```
 
@@ -94,7 +94,9 @@ db.inventory.help()
 
 <br>
 
-### Insertar un documento en una colección
+### Insertar documentos en una colección
+
+#### Inserción individual
 
 ```Unknown
 [nombre de la base de datos].[nombre de la colección].insertOne([documento en formato JSON])
@@ -114,9 +116,7 @@ db.inventory.insertOne({
 MongoDB por defecto no crea bases de datos vacías, por lo que es necesario luego de crear una nueva base de datos crear al menos una colección y un documento, si la colección en la que se quiere insertar el documento no existe MongoDB crea una nueva colección con el nombre indicado.\
 Al insertar un documento el id se puede especificar usando el tag **\_id**, si no se indica el id del documento usando este tag MongoDB asigna al documento un id por defecto, además el id no se puede repetir, por lo que si se ingresa un documento con un id que ya existe la operación fallará, por lo que es una buena práctica dejar que MongoDB genere el id de forma automática.
 
-<br>
-
-### Insertar varios documentos en una colección
+#### Inserción grupal
 
 ```Unknown
 [nombre de la base de datos].[nombre de la colección].insertMany([arreglo de documentos en formato JSON])
@@ -134,46 +134,7 @@ db.inventory.insertMany([
 
 <br>
 
-### Buscar documentos en una colección
-
-#### Busqueda individual
-
-```Unknown
-[nombre de la base de datos].[nombre de la colección].findOne([documento de filtros en formato JSON])
-```
-
-Ejemplo:
-
-```JavaScript
-db.inventory.findOne({status: "A"})
-```
-
-Retorna el primer documento segun el orden natural de MongoDB que cumpla con los filtros establecidos.
-
-#### Busqueda grupal
-
-```Unknown
-[nombre de la base de datos].[nombre de la colección].find([documento de filtros en formato JSON])
-```
-
-Ejemplo:
-
-```JavaScript
-db.inventory.find({item: "canvas"})
-```
-
-Retorna todos los documentos que cumplan con los filtros establecidos.
-
-El metodo find ademas se puede combinar con otros metodos como:
-
-- **pretty():** para imprimir de una forma mas legible los documentos resultantes de la busqueda.
-- **count():** para contar el numero de documentos resultantes de la busqueda.
-
-<br>
-
-### Documentos JSON de filtros
-
-Los documntos de filtors son la parte mas importante de las busquedas en MongoDB, ya que estos condicionan los parametros que debe tener un documento al momento de buscar en una colección, los documentos de filtros permiten varios tipos de operaciones, algunas de las mas importantes se listan a continuación.
+### Documentos de filtros en formato JSON
 
 #### equal
 
@@ -212,3 +173,68 @@ db.inventory.find({
 ```
 
 <br>
+
+### Buscar documentos en una colección
+
+#### Búsqueda individual
+
+```Unknown
+[nombre de la base de datos].[nombre de la colección].findOne([documento de filtros en formato JSON])
+```
+
+Ejemplo:
+
+```JavaScript
+db.inventory.findOne({status: "A"})
+```
+
+Retorna el primer documento según el orden natural de MongoDB que cumpla con los filtros establecidos.
+
+#### Búsqueda grupal
+
+```Unknown
+[nombre de la base de datos].[nombre de la colección].find([documento de filtros en formato JSON])
+```
+
+Ejemplo:
+
+```JavaScript
+db.inventory.find({item: "canvas"})
+```
+
+Retorna todos los documentos que cumplan con los filtros establecidos.
+
+El metodo find además se puede combinar con otros métodos como:
+
+- **pretty():** para imprimir de una forma más legible los documentos resultantes de la búsqueda.
+- **count():** para contar el número de documentos resultantes de la búsqueda.
+
+<br>
+
+### Actualizar documentos en una colección
+
+#### Actualización individual
+
+```Unknown
+[nombre de la base de datos].[nombre de la colección].updateOne([documento de filtros en formato JSON])
+```
+
+Ejemplo:
+
+```JavaScript
+db.inventory.updateOne({status: "A"})
+```
+
+#### Actualización grupal
+
+```Unknown
+[nombre de la base de datos].[nombre de la colección].updateMany([documento de filtros en formato JSON])
+```
+
+Ejemplo:
+
+```JavaScript
+db.inventory.updateMany({item: "canvas"})
+```
+
+<br><br>
