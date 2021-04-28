@@ -34,7 +34,7 @@ El shell de MongoDB o [**MongoDB shell**](https://docs.mongodb.com/manual/mongo/
 
 ### Iniciar shell
 
-```JavaScript
+```bash
 mongo
 ```
 
@@ -42,7 +42,7 @@ mongo
 
 ### Limpiar shell
 
-```JavaScript
+```Unknown
 ctrl + l
 ```
 
@@ -58,7 +58,7 @@ show dbs
 
 ### Crear nueva base de datos o usar una ya creada
 
-```JavaScript
+```Unknown
 use [nombre de la nueva base de datos]
 ```
 
@@ -82,7 +82,7 @@ show collections
 
 ### Ver comandos disponibles en una colección
 
-```JavaScript
+```Unknown
 [nombre de la base de datos].[nombre de la colección].help()
 ```
 
@@ -96,7 +96,7 @@ db.inventory.help()
 
 ### Insertar un documento en una colección
 
-```JavaScript
+```Unknown
 [nombre de la base de datos].[nombre de la colección].insertOne([documento en formato JSON])
 ```
 
@@ -118,7 +118,7 @@ Al insertar un documento el id se puede especificar usando el tag **\_id**, si n
 
 ### Insertar varios documentos en una colección
 
-```JavaScript
+```Unknown
 [nombre de la base de datos].[nombre de la colección].insertMany([arreglo de documentos en formato JSON])
 ```
 
@@ -138,7 +138,7 @@ db.inventory.insertMany([
 
 #### Busqueda individual
 
-```JavaScript
+```Unknown
 [nombre de la base de datos].[nombre de la colección].findOne([documento de filtros en formato JSON])
 ```
 
@@ -152,7 +152,7 @@ Retorna el primer documento segun el orden natural de MongoDB que cumpla con los
 
 #### Busqueda grupal
 
-```JavaScript
+```Unknown
 [nombre de la base de datos].[nombre de la colección].find([documento de filtros en formato JSON])
 ```
 
