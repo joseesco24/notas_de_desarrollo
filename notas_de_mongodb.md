@@ -34,7 +34,7 @@ El shell de MongoDB o [**MongoDB shell**](https://docs.mongodb.com/manual/mongo/
 
 ### Iniciar shell
 
-```bash
+```mongo
 mongo
 ```
 
@@ -42,7 +42,7 @@ mongo
 
 ### Limpiar shell
 
-```bash
+```mongo
 ctrl + l
 ```
 
@@ -50,7 +50,7 @@ ctrl + l
 
 ### Ver bases de datos disponibles
 
-```bash
+```mongo
 show dbs
 ```
 
@@ -58,7 +58,7 @@ show dbs
 
 ### Crear nueva base de datos o usar una ya creada
 
-```bash
+```mongo
 use [nombre de la nueva base de datos]
 ```
 
@@ -66,7 +66,7 @@ use [nombre de la nueva base de datos]
 
 ### Ver nombre de la base de datos a la que está conectado el shell
 
-```bash
+```mongo
 db
 ```
 
@@ -74,7 +74,7 @@ db
 
 ### Ver colecciones disponibles en la base de datos
 
-```bash
+```mongo
 show collections
 ```
 
@@ -82,13 +82,13 @@ show collections
 
 ### Ver comandos disponibles en una colección
 
-```bash
+```mongo
 [nombre de la base de datos].[nombre de la colección].help()
 ```
 
 Ejemplo:
 
-```bash
+```mongo
 db.inventory.help()
 ```
 
@@ -96,13 +96,13 @@ db.inventory.help()
 
 ### Insertar un documento en una colección
 
-```bash
+```mongo
 [nombre de la base de datos].[nombre de la colección].insertOne([documento en formato JSON])
 ```
 
 Ejemplo:
 
-```bash
+```mongo
 db.inventory.insertOne({
     size: {h: 28, w: 35.5, uom: "cm"},
     tags: ["cotton"],
@@ -118,13 +118,13 @@ Al insertar un documento el id se puede especificar usando el tag **\_id**, si n
 
 ### Insertar varios documentos en una colección
 
-```bash
+```mongo
 [nombre de la base de datos].[nombre de la colección].insertMany([arreglo de documentos en formato JSON])
 ```
 
 Ejemplo:
 
-```bash
+```mongo
 db.inventory.insertMany([
    {item: "sketch pad", qty: 95, size: {h: 22.85, w: 30.5, uom: "cm"}, status: "A"},
    {item: "postcard", qty: 45, size: {h: 10, w: 15.25, uom: "cm"}, status: "A"},
@@ -138,13 +138,13 @@ db.inventory.insertMany([
 
 #### Busqueda individual
 
-```bash
+```mongo
 [nombre de la base de datos].[nombre de la colección].findOne([documento de filtros en formato JSON])
 ```
 
 Ejemplo:
 
-```bash
+```mongo
 db.inventory.findOne({status: "A"})
 ```
 
@@ -152,13 +152,13 @@ Retorna el primer documento segun el orden natural de MongoDB que cumpla con los
 
 #### Busqueda grupal
 
-```bash
+```mongo
 [nombre de la base de datos].[nombre de la colección].find([documento de filtros en formato JSON])
 ```
 
 Ejemplo:
 
-```bash
+```mongo
 db.inventory.find({item: "canvas"})
 ```
 
@@ -177,24 +177,24 @@ Los documntos de filtors son la parte mas importante de las busquedas en MongoDB
 
 #### equal
 
-```bash
-db.inventory.find(
+```JSON
+(
     {item: "canvas"}
 )
 ```
 
 #### lower than
 
-```bash
-db.inventory.find(
+```JSON
+(
     qty: {$lt: 30}
 )
 ```
 
 #### and
 
-```bash
-db.inventory.find({
+```JSON
+({
     item: "canvas",
     qty: {$lt:30}
 })
@@ -202,8 +202,8 @@ db.inventory.find({
 
 #### or
 
-```bash
-db.inventory.find({
+```JSON
+({
     $or:[
         {status: "A"},
         {qty: {$lt:30}}
