@@ -153,7 +153,7 @@ db.inventory.insertMany(
 
 ### Documentos de filtros en formato JSON
 
-Los documentos de filtros son parte fundamental de la mayoría de las operaciones [**CRUD**](https://docs.mongodb.com/manual/crud/) com MongoDB, ya que permiten, como su nombre indica, filtrar los documentos resultantes de una búsqueda, para esto MongoDB dispone de varios (**operadores**)[https://docs.mongodb.com/manual/reference/operator/] que se usan en el MongoDB shell para realizar todo tipo de operaciones necesarias para filtrar datos.
+Los documentos de filtros son parte fundamental de la mayoría de las operaciones [**CRUD**](https://docs.mongodb.com/manual/crud/) com MongoDB, ya que permiten, como su nombre indica, filtrar los documentos resultantes de una búsqueda, para esto MongoDB dispone de varios [**operadores**](https://docs.mongodb.com/manual/reference/operator/) que se usan en el MongoDB shell para realizar todo tipo de operaciones necesarias para filtrar datos.
 
 #### equal
 
