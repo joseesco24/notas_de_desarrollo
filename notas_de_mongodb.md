@@ -105,12 +105,9 @@ db.inventory.help()
 Ejemplo:
 
 ```JavaScript
-db.inventory.insertOne({
-    size: {h: 28, w: 35.5, uom: "cm"},
-    tags: ["cotton"],
-    item: "canvas",
-    qty: 100,
-})
+db.inventory.insertOne(
+    {size: {h: 28, w: 35.5, uom: "cm"}, tags: ["cotton"], item: "canvas", qty: 100}
+)
 ```
 
 MongoDB por defecto no crea bases de datos vacías, por lo que es necesario luego de crear una nueva base de datos crear al menos una colección y un documento, si la colección en la que se quiere insertar el documento no existe MongoDB crea una nueva colección con el nombre indicado.\
@@ -125,11 +122,13 @@ Al insertar un documento el id se puede especificar usando el tag **\_id**, si n
 Ejemplo:
 
 ```JavaScript
-db.inventory.insertMany([
-   {item: "sketch pad", qty: 95, size: {h: 22.85, w: 30.5, uom: "cm"}, status: "A"},
-   {item: "postcard", qty: 45, size: {h: 10, w: 15.25, uom: "cm"}, status: "A"},
-   {item: "sketchbook", qty: 80, size: {h: 14, w: 21, uom: "cm"}, status: "A"},
-])
+db.inventory.insertMany(
+    [
+        {item: "sketch pad", qty: 95, size: {h: 22.85, w: 30.5, uom: "cm"}, status: "A"},
+        {item: "postcard", qty: 45, size: {h: 10, w: 15.25, uom: "cm"}, status: "A"},
+        {item: "sketchbook", qty: 80, size: {h: 14, w: 21, uom: "cm"}, status: "A"}
+    ]
+)
 ```
 
 <br>
@@ -148,28 +147,32 @@ db.inventory.find(
 
 ```JavaScript
 db.inventory.find(
-    qty: {$lt: 30}
+    qty: {$lt:30}
 )
 ```
 
 #### and
 
 ```JavaScript
-db.inventory.find({
-    item: "canvas",
-    qty: {$lt:30}
-})
+db.inventory.find(
+    {
+        item: "canvas",
+        qty: {$lt:30}
+    }
+)
 ```
 
 #### or
 
 ```JavaScript
-db.inventory.find({
-    $or:[
-        {status: "A"},
-        {qty: {$lt:30}}
-        ]
-})
+db.inventory.find(
+    {
+        $or:[
+            {status: "A"},
+            {qty: {$lt:30}}
+            ]
+    }
+)
 ```
 
 <br>
@@ -185,7 +188,9 @@ db.inventory.find({
 Ejemplo:
 
 ```JavaScript
-db.inventory.findOne({status: "A"})
+db.inventory.findOne(
+    {item: "canvas"}
+)
 ```
 
 Retorna el primer documento según el orden natural de MongoDB que cumpla con los filtros establecidos.
@@ -199,12 +204,14 @@ Retorna el primer documento según el orden natural de MongoDB que cumpla con lo
 Ejemplo:
 
 ```JavaScript
-db.inventory.find({item: "canvas"})
+db.inventory.find(
+    {item: "canvas"}
+)
 ```
 
 Retorna todos los documentos que cumplan con los filtros establecidos.
 
-El metodo find además se puede combinar con otros métodos como:
+El método find además se puede combinar con otros métodos como:
 
 - **pretty():** para imprimir de una forma más legible los documentos resultantes de la búsqueda.
 - **count():** para contar el número de documentos resultantes de la búsqueda.
@@ -216,25 +223,73 @@ El metodo find además se puede combinar con otros métodos como:
 #### Actualización individual
 
 ```Unknown
-[nombre de la base de datos].[nombre de la colección].updateOne([documento de filtros en formato JSON])
+[nombre de la base de datos].[nombre de la colección].updateOne([documento de filtros en formato JSON], [JSON])
 ```
 
 Ejemplo:
 
 ```JavaScript
-db.inventory.updateOne({status: "A"})
+db.inventory.updateOne(
+    {
+        status: "A"
+    },
+    {
+        $set: {status: "B"},
+    }
+)
 ```
 
 #### Actualización grupal
 
 ```Unknown
-[nombre de la base de datos].[nombre de la colección].updateMany([documento de filtros en formato JSON])
+[nombre de la base de datos].[nombre de la colección].updateMany([documento de filtros en formato JSON], [JSON])
 ```
 
 Ejemplo:
 
 ```JavaScript
-db.inventory.updateMany({item: "canvas"})
+db.inventory.updateMany(
+    {
+        status: "A"
+    },
+    {
+        $set: {status: "B"},
+    }
+)
+```
+
+<br>
+
+### Eliminar documentos en una colección
+
+#### Eliminación individual
+
+```Unknown
+[nombre de la base de datos].[nombre de la colección].deleteOne([documento de filtros en formato JSON])
+```
+
+Ejemplo:
+
+```JavaScript
+db.inventory.deleteOne(
+    {status: "B"}
+)
+```
+
+El documento eliminado con deleteOne siempre es el primer documento que cumple con las condiciones del JSON de filtros según el orden natural de MongoDB.
+
+#### Eliminación grupal
+
+```Unknown
+[nombre de la base de datos].[nombre de la colección].deleteMany([documento de filtros en formato JSON])
+```
+
+Ejemplo:
+
+```JavaScript
+db.inventory.deleteMany(
+    {status: "B"}
+)
 ```
 
 <br><br>
