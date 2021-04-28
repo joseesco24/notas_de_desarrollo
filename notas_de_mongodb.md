@@ -64,7 +64,7 @@ use [nombre de la nueva base de datos]
 
 <br>
 
-### Ver nombre de la base de datos a la que esta conectado el shell
+### Ver nombre de la base de datos a la que está conectado el shell
 
 ```bash
 db
@@ -72,10 +72,20 @@ db
 
 <br>
 
-### Ver collecciones disponibles en la base de datos
+### Ver colecciones disponibles en la base de datos
 
 ```bash
 show collections
 ```
+
+<br>
+
+### Insertar documento en la base de datos
+
+```bash
+[nombre de la base de datos].[nombre de la colección].insertOne([documento en formato JSON])
+```
+
+MongoDB por defecto no crea bases de datos vacías, por lo que es necesario luego de crear una nueva base de datos crear al menos una colección y un documento, si la colección en la que se quiere insertar el documento no existe MongoDB crea una nueva colección con el nombre indicado.
 
 <br>
