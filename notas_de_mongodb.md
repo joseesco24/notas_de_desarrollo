@@ -24,7 +24,7 @@ Otra de las razones para que MongoDB sea tan usado como motor de base de datos e
 - **Conectores:** Son las librerías dentro de cada lenguaje que se usan para interactuar con el MongoDB Server.
 - **MongoDB Realm:** Es una versión lite de MongoDB que se puede instalar en dispositivos móviles.
 
-<br>
+<br><br>
 
 ## MongoDB compass
 
@@ -40,7 +40,7 @@ Ejemplo:
 mongodb://127.0.0.1:27017
 ```
 
-<br>
+<br><br>
 
 ## MongoDB shell
 

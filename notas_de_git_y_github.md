@@ -3,7 +3,7 @@
 [**Git**](https://git-scm.com/doc) es el sistema de versionamiento más popular actualmente, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la más reciente, lo que hace posible registrar la evolución de los archivos con cada actualización sin almacenar los archivos de cada versión en su totalidad, para esto Git emplea al interior de cada repositorio una base de datos que guarda los cambios de forma incremental, la cual se actualiza con cada versión nueva que llega al repositorio. [**GitHub**](https://docs.github.com/es) por su parte es el sistema de versionamiento remoto más popular actualmente, GitHub además permite trabajo colaborativo sobre los archivos de un repositorio remoto, además de publicar proyectos y su progreso, entre otras de sus funciones, lo que ha hecho que GitHub se gane el nombre de la red social de los programadores.\
 Git y GitHub soportan versionamiento de archivos binarios, pero el versionamiento de archivos binarios no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan Git y GitHub solo para archivos de texto plano, como el código.
 
-<br>
+<br><br>
 
 ## Flujo de trabajo básico en Git
 
