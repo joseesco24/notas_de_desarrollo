@@ -1,11 +1,11 @@
 # MongoDB
 
-[**MongoDB**](https://www.mongodb.com/2) es el motor base de datos no relacionales basado en documentos más usada en entornos de desarrollo profesionales, MongoDB es ampliamente usado como motor de base de datos gracias a su flexibilidad y facilidad de uso, la cual se debe a que cada documento dentro de MongoDB es almacenado como un documento BSON, que es la representación binaria de un documento JSON. MongoDB además permite almacenar documentos de forma distribuida, por lo que usando MongoDB como motor de bases de datos es totalmente factible tener un cluster de servidores dedicados al almacenamiento de los datos de una o varias bases de datos, esta característica además hace que escalar una base de datos MongoDB sea extremadamente fácil ya que solo hace falta agregar más nodos al cluster de MongoDB. Una de las mejores características de MongoDB es que es "Schema Less" por lo que los documentos dentro de una misma colección pueden tener estructuras totalmente diferentes sin afectar el funcionamiento de MongoDB y como si fuera poco las consultas de MongoDB también son extremadamente eficientes por el hecho de ser una base de datos no relacional basada en documentos, los componentes más importantes de MongoDB se listan a continuación.
+[**MongoDB**](https://www.mongodb.com/2) es el motor base de datos no relacionales basado en documentos más usada en entornos de desarrollo profesionales, MongoDB es ampliamente usado como motor de base de datos gracias a su flexibilidad y facilidad de uso, la cual se debe a que cada documento dentro de MongoDB es almacenado como un documento [**BSON**](https://docs.mongodb.com/manual/reference/bson-types/), que es la representación binaria de un documento JSON. MongoDB además permite almacenar documentos de forma distribuida, por lo que usando MongoDB como motor de bases de datos es totalmente factible tener un cluster de servidores dedicados al almacenamiento de los datos de una o varias bases de datos, esta característica además hace que escalar una base de datos MongoDB sea extremadamente fácil ya que solo hace falta agregar más nodos al cluster de MongoDB. Una de las mejores características de MongoDB es que es "Schema Less" por lo que los documentos dentro de una misma colección pueden tener estructuras totalmente diferentes sin afectar el funcionamiento de MongoDB y como si fuera poco las consultas de MongoDB también son extremadamente eficientes por el hecho de ser una base de datos no relacional basada en documentos, los componentes más importantes de MongoDB se listan a continuación.
 
 - **Cluster:** En MongoDB un cluster es una agrupación de máquinas que comparten el acceso a las diferentes bases de datos.
 - **Bases de datos:** Las bases de datos en MongoDB son espacios de almacenamiento en los que se guardan colecciones, cada base de datos tiene su propio archivo dentro del sistema de archivos de la máquina en la que se ejecuta el MongoDB Server y además en un cluster de MongoDB pueden haber múltiples bases de datos.
 - **Colecciones:** Las colecciones en MongoDB son agrupaciones de documentos, son equivalentes a las tablas de las bases de datos relacionales y además no imponen un esquema.
-- **Documentos:** Los documentos dentro de MongoDB son registros dentro de cada colección, son análogos a los documentos JSON, pero en realidad son BSON, que son la transformación a binario de un JSON, por lo que en un documento se pueden almacenar más tipos de datos y además son la unidad más Básica dentro de MongoDB.
+- **Documentos:** Los documentos dentro de MongoDB son registros dentro de cada colección, son análogos a los documentos JSON, pero en realidad son BSON, que son la transformación a binario de un JSON, por lo que en un documento se pueden almacenar más tipos de datos y además son la unidad más Básica dentro de MongoDB, un documento de MongoDB no puede ser mayor a 16 Mb.
 
 Otra de las razones para que MongoDB sea tan usado como motor de base de datos es su ecosistema, el ecosistema de MongoDB se divide en varias partes las cuales se describen a continuación:
 
@@ -21,8 +21,10 @@ Otra de las razones para que MongoDB sea tan usado como motor de base de datos e
 
 - **MongoDB Shell:** Es la consola con la que se interactúa con el MongoDB Server.
 - **MongoDB Compass:** Es una interfaz gráfica con la que se puede interactuar con el MongoDB Server.
-- **Conectores:** Son las librerías dentro de cada lenguaje que se usan para interactuar con el MongoDB Server.
+- **Conectores:** Son las [**librerías**](https://docs.mongodb.com/drivers/) dentro de cada lenguaje que se usan para interactuar con el MongoDB Server.
 - **MongoDB Realm:** Es una versión lite de MongoDB que se puede instalar en dispositivos móviles.
+
+En MongoDB y en el resto de bases de datos no relacionales basadas en documentos suele haber solo dos formas para expresar las relaciones entre documentos, usando documentos anidados o usando referencias dentro de un documento a otros documentos. Los documentos anidados suelen usarse en relaciones **uno a uno**, ya que se aprovecha más la estructura de las bases de datos no relacionales para hacer solo una búsqueda. Si la relación es de **uno a muchos** lo adecuado es usar referencias si el documento que se va a relacionar va a estar actualizándose constantemente, ya que de esta forma las actualizaciones pueden hacerse en un solo documento y los cambios se verán reflejados en todos los documentos con los que está relacionado, usar referencias hace más lentas las búsquedas ya que no se aprovecha la estructura no relacional de MongoDB, razón por la cual hace falta recorrer más de una vez la base de datos buscando el documento referenciado a cambio de facilitar la actualización de los documentos relacionados, sin embargo es lo ideal en este tipo de escenarios. Si por el contrario el documento que se va a relacionar no se va a actualizar de forma constante se puede anidar simplemente, como una copia dentro de cada documento con el que se relaciona, ya que de nuevo, de esta forma se aprovecha más la estructura de las bases de datos no relacionales para hacer solo una búsqueda.
 
 <br><br>
 
@@ -151,6 +153,8 @@ db.inventory.insertMany(
 
 ### Documentos de filtros en formato JSON
 
+Los documentos de filtros son parte fundamental de la mayoría de las operaciones [**CRUD**](https://docs.mongodb.com/manual/crud/) com MongoDB, ya que permiten, como su nombre indica, filtrar los documentos resultantes de una búsqueda, para esto MongoDB dispone de varios (**operadores**)[https://docs.mongodb.com/manual/reference/operator/] que se usan en el MongoDB shell para realizar todo tipo de operaciones necesarias para filtrar datos.
+
 #### equal
 
 ```JavaScript
@@ -198,34 +202,36 @@ db.inventory.find(
 #### Búsqueda individual
 
 ```Unknown
-[nombre de la base de datos].[nombre de la colección].findOne([documento de filtros en formato JSON])
+[nombre de la base de datos].[nombre de la colección].findOne([documento de filtros en formato JSON], [proyección en formato JSON])
 ```
 
 Ejemplo:
 
 ```JavaScript
 db.inventory.findOne(
-    {item: "canvas"}
+    {item: "canvas"},
+    {item:1, status:1}
 )
 ```
 
-Retorna el primer documento según el orden natural de MongoDB que cumpla con los filtros establecidos.
+Retorna los ítems establecidos en la proyección del primer documento según el orden natural de MongoDB que cumpla con los filtros establecidos.
 
 #### Búsqueda grupal
 
 ```Unknown
-[nombre de la base de datos].[nombre de la colección].find([documento de filtros en formato JSON])
+[nombre de la base de datos].[nombre de la colección].find([documento de filtros en formato JSON], [proyección en formato JSON])
 ```
 
 Ejemplo:
 
 ```JavaScript
 db.inventory.find(
-    {item: "canvas"}
+    {item: "canvas"},
+    {item:1, status:1}
 )
 ```
 
-Retorna todos los documentos que cumplan con los filtros establecidos.
+Retorna los ítems establecidos en la proyección de todos los documentos que cumplan con los filtros establecidos.
 
 El método find además se puede combinar con otros métodos como:
 
