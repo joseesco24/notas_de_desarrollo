@@ -26,9 +26,9 @@ En MongoDB y en el resto de bases de datos no relacionales basadas en documentos
 
 <br><br>
 
-## MongoDB compass
+## MongoDB Compass
 
-[**MongoDB compass**](https://docs.mongodb.com/compass/current/) es la interfaz gráfica de MongoDB, al igual que el shell de MongoDB permite realizar todo tipo de operaciones, con la ventaja de tener una interfaz gráfica más amigable, para conectar compass es necesario usar la siguiente sintaxis.
+[**MongoDB Compass**](https://docs.mongodb.com/compass/current/) es la interfaz gráfica de MongoDB, al igual que el shell de MongoDB permite realizar todo tipo de operaciones, con la ventaja de tener una interfaz gráfica más amigable y sin ser necesario mucho conocimiento sobre el lenguaje de queries de MongoDB, para conectar Compass es necesario usar la siguiente sintaxis.
 
 ```Unknown
 mongodb://[ip de la máquina que tiene MongoDB Server]:[puerto en el que está expuesto mongo, normalmente 27017]
@@ -42,9 +42,9 @@ mongodb://127.0.0.1:27017
 
 <br><br>
 
-## MongoDB shell
+## MongoDB Shell
 
-El shell de MongoDB o [**MongoDB shell**](https://docs.mongodb.com/manual/mongo/) es una interfaz interactiva de JavaScript y es la forma más sencilla de interactuar con el MongoDB Server, además de poder realizar acciones simples también se pueden crear script para MongoDB shell, por lo que se pueden automatizar varios tipos de tareas o consultas en concreto.
+El shell de MongoDB o [**MongoDB Shell**](https://docs.mongodb.com/manual/mongo/) es la interfaz interactiva basada en JavaScript que se usa para interactuar de forma directa con el MongoDB Server mediante la terminal, además de poder realizar acciones simples en MongoDB Shell también se pueden crear [**scripts**](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/), por lo que se pueden automatizar varios tipos de tareas o consultas en concreto usando el shell.
 
 <br>
 
@@ -126,6 +126,9 @@ db.inventory.help()
 
 ### Insertar documentos en una colección
 
+MongoDB por defecto no crea bases de datos vacías, por lo que es necesario luego de crear una nueva base de datos crear al menos una colección y un documento, si la colección en la que se quiere insertar el documento no existe MongoDB crea una nueva colección con el nombre indicado.\
+Al insertar un documento el id se puede especificar usando el tag **\_id**, si no se indica el id del documento usando este tag MongoDB asigna al documento un id por defecto, además el id no se puede repetir, por lo que si se ingresa un documento con un id que ya existe la operación fallará, por lo que es una buena práctica dejar que MongoDB genere el id de forma automática.
+
 #### Inserción individual
 
 ```Unknown
@@ -139,9 +142,6 @@ db.inventory.insertOne(
     {size: {h: 28, w: 35.5, uom: "cm"}, tags: ["cotton"], item: "canvas", qty: 100}
 )
 ```
-
-MongoDB por defecto no crea bases de datos vacías, por lo que es necesario luego de crear una nueva base de datos crear al menos una colección y un documento, si la colección en la que se quiere insertar el documento no existe MongoDB crea una nueva colección con el nombre indicado.\
-Al insertar un documento el id se puede especificar usando el tag **\_id**, si no se indica el id del documento usando este tag MongoDB asigna al documento un id por defecto, además el id no se puede repetir, por lo que si se ingresa un documento con un id que ya existe la operación fallará, por lo que es una buena práctica dejar que MongoDB genere el id de forma automática.
 
 #### Inserción grupal
 
@@ -165,7 +165,7 @@ db.inventory.insertMany(
 
 ### Documentos de filtros en formato JSON
 
-Los documentos de filtros son parte fundamental de la mayoría de las operaciones [**CRUD**](https://docs.mongodb.com/manual/crud/) com MongoDB, ya que permiten, como su nombre indica, filtrar los documentos resultantes de una búsqueda, para esto MongoDB dispone de varios [**operadores**](https://docs.mongodb.com/manual/reference/operator/) que se usan en el MongoDB shell para realizar todo tipo de operaciones necesarias para filtrar datos.
+Los documentos de filtros son parte fundamental de la mayoría de las operaciones [**CRUD**](https://docs.mongodb.com/manual/crud/) com MongoDB, ya que permiten, como su nombre indica, filtrar los documentos resultantes de una búsqueda, para esto MongoDB dispone de varios [**operadores**](https://docs.mongodb.com/manual/reference/operator/) que se usan en el MongoDB Shell para realizar todo tipo de operaciones necesarias para filtrar datos, a continuación se muestran algunos ejemplos de la sintaxis de algunos de los operadores mas comunes.
 
 #### equal
 
@@ -222,11 +222,12 @@ Ejemplo:
 ```JavaScript
 db.inventory.findOne(
     {item: "canvas"},
-    {item:1, status:1}
+    {_id:0, item:1, status:1}
 )
 ```
 
-Retorna los ítems establecidos en la proyección del primer documento según el orden natural de MongoDB que cumpla con los filtros establecidos.
+En el ejemplo anterior se usa una proyección y un filtro, el filtro **({item: "canvas"})** se usa para retornar solamente los documentos que cumplan con ciertos parámetros y la proyección **({\_id:0, item:1, status:1})** asegura que se muestren solo ciertos campos de los documentos retornados, los filtros son parte fundamental de cualquier operación de búsqueda, mientras que las proyecciones pueden facilitar en gran medida la lectura de los resultados omitiendo la información innecesaria.\
+Al usar el método **findOne** solamente se retorna el primer documento que cumpla con las condiciones de la búsqueda según el orden natural de los documentos de MongoDB.
 
 #### Búsqueda grupal
 
@@ -239,11 +240,11 @@ Ejemplo:
 ```JavaScript
 db.inventory.find(
     {item: "canvas"},
-    {item:1, status:1}
+    {_id:0, item:1, status:1}
 )
 ```
 
-Retorna los ítems establecidos en la proyección de todos los documentos que cumplan con los filtros establecidos.
+Al usar el método **find** se retornan todos los documento que cumpla con las condiciones de la búsqueda, el método **find** al igual que el método **findOne** y la gran mayoría de los metodos de busqueda en MongoDB admite el uso de filtros y proyecciones.
 
 El método find además se puede combinar con otros métodos como:
 
@@ -332,6 +333,8 @@ db.inventory.deleteMany(
 ### Agregaciones
 
 Las [**agregaciones**](https://docs.mongodb.com/manual/aggregation/) en MongoDB son operaciones avanzadas que se pueden realizar en MongoDB.
+
+<br>
 
 ### Manejo de índices
 
