@@ -3,7 +3,7 @@
 Los sistemas operativos Linux son sistemas operativos de tipo Unix, que suelen ser de código abierto, multiplataforma, multiusuario y multitarea. Estos sistemas operativos están formados por la combinación de varios proyectos, dentro de los cuales destacan el entorno **GNU**, así como el núcleo del sistema o kernel **Linux**, de ahí la denominación técnica **GNU/Linux** que hace referencia a los dos componentes principales de este tipo de sistemas operativos, a pesar de que cotidianamente se les llame solo sistemas Linux estos sistemas también están formados en una enorme parte por componentes del proyecto GNU, sin embargo, por simple facilidad se les seguirá llamando sistemas Linux en el resto del documento.
 
 <p align="center">
-<img src="imagenes/notas_de_sistemas_linux/componentes_principales_de_linux.png" width="40%" height="auto"/>
+<img src="imagenes/notas_de_sistemas_linux/componentes_principales_de_linux.svg" width="40%" height="auto"/>
 </p>
 
 Los tres componentes principales de todos los sistemas Linux son:
