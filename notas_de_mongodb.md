@@ -10,7 +10,7 @@
 Otra de las razones para que MongoDB sea tan usado como motor de base de datos es su ecosistema, el ecosistema de MongoDB se divide en varias partes las cuales se describen a continuación.
 
 <p align="center">
-<img src="imagenes/notas_de_mongodb/ecosistema_mongodb.png" width="100%" height="auto"/>
+<img src="imagenes/notas_de_mongodb/ecosistema_mongodb.png" width="80%" height="auto"/>
 </p>
 
 - **MongoDB Server:** Es el motor de base de datos como tal, es donde se guardan los datos y es el encargado de realizar las operaciones que le son solicitadas, el MongoDB Server tiene tres versiones.
