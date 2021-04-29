@@ -10,19 +10,13 @@
 <img src="imagenes/notas_de_mongodb/componentes_de_mongodb.png" width="80%" height="auto"/>
 </p>
 
-<br>
-
 ### Bases de datos
 
 Las bases de datos en MongoDB son los espacios de almacenamiento como tal en los que se guardan las colecciones, cada base de datos tiene su propio archivo dentro del sistema de archivos de la máquina en la que se ejecuta MongoDB, además en un cluster de MongoDB pueden haber múltiples bases de datos.
 
-<br>
-
 ### Colecciones
 
 Las colecciones en MongoDB son agrupaciones de documentos, son equivalentes a las tablas de las bases de datos relacionales y además en el caso de MongoDB no imponen un esquema fijo que debían seguir los documentos de la colección.
-
-<br>
 
 ### Documentos
 
@@ -54,25 +48,17 @@ Es la versión de código abierto de MongoDB, respecto a la versión enterprise 
 
 Es la versión de pago de MongoDB, incluye ciertas características extra respecto a la versión community.
 
-<br>
-
 ### MongoDB Shell
 
 Es la consola con la que se interactúa con el MongoDB Server.
-
-<br>
 
 ### MongoDB Compass
 
 Es una interfaz gráfica desarrollada por los mismos desarrolladores del MongoDB Server, con la que se puede interactuar con el MongoDB Server de una forma más amigable.
 
-<br>
-
 ### Conectores de MongoDB
 
 Son las [**librerías**](https://docs.mongodb.com/drivers/) dentro de cada lenguaje de programación que se usan para interactuar con el MongoDB Server.
-
-<br>
 
 ### MongoDB Realm
 
