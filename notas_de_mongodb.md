@@ -7,7 +7,7 @@
 ## Componentes principales de MongoDB
 
 <p align="center">
-<img src="imagenes/notas_de_mongodb/componentes_de_mongodb.svg" width="80%" height="auto"/>
+<img src="imagenes/notas_de_mongodb/componentes_de_mongodb.svg" width="100%" height="auto"/>
 </p>
 
 <br>
@@ -33,7 +33,7 @@ Los documentos dentro de MongoDB son registros dentro de cada colección, son an
 ## Ecosistema de MongoDB
 
 <p align="center">
-<img src="imagenes/notas_de_mongodb/ecosistema_mongodb.svg" width="80%" height="auto"/>
+<img src="imagenes/notas_de_mongodb/ecosistema_mongodb.svg" width="100%" height="auto"/>
 </p>
 
 <br>
