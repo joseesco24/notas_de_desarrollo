@@ -1,18 +1,14 @@
-# [MongoDB](https://docs.mongodb.com/)
+# MongoDB
 
-MongoDB es uno de los sistemas de bases de datos no relacionales más usados en el desarrollo profesional, es ampliamente usado en todo tipo de entornos de desarrollo gracias a su flexibilidad y facilidad de uso, que se deben en gran parte a que MongoDB se basa en documentos similares a los documentos JSON. Una de las mejores características de MongoDB es que permite crear sistemas distribuidos de bases de datos, por lo que usando MongoDB es totalmente factible tener un cluster de máquinas dedicadas al almacenamiento de los datos de una o varias bases de datos, esta característica hace que escalar un sistema de bases de datos basado en MongoDB sea extremadamente fácil ya que solo hace falta agregar más nodos al cluster. Otra de las características clave de MongoDB es que es "Schema Less" por lo que los documentos dentro de una misma colección pueden tener estructuras totalmente diferentes sin afectar el funcionamiento de MongoDB y como si fuera poco las consultas de MongoDB también son extremadamente eficientes por el hecho de ser una base de datos no relacional basada en documentos que además permite indexación.
+[**MongoDB**](https://docs.mongodb.com/) es uno de los sistemas de bases de datos no relacionales más usados en el desarrollo profesional, es ampliamente usado en todo tipo de entornos de desarrollo gracias a su flexibilidad y facilidad de uso, que se deben en gran parte a que MongoDB se basa en documentos similares a los documentos JSON. Una de las mejores características de MongoDB es que en su versión Atlas permite crear sistemas distribuidos de bases de datos, por lo que usando MongoDB Atlas es totalmente factible tener un cluster de máquinas en la nube dedicadas al almacenamiento de los datos de una o varias bases de datos, esta característica hace que escalar un sistema de bases de datos basado en MongoDB Atlas sea extremadamente fácil ya que solo hace falta agregar más nodos al cluster. Otra de las características clave de MongoDB es que es "Schema Less" en todas sus versiones, por lo que los documentos dentro de una misma colección pueden tener estructuras totalmente diferentes sin afectar el funcionamiento de MongoDB y como si fuera poco las consultas de MongoDB también son extremadamente eficientes por el hecho de ser una base de datos no relacional basada en documentos que además permite indexación.
 
 <br><br>
 
 ## Componentes principales de MongoDB
 
-MongoDB como sistema de base de datos se compone de cuatro componentes fundamentales los cuales usa para conseguir todas sus funcionalidades.
-
-<br>
-
-### [Cluster](https://docs.atlas.mongodb.com/cluster-configuration/)
-
-En MongoDB un cluster es una agrupación de máquinas que comparten o replican las mismas bases de datos.
+<p align="center">
+<img src="imagenes/notas_de_mongodb/componentes_de_mongodb.png" width="100%" height="auto"/>
+</p>
 
 <br>
 
@@ -39,8 +35,6 @@ Los documentos dentro de MongoDB son registros dentro de cada colección, son an
 <p align="center">
 <img src="imagenes/notas_de_mongodb/ecosistema_mongodb.png" width="100%" height="auto"/>
 </p>
-
-Otra de las razones para que MongoDB sea tan usado como sistema de base de datos es su ecosistema.
 
 <br>
 
