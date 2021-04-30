@@ -10,23 +10,17 @@
 <img src="imagenes/notas_de_mongodb/componentes_de_mongodb.svg" width="100%" height="auto"/>
 </p>
 
-<br>
-
 ### Bases de datos
 
-Las bases de datos en MongoDB son los espacios de almacenamiento como tal en los que se guardan las colecciones, cada base de datos tiene su propio archivo dentro del sistema de archivos de la máquina en la que se ejecuta MongoDB, además en un cluster de MongoDB pueden haber múltiples bases de datos.
-
-<br>
+Las [**bases de datos**](https://docs.mongodb.com/manual/core/databases-and-collections/#databases) en MongoDB son los espacios de almacenamiento como tal en los que se guardan las colecciones, cada base de datos tiene su propio archivo dentro del sistema de archivos de la máquina en la que se ejecuta MongoDB, además en un cluster de MongoDB Atlas pueden haber múltiples bases de datos distribuidas o replicadas entre los diferentes nodos del cluster.
 
 ### Colecciones
 
-Las colecciones en MongoDB son agrupaciones de documentos, son equivalentes a las tablas de las bases de datos relacionales y además en el caso de MongoDB no imponen un esquema fijo que debían seguir los documentos de la colección.
-
-<br>
+Las [**colecciones**](https://docs.mongodb.com/manual/core/databases-and-collections/#collections) en MongoDB son agrupaciones de documentos, son equivalentes a las tablas de las bases de datos relacionales y además en el caso de MongoDB no imponen un esquema fijo que deban seguir los documentos de la colección.
 
 ### Documentos
 
-Los documentos dentro de MongoDB son registros dentro de cada colección, son análogos a los documentos [**JSON**](https://www.mongodb.com/json-and-bson), pero en realidad son documentos [**BSON**](https://www.mongodb.com/json-and-bson), que son documentos binarios basados en JSON, usar BSON hace más fácil entender la estructura de cada documento y además permite almacenar una gran variedad de [**tipos de datos**](https://docs.mongodb.com/manual/reference/bson-types/) gracias a la cantidad de formatos que soporta BSON. Los documentos son la unidad más básica dentro de MongoDB y no pueden ser mayores a 16 Mb.
+Los [**documentos**](https://docs.mongodb.com/manual/core/document/) dentro de MongoDB son registros dentro de cada colección, son análogos a los documentos [**JSON**](https://www.mongodb.com/json-and-bson), pero en realidad son documentos [**BSON**](https://www.mongodb.com/json-and-bson), que son documentos binarios basados en JSON, usar BSON hace más fácil entender la estructura de cada documento y además permite almacenar una gran variedad de [**tipos de datos**](https://docs.mongodb.com/manual/reference/bson-types/) gracias a la cantidad de formatos que soporta BSON. Los documentos son la unidad más básica dentro de MongoDB y no pueden ser mayores a 16 Mb.
 
 <br><br>
 
