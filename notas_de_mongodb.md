@@ -7,7 +7,7 @@
 ## Componentes principales de MongoDB
 
 <p align="center">
-<img src="imagenes/notas_de_mongodb/componentes_de_mongodb.svg" width="100%" height="auto"/>
+<img src="imagenes/notas_de_mongodb/componentes_de_mongodb.svg" width="80%" height="auto"/>
 </p>
 
 ### Bases de datos
@@ -27,42 +27,26 @@ Los [**documentos**](https://docs.mongodb.com/manual/core/document/) dentro de M
 ## Ecosistema de MongoDB
 
 <p align="center">
-<img src="imagenes/notas_de_mongodb/ecosistema_mongodb.svg" width="100%" height="auto"/>
+<img src="imagenes/notas_de_mongodb/ecosistema_mongodb.svg" width="80%" height="auto"/>
 </p>
 
 ### MongoDB Server
 
-El servidor de MongoDB o MongoDB Server es el motor de base de datos como tal, es donde se guardan los datos y es el encargado de realizar las operaciones que le son solicitadas, el MongoDB Server tiene tres versiones.
-
-#### Atlas
-
-Es la versión en nube de una base de datos MongoDB.
-
-#### Community
-
-Es la versión de código abierto de MongoDB, respecto a la versión enterprise solo hay un par de características de menos como diferencia.
-
-#### Enterprise
-
-Es la versión de pago de MongoDB, incluye ciertas características extra respecto a la versión community.
+El servidor de MongoDB es el componente de software que se encarga de gestionar las bases de datos como tal, se encarga de almacenar y mantener disponibles las bases de datos en el sistema de archivos de la máquina anfitrión, también se encarga de realizar todas las operaciones de búsqueda, cruce de datos y entrega de resultados que se le hagan. Al igual que la gran mayoría de software el servidor de MongoDB tiene dos versiones, una versión community y una enterprise, con la diferencia de que la enterprise gana algunas características extras respecto a la community.
 
 ### MongoDB Shell
 
-Es la consola con la que se interactúa con el MongoDB Server.
-
-### MongoDB Compass
-
-Es una interfaz gráfica desarrollada por los mismos desarrolladores del MongoDB Server, con la que se puede interactuar con el MongoDB Server de una forma más amigable.
+Es shell de MongoDB es el shell con la que se interactúa de forma directa con el servidor de MongoDB.
 
 ### Conectores de MongoDB
 
-Son las [**librerías**](https://docs.mongodb.com/drivers/) dentro de cada lenguaje de programación que se usan para interactuar con el MongoDB Server.
+Los conectores de MongoDB son todas las [**librerías**](https://docs.mongodb.com/drivers/) dentro de los diferentes lenguajes de programación que se usan para interactuar con el servidor de MongoDB.
 
 <br><br>
 
 ## Relaciones entre documentos en MongoDB
 
-En MongoDB y en el resto de sistemas de bases de datos no relacionales basadas en documentos suele haber solo dos formas para expresar las relaciones entre documentos, usando documentos anidados o usando referencias dentro de un documento a otro documento. Los documentos anidados suelen usarse en relaciones **uno a uno**, ya que se aprovecha más la estructura de las bases de datos no relacionales para hacer solo una búsqueda. Si la relación es de **uno a muchos** lo adecuado es usar referencias si el documento que se va a relacionar va a estar actualizándose constantemente, ya que de esta forma las actualizaciones pueden hacerse en un solo documento y los cambios se verán reflejados en todos los documentos con los que está relacionado, usar referencias hace más lentas las búsquedas ya que no se aprovecha la estructura no relacional de MongoDB, razón por la cual hace falta recorrer más de una vez la base de datos buscando el documento referenciado a cambio de facilitar la actualización de los documentos relacionados y optimizar el almacenamiento, sin embargo es lo ideal en este tipo de escenarios. Si por el contrario el documento que se va a relacionar en una relación **uno a muchos** no se va a actualizar de forma constante se puede anidar simplemente como una copia dentro de cada documento con el que se relaciona, ya que de nuevo, de esta forma se aprovecha más la estructura de las bases de datos no relacionales para hacer solo una búsqueda.
+En MongoDB y en el resto de sistemas de bases de datos no relacionales basadas en documentos suele haber solo dos formas para expresar las relaciones entre documentos, usando documentos anidados o usando referencias dentro de un documento a otro documento. Los documentos anidados suelen usarse en relaciones **uno a uno**, ya que se aprovecha más la estructura de las bases de datos no relacionales para hacer solo un scan. Si la relación es de **uno a muchos** lo adecuado es usar referencias si el documento que se va a relacionar va a estar actualizándose constantemente, ya que de esta forma las actualizaciones pueden hacerse en un solo documento y los cambios se verán reflejados en todos los documentos con los que está relacionado, usar referencias hace más lentas las búsquedas ya que no se aprovecha la estructura no relacional de MongoDB, razón por la cual hace falta hacer más de un scan a cambio de facilitar la actualización de los documentos relacionados y optimizar el almacenamiento, sin embargo es lo ideal en este tipo de escenarios. Si por el contrario el documento que se va a relacionar en una relación **uno a muchos** no se va a actualizar de forma constante se puede anidar simplemente como una copia dentro de cada documento con el que se relaciona sí no importa el almacenamiento, ya que de nuevo, de esta forma se aprovecha más la estructura de las bases de datos no relacionales para hacer un solo scan.
 
 <br><br>
 
