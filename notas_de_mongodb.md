@@ -32,7 +32,7 @@ Los [**documentos**](https://docs.mongodb.com/manual/core/document/) dentro de M
 
 ### MongoDB Server
 
-El servidor de MongoDB es el componente de software que se encarga de gestionar las bases de datos como tal, se encarga de almacenar y mantener disponibles las bases de datos en el sistema de archivos de la máquina anfitrión, también se encarga de realizar todas las operaciones de búsqueda, cruce de datos y entrega de resultados que se le hagan. Al igual que la gran mayoría de software el servidor de MongoDB tiene dos versiones, una versión community y una enterprise, con la diferencia de que la enterprise gana algunas características extras respecto a la community.
+El servidor de MongoDB es el componente de software que se encarga de gestionar las bases de datos como tal, se encarga de almacenar y mantener disponibles las bases de datos en el sistema de archivos de la máquina host, también se encarga de realizar todas las operaciones de búsqueda, cruce de datos y entrega de resultados que se le hagan. Al igual que la gran mayoría de software el servidor de MongoDB tiene dos versiones, una versión community y una enterprise, con la diferencia de que la enterprise gana algunas características extras respecto a la community.
 
 ### MongoDB Shell
 
@@ -50,17 +50,17 @@ En MongoDB y en el resto de sistemas de bases de datos no relacionales basadas e
 
 <br><br>
 
-## Manejo de MongoDB Compass
+## Conexión con MongoDB Server
 
-[**MongoDB Compass**](https://docs.mongodb.com/compass/current/) es la interfaz gráfica de MongoDB, al igual que el shell de MongoDB permite realizar todo tipo de operaciones, con la ventaja de tener una interfaz gráfica más amigable y sin ser necesario mucho conocimiento sobre el lenguaje de queries de MongoDB, para conectar Compass es necesario usar la siguiente sintaxis.
+Para establecer una conexión entre MongoDB con cualquier aplicación o driver, independientemente de la versión de MongoDB Server, es necesario usar un [**string de conexión en formato uri**](https://docs.mongodb.com/manual/reference/connection-string/#connection-string-uri-format), a continuación se muestra el formato estándar para establecer una conexión entre una aplicación y un MongoDB Server ambos dentro del mismo host.
 
-```Unknown
+```unknown
 mongodb://[ip de la máquina que tiene MongoDB Server]:[puerto en el que está expuesto mongo, normalmente 27017]
 ```
 
 Ejemplo:
 
-```Unknown
+```unknown
 mongodb://127.0.0.1:27017
 ```
 
@@ -74,7 +74,7 @@ El shell de MongoDB o [**MongoDB Shell**](https://docs.mongodb.com/manual/mongo/
 
 ### Iniciar shell
 
-```Unknown
+```unknown
 mongo
 ```
 
@@ -82,7 +82,7 @@ mongo
 
 ### Limpiar shell
 
-```Unknown
+```unknown
 ctrl + l
 ```
 
@@ -90,7 +90,7 @@ ctrl + l
 
 ### Ver bases de datos disponibles
 
-```Unknown
+```unknown
 show dbs
 ```
 
@@ -98,7 +98,7 @@ show dbs
 
 ### Crear nueva base de datos o usar una ya creada
 
-```Unknown
+```unknown
 use [nombre de la nueva base de datos]
 ```
 
@@ -106,7 +106,7 @@ use [nombre de la nueva base de datos]
 
 ### Ver nombre de la base de datos a la que está conectado el shell
 
-```Unknown
+```unknown
 db
 ```
 
@@ -114,7 +114,7 @@ db
 
 ### Ver colecciones disponibles en la base de datos
 
-```Unknown
+```unknown
 show collections
 ```
 
@@ -124,7 +124,7 @@ show collections
 
 #### En una base de datos
 
-```Unknown
+```unknown
 [nombre de la base de datos].help()
 ```
 
@@ -136,7 +136,7 @@ db.help()
 
 #### En una colección
 
-```Unknown
+```unknown
 [nombre de la base de datos].[nombre de la colección].help()
 ```
 
@@ -155,7 +155,7 @@ Al insertar un documento el id se puede especificar usando el tag **\_id**, si n
 
 #### Inserción individual
 
-```Unknown
+```unknown
 [nombre de la base de datos].[nombre de la colección].insertOne([documento en formato JSON])
 ```
 
@@ -169,7 +169,7 @@ db.inventory.insertOne(
 
 #### Inserción grupal
 
-```Unknown
+```unknown
 [nombre de la base de datos].[nombre de la colección].insertMany([arreglo de documentos en formato JSON])
 ```
 
@@ -237,7 +237,7 @@ db.inventory.find(
 
 #### Búsqueda individual
 
-```Unknown
+```unknown
 [nombre de la base de datos].[nombre de la colección].findOne([documento de filtros en formato JSON], [proyección en formato JSON])
 ```
 
@@ -255,7 +255,7 @@ Al usar el método **findOne** solamente se retorna el primer documento que cump
 
 #### Búsqueda grupal
 
-```Unknown
+```unknown
 [nombre de la base de datos].[nombre de la colección].find([documento de filtros en formato JSON], [proyección en formato JSON])
 ```
 
@@ -282,7 +282,7 @@ El método find además se puede combinar con otros métodos como:
 
 #### Actualización individual
 
-```Unknown
+```unknown
 [nombre de la base de datos].[nombre de la colección].updateOne([documento de filtros en formato JSON], [JSON])
 ```
 
@@ -301,7 +301,7 @@ db.inventory.updateOne(
 
 #### Actualización grupal
 
-```Unknown
+```unknown
 [nombre de la base de datos].[nombre de la colección].updateMany([documento de filtros en formato JSON], [JSON])
 ```
 
@@ -324,7 +324,7 @@ db.inventory.updateMany(
 
 #### Eliminación individual
 
-```Unknown
+```unknown
 [nombre de la base de datos].[nombre de la colección].deleteOne([documento de filtros en formato JSON])
 ```
 
@@ -340,7 +340,7 @@ El documento eliminado con deleteOne siempre es el primer documento que cumple c
 
 #### Eliminación grupal
 
-```Unknown
+```unknown
 [nombre de la base de datos].[nombre de la colección].deleteMany([documento de filtros en formato JSON])
 ```
 
@@ -373,7 +373,7 @@ Los [**índices**](https://docs.mongodb.com/manual/indexes/) en MongoDB se usan 
 
 #### Listar índices
 
-```Unknown
+```unknown
 [nombre de la base de datos].[nombre de la colección].getIndexes()
 ```
 
@@ -385,7 +385,7 @@ db.inventory.getIndexes()
 
 #### Crear nuevo índice
 
-```Unknown
+```unknown
 [nombre de la base de datos].[nombre de la colección].createIndex({[nombre del campo que se usará como índice]:[tipo de índice]})
 ```
 
