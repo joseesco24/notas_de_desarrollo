@@ -20,7 +20,7 @@ Las [**colecciones**](https://docs.mongodb.com/manual/core/databases-and-collect
 
 ### Documentos
 
-Los [**documentos**](https://docs.mongodb.com/manual/core/document/) dentro de MongoDB son registros dentro de cada colección, son análogos a los documentos [**JSON**](https://www.mongodb.com/json-and-bson), pero en realidad son documentos [**BSON**](https://www.mongodb.com/json-and-bson), que son documentos binarios basados en JSON, usar BSON hace más fácil entender la estructura de cada documento y además permite almacenar una gran variedad de [**tipos de datos**](https://docs.mongodb.com/manual/reference/bson-types/) gracias a la cantidad de formatos que soporta BSON. Los documentos son la unidad más básica dentro de MongoDB y no pueden ser mayores a 16 Mb.
+Los [**documentos**](https://docs.mongodb.com/manual/core/document/) dentro de MongoDB son registros dentro de cada colección, son análogos a los documentos JSON, pero en realidad son documentos BSON, que son documentos binarios basados en JSON, usar BSON hace más fácil entender la estructura de cada documento y además permite almacenar una gran variedad de tipos de datos gracias a la cantidad de formatos que soporta BSON. Los documentos ademas son la unidad más básica dentro de MongoDB y no pueden ser mayores a 16 mega bytes.
 
 <br><br>
 
@@ -30,11 +30,9 @@ Los [**documentos**](https://docs.mongodb.com/manual/core/document/) dentro de M
 <img src="imagenes/notas_de_mongodb/ecosistema_mongodb.svg" width="100%" height="auto"/>
 </p>
 
-<br>
-
 ### MongoDB Server
 
-Es el motor de base de datos como tal, es donde se guardan los datos y es el encargado de realizar las operaciones que le son solicitadas, el MongoDB Server tiene tres versiones.
+El servidor de MongoDB o MongoDB Server es el motor de base de datos como tal, es donde se guardan los datos y es el encargado de realizar las operaciones que le son solicitadas, el MongoDB Server tiene tres versiones.
 
 #### Atlas
 
@@ -48,29 +46,17 @@ Es la versión de código abierto de MongoDB, respecto a la versión enterprise 
 
 Es la versión de pago de MongoDB, incluye ciertas características extra respecto a la versión community.
 
-<br>
-
 ### MongoDB Shell
 
 Es la consola con la que se interactúa con el MongoDB Server.
-
-<br>
 
 ### MongoDB Compass
 
 Es una interfaz gráfica desarrollada por los mismos desarrolladores del MongoDB Server, con la que se puede interactuar con el MongoDB Server de una forma más amigable.
 
-<br>
-
 ### Conectores de MongoDB
 
 Son las [**librerías**](https://docs.mongodb.com/drivers/) dentro de cada lenguaje de programación que se usan para interactuar con el MongoDB Server.
-
-<br>
-
-### MongoDB Realm
-
-Es una versión lite de MongoDB que se puede instalar en dispositivos móviles.
 
 <br><br>
 
