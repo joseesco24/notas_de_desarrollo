@@ -17,6 +17,13 @@
 - [**Relaciones entre documentos en MongoDB**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#relaciones-entre-documentos-en-mongodb)
 - [**Conexión con MongoDB Server**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#conexi%C3%B3n-con-mongodb-server)
 - [**Operaciones básicas en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-b%C3%A1sicas-con-mongodb-shell)
+  - [Iniciar shell](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#iniciar-shell)
+  - [Limpiar shell](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#limpiar-shell)
+  - [Ver bases de datos disponibles](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ver-bases-de-datos-disponibles)
+  - [Crear nueva base de datos o usar una ya creada](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#crear-nueva-base-de-datos-o-usar-una-ya-creada)
+  - [Ver nombre de la base de datos a la que está conectado el shell](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ver-nombre-de-la-base-de-datos-a-la-que-est%C3%A1-conectado-el-shell)
+  - [Ver colecciones disponibles en la base de datos](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ver-colecciones-disponibles-en-la-base-de-datos)
+  - [Ver funciones disponibles](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ver-funciones-disponibles)
 - [**Operaciones con bases de datos en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-con-bases-de-datos-en-mongodb-shell)
 - [**Operaciones con colecciones y documentos en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-con-colecciones-y-documentos-en-mongodb-shell)
 
