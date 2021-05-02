@@ -10,9 +10,9 @@
 - [**Ecosistema de MongoDB**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ecosistema-de-mongodb)
 - [**Relaciones entre documentos en MongoDB**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#relaciones-entre-documentos-en-mongodb)
 - [**Conexión con MongoDB Server**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#conexi%C3%B3n-con-mongodb-server)
-- [**Operaciones básicas en MongoDB Shell**](https)
-- [**Operaciones con bases de datos en MongoDB Shell**](https)
-- [**Operaciones con colecciones y documentos en MongoDB Shell**](https)
+- [**Operaciones básicas en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-b%C3%A1sicas-con-mongodb-shell)
+- [**Operaciones con bases de datos en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-con-bases-de-datos-en-mongodb-shell)
+- [**Operaciones con colecciones y documentos en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-con-colecciones-y-documentos-en-mongodb-shell)
 
 <br><br>
 
