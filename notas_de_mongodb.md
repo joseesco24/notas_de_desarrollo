@@ -127,6 +127,12 @@ show dbs
 use [nombre de la nueva base de datos]
 ```
 
+Ejemplo:
+
+```unknown
+use db
+```
+
 <br>
 
 ### Ver nombre de la base de datos a la que está conectado el shell
