@@ -6,10 +6,13 @@
 
 ## Tabla de contenidos
 
-- [Componentes principales de MongoDB](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#componentes-principales-de-mongodb)
-- [Ecosistema de MongoDB](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ecosistema-de-mongodb)
-- [Relaciones entre documentos en MongoDB](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#relaciones-entre-documentos-en-mongodb)
-- [Conexión con MongoDB Server](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#conexi%C3%B3n-con-mongodb-server)
+- [**Componentes principales de MongoDB**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#componentes-principales-de-mongodb)
+- [**Ecosistema de MongoDB**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ecosistema-de-mongodb)
+- [**Relaciones entre documentos en MongoDB**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#relaciones-entre-documentos-en-mongodb)
+- [**Conexión con MongoDB Server**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#conexi%C3%B3n-con-mongodb-server)
+- [**Operaciones básicas en MongoDB Shell**](https)
+- [**Operaciones con bases de datos en MongoDB Shell**](https)
+- [**Operaciones con colecciones y documentos en MongoDB Shell**](https)
 
 <br><br>
 
@@ -75,7 +78,7 @@ mongodb://127.0.0.1:27017
 
 <br><br>
 
-## Manejo de MongoDB Shell
+## Operaciones básicas con MongoDB Shell
 
 El shell de MongoDB o [**MongoDB Shell**](https://docs.mongodb.com/manual/mongo/) es la interfaz interactiva basada en JavaScript que se usa para interactuar de forma directa con el MongoDB Server mediante la terminal, además de poder realizar acciones simples en MongoDB Shell también se pueden crear [**scripts**](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/), por lo que se pueden automatizar varios tipos de tareas o consultas en concreto usando el shell.
 
@@ -154,6 +157,14 @@ Ejemplo:
 ```JavaScript
 db.inventory.help()
 ```
+
+<br><br>
+
+## Operaciones con bases de datos en MongoDB Shell
+
+<br><br>
+
+## Operaciones con colecciones y documentos en MongoDB Shell
 
 <br>
 
@@ -403,7 +414,5 @@ Ejemplo:
 ```JavaScript
 db.inventory.createIndex({nombre: "text"})
 ```
-
-<br>
 
 <br><br>
