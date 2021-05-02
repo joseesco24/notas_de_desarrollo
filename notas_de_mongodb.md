@@ -7,7 +7,13 @@
 ## Tabla de contenidos
 
 - [**Componentes principales de MongoDB**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#componentes-principales-de-mongodb)
+  - [Bases de datos](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#bases-de-datos)
+  - [Colecciones](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#colecciones)
+  - [Documentos](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#documentos)
 - [**Ecosistema de MongoDB**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ecosistema-de-mongodb)
+  - [MongoDB Server](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#mongodb-server)
+  - [MongoDB Shell](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#mongodb-shell)
+  - [Conectores de MongoDB](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#conectores-de-mongodb)
 - [**Relaciones entre documentos en MongoDB**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#relaciones-entre-documentos-en-mongodb)
 - [**Conexión con MongoDB Server**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#conexi%C3%B3n-con-mongodb-server)
 - [**Operaciones básicas en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-b%C3%A1sicas-con-mongodb-shell)
@@ -32,7 +38,7 @@ Las [**colecciones**](https://docs.mongodb.com/manual/core/databases-and-collect
 
 ### Documentos
 
-Los [**documentos**](https://docs.mongodb.com/manual/core/document/) dentro de MongoDB son registros dentro de cada colección, son análogos a los documentos JSON, pero en realidad son documentos BSON, que son documentos binarios basados en JSON, usar BSON hace más fácil entender la estructura de cada documento y además permite almacenar una gran variedad de tipos de datos gracias a la cantidad de formatos que soporta BSON. Los documentos ademas son la unidad más básica dentro de MongoDB y no pueden ser mayores a 16 mega bytes.
+Los [**documentos**](https://docs.mongodb.com/manual/core/document/) dentro de MongoDB son registros dentro de cada colección, son análogos a los documentos JSON, pero en realidad son documentos BSON, que son documentos binarios basados en JSON, usar BSON hace más fácil entender la estructura de cada documento y además permite almacenar una gran variedad de tipos de datos gracias a la cantidad de formatos que soporta BSON. Los documentos además son la unidad más básica dentro de MongoDB y no pueden ser mayores a 16 megabytes.
 
 <br><br>
 
