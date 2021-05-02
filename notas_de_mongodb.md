@@ -26,12 +26,12 @@
   - [Ver funciones disponibles](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ver-funciones-disponibles)
 - [**Operaciones con bases de datos en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-con-bases-de-datos-en-mongodb-shell)
 - [**Operaciones con colecciones y documentos en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-con-colecciones-y-documentos-en-mongodb-shell)
-  - [Documentos de filtros]()
+  - [Documentos de filtros](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#documentos-de-filtros)
   - [Insertar documentos en una colección](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#insertar-documentos-en-una-colecci%C3%B3n)
   - [Buscar documentos en una colección](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#buscar-documentos-en-una-colecci%C3%B3n)
-  - [Actualizar documentos de una colección]()
+  - [Actualizar documentos de una colección](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#actualizar-documentos-de-una-colecci%C3%B3n)
   - [Eliminar documentos de una colección](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#eliminar-documentos-de-una-colecci%C3%B3n)
-  - [Operaciones de agregación]()
+  - [Operaciones de agregación](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-de-agregaci%C3%B3n)
   - [Manejo de índices](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#manejo-de-%C3%ADndices)
 
 <br><br>
