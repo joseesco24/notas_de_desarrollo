@@ -26,6 +26,13 @@
   - [Ver funciones disponibles](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ver-funciones-disponibles)
 - [**Operaciones con bases de datos en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-con-bases-de-datos-en-mongodb-shell)
 - [**Operaciones con colecciones y documentos en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-con-colecciones-y-documentos-en-mongodb-shell)
+  - [Documentos de filtros]()
+  - [Insertar documentos en una colección](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#insertar-documentos-en-una-colecci%C3%B3n)
+  - [Buscar documentos en una colección](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#buscar-documentos-en-una-colecci%C3%B3n)
+  - [Actualizar documentos de una colección]()
+  - [Eliminar documentos de una colección](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#eliminar-documentos-de-una-colecci%C3%B3n)
+  - [Operaciones de agregación]()
+  - [Manejo de índices](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#manejo-de-%C3%ADndices)
 
 <br><br>
 
@@ -187,46 +194,7 @@ db.inventory.help()
 
 <br>
 
-### Insertar documentos en una colección
-
-MongoDB por defecto no crea bases de datos vacías, por lo que es necesario luego de crear una nueva base de datos crear al menos una colección y un documento, si la colección en la que se quiere insertar el documento no existe MongoDB crea una nueva colección con el nombre indicado.\
-Al insertar un documento el id se puede especificar usando el tag **\_id**, si no se indica el id del documento usando este tag MongoDB asigna al documento un id por defecto, además el id no se puede repetir, por lo que si se ingresa un documento con un id que ya existe la operación fallará, por lo que es una buena práctica dejar que MongoDB genere el id de forma automática.
-
-#### Inserción individual
-
-```unknown
-[nombre de la base de datos].[nombre de la colección].insertOne([documento en formato JSON])
-```
-
-Ejemplo:
-
-```JavaScript
-db.inventory.insertOne(
-    {size: {h: 28, w: 35.5, uom: "cm"}, tags: ["cotton"], item: "canvas", qty: 100}
-)
-```
-
-#### Inserción grupal
-
-```unknown
-[nombre de la base de datos].[nombre de la colección].insertMany([arreglo de documentos en formato JSON])
-```
-
-Ejemplo:
-
-```JavaScript
-db.inventory.insertMany(
-    [
-        {item: "sketch pad", qty: 95, size: {h: 22.85, w: 30.5, uom: "cm"}, status: "A"},
-        {item: "postcard", qty: 45, size: {h: 10, w: 15.25, uom: "cm"}, status: "A"},
-        {item: "sketchbook", qty: 80, size: {h: 14, w: 21, uom: "cm"}, status: "A"}
-    ]
-)
-```
-
-<br>
-
-### Documentos de filtros en formato JSON
+### Documentos de filtros
 
 Los documentos de filtros son parte fundamental de la mayoría de las operaciones [**CRUD**](https://docs.mongodb.com/manual/crud/) com MongoDB, ya que permiten, como su nombre indica, filtrar los documentos resultantes de una búsqueda, para esto MongoDB dispone de varios [**operadores**](https://docs.mongodb.com/manual/reference/operator/) que se usan en el MongoDB Shell para realizar todo tipo de operaciones necesarias para filtrar datos, a continuación se muestran algunos ejemplos de la sintaxis de algunos de los operadores más comunes.
 
@@ -267,6 +235,45 @@ db.inventory.find(
             {qty: {$lt:30}}
             ]
     }
+)
+```
+
+<br>
+
+### Insertar documentos en una colección
+
+MongoDB por defecto no crea bases de datos vacías, por lo que es necesario luego de crear una nueva base de datos crear al menos una colección y un documento, si la colección en la que se quiere insertar el documento no existe MongoDB crea una nueva colección con el nombre indicado.\
+Al insertar un documento el id se puede especificar usando el tag **\_id**, si no se indica el id del documento usando este tag MongoDB asigna al documento un id por defecto, además el id no se puede repetir, por lo que si se ingresa un documento con un id que ya existe la operación fallará, por lo que es una buena práctica dejar que MongoDB genere el id de forma automática.
+
+#### Inserción individual
+
+```unknown
+[nombre de la base de datos].[nombre de la colección].insertOne([documento en formato JSON])
+```
+
+Ejemplo:
+
+```JavaScript
+db.inventory.insertOne(
+    {size: {h: 28, w: 35.5, uom: "cm"}, tags: ["cotton"], item: "canvas", qty: 100}
+)
+```
+
+#### Inserción grupal
+
+```unknown
+[nombre de la base de datos].[nombre de la colección].insertMany([arreglo de documentos en formato JSON])
+```
+
+Ejemplo:
+
+```JavaScript
+db.inventory.insertMany(
+    [
+        {item: "sketch pad", qty: 95, size: {h: 22.85, w: 30.5, uom: "cm"}, status: "A"},
+        {item: "postcard", qty: 45, size: {h: 10, w: 15.25, uom: "cm"}, status: "A"},
+        {item: "sketchbook", qty: 80, size: {h: 14, w: 21, uom: "cm"}, status: "A"}
+    ]
 )
 ```
 
@@ -317,7 +324,7 @@ El método find además se puede combinar con otros métodos como:
 
 <br>
 
-### Actualizar documentos en una colección
+### Actualizar documentos de una colección
 
 #### Actualización individual
 
@@ -393,7 +400,7 @@ db.inventory.deleteMany(
 
 <br>
 
-### Agregaciones
+### Operaciones de agregación
 
 Las [**agregaciones**](https://docs.mongodb.com/manual/aggregation/) en MongoDB son operaciones avanzadas que se pueden realizar en MongoDB.
 
