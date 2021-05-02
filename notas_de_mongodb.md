@@ -2,7 +2,7 @@
 
 [**MongoDB**](https://docs.mongodb.com/) es uno de los sistemas de bases de datos no relacionales más usados en el desarrollo profesional, es ampliamente usado en todo tipo de entornos de desarrollo gracias a su flexibilidad y facilidad de uso, que se deben en gran parte a que MongoDB se basa en documentos similares a los documentos JSON. Una de las mejores características de MongoDB es que en su versión Atlas permite crear sistemas distribuidos de bases de datos, por lo que usando MongoDB Atlas es totalmente factible tener un cluster de máquinas en la nube dedicadas al almacenamiento de los datos de una o varias bases de datos, esta característica hace que escalar un sistema de bases de datos basado en MongoDB Atlas sea extremadamente fácil ya que solo hace falta agregar más nodos al cluster. Otra de las características clave de MongoDB es que es "Schema Less" en todas sus versiones, por lo que los documentos dentro de una misma colección pueden tener estructuras totalmente diferentes sin afectar el funcionamiento de MongoDB y como si fuera poco las consultas de MongoDB también son extremadamente eficientes por el hecho de ser una base de datos no relacional basada en documentos que además permite indexación.
 
-<br><br>
+<br>
 
 ## Tabla de contenidos
 
@@ -34,7 +34,7 @@
   - [Operaciones de agregación](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-de-agregaci%C3%B3n)
   - [Manejo de índices](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#manejo-de-%C3%ADndices)
 
-<br><br>
+<br>
 
 ## Componentes principales de MongoDB
 
@@ -54,7 +54,7 @@ Las [**colecciones**](https://docs.mongodb.com/manual/core/databases-and-collect
 
 Los [**documentos**](https://docs.mongodb.com/manual/core/document/) dentro de MongoDB son registros dentro de cada colección, son análogos a los documentos JSON, pero en realidad son documentos BSON, que son documentos binarios basados en JSON, usar BSON hace más fácil entender la estructura de cada documento y además permite almacenar una gran variedad de tipos de datos gracias a la cantidad de formatos que soporta BSON. Los documentos además son la unidad más básica dentro de MongoDB y no pueden ser mayores a 16 megabytes.
 
-<br><br>
+<br>
 
 ## Ecosistema de MongoDB
 
@@ -74,13 +74,13 @@ Es shell de MongoDB es el shell con la que se interactúa de forma directa con e
 
 Los conectores de MongoDB son todas las [**librerías**](https://docs.mongodb.com/drivers/) dentro de los diferentes lenguajes de programación que se usan para interactuar con el servidor de MongoDB.
 
-<br><br>
+<br>
 
 ## Relaciones entre documentos en MongoDB
 
 En MongoDB y en el resto de sistemas de bases de datos no relacionales basadas en documentos suele haber solo dos formas para expresar las relaciones entre documentos, usando documentos anidados o usando referencias dentro de un documento a otro documento. Los documentos anidados suelen usarse en relaciones **uno a uno**, ya que se aprovecha más la estructura de las bases de datos no relacionales para hacer solo un scan. Si la relación es de **uno a muchos** lo adecuado es usar referencias si el documento que se va a relacionar va a estar actualizándose constantemente, ya que de esta forma las actualizaciones pueden hacerse en un solo documento y los cambios se verán reflejados en todos los documentos con los que está relacionado, usar referencias hace más lentas las búsquedas ya que no se aprovecha la estructura no relacional de MongoDB, razón por la cual hace falta hacer más de un scan a cambio de facilitar la actualización de los documentos relacionados y optimizar el almacenamiento, sin embargo es lo ideal en este tipo de escenarios. Si por el contrario el documento que se va a relacionar en una relación **uno a muchos** no se va a actualizar de forma constante se puede anidar simplemente como una copia dentro de cada documento con el que se relaciona sí no importa el almacenamiento, ya que de nuevo, de esta forma se aprovecha más la estructura de las bases de datos no relacionales para hacer un solo scan.
 
-<br><br>
+<br>
 
 ## Conexión con MongoDB Server
 
@@ -96,7 +96,7 @@ Ejemplo:
 mongodb://127.0.0.1:27017
 ```
 
-<br><br>
+<br>
 
 ## Operaciones básicas con MongoDB Shell
 
@@ -184,11 +184,11 @@ Ejemplo:
 db.inventory.help()
 ```
 
-<br><br>
+<br>
 
 ## Operaciones con bases de datos en MongoDB Shell
 
-<br><br>
+<br>
 
 ## Operaciones con colecciones y documentos en MongoDB Shell
 
@@ -441,4 +441,4 @@ Ejemplo:
 db.inventory.createIndex({nombre: "text"})
 ```
 
-<br><br>
+<br>
