@@ -1,6 +1,6 @@
 # MongoDB
 
-[**MongoDB**](https://docs.mongodb.com/) es uno de los sistemas de bases de datos no relacionales más usados en el desarrollo profesional, es ampliamente usado en todo tipo de entornos de desarrollo gracias a su flexibilidad y facilidad de uso, que se deben en gran parte a que MongoDB se basa en documentos similares a los documentos JSON. Una de las mejores características de MongoDB es que en su versión Atlas permite crear sistemas distribuidos de bases de datos, por lo que usando MongoDB Atlas es totalmente factible tener un cluster de máquinas en la nube dedicadas al almacenamiento de los datos de una o varias bases de datos, esta característica hace que escalar un sistema de bases de datos basado en MongoDB Atlas sea extremadamente fácil ya que solo hace falta agregar más nodos al cluster. Otra de las características clave de MongoDB es que es "Schema Less" en todas sus versiones, por lo que los documentos dentro de una misma colección pueden tener estructuras totalmente diferentes sin afectar el funcionamiento de MongoDB y como si fuera poco las consultas de MongoDB también son extremadamente eficientes por el hecho de ser una base de datos no relacional basada en documentos que además permite indexación.
+[**MongoDB**](https://docs.mongodb.com/) es uno de los sistemas de bases de datos no relacionales más usados en el desarrollo profesional, es ampliamente usado en todo tipo de entornos de desarrollo gracias a su flexibilidad y facilidad de uso, que se deben en gran medida al hecho de que MongoDB se basa en documentos similares a los documentos JSON. Una de las mejores características de MongoDB es que en su versión Atlas permite crear sistemas distribuidos de bases de datos, por lo que usando MongoDB Atlas es totalmente factible tener un cluster de máquinas en la nube dedicadas al almacenamiento de los datos de una o varias bases de datos, esta característica hace que escalar un sistema de bases de datos basado en MongoDB Atlas sea extremadamente fácil ya que solo hace falta agregar más nodos al cluster. Otra de las principales características clave de MongoDB es que es "Schema Less" en todas sus versiones, por lo que los documentos dentro de una misma colección pueden tener estructuras totalmente diferentes sin afectar el funcionamiento o el rendimiento de MongoDB, y como si fuera poco las consultas de MongoDB también son extremadamente eficientes por el hecho de ser una base de datos no relacional basada en documentos que además permite indexación, por lo que se puede optimizar incluso más su rendimiento mediante índices.
 
 <br>
 
@@ -44,15 +44,15 @@
 
 ### Bases de datos
 
-Las [**bases de datos**](https://docs.mongodb.com/manual/core/databases-and-collections/#databases) en MongoDB son los espacios de almacenamiento como tal en los que se guardan las colecciones, cada base de datos tiene su propio archivo dentro del sistema de archivos de la máquina en la que se ejecuta MongoDB, además en un cluster de MongoDB Atlas pueden haber múltiples bases de datos distribuidas o replicadas entre los diferentes nodos del cluster.
+Las [**bases de datos**](https://docs.mongodb.com/manual/core/databases-and-collections/#databases) en MongoDB son los espacios de almacenamiento como tal en los que se guardan las colecciones, cada base de datos tiene su propio archivo dentro del sistema de archivos del host en el que se ejecuta MongoDB, además en un cluster de MongoDB Atlas pueden haber múltiples bases de datos distribuidas o replicadas entre los diferentes nodos del cluster.
 
 ### Colecciones
 
-Las [**colecciones**](https://docs.mongodb.com/manual/core/databases-and-collections/#collections) en MongoDB son agrupaciones de documentos, son equivalentes a las tablas de las bases de datos relacionales y además en el caso de MongoDB no imponen un esquema fijo que deban seguir los documentos de la colección.
+Las [**colecciones**](https://docs.mongodb.com/manual/core/databases-and-collections/#collections) en MongoDB son agrupaciones de documentos, son equivalentes a las tablas de las bases de datos relacionales y además en el caso de MongoDB no se imponen esquemas fijos que deban seguir los documentos una misma colección.
 
 ### Documentos
 
-Los [**documentos**](https://docs.mongodb.com/manual/core/document/) dentro de MongoDB son registros dentro de cada colección, son análogos a los documentos JSON, pero en realidad son documentos BSON, que son documentos binarios basados en JSON, usar BSON hace más fácil entender la estructura de cada documento y además permite almacenar una gran variedad de tipos de datos gracias a la cantidad de formatos que soporta BSON. Los documentos además son la unidad más básica dentro de MongoDB y no pueden ser mayores a 16 megabytes.
+Los [**documentos**](https://docs.mongodb.com/manual/core/document/) en MongoDB son registros dentro de cada colección, la estructura de los documentos de MongoDB es similar a la de los documentos JSON, pero en realidad son documentos BSON, que son documentos JSON binarios, usar BSON hace fácil entender la estructura de cada documento y además permite almacenar una gran variedad de tipos de datos gracias a la cantidad de formatos que soporta BSON. Los documentos además son la unidad más básica dentro de MongoDB y no pueden ser mayores a 16 megabytes.
 
 <br>
 
@@ -64,7 +64,7 @@ Los [**documentos**](https://docs.mongodb.com/manual/core/document/) dentro de M
 
 ### MongoDB Server
 
-El servidor de MongoDB es el componente de software que se encarga de gestionar las bases de datos como tal, se encarga de almacenar y mantener disponibles las bases de datos en el sistema de archivos de la máquina host, también se encarga de realizar todas las operaciones de búsqueda, cruce de datos y entrega de resultados que se le hagan. Al igual que la gran mayoría de software el servidor de MongoDB tiene dos versiones, una versión community y una enterprise, con la diferencia de que la enterprise gana algunas características extras respecto a la community.
+El servidor de MongoDB es el servidor encargado de gestionar las bases de datos como tal, sus principales funciones son almacenar las bases de datos en el sistema de archivos del host, mantener disponibles las bases de datos y realizar el cruce de datos y la entrega de resultados de todas las peticiones que se le hagan. Al igual que la gran mayoría del software de código abierto el servidor de MongoDB tiene dos versiones, una versión community y una enterprise, con la diferencia de que la versión enterprise gana algunas características adicionales respecto a la versión community.
 
 ### MongoDB Shell
 
@@ -72,13 +72,97 @@ Es shell de MongoDB es el shell con la que se interactúa de forma directa con e
 
 ### Conectores de MongoDB
 
-Los conectores de MongoDB son todas las [**librerías**](https://docs.mongodb.com/drivers/) dentro de los diferentes lenguajes de programación que se usan para interactuar con el servidor de MongoDB.
+Los conectores de MongoDB son todas las [**bibliotecas**](https://docs.mongodb.com/drivers/) dentro de los diferentes lenguajes de programación que se usan para interactuar con el servidor de MongoDB.
 
 <br>
 
 ## Relaciones entre documentos en MongoDB
 
 En MongoDB y en el resto de sistemas de bases de datos no relacionales basadas en documentos suele haber solo dos formas para expresar las relaciones entre documentos, usando documentos anidados o usando referencias dentro de un documento a otro documento. Los documentos anidados suelen usarse en relaciones **uno a uno**, ya que se aprovecha más la estructura de las bases de datos no relacionales para hacer solo un scan. Si la relación es de **uno a muchos** lo adecuado es usar referencias si el documento que se va a relacionar va a estar actualizándose constantemente, ya que de esta forma las actualizaciones pueden hacerse en un solo documento y los cambios se verán reflejados en todos los documentos con los que está relacionado, usar referencias hace más lentas las búsquedas ya que no se aprovecha la estructura no relacional de MongoDB, razón por la cual hace falta hacer más de un scan a cambio de facilitar la actualización de los documentos relacionados y optimizar el almacenamiento, sin embargo es lo ideal en este tipo de escenarios. Si por el contrario el documento que se va a relacionar en una relación **uno a muchos** no se va a actualizar de forma constante se puede anidar simplemente como una copia dentro de cada documento con el que se relaciona sí no importa el almacenamiento, ya que de nuevo, de esta forma se aprovecha más la estructura de las bases de datos no relacionales para hacer un solo scan.
+
+Ejemplo de documento anidado:
+
+```JSON
+{
+    "nombre": "Pedro",
+    "apellido": "Perez",
+    "lugar_residencia": {
+        "ciudad": "Bogotá",
+        "departamento": "Cundinamarca",
+        "direccion": "Calle 175 #64-11"
+    },
+    "edad": 36
+}
+```
+
+Ejemplo de múltiples documentos anidados:
+
+```JSON
+{
+    "nombre": "Pedro",
+    "apellido": "Perez",
+    "lugar_residencia": [
+        {
+            "ciudad": "Bogotá",
+            "departamento": "Cundinamarca",
+            "direccion": "Calle 175 #64-11"
+        },
+        {
+            "ciudad": "Neiva",
+            "departamento": "Huila",
+            "direccion": "Calle 4 #17-11"
+        }
+    ],
+    "edad": 36
+}
+```
+
+Ejemplo de documento referenciado:
+
+```JSON
+{
+    "id": "62a873996f6aaaa78dac39c0d5c36a39",
+    "nombre": "Perez",
+    "apellido": "Perez",
+    "edad": 36
+}
+```
+
+```JSON
+{
+    "autor": "62a873996f6aaaa78dac39c0d5c36a39",
+    "nombre": "Perez",
+    "ano_publicacion": 2021
+}
+```
+
+Ejemplo de múltiples documentos referenciados:
+
+```JSON
+{
+    "id": "62a873996f6aaaa78dac39c0d5c36a39",
+    "nombre": "Perez",
+    "apellido": "Perez",
+    "edad": 36
+}
+```
+
+```JSON
+{
+    "id": "a85ba64adf6bf75e64b221a3171b0269",
+    "nombre": "Felipe",
+    "apellido": "Perez",
+    "edad": 32
+}
+```
+
+```JSON
+{
+    "autor": ["62a873996f6aaaa78dac39c0d5c36a39", "a85ba64adf6bf75e64b221a3171b0269"],
+    "nombre": "Perez",
+    "ano_publicacion": 2021
+}
+```
 
 <br>
 
