@@ -184,7 +184,7 @@ mongodb://127.0.0.1:27017
 
 ## Operaciones básicas con MongoDB Shell
 
-El shell de MongoDB o [**MongoDB Shell**](https://docs.mongodb.com/manual/mongo/) es la interfaz interactiva basada en JavaScript que se usa para interactuar de forma directa con el MongoDB Server mediante la terminal, además de poder realizar acciones simples en MongoDB Shell también se pueden crear [**scripts**](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/), por lo que se pueden automatizar varios tipos de tareas o consultas en concreto usando el shell.
+El shell de MongoDB o [**MongoDB Shell**](https://docs.mongodb.com/manual/mongo/) es una interfaz interactiva basada en JavaScript que se usa para interactuar de forma directa con el MongoDB Server mediante la terminal, al ser un shell basado en JavaScript el shell de MongoDB permite usar comandos con sintaxis de [**shell**](https://docs.mongodb.com/manual/reference/program/mongo/#mongodb-binary-bin.mongo) o comandos con sintaxis de [**JavaScript**](https://docs.mongodb.com/manual/reference/method/), sin embargo la mayoría de las operaciones sólo están disponibles usando la sintaxis de JavaScript, además de poder realizar acciones simples en MongoDB Shell también se pueden crear [**scripts**](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/) basados en JavaScript que se ejecuten sobre el shell de MongoDB, por lo que se pueden automatizar varios tipos de tareas o consultas en usando JavaScript.
 
 <br>
 
@@ -202,12 +202,20 @@ mongo
 ctrl + l
 ```
 
+```unknown
+cls
+```
+
 <br>
 
 ### Ver bases de datos disponibles
 
 ```unknown
 show databases
+```
+
+```unknown
+show dbs
 ```
 
 <br>
