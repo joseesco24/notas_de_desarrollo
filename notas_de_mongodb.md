@@ -20,9 +20,9 @@
   - [Iniciar shell](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#iniciar-shell)
   - [Limpiar shell](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#limpiar-shell)
   - [Ver bases de datos disponibles](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ver-bases-de-datos-disponibles)
+  - [Ver colecciones disponibles](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ver-colecciones-disponibles)
   - [Crear nueva base de datos o usar una ya creada](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#crear-nueva-base-de-datos-o-usar-una-ya-creada)
   - [Ver nombre de la base de datos a la que está conectado el shell](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ver-nombre-de-la-base-de-datos-a-la-que-est%C3%A1-conectado-el-shell)
-  - [Ver colecciones disponibles en la base de datos](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ver-colecciones-disponibles-en-la-base-de-datos)
   - [Ver funciones disponibles](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#ver-funciones-disponibles)
 - [**Operaciones con bases de datos en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-con-bases-de-datos-en-mongodb-shell)
 - [**Operaciones con colecciones y documentos en MongoDB Shell**](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#operaciones-con-colecciones-y-documentos-en-mongodb-shell)
@@ -171,7 +171,7 @@ Ejemplo de múltiples documentos referenciados:
 Para establecer una conexión entre MongoDB con cualquier aplicación o driver, independientemente de la versión de MongoDB Server, es necesario usar un [**string de conexión en formato uri**](https://docs.mongodb.com/manual/reference/connection-string/#connection-string-uri-format), a continuación se muestra el formato estándar para establecer una conexión entre una aplicación y un MongoDB Server ambos dentro del mismo host.
 
 ```unknown
-mongodb://[ip de la máquina que tiene MongoDB Server]:[puerto en el que está expuesto mongo, normalmente 27017]
+mongodb://<ip de la máquina que tiene MongoDB Server>:<puerto en el que está expuesto mongo, normalmente 27017>
 ```
 
 Ejemplo:
@@ -207,7 +207,15 @@ ctrl + l
 ### Ver bases de datos disponibles
 
 ```unknown
-show dbs
+show databases
+```
+
+<br>
+
+### Ver colecciones disponibles
+
+```unknown
+show collections
 ```
 
 <br>
@@ -215,7 +223,7 @@ show dbs
 ### Crear nueva base de datos o usar una ya creada
 
 ```unknown
-use [nombre de la nueva base de datos]
+use <nombre de la nueva base de datos>
 ```
 
 Ejemplo:
@@ -234,20 +242,12 @@ db
 
 <br>
 
-### Ver colecciones disponibles en la base de datos
-
-```unknown
-show collections
-```
-
-<br>
-
 ### Ver funciones disponibles
 
 #### En una base de datos
 
 ```unknown
-[nombre de la base de datos].help()
+<nombre de la base de datos>.help()
 ```
 
 Ejemplo:
@@ -259,7 +259,7 @@ db.help()
 #### En una colección
 
 ```unknown
-[nombre de la base de datos].[nombre de la colección].help()
+<nombre de la base de datos>.<nombre de la colección>.help()
 ```
 
 Ejemplo:
@@ -332,7 +332,7 @@ Al insertar un documento el id se puede especificar usando el tag **\_id**, si n
 #### Inserción individual
 
 ```unknown
-[nombre de la base de datos].[nombre de la colección].insertOne([documento en formato JSON])
+<nombre de la base de datos>.<nombre de la colección>.insertOne(<documento en formato JSON>)
 ```
 
 Ejemplo:
@@ -346,7 +346,7 @@ db.inventory.insertOne(
 #### Inserción grupal
 
 ```unknown
-[nombre de la base de datos].[nombre de la colección].insertMany([arreglo de documentos en formato JSON])
+<nombre de la base de datos>.<nombre de la colección>.insertMany(<arreglo de documentos en formato JSON>)
 ```
 
 Ejemplo:
@@ -368,7 +368,7 @@ db.inventory.insertMany(
 #### Búsqueda individual
 
 ```unknown
-[nombre de la base de datos].[nombre de la colección].findOne([documento de filtros en formato JSON], [proyección en formato JSON])
+<nombre de la base de datos>.<nombre de la colección>.findOne(<documento de filtros en formato JSON>, <proyección en formato JSON>)
 ```
 
 Ejemplo:
@@ -386,7 +386,7 @@ Al usar el método **findOne** solamente se retorna el primer documento que cump
 #### Búsqueda grupal
 
 ```unknown
-[nombre de la base de datos].[nombre de la colección].find([documento de filtros en formato JSON], [proyección en formato JSON])
+<nombre de la base de datos>.<nombre de la colección>.find(<documento de filtros en formato JSON>, <proyección en formato JSON>)
 ```
 
 Ejemplo:
@@ -413,7 +413,7 @@ El método find además se puede combinar con otros métodos como:
 #### Actualización individual
 
 ```unknown
-[nombre de la base de datos].[nombre de la colección].updateOne([documento de filtros en formato JSON], [JSON])
+<nombre de la base de datos>.<nombre de la colección>.updateOne(<documento de filtros en formato JSON>, <JSON>)
 ```
 
 Ejemplo:
@@ -432,7 +432,7 @@ db.inventory.updateOne(
 #### Actualización grupal
 
 ```unknown
-[nombre de la base de datos].[nombre de la colección].updateMany([documento de filtros en formato JSON], [JSON])
+<nombre de la base de datos>.<nombre de la colección>.updateMany(<documento de filtros en formato JSON>, <JSON>)
 ```
 
 Ejemplo:
@@ -455,7 +455,7 @@ db.inventory.updateMany(
 #### Eliminación individual
 
 ```unknown
-[nombre de la base de datos].[nombre de la colección].deleteOne([documento de filtros en formato JSON])
+<nombre de la base de datos>.<nombre de la colección>.deleteOne(<documento de filtros en formato JSON>)
 ```
 
 Ejemplo:
@@ -471,7 +471,7 @@ El documento eliminado con deleteOne siempre es el primer documento que cumple c
 #### Eliminación grupal
 
 ```unknown
-[nombre de la base de datos].[nombre de la colección].deleteMany([documento de filtros en formato JSON])
+<nombre de la base de datos>.<nombre de la colección>.deleteMany(<documento de filtros en formato JSON>)
 ```
 
 Ejemplo:
@@ -504,7 +504,7 @@ Los [**índices**](https://docs.mongodb.com/manual/indexes/) en MongoDB se usan 
 #### Listar índices
 
 ```unknown
-[nombre de la base de datos].[nombre de la colección].getIndexes()
+<nombre de la base de datos>.<nombre de la colección>.getIndexes()
 ```
 
 Ejemplo:
@@ -516,7 +516,7 @@ db.inventory.getIndexes()
 #### Crear nuevo índice
 
 ```unknown
-[nombre de la base de datos].[nombre de la colección].createIndex({[nombre del campo que se usará como índice]:[tipo de índice]})
+<nombre de la base de datos>.<nombre de la colección>.createIndex({<nombre del campo que se usará como índice>:<tipo de índice>})
 ```
 
 Ejemplo:
