@@ -1,4 +1,4 @@
-# Kubernetes - K8s
+# Kubernetes
 
 [Kubernetes](https://Kubernetes.io/es/docs/concepts/overview/what-is-Kubernetes/) es la plataforma de orquestación de contenedores mas popular actualmente, esto en parte es gracias a que Kubernetes apunta a ser una plataforma declarativo donde no se indique paso a paso todo lo que debe hacer la infraestructura si no que apunta a que se indique el estado deseado del cluster y Kubernetes se encarga de llegar a ese estado deseado, ademas Kubernetes pertenece al [**CNCF**](https://www.cncf.io/), lo que le da un enorme respaldo a esta plataforma, el principal trabajo de Kubernetes es desplegar y gestionar contenedores en un cluster basándose en pods, algunas de las principales ventajas de utilizar Kubernetes como plataforma para desplegar aplicaciones contenerizadas son:
 
