@@ -178,8 +178,8 @@ git rm [parámetros] [nombre del archivo]
 
 Elimina uno o varios archivos del área de staging o del repositorio, **git rm** necesita alguno de los siguientes parámetros para ejecutarse correctamente:
 
-- **-f, --force:** Elimina los archivos del repositorio y del directorio de trabajo. el repositorio guarda el registro de la existencia de los archivos, por lo que pueden ser recuperados de ser necesario.
-- **--cached:** Elimina uno o varios archivos del área de staging, por lo que para pasarlos al repositorio hará falta volver a enviarlos al área de staging antes con un commit.
+- **-f, --force:** Elimina uno o varios archivos del repositorio, del área de staging y del directorio de trabajo.
+- **--cached:** Elimina uno o varios archivos del repositorio y del área de staging.
 
 Algunos de los parámetros opcionales más útiles al utilizar **git rm** para eliminar archivos del área de staging o del repositorio son:
 
