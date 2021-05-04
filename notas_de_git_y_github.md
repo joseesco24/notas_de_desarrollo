@@ -9,7 +9,39 @@ Git y GitHub soportan versionamiento de archivos binarios, pero el versionamient
 ## Tabla de contenidos
 
 - [**Flujo de trabajo básico con Git**](#flujo-de-trabajo-básico-con-git)
+  - [Mostrar comandos populares de Git](#mostrar-comandos-populares-de-git)
+  - [Mostrar ayuda de un comando](#mostrar-ayuda-de-un-comando)
+  - [Configuración de Git](#configuración-de-git)
+  - [Iniciar o finalizar un repositorio](#iniciar-o-finalizar-un-repositorio)
+  - [Agregar archivos al área de staging del repositorio](#agregar-archivos-al-área-de-staging-del-repositorio)
+  - [Registrar cambios en el repositorio](#registrar-cambios-en-el-repositorio)
+  - [Comprobar el estatus de la base de datos de cambios del repositorio](#comprobar-el-estatus-de-la-base-de-datos-de-cambios-del-repositorio)
+  - [Comparar cambios entre versiones del repositorio](#comparar-cambios-entre-versiones-del-repositorio)
+  - [Mostrar los logs del repositorio](#mostrar-los-logs-del-repositorio)
+  - [Mostrar los logs completos del repositorio](#mostrar-los-logs-completos-del-repositorio)
+  - [Mostrar los cambios del repositorio](#mostrar-los-cambios-del-repositorio)
+  - [Limpiar el directorio de trabajo](#limpiar-el-directorio-de-trabajo)
+  - [Eliminar archivos del repositorio](#eliminar-archivos-del-repositorio)
 - [**Administración de ramas y versiones con Git**](#administración-de-ramas-y-versiones-con-git)
+  - [Administrar ramas](#administrar-ramas)
+  - [Fusionar ramas](#fusionar-ramas)
+  - [Moverse entre ramas y versiones](#moverse-entre-ramas-y-versiones)
+  - [Hacer rebase a una rama](#hacer-rebase-a-una-rama)
+  - [Administrar la reserva de cambios de Git](#administrar-la-reserva-de-cambios-de-git)
+  - [Administrar tags](#administrar-tags)
+  - [Traer a una rama cambios viejos de otra](#traer-a-una-rama-cambios-viejos-de-otra)
+  - [Regresar a versiones anteriores del repositorio](#regresar-a-versiones-anteriores-del-repositorio)
+- [**Administración de repositorios remotos con Git y GitHub**](#administración-de-repositorios-remotos-con-git-y-github)
+  - [Administrar repositorios remotos](#administrar-repositorios-remotos)
+  - [Cambiar la url de un repositorio remoto](#cambiar-la-url-de-un-repositorio-remoto)
+  - [Clonar un repositorio remoto](#clonar-un-repositorio-remoto)
+  - [Traer los cambios del repositorio remoto al repositorio local](#traer-los-cambios-del-repositorio-remoto-al-repositorio-local)
+  - [Traer los cambios repositorio remoto al repositorio local y al directorio de trabajo](#traer-los-cambios-repositorio-remoto-al-repositorio-local-y-al-directorio-de-trabajo)
+  - [Subir cambios del repositorio local al repositorio remoto](#subir-cambios-del-repositorio-local-al-repositorio-remoto)
+- [**Conexión con GitHub usando protocolo SSH**](#conexión-con-github-usando-protocolo-ssh)
+- [**Pull Requests con GitHub**](#pull-requests-con-github)
+- [**Forks con GitHub**](#forks-con-github)
+- [**Uso de archivos gitignore con Git y GitHub**](#uso-de-archivos-gitignore-con-git-y-github)
 
 <br>
 
@@ -634,7 +666,7 @@ Para mantener actualizado un Fork hay dos opciones, desde GitHub se pueden hacer
 
 <br>
 
-## Uso de archivos .gitignore con Git y GitHub
+## Uso de archivos gitignore con Git y GitHub
 
 ```ignore
 
