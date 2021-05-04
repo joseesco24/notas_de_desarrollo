@@ -23,7 +23,7 @@ Cuando se versionan archivos con repositorios Git locales los cambios pueden est
 
 <br>
 
-### Mostrar comandos populares de git
+### Mostrar comandos populares de Git
 
 ```bash
 git
@@ -58,7 +58,7 @@ Algunos de los parámetros configurables más importantes de un repositorio son:
 
 - **user.email=[correo del usuario]:** Cambia el correo electrónico del usuario.
 - **user.name=[nombre del usuario]:** Cambia el nombre del usuario.
-- **alias.[nombre del alias] "comando":** Permite agregar a git alias para nuevos comandos.
+- **alias.[nombre del alias] "comando":** Permite agregar a Git alias para nuevos comandos.
 
 <br>
 
@@ -203,7 +203,7 @@ Algunos de los conceptos más útiles al trabajar con ramas en Git son:
 
 ### Administrar ramas
 
-El comando **git branch** se emplea para realizar las principales acciones que realiza git en relación con ramas, como crear, listar y eliminar ramas, además de otras adicionales, como crear copias de ramas o renombrar ramas.
+El comando **git branch** se emplea para realizar las principales acciones que realiza Git en relación con ramas, como crear, listar y eliminar ramas, además de otras adicionales, como crear copias de ramas o renombrar ramas.
 
 #### Crear ramas
 
@@ -623,7 +623,7 @@ El flujo de trabajo normal de un Pull Request es el siguiente
 <img src="imagenes/notas_de_git_y_github/sistema_de_forks_de_github.svg" width="100%" height="auto"/>
 </p>
 
-Los Forks son una característica única de GitHub que permite crear una copia exacta del estado actual de un repositorio directamente en GitHub, éste repositorio podrá servir como otro origen y se podrá clonar (como cualquier otro repositorio), en pocas palabras, un Fork se puede utilizar como un repositorio git cualquiera, un Fork es una bifurcación del repositorio completo, tiene una historia en común, pero pueden variar los cambios, ya que ambos proyectos podrán ser modificados en paralelo y para estar al día hace falta mantener el Fork actualizado respecto al original. Al hacer un Fork de un proyecto en GitHub, quien hace el Fork pasa a ser dueño del repositorio Fork y puede trabajar en éste con todos los permisos, pero es un repositorio completamente diferente al original, teniendo algunas historias en común.\
+Los Forks son una característica única de GitHub que permite crear una copia exacta del estado actual de un repositorio directamente en GitHub, éste repositorio podrá servir como otro origen y se podrá clonar (como cualquier otro repositorio), en pocas palabras, un Fork se puede utilizar como un repositorio Git cualquiera, un Fork es una bifurcación del repositorio completo, tiene una historia en común, pero pueden variar los cambios, ya que ambos proyectos podrán ser modificados en paralelo y para estar al día hace falta mantener el Fork actualizado respecto al original. Al hacer un Fork de un proyecto en GitHub, quien hace el Fork pasa a ser dueño del repositorio Fork y puede trabajar en éste con todos los permisos, pero es un repositorio completamente diferente al original, teniendo algunas historias en común.\
 Los Forks son importantes porque es la manera en la que funciona el open source, ya que, una persona puede no ser colaborador de un proyecto, pero puede contribuir al mismo, haciendo mejor software que pueda ser utilizado por cualquiera.\
 Al hacer un Fork, GitHub sabe que se hizo el Fork del proyecto, por lo que se le permite al colaborador hacer Pull Request desde su repositorio propio al original.
 
