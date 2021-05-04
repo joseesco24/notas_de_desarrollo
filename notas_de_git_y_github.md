@@ -8,6 +8,8 @@ Git y GitHub soportan versionamiento de archivos binarios, pero el versionamient
 
 ## Tabla de contenidos
 
+- [**Flujo de trabajo básico con Git**](#flujo-de-trabajo-básico-con-git)
+
 <br>
 
 ## Flujo de trabajo básico con Git
