@@ -170,7 +170,7 @@ Elimina todos los archivos no rastreados por el repositorio del directorio de tr
 
 <br>
 
-### Eliminar archivos del área de staging o del repositorio
+### Eliminar archivos del repositorio
 
 ```bash
 git rm [parámetros] [nombre del archivo]
