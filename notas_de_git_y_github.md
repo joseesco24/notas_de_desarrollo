@@ -10,7 +10,7 @@ Git y GitHub soportan versionamiento de archivos binarios, pero el versionamient
 
 <br>
 
-## Flujo de trabajo básico en Git
+## Flujo de trabajo básico con Git
 
 <p align="center">
 <img src="imagenes/notas_de_git_y_github/flujo_basico_con_repositorios_locales_git.svg" width="100%" height="auto"/>
@@ -187,7 +187,7 @@ Algunos de los parámetros opcionales más útiles al utilizar **git rm** para e
 
 <br>
 
-## Administración de ramas y versiones en Git
+## Administración de ramas y versiones con Git
 
 <p align="center">
 <img src="imagenes/notas_de_git_y_github/sistema_de_ramas_de_git.svg" width="100%" height="auto"/>
@@ -597,7 +597,7 @@ Como último paso hay que actualizar la url del repositorio local reemplazandola
 
 <br>
 
-## Pull Requests en GitHub
+## Pull Requests con GitHub
 
 <p align="center">
 <img src="imagenes/notas_de_git_y_github/sistema_de_pull_requests_de_github.svg" width="100%" height="auto"/>
@@ -617,7 +617,7 @@ El flujo de trabajo normal de un Pull Request es el siguiente
 
 <br>
 
-## Forks en GitHub
+## Forks con GitHub
 
 <p align="center">
 <img src="imagenes/notas_de_git_y_github/sistema_de_forks_de_github.svg" width="100%" height="auto"/>
@@ -631,7 +631,7 @@ Para mantener actualizado un Fork hay dos opciones, desde GitHub se pueden hacer
 
 <br>
 
-## Uso del archivo .gitignore en Git
+## Uso de archivos .gitignore con Git y GitHub
 
 ```ignore
 
