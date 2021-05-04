@@ -1,9 +1,14 @@
 # Git y GitHub
 
-[**Git**](https://git-scm.com/doc) es el sistema de versionamiento más popular actualmente, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la más reciente, lo que hace posible registrar la evolución de los archivos con cada actualización sin almacenar los archivos de cada versión en su totalidad, para esto Git emplea al interior de cada repositorio una base de datos que guarda los cambios de forma incremental, la cual se actualiza con cada versión nueva que llega al repositorio. [**GitHub**](https://docs.github.com/es) por su parte es el sistema de versionamiento remoto más popular actualmente, GitHub además permite trabajo colaborativo sobre los archivos de un repositorio remoto, además de publicar proyectos y su progreso, entre otras de sus funciones, lo que ha hecho que GitHub se gane el nombre de la red social de los programadores.\
+[**Git**](https://git-scm.com/doc) es el sistema de versionamiento más usado en la industria del desarrollo de software en general, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la más reciente, lo que hace posible registrar la evolución de los archivos con cada actualización sin almacenar los archivos de cada versión en su totalidad, para esto Git emplea al interior de cada repositorio una base de datos que guarda los cambios de forma incremental, la cual se actualiza con cada versión nueva que llega al repositorio.\
+[**GitHub**](https://docs.github.com/es) por su parte es el sistema de versionamiento remoto más usado en la industria del desarrollo de software en general, GitHub permite trabajo colaborativo sobre los archivos de un repositorio remoto, además de permitir publicar proyectos y su progreso, entre otras de sus funciones.\
 Git y GitHub soportan versionamiento de archivos binarios, pero el versionamiento de archivos binarios no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan Git y GitHub solo para archivos de texto plano, como el código.
 
-<br><br>
+<br>
+
+## Tabla de contenidos
+
+<br>
 
 ## Flujo de trabajo básico en Git
 
@@ -180,7 +185,7 @@ Algunos de los parámetros opcionales más útiles al utilizar **git rm** para e
 
 - **-r:** Habilita la remoción recursiva cuando le es dado el nombre de un directorio.
 
-<br><br>
+<br>
 
 ## Administración de ramas y versiones en Git
 
@@ -447,7 +452,7 @@ Mueve el HEAD del commit actual al commit indicado, dependiendo del modo al camb
 - **--mixed:** Es el modo por defecto, Elimina los cambios en el repositorio, elimina los cambios del área de staging, pero mantiene los cambios en el directorio de trabajo, por lo que los cambios hechos luego del commit indicado en el directorio de trabajo pueden agregarse al repositorio posteriormente con un **git add** y un **git commit**.
 - **--hard:** Elimina los cambios en el repositorio, elimina los cambios del área de staging y elimina los cambios del directorio de trabajo, por lo que ninguno de los cambios hechos luego del commit podrán agregarse posteriormente al repositorio.
 
-<br><br>
+<br>
 
 ## Administración de repositorios remotos con Git y GitHub
 
@@ -533,7 +538,7 @@ Envía los cambios hechos en una rama del repositorio local al repositorio remot
 - **--all:** Actualiza todas las ramas del repositorio remoto con los cambios de las ramas del repositorio local, al utilizar este parámetro no hace falta indicar el nombre de una rama en concreto.
 - **-u, --set-upstream:**
 
-<br><br>
+<br>
 
 ## Conexión con GitHub usando protocolo SSH
 
@@ -653,4 +658,4 @@ Las razones principales para tomar la decisión de no agregar un archivo a un re
 - Es un blob.
 - Son archivos que se generan corriendo comandos.
 
-<br><br>
+<br>
