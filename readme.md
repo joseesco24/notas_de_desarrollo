@@ -7,7 +7,7 @@ En casi todos los archivos de notas hay gráficas, estas gráficas no se podrán
 
 ## Notas en este repositorio
 
-- [Notas de sistemas Linux](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_sistemas_linux.md#sistemas-linux)
+- [Notas de Sistemas Linux](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_sistemas_linux.md#sistemas-linux)
 - [Notas de Git y GitHub](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_git_y_github.md#git-y-github)
 - [Notas de MongoDB](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md#mongodb)
 - [Notas de Docker](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_docker.md#docker)
