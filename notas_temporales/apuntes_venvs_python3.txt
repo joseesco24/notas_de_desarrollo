@@ -1,0 +1,32 @@
+Nota: es importante realizar un update y un upgrade antes de empezar.
+
+python3 -V                                                     <------ Chequear version de python 3 si esta instalado.
+sudo apt install python3                                       <------ Instalar python 3.
+sudo apt-get install python3-pip                               <------ Instalar pip en python 3.
+sudo apt install virtualenv                                    <------ Instalar virtualenv en python 3.
+python3 -m venv nombre                                         <------ Crear el virtualenv "nombre".
+source nombre/bin/activate                                     <------ Activar virtualenv en python 3.
+deactivate                                                     <------ Desactivar virtualenv python 3.
+python -m pip install --upgrade pip                            <------ Actualizar pip
+virtualenv --python=/usr/bin/python3.7 nombre                  <------ Crear venv on version diferente de python.4
+
+pip install pip-upgrader                                       <------ Instalar actualizador de dependencias.
+pip-upgrade --skip-virtualenv-check requirements.txt           <------ Actualiza el documento de requerimientos y las dependencias.
+
+pip freeze > requirements.txt                                  <------ Generar requirements.
+pip install -r requirements.txt                                <------ Instalar dependencias dese un requirements.
+pip install -r requirements.txt --upgrade --force-reinstall    <------ Forzar re instalacion de dependencias.
+pip install -r requirements.txt --no-cache-dir                 <------ Instalar sin usar cache.
+pip freeze | grep -v "pkg-resources" > requirements.txt        <------ Generar documento de dependencias en ubuntu.
+
+pip install nodeenv                                            <------ Instalar ambiete contenedor de modulos en NodeJS
+nodeenv --version                                              <------ Checkear instalacion de nodeenv.
+nodeenv nombre                                                 <------ Craar ambiente de node con el nombre "nombre"
+source nombre/bin/activate                                     <------ Activar ambiente de NodeJS
+deactivate                                                     <------ Desactivar virtualenv NodeJS
+npm init -y                                                    <------ Se puede usar para configurar un paquete npm nuevo o existente
+npm i                                                          <------ Instala dependencias faltantes o no instaladas pero declaradas en el .json
+npm install -g npm@latest                                      <------ Actualizar version de NPM  a la ultima.
+
+
+

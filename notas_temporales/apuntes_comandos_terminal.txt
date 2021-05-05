@@ -1,0 +1,196 @@
+------------------------------------------------------------------------------------------- comandos basicos
+pwd                  <----- muestra la ruta del directorio actual por consola.
+date                 <----- imprime la fecha y hora actual.
+
+man                  <----- abre el manual de otro comando.
+
+history              <----- imprime el historial de comandos usados en la consola.
+!220                 <----- permite ejecutar el comando 220 del listado impreso por history.
+touch                <----- permite crear archivos.
+
+cd [ruta]            <----- entrar al directorio indicado.
+cd ..                <----- entrar al directorio padre.
+cd -                 <----- ir al directorio anterior.
+cd ~                 <----- ir al directorio home.
+cd --                <----- ir al directorio home.
+
+sudo                 <----- pasar a super usuario.
+sudo su              <----- pasar a super usuario sin limite de tiempo.
+
+ls [regex]*          <----- lista todos los archivos que inician con una expresion regular.
+ls *[regex]          <----- lista todos los archivos que terminan con una expresion regular.
+
+[directorio]/*       <----- selecciona todo el contenido de un directorio.
+echo $PATH           <----- imprime todas las rutas a las que el interprete de comandos debe dirigirse a buscar un comando.
+export var=valor     <----- sirve para instanciar la variable global var y para asignarle el valor "valor"
+sha256sum [archivo]  <----- sirve para generar el hash de un archivo.
+clear                <----- limpiar terminal.
+cat /etc/lsb-release <----- version de ubuntu.
+
+ps -aux              <----- permite ver los procesos activos en el sistema.
+mkdir                <----- permite crear directorios.
+
+alias nombre = "comando"
+
+------------------------------------------------------------------------------------------- administracion de terminales
+chvt [n]            <----- cambia la terminal a la terminal n.
+w                   <----- mustra la cantidad de usuarios conectrados al sistema operativo.
+tty                 <----- indica a que terminal se esta conectado actualmente.
+ps -ft tty1         <----- lista los usuarios conectados a la terminal 1 con sus pid.
+kill -9 [pid]       <----- desconecta al usuario con el pid digitado.
+
+------------------------------------------------------------------------------------------- comprecion de archivos
+ls [archivo] -lh                                   <----- muestra los detalles del archivo seleccionado.
+zip
+unzip
+gzip [archivo]                                     <----- se usa para comprimir archivos en formato .gz.
+gzip -d [archivo]                                  <----- se usa para descomprimir archivos en formato .gz.
+tar cf [.tar de salida] [archivos a comprimir]     <----- se utiliza para empacar varios archivos en un solo archivo .tar de salida.
+tar tf [.tar de entrada]                           <----- se utiliza para revisar el contenido de un archivo .tar empaquetado.
+tar xf [.tar de entrada]                           <----- se utiliza para desempacar el contenido de un archivo .tar empaquetado.
+tar czf [.tar de salida] [archivos a comprimir]    <----- se utiliza para empacar y comprimir varios archivos en un solo archivo .tar.gz de salida.
+tar xzf [.tar de salida] [archivos a comprimir]    <----- se utiliza para desempacar el contenido de un archivo .tar.gz empaquetado.
+
+------------------------------------------------------------------------------------------- SSH
+.ssh/config  <----- se utiliza este archivo para facilitar las conexiones por ssh.
+rsync
+ssh [url]    <----- sirve para conectarse con servidores remotos.
+ip a         <----- muestra informacion de conectividad.
+ifconfig     <----- muestra informacion de conectividad.
+ip -4 a      <----- lista las interfaces con ipv4.
+ip -6 a      <----- lista las interfaces con ipv6.
+hostname     <----- muestra el nombre con el que se ifdentifica el servidor.
+route -n     <----- muetra la direccion del router que esta permitiendole al host la conexion a internet.
+nslookup     <----- muestra la direccion ip de un dominio.
+ssh-keygen   <----- genera una llave ssh privada.
+
+------------------------------------------------------------------------------------------- Tareas programadas
+at now +2 minutes  <----- ejecutar comandos que pedira la consola dentro de dos minutos.
+ctrl + d           <----- finaliza los comandos que pide at.
+crontab -e         <----- edita la tabla de comandos programados.
+
+------------------------------------------------------------------------------------------- HTTP
+curl [url]  <----- sirve para realizar pedidos crudos a traves de la consola.
+wget [url]  <----- sirve para descargar archivos binarios desde la consola.
+
+-------------------------------------------------------------------------------------------
+type sirve para encontrar nombres de archivo, alias y palabras reservadas.
+
+------------------------------------------------------------------------------------------- sistema de permisos octal
+ 
+ find ~/ -type d -exec chmod 755 {} \;
+ 
+ propietario - grupo - otros
+ 
+ r  w  x   <-- permisos: lectura, escritura y ejecucuion.
+ 22 21 20  <-- potencia.
+ 04 02 01  <-- sumatoria.
+ 
+ ---  <-- 0
+ --x  <-- 1
+ -w-  <-- 2
+ -wx  <-- 3
+ r--  <-- 4
+ r-x  <-- 5
+ rw-  <-- 6
+ rwx  <-- 7
+ 
+chmod    <----- cambia el modo del archivo.
+chown    <----- cambia el dueño del archivo.
+chgrp    <----- cambia el grupo al que pertenece el archivo.
+
+------------------------------------------------------------------------------------------- sistema de permisos con letras
+-        <----- archivo.
+d        <----- directorio.
+
+u        <----- usuario.
+g        <----- grupo.
+o        <----- otros.
+a        <----- todos.
+
+-        <----- ninguno
+x        <----- ejecucion.
+w        <----- escritura.
+r        <----- lectura.
+
+ejemplos ---------------------------------------------
+
+chmod u+x [archivo]       <----- da permiso de ejecucuion al usuario sobre el archivo.
+chmod +x [archivo]        <----- da permiso de ejecucion a todos los usuarios.
+
+------------------------------------------------------------------------------------------- comandos de procesamiento por lotes
+cat                                        <----- mustra el contenido de un archivo.
+head                                       <----- muestra las primeras lineas de un archivo.
+head -n x                                  <----- muestra las primeras x lineas de un archivo.
+tail                                       <----- muestra las ultimas lineas de un archivo.
+tail -n x                                  <----- muestra las ultimas x lineas de un archivo.
+greep [regex] [archivo]                    <----- permite buscar en un archivo las lineas que corresponden con una expresion regular.
+greep -i [regex] [archivo]                 <----- permite buscar en un archivo las lineas que corresponden con una expresion regular sin tomar en cuenta mayusculas.
+sed ‘s/[cadena_1]/[cadena_2]/g’ [archivo]  <----- permite modificar el flujo de un archivo reemplazando la cadena 1 por la 2 (no se guarda).
+less                                       <----- sirve para abrir un archivo paginandolo.
+
+------------------------------------------------------------------------------------------- comunicacion de procesos
+<        <----- sirve para cambiar la entrada estandar del teclado por un archivo txt con comandos.
+>        <----- sirve para cambiar la salida estandar en pantalla por un archivo txt en donde se guardaran las salidas del proceso.
+>>       <----- funiona de la misma forma que > pero agrega la salida al final de un archivo existente en lugar de crear uno nuevo.
+<<       <----- indica que la entrada estandar biene de un archivo.
+|        <----- redirecciona las salidas del primer programa como entradas para el segundo programa.
+| more   <----- muestra un resultado largo en varias pantallas.
+| wc     <----- realiza un conteo de palabras, lineas o caracteres de un archivo.
+
+------------------------------------------------------------------------------------------- busqueda de archivos
+locate [archivo]                        <----- permite encontrar la ruta de un archivo.
+sudo updatedb                           <----- actualiza la base de datos de archivos (necesario para usar locate).
+whereis [comando]                       <----- busca la ruta del ejecutable de un comando.
+find [ruta]                             <----- es el mas complejo y util de los 3, lo mejor es revisar el manual para ver los parametros.
+
+------------------------------------------------------------------------------------------- administracion de procesos
+&                                         <----- se pone el final de un comando para que este se ejecute en segundo plano.
+ctrl + z                                  <----- se utiliza para enviar a segundo plano un proceso que esta en primer plano.
+fg                                        <----- se utiliza para traer a primer plano un proceso que esta en segundo plano.
+kill                                      <----- sirve para detener un proceso conociendo su numero de proceso, al agregar una prioridad como -9 se detiene el proceso inmediatamente.
+killall                                   <----- sirve para detener un proceso conociendo el archivo que se esta ejecutando, al agregar una prioridad como -9 se detiene el proceso inmediatamente.
+ps aux                                    <----- lista los procesos con sus comandos.
+jobs                                      <----- mustra los procesos que se estan ejecutando en esa terminal.
+nohup                                     <----- ejecuta en segundo plano y envia todas las salidas a un archivo nohup.txt
+free -h                                   <----- uso de la ram.
+sudo ps auxf | sort -nr -k 3 | head -5    <----- Muestra los 5 procesos que más uso hacen del CPU
+sudo ps auxf | sort -nr -k 4 | head -5    <----- Muestra los 5 procesos que más uso hacen de la memoria RAM
+
+------------------------------------------------------------------------------------------- listar archivos
+ls -lt -r       <----- lista todos los archivos mostrando toda su informacion y ordenandolos de forma ascendente segun su antiguedad.
+ls -t           <----- lista los archivos por su tiempo de creacion.
+ls -lh          <----- mustra toda la informacion de los archivos ademas de su tamaño en MB y KB.
+ls -x           <----- ordena los elementos primero por nombre y luego por extension.
+ls -X           <----- ordena los archivos primero por extension y luego por nombre.
+ls -l           <----- lista todos los archivos con toda su informacion.
+ls -R           <----- lista el contendio de los subdirectorios de forma recursiva.
+ls -S           <----- ordena los resultados por tamaño de archivo.
+ls              <----- lista los archivos dentro de un directorio.
+ls -a           <----- lista los archivos y archivos ocultos dentro de un directorio.
+tree            <----- lista los archivos dentro de una ruta de forma grafica al mostrar tambien el contendio de los subdirectorios.
+
+------------------------------------------------------------------------------------------- vim
+vim [archivo]   <----- iniciar edicion con vim.
+vim I           <----- cambiar vim a modo de edicion.
+esc             <----- salir del modo edicion de vim.
+:               <----- pasar al modo de comandos de vim.
+:wq             <----- gaurdar y salir de vim.
+:w              <----- guardar.
+:q              <----- salir de vim.
+
+------------------------------------------------------------------------------------------- nano
+nano [archivo]  <----- iniciar edicion con nano.
+ctrl + s        <----- guardar cambios.
+ctrl + x        <----- salir.
+
+------------------------------------------------------------------------------------------- mover archivos
+cp [ruta origen] [ruta destino]    <----- copia un archivo de la ruta de origen en la ruta de destino.
+mv [ruta origen] [ruta destino]    <----- funciona igual de cp pero en lugar de copiar corta (copia y luego elimina).
+rm [ruta archivo]                  <----- elmina un archivo.
+rm -r [ruta archivo]               <----- elimina un archivo o directorio de forma recursiva.
+
+------------------------------------------------------------------------------------------- otros comandos
+nohup           <----- permite mantener una tare en ejecucion incluso si la terminal se cierra.
+lscpu           <----- muestra las caracteristicas del cpu de la maquina actual.
+htop            <----- muestra de forma grafica la utilizacion de recursos de la maquina actual.
