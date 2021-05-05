@@ -1,4 +1,4 @@
-# Git y GitHub
+# Notas de Git y GitHub
 
 [**Git**](https://git-scm.com/doc) es el sistema de versionamiento más usado en la industria del desarrollo de software en general, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la más reciente, lo que hace posible registrar la evolución de los archivos con cada actualización sin almacenar los archivos de cada versión en su totalidad, para esto Git emplea al interior de cada repositorio una base de datos que guarda los cambios de forma incremental, la cual se actualiza con cada versión nueva que llega al repositorio.\
 [**GitHub**](https://docs.github.com/es) por su parte es el sistema de versionamiento remoto más usado en la industria del desarrollo de software en general, GitHub permite trabajo colaborativo sobre los archivos de un repositorio remoto, además de permitir publicar proyectos y su progreso, entre otras de sus funciones.\
@@ -54,13 +54,13 @@ Git y GitHub soportan versionamiento de archivos binarios, pero el versionamient
 Cuando se versionan archivos con repositorios Git locales los cambios pueden estar almacenados en tres posibles áreas, la primera es el **directorio de trabajo**, que simplemente es el directorio dentro de la máquina local en el que se inició el repositorio, la segunda área es el **área de staging**, que es un área de almacenamiento en la ram de la máquina local donde se preparan los cambios para ser agregados al repositorio y por ultimo esta el **repositorio**, que es un área de almacenamiento local o remota donde se guardan los archivos y se registran sus respectivos cambios a través de cada versión, dependiendo del nivel en el que esté un cambio este se puede considerar como **no rastreado** cuando solo está presente en el **directorio de trabajo**, **en espera** cuando está presente en el **directorio de trabajo** y el **área de staging** y **rastreado** cuando pasa a estar en **las tres áreas** luego de ser enviado del **área de staging** al **repositorio**, algunos de los conceptos más útiles al trabajar con Git de forma básica son:
 
 - **commit:** Un commit es lo que sucede cuando un cambio pasa del área de staging al repositorio, es decir que pasa de estra **en espera** a estar **rastreado** por la base de datos de cambios del repositorio, al ser aceptado un cambio como una nueva versión con un commit, Git le asigna un número de versión o Id que identifica esa nueva versión, y además se registran otros metadatos como la fecha, hora y el usuario que hizo el commit, por lo que cada cambio en Git es rastreable por su Id y por los otros metadatos que son almacenados al hacer el commit.
-- **HEAD:** Es la última versión rastreada por el repositorio mediante un commit en la rama actual.
+- **HEAD:** Es la última versión rastreada por el repositorio mediante un commit en la rama actual, la referencia HEAD puede usarse para reemplazar el id del commit más reciente.
 
 <br>
 
 ### Mostrar comandos populares de Git
 
-```bash
+```unknown
 git
 ```
 
@@ -70,8 +70,8 @@ Muestra algunos de los comandos más comunes usados en Git junto con una breve d
 
 ### Mostrar ayuda de un comando
 
-```bash
-git [comando] --help
+```unknown
+git <comando> --help
 ```
 
 Muestra todos los parámetros que acepta un comando, además de una descripción muy detallada de la función del comando, si no se incluye un comando antes de **--help** es equivalente a usar solo Git.
@@ -80,8 +80,8 @@ Muestra todos los parámetros que acepta un comando, además de una descripción
 
 ### Configuración de Git
 
-```bash
-git config [parámetros] [configuraciones]
+```unknown
+git config <parámetros> <configuraciones>
 ```
 
 Permite aplicar ciertas configuraciones a un repositorio, algunos de los parámetros más útiles al utilizar **git config** para configurar un repositorio son:
@@ -91,16 +91,16 @@ Permite aplicar ciertas configuraciones a un repositorio, algunos de los paráme
 
 Algunos de los parámetros configurables más importantes de un repositorio son:
 
-- **user.email=[correo del usuario]:** Cambia el correo electrónico del usuario.
-- **user.name=[nombre del usuario]:** Cambia el nombre del usuario.
-- **alias.[nombre del alias] "comando":** Permite agregar a Git alias para nuevos comandos.
+- **user.email=<correo del usuario>:** Cambia el correo electrónico del usuario.
+- **user.name=<nombre del usuario>:** Cambia el nombre del usuario.
+- **alias.<nombre del alias> "<comando>":** Permite agregar a Git alias para nuevos comandos.
 
 <br>
 
 ### Iniciar o finalizar un repositorio
 
-```bash
-git init [parámetros]
+```unknown
+git init <parámetros>
 ```
 
 Inicia un repositorio Git en el directorio actual o lo elimina si el repositorio ya está creado, en caso de iniciarse el repositorio Git internamente crea el área de staging y el repositorio, sin tocar el directorio de trabajo, el repositorio se crea dentro del directorio de trabajo en una carpeta oculta llamada **.git** y el área de staging se crea en la ram, si se utiliza Git init para finalizar el repositorio Git elimina el área de staging y el repositorio, sin tocar el directorio de trabajo.
@@ -109,8 +109,8 @@ Inicia un repositorio Git en el directorio actual o lo elimina si el repositorio
 
 ### Agregar archivos al área de staging del repositorio
 
-```bash
-git add [parámetros] [ruta del archivo o directorio]
+```unknown
+git add <parámetros> <ruta del archivo o directorio>
 ```
 
 Inicia el rastreo de uno o varios archivos agregandolos al área de staging del repositorio. Lo más normal es usar **.** como ruta para rastrear y agregar todos los archivos de la carpeta actual al área de staging.
@@ -119,13 +119,13 @@ Inicia el rastreo de uno o varios archivos agregandolos al área de staging del 
 
 ### Registrar cambios en el repositorio
 
-```bash
-git commit [parámetros]
+```unknown
+git commit <parámetros>
 ```
 
 Envía los últimos cambios desde el área de staging al repositorio para que este los registre en su base de datos de cambios, creando así una nueva versión basándose en los cambios realizados sobre uno o varios archivos, al crear una nueva versión a esta se le asigna un Id de versión y los cambios realizados en los archivo que son visibles para todos en el repositorio, por defecto los commit se realizan sobre la rama **master** si no se cambia la rama de trabajo actual, algunos de los parámetros más útiles al utilizar **git commit** para enviar los cambios del área de staging al repositorio son:
 
-- **-m, --message "mensaje":** Permite agregar un mensaje al commit, idealmente todos los commits deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión de los cambios hechos.
+- **-m, --message "<mensaje>":** Permite agregar un mensaje al commit, idealmente todos los commits deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión de los cambios hechos.
 - **-a, --all:** Indica a Git que al hacer el commit pase al área de staging todos los cambios en los archivos que han sido previamente rastreados antes de hacer el commit, es equivalente a realizar un **git add** solo sobre los archivos que ya han sido registrados y luego un **git commit** estándar, por lo que sí se han agregado nuevos archivos desde el último commit si es necesario utilizar un **git add** primero, incluso usando este parámetro.
 - **--amend:** Permite "remendar" el último commit pegando los últimos cambios al último commit.
 
@@ -133,7 +133,7 @@ Envía los últimos cambios desde el área de staging al repositorio para que es
 
 ### Comprobar el estatus de la base de datos de cambios del repositorio
 
-```bash
+```unknown
 git status
 ```
 
@@ -143,8 +143,8 @@ Muestra el estatus de la base de datos de cambios del repositorio.
 
 ### Comparar cambios entre versiones del repositorio
 
-```bash
-git diff [parámetros] [Id del commit antiguo] [Id del commit nuevo]
+```unknown
+git diff <parámetros> <Id del commit antiguo> <Id del commit nuevo>
 ```
 
 Muestra los cambios entre una versión y otra del repositorio basadas en la misma rama usando dos Id de los diferentes commits, si no se indican los commits con los que se quiere hacer el diff, usando su Id, por defecto el diff se realiza entre el directorio de trabajo y el área de staging.
@@ -153,8 +153,8 @@ Muestra los cambios entre una versión y otra del repositorio basadas en la mism
 
 ### Mostrar los logs del repositorio
 
-```bash
-git log [parámetros]
+```unknown
+git log <parámetros>
 ```
 
 Muestra todos los cambios históricos hechos en el repositorio al no incluir parámetros, log se centra en mostrar los Id de cada commit, pero también muestra la fecha, el autor y el comentario del commit, además de mostrar cual es el commit HEAD actualmente, algunos de los parámetros más útiles al usar **git log** son:
@@ -170,8 +170,8 @@ Muestra todos los cambios históricos hechos en el repositorio al no incluir par
 
 ### Mostrar los logs completos del repositorio
 
-```bash
-git reflog [parámetros]
+```unknown
+git reflog <parámetros>
 ```
 
 Muestra todos los cambios históricos hechos en el repositorio al no incluir parámetros, incluso los que se eliminaron en la historia mediante un rebase o un reset, reflog se centra en mostrar los Id de cada commit, pero también muestra el comentario del commit.
@@ -182,8 +182,8 @@ Muestra todos los cambios históricos hechos en el repositorio al no incluir par
 
 ### Mostrar los cambios del repositorio
 
-```bash
-git show [parámetros]
+```unknown
+git show <parámetros>
 ```
 
 Muestra todos los cambios históricos hechos en el repositorio al no incluir parámetros, show se centra en los cambios de las líneas realizados en los archivos, por lo que siempre muestra un diff entre el commit actual y el anterior de los archivos modificados en el último commit, ademas show muestra también toda la información que muestra log.
@@ -192,8 +192,8 @@ Muestra todos los cambios históricos hechos en el repositorio al no incluir par
 
 ### Limpiar el directorio de trabajo
 
-```bash
-git clean [parámetros]
+```unknown
+git clean <parámetros>
 ```
 
 Elimina todos los archivos no rastreados por el repositorio del directorio de trabajo, **git clean** no funciona sin ciertos parámetros que se usan para confirmar la limpieza, además, **git clean** ignora los archivos filtrados en el .gitignore, algunos de los parámetros más útiles al usar **git clean** son:
@@ -207,7 +207,7 @@ Elimina todos los archivos no rastreados por el repositorio del directorio de tr
 
 ### Eliminar archivos del repositorio
 
-```bash
+```unknown
 git rm [parámetros] [nombre del archivo]
 ```
 
@@ -242,42 +242,42 @@ El comando **git branch** se emplea para realizar las principales acciones que r
 
 #### Crear ramas
 
-```bash
-git branch [parámetros] [nombre de la rama]
+```unknown
+git branch <parámetros> <nombre de la rama>
 ```
 
 La acción por defecto de **git branch** si no se dan parámetros y se da un nombre es crear una nueva rama con el nombre indicado, la nueva rama se crea en base a la rama en la que se está posicionado actualmente, por lo que al crear una nueva rama es recomendable estar posicionado en la rama más actualizada.
 
 #### Listar ramas
 
-```bash
-git branch [parámetros]
+```unknown
+git branch <parámetros>
 ```
 
 La acción por defecto de **git branch** si no se dan parámetros y no se da un nombre es listar las ramas disponibles resaltando la rama actual, algunos de los parámetros más útiles para listar ramas usando **git branch** son:
 
-- **-l, --list [patron]:** Es equivalente a usar **git branch** sin parámetros, pero adicionalmente se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
+- **-l, --list <patron>:** Es equivalente a usar **git branch** sin parámetros, pero adicionalmente se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
 - **-r, --remotes:** Modifica la función del comando para listar las ramas remotas, al combinarlo con **--list** se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
 - **-a, --all:** Modifica la función del comando para listar ramas locales y remotas, al combinarlo con **--list** se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
 
 Para ver las ramas también se puede usar el siguiente comando, el cual muestra de forma "gráfica" la evolución del proyecto basándose en ramas, ids de commit y mensajes de commit.
 
-```bash
+```unknown
 git log --all --graph --decorate --oneline
 ```
 
 Otro comando alternativo para ver la historia de las ramas es **git show-branch**, este comando además de mostrar las ramas muestra también el historial de los commits del repositorio distinguiendo las ramas.
 
-```bash
-git show-branch [parámetros]
+```unknown
+git show-branch <parámetros>
 ```
 
 - **-a, --all:** Modifica la función del comando para listar todo el historial de commits y ramas disponibles.
 
 #### Eliminar ramas
 
-```bash
-git branch --delete [parámetros adicionales]
+```unknown
+git branch --delete <parámetros adicionales>
 ```
 
 Para eliminar una rama se debe usar el comando **git branch** junto al parámetro **-d** o **--delete**, usando este parámetro en cualquiera de sus dos formas se modifica la función del comando para eliminar ramas, sin embargo, para eliminar una rama sin errores usando este parámetro la rama primero se debe haber sincronizado con el repositorio remoto en caso de tener uno, algunos de los parámetros adicionales más útiles para eliminar ramas usando **git branch** en combinación con el parámetro **-d** o **--delete** son:
@@ -289,8 +289,8 @@ Para eliminar una rama se debe usar el comando **git branch** junto al parámetr
 
 Algunos de los parámetros adicionales que también acepta **git branch** para tener funciones adicionales son:
 
-- **-m, --move [nuevo nombre]:** Renombra la rama actual.
-- **-c, --copy [nombre de copia de la rama]:** Crear una copia de la rama actual.
+- **-m, --move <nuevo nombre>:** Renombra la rama actual.
+- **-c, --copy <nombre de copia de la rama>:** Crear una copia de la rama actual.
 - **-f, --force:** Restablece el estado de la rama actual a su estado inicial, incluso si el nombre inicial de la rama fue asignado a otra rama que aún existe, al combinarse con **--move** permite renombrar la rama actual incluso si el nombre nuevo ya existe y al combinarse con **--copy** permite crear una copia de la rama actual incluso si el nombre de la copia ya existe.
 - **-M:** Atajo para la combinación de **--move --force**.
 - **-C:** Atajo para la combinación de **--copy --force**.
@@ -299,13 +299,13 @@ Algunos de los parámetros adicionales que también acepta **git branch** para t
 
 ### Fusionar ramas
 
-```bash
+```unknown
 git merge [parámetros] [nombre de la rama]
 ```
 
 Fusiona los archivos de la rama indicada con la rama actual, algunos de los parámetros más útiles al usar **git merge** son:
 
-- **-m [mensaje]:** Un merge por defecto genera una nueva versión y un commit, por lo que es necesario que haya un mensaje que indique los cambios que se hicieron en el último commit.
+- **-m <mensaje>:** Un merge por defecto genera una nueva versión y un commit, por lo que es necesario que haya un mensaje que indique los cambios que se hicieron en el último commit.
 
 Al fusionar dos o más ramas con **merge** pueden presentarse conflictos cuando en las ramas se alteran las mismas líneas de diferentes formas, para solventar estos conflictos se deben borrar todas las líneas que no correspondan con los cambios que se desean conservar en la rama, la forma en la que Git representa un conflicto en un archivo es usando **<<<<<<< HEAD** para indicar donde inicia el código de la rama actual, **>>>>>>> new_branch_to_merge_later** para indicar donde finaliza el código de la rama que se quiere fusionar con la rama actual (en este caso **new_branch_to_merge_later**) y **=======** para indicar el final del código de la rama actual y el inicio del de la rama que se quiere fusionar, un ejemplo de cómo se representa un conflicto en Git sería el siguiente:
 
@@ -339,16 +339,16 @@ El comando **git checkout** actualiza los archivos del directorio de trabajo par
 
 #### Moverse entre versiones
 
-```bash
-git checkout [parámetros] [Id del commit|HEAD] [nombre del archivo]
+```unknown
+git checkout <parámetros> <Id del commit> <nombre del archivo>
 ```
 
-Traer versiones especificadas de un archivo al directorio de trabajo, si no se indica un archivo al final del comando se traerán todos los archivos de la versión indicada al directorio de trabajo, para conservar los cambios luego de traer uno o varios archivos al directorio de trabajo basta con hacer un **git add** y un **git commit**, si no se quieren conservar los cambios hechos por el checkout basta con hacer un nuevo checkout apuntando a la última versión o HEAD para descartarlos.
+Traer versiones especificadas de un archivo al directorio de trabajo, si no se indica un archivo al final del comando se traerán todos los archivos de la versión indicada al directorio de trabajo, para conservar los cambios luego de traer uno o varios archivos al directorio de trabajo basta con hacer un **git add** y un **git commit**, si no se quieren conservar los cambios hechos por el checkout basta con hacer un nuevo checkout apuntando a la última versión o HEAD para descartarlos. Si checkout se usa para moverse entre versiones de una misma rama con cada checkout se generará una nueva rama, para eliminar los cambios de esa nueva rama basta con hacer un nuevo checkout a la rama master en caso de no querer guardar los cambios en una rama aparte.
 
 #### Moverse entre ramas
 
-```bash
-git checkout [parámetros] [nombre de la rama]
+```unknown
+git checkout <parámetros> <nombre de la rama>
 ```
 
 Traer los archivos de una rama al directorio de trabajo y cambiar la rama actual.
@@ -357,8 +357,8 @@ Traer los archivos de una rama al directorio de trabajo y cambiar la rama actual
 
 ### Hacer rebase a una rama
 
-```bash
-git rebase [rama a la que se enviaran los cambios de la rama actual]
+```unknown
+git rebase <rama a la que se enviaran los cambios de la rama actual>
 ```
 
 Rebase permiten pegar una rama al final de otra sin dejar registros de la rama que se pegó a la rama principal, la forma correcta de realizar un rebase es realizando rebas primero de la rama de cambios a la rama principal, luego de la rama principal a la rama de cambios y por último se elimina la rama en la que se hicieron los cambios, el resultado es que los cambios en la historia se ven como si jamás hubiera estado la rama de cambios, y además no se sabe quién hizo los cambios ya que no hay historia.
@@ -371,43 +371,43 @@ Rebase permiten pegar una rama al final de otra sin dejar registros de la rama q
 
 La reserva de cambios de Git o stash permite guardar temporalmente en un listado de los cambios que aún no están listos para ser enviados al repositorio, es bastante útil en escenarios en los que se necesitan archivos de otras ramas diferentes a la rama en la que están los cambios, pero estos no están listos para un commit, por lo que no se puede hacer un checkout ya que hacerlo sin un commit eliminaría los cambios, al hacer un stash en un rama todos los cambios hechos en el directorio de trabajo de esa rama luego del HEAD son enviados a la lista de stashs, lo que además permite volver al HEAD de forma rápida y segura sin perder los cambios, los stash son extremadamente útiles cuando se quieren realizar pequeñas pruebas o experimentos en los que no vale la pena crear una nueva rama.
 
-```bash
+```unknown
 git stash push
 ```
 
 Envía los cambios posteriores al HEAD de la rama a la lista de stash.
 
-```bash
+```unknown
 git stash list
 ```
 
 Muestra toda la lista de stashs.
 
-```bash
-git stash show [id del stash]
+```unknown
+git stash show <id del stash>
 ```
 
 Muestra con un diff las diferencias entre un stash respecto al HEAD de la rama en la que se realizó el stash, si no se indica el stash el diff muestra los cambios usando el stash más reciente.
 
-```bash
-git stash pop [id del stash]
+```unknown
+git stash pop <id del stash>
 ```
 
 Remueve un stash de la lista de stashs y aplica los cambios los cambios en el directorio de trabajo actual, si no se indica el stash se aplica usando el más antiguo, es importante que el directorio de trabajo coincida con el directorio de trabajo del stash, por lo que al hacer un pop es necesario estar en la misma rama en la que se estaba posicionado cuando se inició el stash con push.
 
-```bash
-git stash drop [id del stash]
+```unknown
+git stash drop <id del stash>
 ```
 
 Elimina un stash de la lista de stashs, si no se indica un stash elimina el último.
 
-```bash
-git stash branch [nombre de la rama] [id del stash]
+```unknown
+git stash branch <nombre de la rama> <id del stash>
 ```
 
 Crear una nueva rama con el nombre indicado la cual parte del último commit antes del stash, aplica todos los cambios del stash a la rama y realiza un checkout a la nueva rama, en caso de no indicarse un stash utiliza el stash más reciente.
 
-```bash
+```unknown
 git stash clear
 ```
 
@@ -421,31 +421,31 @@ Los tag son una manera de etiquetar estados de un repositorio, se usan comúnmen
 
 #### Crear tags
 
-```bash
-git tag -a [nombre del tag] -m [mensaje] [id del commit]
+```unknown
+git tag -a <nombre del tag> -m <mensaje> <id del commit>
 ```
 
 El comando base para administrar tags en Git es **git tag**, incluyendo los parámetros **-a** y **-m** se crea un nuevo tag agregando un nombre de tag y un mensaje de tag, adicionalmente para crear un nuevo tag en Git hay que indicar a qué commit estará asociado el nuevo tag, el nuevo tag será creado, pero solo será registrado de forma local, para enviar el nuevo tag a GitHub hace falta usar una variación del comando **git push** ya que los tags no son considerados como cambios, por lo que el comando regular no envía los tags a GitHub.
 
-```bash
-git push [nombre del repositorio remoto] --tags
+```unknown
+git push <nombre del repositorio remoto> --tags
 ```
 
 Al crear un nuevo tag es útil usar antes el siguiente comando para ver de forma "gráfica" la evolución del proyecto basándose en ramas, ids de commit y mensajes.
 
-```bash
+```unknown
 git log --all --graph --decorate --oneline
 ```
 
 #### Listar tags
 
-```bash
+```unknown
 git tag
 ```
 
 Al usar el comando **git tag** sin incluir parámetros adicionales se listan todos los tags del repositorio.
 
-```bash
+```unknown
 git show-ref --tags
 ```
 
@@ -453,22 +453,22 @@ El comando **git show-ref** seguido por el parámetro **--tags** tiene un compor
 
 #### Eliminar tags
 
-```bash
-git tag -d [nombre del tag]
+```unknown
+git tag -d <nombre del tag>
 ```
 
 Al usar el comando **git tag** con el parámetro **-d** se elimina el tag correspondiente con el nombre de tag indicado, sin embargo esto solo ocurre en el repositorio local, para eliminar un tag en GitHub hace falta usar una variación del comando **git push** indicando además de los parámetros usuales el nombre del tag que se va a eliminar, esto se debe a que GitHub trata de conservar los tags, ya que usualmente están asociados a releases, por lo que no es normal ni adecuado eliminar un tag de GitHub.
 
-```bash
-git push [nombre del repositorio remoto] :refs/tags/[nombre del tag]
+```unknown
+git push <nombre del repositorio remoto> :refs/tags/<nombre del tag>
 ```
 
 <br>
 
 ### Traer a una rama cambios viejos de otra
 
-```bash
-git cherry-pick [parámetros] [Id del commit]
+```unknown
+git cherry-pick <parámetros> <Id del commit>
 ```
 
 Permite traer los cambios de un commit específico a la rama actual sin tener que hacer un merge completo.
@@ -477,8 +477,8 @@ Permite traer los cambios de un commit específico a la rama actual sin tener qu
 
 ### Regresar a versiones anteriores del repositorio
 
-```bash
-git reset [modo] [Id del commit]
+```unknown
+git reset <modo> <Id del commit>
 ```
 
 Mueve el HEAD del commit actual al commit indicado, dependiendo del modo al cambiar el HEAD todo los cambios luego de ese commit son descartados o se envían al área de staging para poder rastrearlos en el repositorio después, entre otras opciones que cambian según el modo, algunos de los modos más usados son:
@@ -502,8 +502,8 @@ Las guías para crear repositorios remotos con [**GitHub**](https://guides.githu
 
 ### Administrar repositorios remotos
 
-```bash
-git remote [sub comandos] --verbose
+```unknown
+git remote <sub comandos> --verbose
 ```
 
 Permite realizar varias acciones en los diferentes repositorios remotos vinculados basados en Git según el sub comando indicado, si no se da algún subcomando muestra un listado de los repositorios remotos vinculados, se puede incluir un único parámetro al utilizar **git remote** sin sub comandos:
@@ -512,8 +512,8 @@ Permite realizar varias acciones en los diferentes repositorios remotos vinculad
 
 #### Agregar repositorio remoto al repositorio local
 
-```bash
-git remote add [nombre del repositorio remoto] [url del repositorio remoto]
+```unknown
+git remote add <nombre del repositorio remoto> <url del repositorio remoto>
 ```
 
 Vincula al repositorio local un repositorio remoto, el cual se puede llamar posteriormente con el nombre dado, normalmente **origin**, para realizar acciones como **git push**, **git pull** o **git fetch**.
@@ -522,8 +522,8 @@ Vincula al repositorio local un repositorio remoto, el cual se puede llamar post
 
 ### Cambiar la url de un repositorio remoto
 
-```bash
-git remote set-url [nombre del repositorio remoto] [url del repositorio remoto]
+```unknown
+git remote set-url <nombre del repositorio remoto> <url del repositorio remoto>
 ```
 
 Cambia la url del repositorio remoto, es especialmente útil cuando se quiere cambiar la conexión de un repositorio de protocolo HTTPS a SSH.
@@ -532,20 +532,20 @@ Cambia la url del repositorio remoto, es especialmente útil cuando se quiere ca
 
 ### Clonar un repositorio remoto
 
-```bash
-git clone [parámetros] [url del repositorio remoto]
+```unknown
+git clone <parámetros> <url del repositorio remoto>
 ```
 
 Crea una copia de todos los archivos del repositorio remoto en el repositorio local y en el directorio de trabajo, sin cambiar nada en el área de staging, además vincula la copia local con la remota, por lo que si se tiene los permisos se pueden hacer acciones como **git push**, **git pull** o **git fetch** sin realizar configuraciones adicionales, algunos de los parámetros más útiles al clonar un repositorio con **git clone** son:
 
-- **-o [nombre del repositorio remoto], --origin [nombre del repositorio remoto]:** Cambia el nombre de referencia del repositorio remoto para no usar **origin** como nombre de referencia.
+- **-o <nombre del repositorio remoto>, --origin <nombre del repositorio remoto>:** Cambia el nombre de referencia del repositorio remoto para no usar **origin** como nombre de referencia.
 
 <br>
 
 ### Traer los cambios del repositorio remoto al repositorio local
 
-```bash
-git fetch [parámetros] [nombre del repositorio remoto] [rama del repositorio local]
+```unknown
+git fetch <parámetros> <nombre del repositorio remoto> <rama del repositorio local>
 ```
 
 Actualiza una rama del repositorio local con los últimos cambios de la misma rama del repositorio remoto, sin alterar el área de staging ni el directorio de trabajo, por lo que si se quieren traer los cambios no solo al repositorio local si no también al directorio de trabajo hace falta realizar también un **git merge**.
@@ -554,8 +554,8 @@ Actualiza una rama del repositorio local con los últimos cambios de la misma ra
 
 ### Traer los cambios repositorio remoto al repositorio local y al directorio de trabajo
 
-```bash
-git pull [parámetros] [nombre del repositorio remoto] [nombre de la rama]
+```unknown
+git pull <parámetros> <nombre del repositorio remoto> <nombre de la rama>
 ```
 
 Actualiza una rama del repositorio local con los últimos cambios de la misma rama del repositorio remoto, y tambien trae los cambios al directorio de trabajo sin alterar el área de staging, es equivalente a hacer un **git fetch** en simultáneo con un **git merge** entre el directorio local y el repositorio local, el cual ya fue actualizado con los últimos cambios en el repositorio remoto mediante **git fetch**.
@@ -564,8 +564,8 @@ Actualiza una rama del repositorio local con los últimos cambios de la misma ra
 
 ### Subir cambios del repositorio local al repositorio remoto
 
-```bash
-git push [parámetros] [nombre del repositorio remoto] [nombre de la rama]
+```unknown
+git push <parámetros> <nombre del repositorio remoto> <nombre de la rama>
 ```
 
 Envía los cambios hechos en una rama del repositorio local al repositorio remoto, por lo tanto si se quieren enviar los cambios más recientes del directorio local al repositorio remoto primero se realizan un **git pull**, un **git add**, un **git commit** y luego un **git push**, esta secuencia de comandos se usa para traer los cambios más recientes del repositorio remoto al local, para enviar los cambios del repositorio local al área de staging luego al repositorio local y por último al repositorio remoto, algunos de los parámetros más útiles al utilizar **git push** son:
@@ -588,7 +588,7 @@ Los pasos para establecer una conexión SSH segura entre el repositorio y la má
 
 ### 1. Crear el par de llaves
 
-```bash
+```unknown
 ssh-keygen -t rsa -b 4096 -C "Correo electrónico vinculado al usuario de GitHub"
 ```
 
@@ -598,7 +598,7 @@ El primer paso para usar SSH en lugar de HTTPS es generar un par de llaves SSH, 
 
 ### 2. Comprobar funcionamiento del servidor SSH
 
-```bash
+```unknown
 eval $(ssh-agent -s)
 ```
 
@@ -608,8 +608,8 @@ Tras generar el par de llaves hay que verificar que el servidor encargado de man
 
 ### 3. Agregar llave al servidor SSH
 
-```bash
-ssh-add [ruta en la que se guardaron las llaves en el paso 1]
+```unknown
+ssh-add <ruta en la que se guardaron las llaves en el paso 1>
 ```
 
 Tras verificar que el servidor SSH este activo hay que indicarle al servidor que hay un nuevo par de llaves, para así usarlas posteriormente para descifrar mensajes de conexiones SSH hechas con la contraparte pública de la llave.
@@ -624,8 +624,8 @@ Ya teniendo toda la configuración local hay que enviar la llave pública a GitH
 
 ### 5. Cambiar la url del repositorio remoto para usar la conexión SSH
 
-```bash
-git remote set-url [nombre del repositorio remoto] [url del repositorio remoto]
+```unknown
+git remote set-url <nombre del repositorio remoto> <url del repositorio remoto>
 ```
 
 Como último paso hay que actualizar la url del repositorio local reemplazandola por la url que usa el repositorio para conexiones SSH, si al clonar el repositorio se clona usando SSH no hace falta hacer este paso.
