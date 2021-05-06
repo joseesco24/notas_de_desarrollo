@@ -25,7 +25,7 @@ Cuando se escala algo en Kubernetes no se agregan más contenedores, se agregan 
   - [Componentes de los nodos maestro en Kubernetes](#componentes-de-los-nodos-maestro-en-kubernetes)
   - [Componentes de los nodos esclavo en Kubernetes](#componentes-de-los-nodos-esclavo-en-kubernetes)
 - [**Sistemas declarativos e imperativos en Kubernetes**](##sistemas-declarativos-e-imperativos-en-kubernetes)
-- [**Redes en Kubernetes**](##redes-en-kubernetes)
+- [**Redes en Kubernetes**](#redes-en-kubernetes)
 
 <br>
 
