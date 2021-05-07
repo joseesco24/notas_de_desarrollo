@@ -50,7 +50,7 @@ Algunos de los componentes que soporta Docker Compose en los archivos **docker-c
 - **ports:** Bindea un puerto o un rango de puertos de la máquina anfitrión con un puerto de uno o varios contenedores.
 - **volumes:** Indica los volúmenes y bind mounts de un servicio.
 - **command:** Cambia el comando o los argumentos del proceso principal por defecto de los contenedores de un servicio.
-- **build:** Indica el contexto con el que se debe construir una nueva imagen que se desplegará en todos los contenedores del servicio indicado, el nombre de la nueva imagen se construye en base al nombre del directorio de trabajo y el nombre del servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]**.
+- **build:** Indica el contexto con el que se debe construir una nueva imagen que se desplegará en todos los contenedores del servicio indicado, el nombre de la nueva imagen se construye en base al nombre del directorio de trabajo y el nombre del servicio en el siguiente formato **<nombre del directorio de trabajo>\_<nombre del servicio>**.
 - **networks:** Indica las redes a las que se deben conectar los contenedores de un servicio.
 
 Los archivos **docker-compose.yml** son sumamente sensibles a la indentación con la que se declara cada uno de sus componentes, por lo que es necesario tener especial cuidado con la indentación cuando se declaran esquemas de servicios basados en Compose File.
@@ -59,8 +59,8 @@ Los archivos **docker-compose.yml** son sumamente sensibles a la indentación co
 
 ### Tips de Docker Compose
 
-- Al usar Docker Compose Docker por detrás crea una red dedicada a esa arquitectura a la que conecta todos los contenedores de todos los servicios declarados, el nombre de la red se asigna en base al nombre del directorio de trabajo en el siguiente formato **[nombre del directorio de trabajo]\_default**.
-- Al usar Docker Compose Docker por detras trata de asignar nombres únicos a cada contenedor para evitar conflictos a causa de los nombres, los nombres de los contenedores se asigna en base del nombre del directorio de trabajo, el nombre del servicio y un número que diferencia los diferentes contenedores de un servicio en el siguiente formato **[nombre del directorio de trabajo]\_[nombre del servicio]\_[número de contenedor]**.
+- Al usar Docker Compose Docker por detrás crea una red dedicada a esa arquitectura a la que conecta todos los contenedores de todos los servicios declarados, el nombre de la red se asigna en base al nombre del directorio de trabajo en el siguiente formato **<nombre del directorio de trabajo>\_default**.
+- Al usar Docker Compose Docker por detras trata de asignar nombres únicos a cada contenedor para evitar conflictos a causa de los nombres, los nombres de los contenedores se asigna en base del nombre del directorio de trabajo, el nombre del servicio y un número que diferencia los diferentes contenedores de un servicio en el siguiente formato **<nombre del directorio de trabajo>\_<nombre del servicio>\_<número de contenedor>**.
 - Al usar Docker Compose Docker por detrás se asegura que a pesar de los nuevos nombres asignados a los contenedores estos sigan siendo alcanzables por los demás contenedores solo con el nombre del servicio que ejecutan.
 - Junto a **docker-compose.yml** se puede utilizar **docker-compose.override.yml**, la ventaja de utilizar Docker Compose.override es que se puede personalizar el Compose File sin cambiarlo directamente, lo que evita alterar el Compose File de producción pero nos permite probar pequeños cambios en él sin alterarlo directamente, además Docker por defecto trata de unir y conservar las definiciones de ambos archivos.
 - Las variables de entorno son sencillas de manejar con los archivos **compose** y **compose.override** ya que simplemente se unen las definiciones de ambas y en caso de redefinición en **compose.override** simplemente se sobreescribe el valor de la variable.
@@ -147,8 +147,8 @@ Docker Compose tiene varios subcomandos similares a los usados en la administrac
 
 ### Comandos de administración general de una aplicación compose
 
-```bash
-docker-compose [comando] --help
+```unknown
+docker-compose <comando> --help
 ```
 
 Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
@@ -157,8 +157,8 @@ Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar u
 
 ### Construir las imágenes necesarias para una aplicación compose
 
-```bash
-docker-compose build [parámetros] [nombre del servicio]
+```unknown
+docker-compose build <parámetros> <nombre del servicio>
 ```
 
 Construye las imágenes que requieren ser construidas según el Compose File, al especificarse uno o varios servicios solo se construirán las imágenes de los servicios indicados.
@@ -167,21 +167,21 @@ Construye las imágenes que requieren ser construidas según el Compose File, al
 
 ### Iniciar una aplicación compose
 
-```bash
-docker-compose up [parámetros] [nombre del servicio]
+```unknown
+docker-compose up <parámetros> <nombre del servicio>
 ```
 
 Levanta la arquitectura descrita por el Compose File en caso de no indicarse un servicio en concreto, si se indica un servicio solo ese servicio será ejecutado, algunos de los parámetros más útiles al utilizar **docker-compose up** para levantar una arquitectura son:
 
 - **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
-- **--scale [nombre o id del servicio]=[número de contenedores]:** Escala un determinado servicio al número de contenedores indicado.
+- **--scale <nombre o id del servicio>=<número de contenedores>:** Escala un determinado servicio al número de contenedores indicado.
 
 <br>
 
 ### Revisar el estado de los contenedores generados por una aplicación compose
 
-```bash
-docker-compose ps [parámetros] [nombre del servicio]
+```unknown
+docker-compose ps <parámetros> <nombre del servicio>
 ```
 
 Muestra el estado de los contenedores creados por el Compose File en caso de no indicarse un servicio en concreto, si se indica un servicio solo se mostrará el estado de los contenedores pertenecientes a ese servicio, algunos de los parámetros más útiles al utilizar **docker-compose ps** para ver el estado de los contenedores pertenecientes a una arquitectura son:
@@ -192,21 +192,21 @@ Muestra el estado de los contenedores creados por el Compose File en caso de no 
 
 ### Revisar los logs de una aplicación compose
 
-```bash
-docker-compose logs [parámetros] [nombre del servicio]
+```unknown
+docker-compose logs <parámetros> <nombre del servicio>
 ```
 
 Muestra los logs de todos los contenedores usados por la aplicación en caso de no indicarse un servicio en concreto, si se indica un servicio sólo se mostrarán solo los logs de los contenedores pertenecientes a ese servicio, algunos de los parámetros más útiles al utilizar **docker-compose logs** para ver los logs de una arquitectura son:
 
 - **--follow:** Sirve para hacer follow a los logs de toda la aplicación o de cierto servicio si se indica el servicio.
-- **--tail [número de logs]:** Imprime los últimos logs limitándose al número de logs indicado de toda la aplicación o de cierto servicio si se indica el servicio.
+- **--tail <número de logs>:** Imprime los últimos logs limitándose al número de logs indicado de toda la aplicación o de cierto servicio si se indica el servicio.
 
 <br>
 
 ### Ejecutar comandos en servicios de una aplicación compose
 
-```bash
-docker-compose exec [parámetros] [nombre del servicio] [comando]
+```unknown
+docker-compose exec <parámetros> <nombre del servicio> <comando>
 ```
 
 Ejecuta un comando dentro del o los contenedores pertenecientes a un servicio de una aplicación compose.
@@ -215,8 +215,8 @@ Ejecuta un comando dentro del o los contenedores pertenecientes a un servicio de
 
 ### Detener y eliminar todos los servicios de una aplicación compose
 
-```bash
-docker-compose down [parámetros]
+```unknown
+docker-compose down <parámetros>
 ```
 
 Detiene y elimina todos los recursos usados por una aplicación compose.
