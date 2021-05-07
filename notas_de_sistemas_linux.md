@@ -19,7 +19,42 @@ En los sistemas Linux existen varios tipos de shell de las cuales el usuario pue
 1. **BASH:** También conocida como Shell Bourne-Again, es una versión actualizada de SH creada por la Free Software Foundation, es una de las shell más utilizadas y conocidas en el mundo, sin mencionar que es la shell por defecto que usan muchos de los sistemas Linux. Bash Incorpora alguna de las funcionalidades más avanzadas de KSH, CSH, SH y TCSH. Una de la funcionalidades más destacables de esta shell es la opción de ejecutar múltiples programas en segundo plano a la vez.
 1. **ZSH:** Es una de las shell más potentes actualmente, puede funcionar como shell interactiva y como intérprete de lenguaje de scripting. aún siendo compatible con Bash.
 
-<br><br>
+<br>
+
+## Tabla de contenidos
+
+- [**Comandos Bash**](#comandos-bash)
+  - [Comandos básicos](#comandos-básicos)
+  - [Comandos de compresión de archivos](#comandos-de-compresión-de-archivos)
+- [**Scripts Bash**](#ecosistema-de-mongodb)
+  - [Crear un script Bash](#crear-un-script-bash)
+  - [Otorgar permisos de ejecución al script](#otorgar-permisos-de-ejecución-al-script)
+  - [Establecer Bash como intérprete del script](#establecer-bash-como-intérprete-del-script)
+  - [Declaración de variables en Bash](#declaración-de-variables-en-bash)
+  - [Lectura de variables en Bash](#lectura-de-variables-en-bash)
+  - [Sustitución de comandos en variables en Bash](#sustitución-de-comandos-en-variables-en-bash)
+  - [Capturar entradas del usuario en Bash](#capturar-entradas-del-usuario-en-bash)
+  - [Operadores aritméticos en Bash](#operadores-aritméticos-en-bash)
+  - [Operadores relacionales en Bash](#operadores-relacionales-en-bash)
+  - [Operadores de asignación en Bash](#operadores-de-asignación-en-bash)
+  - [Manejo de secuencias en Bash](#manejo-de-secuencias-en-bash)
+  - [Manejo de arreglos en Bash](#manejo-de-arreglos-en-bash)
+  - [Manejo de tablas en Bash](#manejo-de-tablas-en-bash)
+  - [Condicionales con if y else en Bash](#condicionales-con-if-y-else-en-bash)
+  - [Validación de entradas del usuario con condicionales if y regex en Bash](#validación-de-entradas-del-usuario-con-condicionales-if-y-regex-en-bash)
+  - [Condicionales con case en Bash](#condicionales-con-case-en-bash)
+  - [Ciclos while en Bash](#ciclos-while-en-bash)
+  - [Ciclos for en Bash](#ciclos-for-en-bash)
+  - [Sentencias break y continue en Bash](#sentencias-break-y-continue-en-bash)
+  - [Ejecutar un script Bash](#ejecutar-un-script-bash)
+  - [Manejo de argumentos en Bash](#manejo-de-argumentos-en-bash)
+  - [Creación de funciones en Bash](#creación-de-funciones-en-bash)
+  - [Manejo de opciones en Bash](#manejo-de-opciones-en-bash)
+  - [Depuración en Bash](#depuración-en-bash)
+  - [Lectura de archivos con Bash](#lectura-de-archivos-con-bash)
+  - [Escritura de archivos con Bash](#escritura-de-archivos-con-bash)
+
+<br>
 
 ## Comandos Bash
 
@@ -33,7 +68,7 @@ Los comandos Bash son un conjunto de instrucciones y parámetros utilizados para
 
 ### Comandos de compresión de archivos
 
-<br><br>
+<br>
 
 ## Scripts Bash
 
@@ -706,4 +741,4 @@ con cat
 EOM
 ```
 
-<br><br>
+<br>
