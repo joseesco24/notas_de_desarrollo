@@ -7,6 +7,21 @@ Docker Compose se basa en servicios, no en contenedores, un servicio en Docker p
 
 ## Tabla de contenidos
 
+- [**Instalación de Docker Compose en Ubuntu**](#instalación-de-docker-compose-en-ubuntu)
+- [**Archivos docker-compose.yml**](#archivos-docker-composeyml)
+  - [Tips de Docker Compose](#tips-de-docker-compose)
+  - [Ejemplo de un Docker Compose con dos servicios y volúmenes](#ejemplo-de-un-docker-compose-con-dos-servicios-y-volúmenes)
+  - [Ejemplo de un Docker Compose con dos servicios y un bind mount](#ejemplo-de-un-docker-compose-con-dos-servicios-y-un-bind-mount)
+  - [Ejemplo de un docker-compose.override](#ejemplo-de-un-docker-composeoverride)
+- [**Subcomandos de Docker Compose**](#subcomandos-de-docker-compose)
+  - [Comandos de administración general de una aplicación compose](#comandos-de-administración-general-de-una-aplicación-compose)
+  - [Construir las imágenes necesarias para una aplicación compose](#construir-las-imágenes-necesarias-para-una-aplicación-compose)
+  - [Iniciar una aplicación compose](#iniciar-una-aplicación-compose)
+  - [Revisar el estado de los contenedores generados por una aplicación compose](#revisar-el-estado-de-los-contenedores-generados-por-una-aplicación-compose)
+  - [Revisar los logs de una aplicación compose](#revisar-los-logs-de-una-aplicación-compose)
+  - [Ejecutar comandos en servicios de una aplicación compose](#ejecutar-comandos-en-servicios-de-una-aplicación-compose)
+  - [Detener y eliminar todos los servicios de una aplicación compose](#detener-y-eliminar-todos-los-servicios-de-una-aplicación-compose)
+
 <br>
 
 ## Instalación de Docker Compose en Ubuntu
@@ -82,7 +97,7 @@ El compose anterior utiliza un volumen en app, además de una variable de ambien
 
 <br>
 
-### Ejemplo de un Docker Compose con dos servicios y bind mount
+### Ejemplo de un Docker Compose con dos servicios y un bind mount
 
 ```yml
 version: "3.8"
@@ -205,3 +220,5 @@ docker-compose down [parámetros]
 ```
 
 Detiene y elimina todos los recursos usados por una aplicación compose.
+
+<br>
