@@ -3,8 +3,6 @@
 [**Docker Compose**](https://docs.docker.com/compose/) permite usar los 4 recursos principales de Docker juntos fácilmente desde un solo archivo [**docker-compose.yml**](https://docs.docker.com/compose/compose-file/), usando este archivo también llamado Compose File se pueden integrar fácilmente recursos de red, volúmenes, imagenes y contenedores sin necesidad de administrar uno a uno cada tipo de recurso, en síntesis lo que permite Docker Compose es describir de forma declarativa la arquitectura de servicios que la aplicación necesita, y Docker se encargará de crear e integrar cada recursos declarado por detrás evitando que el desarrollador tenga que administraba uno a uno los recursos necesarios para levantar una aplicación basada en varios servicios contenerizados que interactúan entre sí.\
 Docker Compose se basa en servicios, no en contenedores, un servicio en Docker puede componerse de una o más aplicaciones contenerizadas creadas a partir de la misma imagen, es decir que pueden haber varias réplicas de un contenedor en un mismo servicio, en un esquema de servicios con réplicas además se distribuyen las diferentes peticiones entre las réplicas de la aplicación, lo que permite que la aplicación se más ágil atendiendo peticiones y además pueda atender más en simultáneo al mismo tiempo que aprovecha los recursos disponibles a nivel de hardware, en Docker compose se manejan servicios en lugar de contenedores para así dar a los desarrolladores la posibilidad de escalar fácilmente el número de contenedores que realizan la misma tarea.
 
-<br>
-
 ## Tabla de contenidos
 
 - [**Instalación de Docker Compose en Ubuntu**](#instalación-de-docker-compose-en-ubuntu)
@@ -22,8 +20,6 @@ Docker Compose se basa en servicios, no en contenedores, un servicio en Docker p
   - [Ejecutar comandos en servicios de una aplicación compose](#ejecutar-comandos-en-servicios-de-una-aplicación-compose)
   - [Detener y eliminar todos los servicios de una aplicación compose](#detener-y-eliminar-todos-los-servicios-de-una-aplicación-compose)
 
-<br>
-
 ## Instalación de Docker Compose en Ubuntu
 
 Docker Compose se instala junto a las versiones de escritorio de Windows o Mac, sin embargo, en la versión de Ubuntu es necesario instalarlo manualmente con los siguientes comandos, los cuales son extraídos de la guia oficial de [**Docker Hub**](https://docs.docker.com/compose/install/):
@@ -35,8 +31,6 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-
 ```bash
 sudo chmod +x /usr/local/bin/docker-compose
 ```
-
-<br>
 
 ## Archivos docker-compose.yml
 
@@ -55,8 +49,6 @@ Algunos de los componentes que soporta Docker Compose en los archivos **docker-c
 
 Los archivos **docker-compose.yml** son sumamente sensibles a la indentación con la que se declara cada uno de sus componentes, por lo que es necesario tener especial cuidado con la indentación cuando se declaran esquemas de servicios basados en Compose File.
 
-<br>
-
 ### Tips de Docker Compose
 
 - Al usar Docker Compose Docker por detrás crea una red dedicada a esa arquitectura a la que conecta todos los contenedores de todos los servicios declarados, el nombre de la red se asigna en base al nombre del directorio de trabajo en el siguiente formato **&lt;nombre del directorio de trabajo>\_default**.
@@ -68,8 +60,6 @@ Los archivos **docker-compose.yml** son sumamente sensibles a la indentación co
 - Las dependencias de servicios se usan siempre desde el **compose.override**.
 - Para usar un **compose.override** solo hace falta construir la imagen de forma normal, Docker por defecto detecta el archivo de sobre escritura y lo utiliza.
 - Al poner **image** y **build** en un mismo compose la imagen se construye pero se le asigna el nombre de imagen en lugar del nombre por defecto.
-
-<br>
 
 ### Ejemplo de un Docker Compose con dos servicios y volúmenes
 
@@ -95,8 +85,6 @@ services:
 
 El compose anterior utiliza un volumen en app, además de una variable de ambiente, un puerto vinculado, un cambio en el comando por defecto y construye una imagen para los contenedores del servicio app.
 
-<br>
-
 ### Ejemplo de un Docker Compose con dos servicios y un bind mount
 
 ```yml
@@ -121,8 +109,6 @@ services:
 
 El compose anterior utiliza un bind mount, indica una ruta que no debe ser alterada por el bind, además, utiliza una variable de ambiente y un rango de puertos del anfitrión que pueden ser vinculados a los contenedores del servicio app.
 
-<br>
-
 ### Ejemplo de un docker-compose.override
 
 ```yml
@@ -137,13 +123,9 @@ services:
 
 Al declarar un **docker-compose.override.yml** como el anterior junto a cualquiera de los **docker-compose.yml** se logra que se construya la imagen y se agregue la variable de ambiente nueva a la imagen.
 
-<br>
-
 ## Subcomandos de Docker Compose
 
 Docker Compose tiene varios subcomandos similares a los usados en la administración regular de Docker, algunos de los más relevantes para utilizar aplicaciones basadas en Docker Compose son:
-
-<br>
 
 ### Comandos de administración general de una aplicación compose
 
@@ -153,8 +135,6 @@ docker-compose <comando> --help
 
 Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
 
-<br>
-
 ### Construir las imágenes necesarias para una aplicación compose
 
 ```unknown
@@ -162,8 +142,6 @@ docker-compose build <parámetros> <nombre del servicio>
 ```
 
 Construye las imágenes que requieren ser construidas según el Compose File, al especificarse uno o varios servicios solo se construirán las imágenes de los servicios indicados.
-
-<br>
 
 ### Iniciar una aplicación compose
 
@@ -176,8 +154,6 @@ Levanta la arquitectura descrita por el Compose File en caso de no indicarse un 
 - **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
 - **--scale &lt;nombre o id del servicio>=&lt;número de contenedores>:** Escala un determinado servicio al número de contenedores indicado.
 
-<br>
-
 ### Revisar el estado de los contenedores generados por una aplicación compose
 
 ```unknown
@@ -187,8 +163,6 @@ docker-compose ps <parámetros> <nombre del servicio>
 Muestra el estado de los contenedores creados por el Compose File en caso de no indicarse un servicio en concreto, si se indica un servicio solo se mostrará el estado de los contenedores pertenecientes a ese servicio, algunos de los parámetros más útiles al utilizar **docker-compose ps** para ver el estado de los contenedores pertenecientes a una arquitectura son:
 
 - **--all:** Muestra todos los contenedores de la aplicación independientemente de si están o no ejecutados.
-
-<br>
 
 ### Revisar los logs de una aplicación compose
 
@@ -201,8 +175,6 @@ Muestra los logs de todos los contenedores usados por la aplicación en caso de 
 - **--follow:** Sirve para hacer follow a los logs de toda la aplicación o de cierto servicio si se indica el servicio.
 - **--tail &lt;número de logs>:** Imprime los últimos logs limitándose al número de logs indicado de toda la aplicación o de cierto servicio si se indica el servicio.
 
-<br>
-
 ### Ejecutar comandos en servicios de una aplicación compose
 
 ```unknown
@@ -211,8 +183,6 @@ docker-compose exec <parámetros> <nombre del servicio> <comando>
 
 Ejecuta un comando dentro del o los contenedores pertenecientes a un servicio de una aplicación compose.
 
-<br>
-
 ### Detener y eliminar todos los servicios de una aplicación compose
 
 ```unknown
@@ -220,5 +190,3 @@ docker-compose down <parámetros>
 ```
 
 Detiene y elimina todos los recursos usados por una aplicación compose.
-
-<br>

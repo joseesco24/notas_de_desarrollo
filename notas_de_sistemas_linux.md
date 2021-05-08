@@ -19,8 +19,6 @@ En los sistemas Linux existen varios tipos de shell de las cuales el usuario pue
 1. **BASH:** También conocida como Shell Bourne-Again, es una versión actualizada de SH creada por la Free Software Foundation, es una de las shell más utilizadas y conocidas en el mundo, sin mencionar que es la shell por defecto que usan muchos de los sistemas Linux. Bash Incorpora alguna de las funcionalidades más avanzadas de KSH, CSH, SH y TCSH. Una de la funcionalidades más destacables de esta shell es la opción de ejecutar múltiples programas en segundo plano a la vez.
 1. **ZSH:** Es una de las shell más potentes actualmente, puede funcionar como shell interactiva y como intérprete de lenguaje de scripting. aún siendo compatible con Bash.
 
-<br>
-
 ## Tabla de contenidos
 
 - [**Comandos Bash**](#comandos-bash)
@@ -54,27 +52,17 @@ En los sistemas Linux existen varios tipos de shell de las cuales el usuario pue
   - [Lectura de archivos con Bash](#lectura-de-archivos-con-bash)
   - [Escritura de archivos con Bash](#escritura-de-archivos-con-bash)
 
-<br>
-
 ## Comandos Bash
 
 Los comandos Bash son un conjunto de instrucciones y parámetros utilizados para la administración y configuración de los sistemas Linux, además de para realizar otras tareas específicas relacionadas con el sistema operativo.
 
-<br>
-
 ### Comandos básicos
 
-<br>
-
 ### Comandos de compresión de archivos
-
-<br>
 
 ## Scripts Bash
 
 Bash no es solamente un shell o intérprete de comandos con el que se interactúa mediante una terminal y que permite dar instrucciones al kernel del sistema operativo, Bash también es un lenguaje de de programación interpretado completo que permite crear programas que ejecutan múltiples comandos de forma secuencial para automatizar tareas específicas dentro del sistema operativo, Bash como lenguaje de programación tiene la ventaja de ser compatible con casi cualquier sistema operativo basado en Linux, ya que es el shell por defecto de la gran mayoría de este tipo de sistemas, lo que lo hace un lenguaje de programación extremadamente útil para crear programas de automatización de tareas en sistemas operativos con kernel Linux, la principal característica de este lenguaje es que al programar con el se puede usar cualquier comando que normalmente se ingresaría en una terminal, lo que le da una gran potencia y usabilidad, agregando a esto la sintaxis propia de Bash, que es muy similar a la de otros lenguajes de programación, los programas en Bash llegan a ser fáciles de escribir y pueden ser muy útiles y polivalentes.
-
-<br>
 
 ### Crear un script Bash
 
@@ -83,8 +71,6 @@ Los scripts Bash al igual que cualquier otro tipo de script se crean como archiv
 ```bash
 touch nuevo_script.sh
 ```
-
-<br>
 
 ### Otorgar permisos de ejecución al script
 
@@ -102,8 +88,6 @@ Otorgación de permisos de ejecución usando sintaxis simplificada.
 chmod +x nuevo_script.sh
 ```
 
-<br>
-
 ### Establecer Bash como intérprete del script
 
 Antes de empezar a escribir cualquier programa interpretado ejecutabe en un sistema Linux es necesario establecer el intérprete del programa, la forma más sencilla de establecerlo es mediante la secuancia de caracteres **#!** también conocida como **Shebang** seguida por la ruta del intérprete del programa, en el caso de los scripts Bash se puede establecer que el script es será interpretado por Bash de la siguiente forma.
@@ -117,8 +101,6 @@ Luego de declarar el intérprete en el **Shebang** se puede incluir el siguiente
 ```bash
 set -e
 ```
-
-<br>
 
 ### Declaración de variables en Bash
 
@@ -138,8 +120,6 @@ VARIABLE_DE_ENTORNO="Hola Mundo"
 export VARIABLE_DE_ENTORNO
 ```
 
-<br>
-
 ### Lectura de variables en Bash
 
 Tras definir cualquier variable de usuario o de entorno lo normal es querer leer ese valor posteriormente ya que por lo general se usa para afectar la ejecución del script, en ambos casos para leer el valor de una variable se usa el signo **$** antes del nombre de la variable que se quiere leer, las variables de usuario solo serán accesibles dentro del script en el que se declararon, mientras que las variables de entorno que fueron definidas con el comando **export** serán accesibles también por otros scripts o mediante la terminal, independientemente del usuario del sistema que la quiera leer.
@@ -158,8 +138,6 @@ echo $VARIABLE_DE_ENTORNO
 Hola Mundo
 ```
 
-<br>
-
 ### Sustitución de comandos en variables en Bash
 
 La sustitución de comandos en variables es uno de los mecanismos más útiles de Bash ya que permite ejecutar un comando y almacenar el resultado de la ejecución de forma textual en una variable o incluso reemplazarlo e imprimirlo en un texto. Las dos formas de sustituir comandos en variables se muestran a continuación.
@@ -175,8 +153,6 @@ Sustitución de comandos usando parentesis.
 ```bash
 ubicacionActual=$(pwd)
 ```
-
-<br>
 
 ### Capturar entradas del usuario en Bash
 
@@ -206,8 +182,6 @@ Algunos de los parámetros más utilizados junto a read son:
 - **-s:** Modo Sigiloso. No muestra ningún carácter en la terminal, útil para contraseñas o información sensible.
 - **-n [número de caracteres]:** Permite leer como máximo cierto número de caracteres.
 - **-r:** Toma el botón de retroceso o backspace como un carácter y no borra ningún otro carácter previamente escrito.
-
-<br>
 
 ### Operadores aritméticos en Bash
 
@@ -247,8 +221,6 @@ Residuo.
 ```bash
 resultado=$((numA%numB))
 ```
-
-<br>
 
 ### Operadores relacionales en Bash
 
@@ -301,8 +273,6 @@ resultado=$((numA!=numB))
 resultado=$((numA -ne numB))
 ```
 
-<br>
-
 ### Operadores de asignación en Bash
 
 Asumiendo que se definen dos variables numA y numB las operaciones de asignación básicas en Bash se definen de la siguiente forma.
@@ -342,8 +312,6 @@ Residuo de numA entre numB.
 resultado=$((numA%=numB))
 ```
 
-<br>
-
 ### Manejo de secuencias en Bash
 
 Las secuencias en Bash son listas en las que todos los elementos de la lista sigue un cierto patrón, como por ejemplo en un conteo del 1 al 10, en el que los valores incrementan de 1 en 1, la forma más sencilla de declarar una secuencia es usando la notación basada en llaves, las secuencias con notación de llaves pueden ser reemplazadas en cadenas usando expansión de llaves para generar cadenas nuevas y además adicionando un tercer elemento en el caso de las secuencias numéricas puede agregarse un paso. Usando notación de llaves también se pueden generar secuencias alfabéticas con la notación de llaves.
@@ -375,8 +343,6 @@ Generación de una secuencia simple de caracteres alfabeticos.
 echo {a..f}
 a b c d e f
 ```
-
-<br>
 
 ### Manejo de arreglos en Bash
 
@@ -430,8 +396,6 @@ unset arreglo_cadenas[0]
 unset arreglo_rangos[0]
 ```
 
-<br>
-
 ### Manejo de tablas en Bash
 
 En sus versiones más recientes Bash soporta el uso de tablas o diccionarios, los cuales se basan en usar una llave para acceder a un valor, la forma de declarar un diccionario en Bash es la siguiente.
@@ -464,8 +428,6 @@ Imprimir un ítem de la tabla basándose en su llave.
 echo -e "Ítems basado en la llave ${ppa_instalations[llave]}"
 ```
 
-<br>
-
 ### Condicionales con if y else en Bash
 
 Los condicionales if else en Bash tienen la particularidad de que al usar **if** o **elif** siempre la sentencia del condicional debe ir entre corchetes y además debe haber un espacio entre los corchetes y la sentencia del condicional al iniciar y finalizar.
@@ -484,8 +446,6 @@ fi
 
 **Nota:** Cuando se comparan dos números se utiliza el operador relacional **==**, cuando se comparan cadenas se utiliza **=**.
 
-<br>
-
 ### Validación de entradas del usuario con condicionales if y regex en Bash
 
 Para validar que los datos ingresados por el usuario sean datos de cierto tipo en Bash es necesario hacer una comprobación de datos usando expresiones regulares, además, para comparar la entrada con la expresión regular se debe utilizar el siguiente formato especial **if [[$variable =~ $expresionRegular]]**.
@@ -500,8 +460,6 @@ else
     echo -e "Id no válida"
 fi
 ```
-
-<br>
 
 ### Condicionales con case en Bash
 
@@ -521,8 +479,6 @@ case "$var" in
 esac
 ```
 
-<br>
-
 ### Ciclos while en Bash
 
 Los ciclos while en Bash al igual que en otros lenguajes de programación permiten ejecutar una secuencia de comandos mientras no se cumpla una condición dada.
@@ -534,8 +490,6 @@ do
       numero=$(( numero + 1 ))
 done
 ```
-
-<br>
 
 ### Ciclos for en Bash
 
@@ -560,8 +514,6 @@ do
 done
 ```
 
-<br>
-
 ### Sentencias break y continue en Bash
 
 En Bash las sentencias **break** rompen los ciclos, mientras que las sentencias **continue** hacen que los ciclos pasen a la siguiente iteración omitiendo el resto de instrucciones en la secuencia que hay por ejecutar en la iteración actual.
@@ -574,8 +526,6 @@ break;
 continue;
 ```
 
-<br>
-
 ### Ejecutar un script Bash
 
 Las dos formas de ejecutar un Script Bash en Linux son:
@@ -587,8 +537,6 @@ bash script.sh
 ```bash
 ./script.sh
 ```
-
-<br>
 
 ### Manejo de argumentos en Bash
 
@@ -632,8 +580,6 @@ Obtener todos los argumentos
 $*
 ```
 
-<br>
-
 ### Creación de funciones en Bash
 
 En Bash como en cualquier lenguaje de programación interpretado es necesario que las funciones se definen antes de llamarlas, ya que de otra forma la función no existirá en memoria al momento de llamarla.
@@ -662,8 +608,6 @@ nueva_funcion_a () {
 nueva_funcion_a "argumento_1"
 ```
 
-<br>
-
 ### Manejo de opciones en Bash
 
 Las opciones en los scripts Bash se usan para modificar el funcionamiento del script, por lo que son sumamente importantes. Las opciones en Bash son antecedidas por un **-**, también se puede usar la notación **--** pero en este caso Bash lo interpretará como una cadena. Para validar opciones en scripts Bash es necesario que los scripts internamente iteren sobre el listado de todos los argumentos que reciben en busca de las opciones definidas.
@@ -681,8 +625,6 @@ for var in "$*"; do
 done
 ```
 
-<br>
-
 ### Depuración en Bash
 
 La depuración es el proceso de identificar y corregir errores de programación. Bash provee ciertos comandos que permiten ejecutar un script al tiempo que emite los resultados del mismo en la línea de comandos separando los comandos de sus salidas.
@@ -696,8 +638,6 @@ bash -v script.sh
 ```bash
 bash -x script.sh
 ```
-
-<br>
 
 ### Lectura de archivos con Bash
 
@@ -724,8 +664,6 @@ do
 done < archivo.txt
 ```
 
-<br>
-
 ### Escritura de archivos con Bash
 
 Para escribir en archivos desde Bash se puede usar dos opciones, el operador **>** junto a echo o **EOM**: End Of Message y **EOF**: End Of File junto a cat, la principal ventaja de usar EOM o EOF respecto al operador >> es que tanto EOM como EOF permiten escribir múltiples líneas directamente, mientras que con el operador >> sería necesario iterar para escribir múltiples líneas.
@@ -740,5 +678,3 @@ valores escritos
 con cat
 EOM
 ```
-
-<br>

@@ -27,11 +27,15 @@ Algunos de los componentes adicionales que soporta Docker Stack en los archivos 
 - **placement:** Establece las restricciones del despliegue de las tareas del servicio.
 - **réplicas:** Establece el número de tareas replicadas para ese servicio.
 
+<br>
+
 ### Tips de Docker Stacks
 
 - Los stacks a diferencia de Compose son agrupaciones de servicios, en lugar de ser objetos propios de Docker como en Compose, donde cada Compose es un objeto de Docker.
 - Al tener desplegados varios servicios con uno o varios stacks sobre un cluster se debe utilizar un servicio de reverse proxy como [**traefik**](https://traefik.io/) para lograr que usando un solo dominio se puedan redireccionar todas las peticiones a los diferentes servicios disponibles en el cluster, para esto, además, es necesario es que el servicio de reverse proxy este contenerizado, desplegado sobre un manager y que esté en la misma red de los servicios a los que debe redireccionar las peticiones, además para balancear la carga entre los servicios traefik necesita un socket daemon para ver los eventos de Docker Swarm, por lo que debemos compartir la ruta usando un bind (--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock) y adicionalmente al ser un proxy http público debe exponerse en el puerto 80.
 - La principal diferencia entre un stack y un servicio es que un stack está por encima de un servicio, de tal modo que al igual que un servicio tiene tareas un stack puede tener diferentes servicios.
+
+<br>
 
 ### Ejemplo de un Stack File
 

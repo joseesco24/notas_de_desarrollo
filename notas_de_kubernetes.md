@@ -16,8 +16,6 @@
 En Kubernetes un pod es una agrupación de contenedores que se ejecutan en el mismo host y que además comparten un namespace o interfaz de red, por lo que todos los contenedores dentro de un pod tienen la misma IP, gracias a esto todos los contenedores que están dentro de un pod se ven unos a otros como procesos ejecutándose dentro del mismo sistema, además en un pod pueden haber varios tipos de contenedores, lo que permite tener en un pod varios tipos de aplicaciones que necesariamente deben trabajar juntas.
 Cuando se escala algo en Kubernetes no se agregan más contenedores, se agregan más pods.
 
-<br>
-
 ## Tabla de contenidos
 
 - [**Contenedores en Kubernetes**](#contenedores-en-kubernetes)
@@ -26,8 +24,6 @@ Cuando se escala algo en Kubernetes no se agregan más contenedores, se agregan 
   - [Componentes de los nodos esclavo en Kubernetes](#componentes-de-los-nodos-esclavo-en-kubernetes)
 - [**Sistemas declarativos e imperativos en Kubernetes**](##sistemas-declarativos-e-imperativos-en-kubernetes)
 - [**Redes en Kubernetes**](#redes-en-kubernetes)
-
-<br>
 
 ## Contenedores en Kubernetes
 
@@ -40,8 +36,6 @@ Los contenedores en Kubernetes o en cualquier otra plataforma que use contenedor
   - **mount namespace:** Permite que un proceso tenga una visibilidad reducida de los directorio de trabajo.
   - **networking namespace:** Permite que cada contenedor tenga sus recursos de red separados y que los recursos de un contenedor no interfiera con los de los demás contenedores.
   - **process id namespace:** Permite que los procesos secundarios se aniden en el proceso principal establecido al iniciar el contenedor, de tal modo que al finalizar el proceso principal se finalice la ejecución del contenedor.
-
-<br>
 
 ## Arquitectura de Kubernetes
 
@@ -64,13 +58,9 @@ Kubernetes para comunicarse con los nodos maestro utiliza una API, todas las acc
 - **Kubelet:** Los Kubelet son agentes de Kubernetes que se conectan con el scheduler y solicitan recursos (pods o contenedores) para ejecutar. Además los Kubelet monitorean los pods constantemente para saber si se están ejecutando correctamente, monitorea también los recursos disponibles y comunica constantemente al scheduler el estado de los recursos y las tareas.
 - **Kube-proxy:** Se encarga de balancear el tráfico que se mueve entre los contenedores o servicios.
 
-<br>
-
 ## Sistemas declarativos e imperativos en Kubernetes
 
 En Kubernetes todo se crea a través de una especificación en un archivo yml o manifest, estos archivos pueden variar segun la configuracion de Kubernetes, la cual puede ser declarativa o imperativa, en el modo declarativo la especificación entregada a Kubernetes indica el estado deseado del cluster y Kubernetes trata de converger al estado deseado que le fue proporcionado, cuando Kubernetes está configurado en modo declarativo constantemente revisa los cambios en el sistema y si algo falla calcula la diferencia entre el estado deseado, el estado actual y trata de que el estado actual converja hacia el estado deseado, por lo que al usar una configuración declarativa es totalmente necesario que el estado deseado pueda ser computado y comparado con el actual. Cuando la configuración es imperativa los archivos de configuración se componen de una serie de pasos que Kubernetes sigue ciegamente, su principal desventaja respecto a los sistemas declarativos es que al no proveer un contexto en caso de fallo del sistema debe iniciar desde cero su ejecución.
-
-<br>
 
 ## Redes en Kubernetes
 
@@ -85,5 +75,3 @@ Observaciones adicionales sobre las redes en Kubernetes.
 
 - Kubertenets utiliza un CNI (Container Network Interface) para cambiar las reglas de enrutamiento y así lograr que incluso cuando se usan segmentos de red diferentes para servicios y pueda haber comunicación entre ellos.
 - Kube-proxy es el componente de Kubernetes que permite realizar conexiones entre pods y contenedores usando iptables para enrutar las conexiones de un componente con otro.
-
-<br>
