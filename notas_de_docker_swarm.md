@@ -43,6 +43,8 @@ Antes de desplegar una aplicación basada en Docker Swarm lo adecuado es revisar
 Docker Swarm además viene instalado con Docker Engine, por lo que no hace falta instalarlo una vez ya está instalado Docker Engine, Docker Swarm además admite instalar plugins y clientes para administrar los contenedores y demás recursos de forma gráfica como [**portainer**](https://www.portainer.io/), ademas de agragar servicios para relizar monitoreo como [**swarmprom**](https://github.com/stefanprodan/swarmprom) o gestionar recursos como [**docker-cleanup**](https://github.com/meltwater/docker-cleanup).\
 Al gestionar una solución productiva basada en Docker Swarm es sumamente importante mantener los nodos limpios, es decir sin imágenes, contenedores o demás recursos residuales que ocupen disco, gestionar los logs de los servicios para que no llenen los discos de los nodos y poder visualizar el estado del cluster.
 
+<br>
+
 ## Administración de un cluster
 
 El cluster, enjambre o Swarm es lo que permite que una aplicación basada en Docker Swarm escale sobre un hardware virtualmente infinito, es por esto que si bien el cluster no es muy difícil de administrar y no hay muchos comandos con los cuales administrarlo, es importante tener en cuenta los comandos necesarios para administrar y escalar el cluster, ya que del cluster depende que tanto puede escalar la aplicación a nivel de Hardware.
@@ -83,6 +85,8 @@ Permite a la máquina actual abandonar el cluster, para dejar el cluster con **d
 
 - **--force:** Permite forzar a la máquina actual a abandonar el cluster, cuando se requiere que un manager abandone el cluster suele ser necesario utilizar este parámetro, ya que Docker Swarm no permite que los manager abandonen el cluster fácilmente por seguridad.
 
+<br>
+
 ## Administración de nodos pertenecientes a un cluster
 
 Los nodos son las maquinas que estan conectadas al cluster, no hay muchas opciones para administrar nodos, pero varios de estos comandos son muy útiles y es bueno tomarlos en cuenta, además, la administración de nodos sólo puede hacerse desde un manager, ya que los workers no suelen tener acceso a estas acciones.
@@ -122,6 +126,8 @@ docker node update [parámetros] [id o nombre del nodo]
 Permite actualizar ciertas configuraciones de un nodo, algunos de los parámetros más útiles al actualizar la configuración de un nodo con **docker node update** son:
 
 - **--availability [active|pause|drain]:** Permite cambiar la disponibilidad de un nodo, en estado activo se le pueden asignar tareas al nodo sin problema, en estado pausado el nodo no recibe tareas y en estado de drenado se sacan del nodo todas las tareas y se envían a otros nodos antes de ser puesto el nodo en estado pausado.
+
+<br>
 
 ## Administración de servicios basados en Docker Swarm
 
@@ -230,6 +236,8 @@ docker service rm [id o nombre del servicio]
 
 Elimina un servicio junto con todos sus contenedores y tareas.
 
+<br>
+
 ## Administración de redes de Docker Swarm
 
 Al utilizar Docker en modo Swarm Docker necesita dos tipos de redes adicionales a las que se usan normalmente, las cuales se usan para comunicar las diferentes tareas o contenedores de un servicio a nivel de nodo y cluster, estas redes son: **docker_gwbridge** e **ingress**, la red docker_gwbrigde por su parte se encarga de comunicar los contenedores del nodo entre ellos y la red ingress, ingress por su parte se encarga de la comunicación de todas las redes docker_gwbrigde a través de todos los nodos del cluster, formando así una red que comunica todos los contenedores de un servicio cuyos contenedores están distribuidos en diferentes nodos, también se diferencian en el alcance y driver, docker_gwbridge está disponible sólo dentro de un nodo y utiliza un driver **bridge** estándar, mientras que ingress está disponible en todos los nodos y utiliza un driver **overlay**, al crear un cluster basado en Docker Swarm las redes docker_gwbridge se crean automáticamente y se conectan a ingress (que es una red creada por defecto), pero también es posible crear redes con funcionalidades similares a la red ingress a las cuales conectar varios servicios para lograr comunicación entre los contenedores de diferentes servicios sin sobrecargar ingress, esto se logra simplemente creando una red con un driver **overlay**.
@@ -241,3 +249,5 @@ docker network create --driver overlay [nombre de la red]
 ```
 
 Crea una red con un driver overlay la cual tiene conectividad con todo el cluster y funciona de forma similar a la red ingress, por lo que uno o varios servicios se pueden conectar a la nueva red.
+
+<br>

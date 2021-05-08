@@ -30,9 +30,13 @@ Además de las capas con las que es necesario interactuar para usar Docker, Dock
 - **Redes:** Las redes internas de Docker permiten que las diferentes aplicaciones desplegadas en diferentes contenedores puedan interactuar entre sí.
 - **Volúmenes de almacenamiento:** Los volúmenes de almacenamiento son la forma que provee Docker para que una aplicación desplegada en un contenedor puede almacenar datos para que otro contenedor pueda usarlos o simplemente para poder usarlos en ejecuciones posteriores o para almacenarlos, los volúmenes de almacenamiento a pesar de ser espacios de almacenamiento en la máquina anfitrión son totalmente administrados por Docker, lo que los hace inaccesibles para la máquina anfitrión.
 
+<br>
+
 ## Instalación de Docker en Mac o Windows
 
 Para realizar la instalación de Docker en MacOS o en Windows basta con descargar de [**Docker Hub**](https://hub.docker.com/) la aplicación de escritorio (Docker Desktop).
+
+<br>
 
 ## Instalación de Docker en Ubuntu
 
@@ -42,6 +46,8 @@ Esta pequeña guía de instalación está basada en la [**guía oficial**](https
 - Ubuntu Groovy 20.10
 - Ubuntu Bionic 18.04 (LTS)
 - Ubuntu Xenial 16.04 (LTS)
+
+<br>
 
 ## Comandos de instalación de Docker
 
@@ -115,6 +121,8 @@ sudo adduser $USER docker
 newgrp docker
 ```
 
+<br>
+
 ## Comandos básicos de administración en Docker
 
 ```bash
@@ -152,6 +160,8 @@ docker system prune [parámetros]
 ```
 
 Elimina todos los volúmenes, contenedores y redes que no se estén usando, además de imágenes residuales.
+
+<br>
 
 ## Administración de contenedores
 
@@ -296,6 +306,8 @@ docker rm -f $(docker ps -aq)
 
 El comando anterior es una extensión de **docker rm** pero tiene la funcionalidad de eliminar todos los contenedores activos o inactivos, para eliminar los activos fuerza su detención antes de eliminarlos con la señal **sigkill**.
 
+<br>
+
 ## Administración de imágenes
 
 En términos de relevancia las imágenes en Docker podrían considerarse como el segundo tipo de entidad más relevantes después de los contenedores, estando casi a la par en relevancia, lo que hace a la administración de imágenes el segundo tipo de actividad más relevante al usar Docker, si bien los contenedores son la forma de virtualizar un ambiente aislado sobre el que se ejecutara la aplicación, las imágenes se encargan de indicar la forma en la que el contenedor debe construir ese ambiente, además es gracias a las imágenes que es fácil mover, desplegar y replicar un contenedor las veces que haga falta, sin alterar el funcionamiento del mismo, es por esto que las imágenes son las que aportan a las aplicaciones contenerizadas las tres características restantes principales de Docker, concretamente las imágenes aportan **escalabilidad**, **portabilidad** y **ligereza** a nuestros proyectos. Algunos de los comandos más importantes provistos por Docker para administrar imágenes se listan en esta sección.
@@ -394,6 +406,8 @@ docker image rm -f $(docker image ls -q)
 
 El comando anterior es una extensión de **docker image rm** pero tiene la funcionalidad de eliminar todos las imágenes independientemente de si son residuales o no.
 
+<br>
+
 ## Administración de volúmenes
 
 Los volúmenes son una parte fundamental al usar Docker para desarrollar aplicaciones contenerizadas ya que son las unidades virtuales de almacenamiento que normalmente usan los contenedores para guardar y compartir datos entre ellos de forma sencilla, usar volúmenes garantiza que los datos almacenados persistirán incluso si se detienen o eliminan todos los contenedores que hacían uso del volumen, cabe aclarar que los volúmenes son espacios de memoria del anfitrión que Docker usa para almacenar archivos de los contenedores, al igual que con los bind, pero a diferencia de los bind los volúmenes son administrados únicamente por Docker y no conceden al contenedor acceso al sistema de directorios del anfitrión, lo que los hace más seguros de usar que los bind, es por esto último que los volúmenes son la opción más recomendable para almacenar datos de los contenedores en una solución desplegada para producción. Los comandos provistos por Docker para administrar volúmenes se listan en esta sección.
@@ -435,6 +449,8 @@ docker volume rm -f $(docker volume ls -q)
 ```
 
 El comando anterior es una extensión de **docker volume rm** pero tiene la funcionalidad de eliminar todos los volúmenes independientemente de si son residuales o no.
+
+<br>
 
 ## Administración de redes
 
@@ -503,6 +519,8 @@ docker network rm $(docker network ls -q)
 
 El comando anterior es una extensión de **docker network rm** pero tiene la funcionalidad de eliminar todos las redes independientemente de si son residuales o no.
 
+<br>
+
 ## Comandos pre construidos de limpieza
 
 Los siguientes comandos simplemente son una compilación de los comandos de las secciones anteriores, en conjunto y ejecutados en secuencia eliminan todos los contenedores, imágenes, volúmenes y redes que se hayan creado sin discriminar si son o no residuales.
@@ -513,6 +531,8 @@ docker image rm -f $(docker image ls -q)
 docker volume rm -f $(docker volume ls -q)
 docker network rm $(docker network ls -q)
 ```
+
+<br>
 
 ## Archivos Dockerfile
 
@@ -604,3 +624,5 @@ CMD ["node", "index.js"]
 ```
 
 El efecto de utilizar un **Dockerfile** multi etapa en el **Dockerfile** anterior es que en la primera etapa se copien los archivos y se realicen las pruebas necesarias, si se pasan las pruebas se construye una imagen final en base a los archivos de la imagen de prueba de la etapa 1.
+
+<br>

@@ -4,6 +4,8 @@
 [**GitHub**](https://docs.github.com/es) por su parte es el sistema de versionamiento remoto más usado en la industria del desarrollo de software en general, GitHub permite trabajo colaborativo sobre los archivos de un repositorio remoto, además de permitir publicar proyectos y su progreso, entre otras de sus funciones.\
 Git y GitHub soportan versionamiento de archivos binarios, pero el versionamiento de archivos binarios no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan Git y GitHub solo para archivos de texto plano, como el código.
 
+<br>
+
 ## Tabla de contenidos
 
 - [**Flujo de trabajo básico con Git**](#flujo-de-trabajo-básico-con-git)
@@ -40,6 +42,8 @@ Git y GitHub soportan versionamiento de archivos binarios, pero el versionamient
 - [**Pull Requests con GitHub**](#pull-requests-con-github)
 - [**Forks con GitHub**](#forks-con-github)
 - [**Uso de archivos gitignore con Git y GitHub**](#uso-de-archivos-gitignore-con-git-y-github)
+
+<br>
 
 ## Flujo de trabajo básico con Git
 
@@ -189,6 +193,8 @@ Elimina uno o varios archivos del área de staging o del repositorio, **git rm**
 Algunos de los parámetros opcionales más útiles al utilizar **git rm** para eliminar archivos del área de staging o del repositorio son:
 
 - **-r:** Habilita la remoción recursiva cuando le es dado el nombre de un directorio.
+
+<br>
 
 ## Administración de ramas y versiones con Git
 
@@ -439,6 +445,8 @@ Mueve el HEAD del commit actual al commit indicado, dependiendo del modo al camb
 - **--mixed:** Es el modo por defecto, Elimina los cambios en el repositorio, elimina los cambios del área de staging, pero mantiene los cambios en el directorio de trabajo, por lo que los cambios hechos luego del commit indicado en el directorio de trabajo pueden agregarse al repositorio posteriormente con un **git add** y un **git commit**.
 - **--hard:** Elimina los cambios en el repositorio, elimina los cambios del área de staging y elimina los cambios del directorio de trabajo, por lo que ninguno de los cambios hechos luego del commit podrán agregarse posteriormente al repositorio.
 
+<br>
+
 ## Administración de repositorios remotos con Git y GitHub
 
 <p align="center">
@@ -511,6 +519,8 @@ Envía los cambios hechos en una rama del repositorio local al repositorio remot
 - **--all:** Actualiza todas las ramas del repositorio remoto con los cambios de las ramas del repositorio local, al utilizar este parámetro no hace falta indicar el nombre de una rama en concreto.
 - **-u, --set-upstream:**
 
+<br>
+
 ## Conexión con GitHub usando protocolo SSH
 
 <p align="center">
@@ -556,6 +566,8 @@ git remote set-url <nombre del repositorio remoto> <url del repositorio remoto>
 
 Como último paso hay que actualizar la url del repositorio local reemplazandola por la url que usa el repositorio para conexiones SSH, si al clonar el repositorio se clona usando SSH no hace falta hacer este paso.
 
+<br>
+
 ## Pull Requests con GitHub
 
 <p align="center">
@@ -574,6 +586,8 @@ El flujo de trabajo normal de un Pull Request es el siguiente
 1. Se aceptan los cambios en GitHub.
 1. Se hace merge a master desde GitHub.
 
+<br>
+
 ## Forks con GitHub
 
 <p align="center">
@@ -585,6 +599,8 @@ Los Forks son importantes porque es la manera en la que funciona el open source,
 Al hacer un Fork, GitHub sabe que se hizo el Fork del proyecto, por lo que se le permite al colaborador hacer Pull Request desde su repositorio propio al original.
 
 Para mantener actualizado un Fork hay dos opciones, desde GitHub se pueden hacer merges desde master al Fork, pero también se puede configurar el repositorio original como un segundo repositorio remoto en el repositorio local en el que se está trabajando el Fork, desde el cual se pueden traer y hacer merge de los cambios más recientes del repositorio original, para esto se usa el comando **git remote add** apuntando hacia el repositorio original.
+
+<br>
 
 ## Uso de archivos gitignore con Git y GitHub
 
@@ -612,3 +628,5 @@ Las razones principales para tomar la decisión de no agregar un archivo a un re
 - Es un archivo con contraseñas.
 - Es un blob.
 - Son archivos que se generan corriendo comandos.
+
+<br>

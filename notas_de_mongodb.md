@@ -2,6 +2,8 @@
 
 [**MongoDB**](https://docs.mongodb.com/) es uno de los sistemas de bases de datos no relacionales más usados en el desarrollo profesional, es ampliamente usado en todo tipo de entornos de desarrollo gracias a su flexibilidad y facilidad de uso, que se deben en gran medida al hecho de que MongoDB se basa en documentos similares a los documentos JSON. Una de las mejores características de MongoDB es que permite crear sistemas distribuidos de bases de datos, por lo que usando MongoDB es totalmente factible tener un cluster de máquinas dedicadas al almacenamiento de los datos de una o varias bases de datos, esta característica hace que escalar un sistema de bases de datos basado en MongoDB sea extremadamente fácil ya que solo hace falta agregar más nodos al cluster. Otra de las principales características clave de MongoDB es que es "Schema Less" en todas sus versiones, por lo que los documentos dentro de una misma colección pueden tener estructuras totalmente diferentes sin afectar el funcionamiento o el rendimiento de MongoDB, y como si fuera poco las consultas de MongoDB también son extremadamente eficientes por el hecho de ser una base de datos no relacional basada en documentos que además permite indexación, por lo que se puede optimizar incluso más su rendimiento mediante índices.
 
+<br>
+
 ## Tabla de contenidos
 
 - [**Componentes principales de MongoDB**](#componentes-principales-de-mongodb)
@@ -32,6 +34,8 @@
   - [Operaciones de agregación](#operaciones-de-agregación)
   - [Manejo de índices](#manejo-de-índices)
 
+<br>
+
 ## Componentes principales de MongoDB
 
 <p align="center">
@@ -50,6 +54,8 @@ Las [**colecciones**](https://docs.mongodb.com/manual/core/databases-and-collect
 
 Los [**documentos**](https://docs.mongodb.com/manual/core/document/) en MongoDB son registros dentro de cada colección, la estructura de los documentos de MongoDB es similar a la de los documentos JSON, pero en realidad son documentos BSON, que son documentos JSON binarios, usar BSON hace fácil entender la estructura de cada documento y además permite almacenar una gran variedad de tipos de datos gracias a la cantidad de formatos que soporta BSON. Los documentos además son la unidad más básica dentro de MongoDB y no pueden ser mayores a 16 megabytes.
 
+<br>
+
 ## Ecosistema de MongoDB
 
 <p align="center">
@@ -67,6 +73,8 @@ Es shell de MongoDB es el shell con la que se interactúa de forma directa con e
 ### Conectores de MongoDB
 
 Los conectores de MongoDB son todas las [**bibliotecas**](https://docs.mongodb.com/drivers/) dentro de los diferentes lenguajes de programación que se usan para interactuar con el servidor de MongoDB.
+
+<br>
 
 ## Relaciones entre documentos en MongoDB
 
@@ -156,6 +164,8 @@ Ejemplo de múltiples documentos referenciados:
 }
 ```
 
+<br>
+
 ## Conexión con MongoDB Server
 
 Para establecer una conexión entre MongoDB con cualquier aplicación o driver, independientemente de la versión de MongoDB Server, es necesario usar un [**string de conexión en formato uri**](https://docs.mongodb.com/manual/reference/connection-string/#connection-string-uri-format), a continuación se muestra el formato estándar para establecer una conexión entre una aplicación y un MongoDB Server ambos dentro del mismo host.
@@ -169,6 +179,8 @@ Ejemplo:
 ```unknown
 mongodb://127.0.0.1:27017
 ```
+
+<br>
 
 ## Operaciones básicas con MongoDB Shell
 
@@ -250,7 +262,11 @@ Ejemplo:
 db.inventory.help()
 ```
 
+<br>
+
 ## Operaciones con bases de datos en MongoDB Shell
+
+<br>
 
 ## Operaciones con colecciones y documentos en MongoDB Shell
 
@@ -488,3 +504,5 @@ Ejemplo:
 ```JavaScript
 db.inventory.createIndex({nombre: "text"})
 ```
+
+<br>

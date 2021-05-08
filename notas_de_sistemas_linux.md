@@ -19,6 +19,8 @@ En los sistemas Linux existen varios tipos de shell de las cuales el usuario pue
 1. **BASH:** También conocida como Shell Bourne-Again, es una versión actualizada de SH creada por la Free Software Foundation, es una de las shell más utilizadas y conocidas en el mundo, sin mencionar que es la shell por defecto que usan muchos de los sistemas Linux. Bash Incorpora alguna de las funcionalidades más avanzadas de KSH, CSH, SH y TCSH. Una de la funcionalidades más destacables de esta shell es la opción de ejecutar múltiples programas en segundo plano a la vez.
 1. **ZSH:** Es una de las shell más potentes actualmente, puede funcionar como shell interactiva y como intérprete de lenguaje de scripting. aún siendo compatible con Bash.
 
+<br>
+
 ## Tabla de contenidos
 
 - [**Comandos Bash**](#comandos-bash)
@@ -52,6 +54,8 @@ En los sistemas Linux existen varios tipos de shell de las cuales el usuario pue
   - [Lectura de archivos con Bash](#lectura-de-archivos-con-bash)
   - [Escritura de archivos con Bash](#escritura-de-archivos-con-bash)
 
+<br>
+
 ## Comandos Bash
 
 Los comandos Bash son un conjunto de instrucciones y parámetros utilizados para la administración y configuración de los sistemas Linux, además de para realizar otras tareas específicas relacionadas con el sistema operativo.
@@ -59,6 +63,8 @@ Los comandos Bash son un conjunto de instrucciones y parámetros utilizados para
 ### Comandos básicos
 
 ### Comandos de compresión de archivos
+
+<br>
 
 ## Scripts Bash
 
@@ -678,3 +684,5 @@ valores escritos
 con cat
 EOM
 ```
+
+<br>
