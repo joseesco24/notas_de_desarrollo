@@ -42,13 +42,19 @@
 <img src="imagenes/notas_de_mongodb/componentes_de_mongodb.svg" width="80%" height="auto"/>
 </p>
 
+<br>
+
 ### Bases de datos
 
 Las [**bases de datos**](https://docs.mongodb.com/manual/core/databases-and-collections/#databases) en MongoDB son los espacios de almacenamiento como tal en los que se guardan las colecciones, cada base de datos tiene su propio archivo dentro del sistema de archivos del host en el que se ejecuta MongoDB, además en un cluster de MongoDB Atlas pueden haber múltiples bases de datos distribuidas o replicadas entre los diferentes nodos del cluster.
 
+<br>
+
 ### Colecciones
 
 Las [**colecciones**](https://docs.mongodb.com/manual/core/databases-and-collections/#collections) en MongoDB son agrupaciones de documentos, son equivalentes a las tablas de las bases de datos relacionales y además en el caso de MongoDB no se imponen esquemas fijos que deban seguir los documentos una misma colección.
+
+<br>
 
 ### Documentos
 
@@ -62,13 +68,19 @@ Los [**documentos**](https://docs.mongodb.com/manual/core/document/) en MongoDB 
 <img src="imagenes/notas_de_mongodb/ecosistema_mongodb.svg" width="80%" height="auto"/>
 </p>
 
+<br>
+
 ### MongoDB Server
 
 El servidor de MongoDB es el servidor encargado de gestionar las bases de datos como tal, sus principales funciones son almacenar las bases de datos en el sistema de archivos del host, mantener disponibles las bases de datos y realizar el cruce de datos y la entrega de resultados de todas las peticiones que se le hagan. Al igual que la gran mayoría del software de código abierto el servidor de MongoDB tiene dos versiones, una versión community y una enterprise, con la diferencia de que la versión enterprise gana algunas características adicionales respecto a la versión community.
 
+<br>
+
 ### MongoDB Shell
 
 Es shell de MongoDB es el shell con la que se interactúa de forma directa con el servidor de MongoDB.
+
+<br>
 
 ### Conectores de MongoDB
 
@@ -186,11 +198,15 @@ mongodb://127.0.0.1:27017
 
 El shell de MongoDB o [**MongoDB Shell**](https://docs.mongodb.com/manual/mongo/) es una interfaz interactiva basada en JavaScript que se usa para interactuar de forma directa con el MongoDB Server mediante la terminal, al ser un shell basado en JavaScript el shell de MongoDB permite usar comandos con sintaxis de [**shell**](https://docs.mongodb.com/manual/reference/program/mongo/#mongodb-binary-bin.mongo) o comandos con sintaxis de [**JavaScript**](https://docs.mongodb.com/manual/reference/method/), sin embargo la mayoría de las operaciones sólo están disponibles usando la sintaxis de JavaScript, además de poder realizar acciones simples en MongoDB Shell también se pueden crear [**scripts**](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/) basados en JavaScript que se ejecuten sobre el shell de MongoDB, por lo que se pueden automatizar varios tipos de tareas o consultas en usando JavaScript.
 
+<br>
+
 ### Iniciar shell
 
 ```unknown
 mongo
 ```
+
+<br>
 
 ### Limpiar shell
 
@@ -202,6 +218,8 @@ ctrl + l
 cls
 ```
 
+<br>
+
 ### Ver bases de datos disponibles
 
 ```unknown
@@ -212,11 +230,15 @@ show databases
 show dbs
 ```
 
+<br>
+
 ### Ver colecciones disponibles
 
 ```unknown
 show collections
 ```
+
+<br>
 
 ### Crear nueva base de datos o usar una ya creada
 
@@ -230,11 +252,15 @@ Ejemplo:
 use db
 ```
 
+<br>
+
 ### Ver nombre de la base de datos a la que está conectado el shell
 
 ```unknown
 db
 ```
+
+<br>
 
 ### Ver funciones disponibles
 
@@ -269,6 +295,8 @@ db.inventory.help()
 <br>
 
 ## Operaciones con colecciones y documentos en MongoDB Shell
+
+<br>
 
 ### Documentos de filtros
 
@@ -314,6 +342,8 @@ db.inventory.find(
 )
 ```
 
+<br>
+
 ### Insertar documentos en una colección
 
 MongoDB por defecto no crea bases de datos vacías, por lo que es necesario luego de crear una nueva base de datos crear al menos una colección y un documento, si la colección en la que se quiere insertar el documento no existe MongoDB crea una nueva colección con el nombre indicado.\
@@ -350,6 +380,8 @@ db.inventory.insertMany(
     ]
 )
 ```
+
+<br>
 
 ### Buscar documentos en una colección
 
@@ -394,6 +426,8 @@ El método find además se puede combinar con otros métodos como:
 - **count():** para contar el número de documentos resultantes de la búsqueda.
 - **explain('executionStats'):** Muestra las estadísticas de la ejecución del query.
 
+<br>
+
 ### Actualizar documentos de una colección
 
 #### Actualización individual
@@ -434,6 +468,8 @@ db.inventory.updateMany(
 )
 ```
 
+<br>
+
 ### Eliminar documentos de una colección
 
 #### Eliminación individual
@@ -466,9 +502,13 @@ db.inventory.deleteMany(
 )
 ```
 
+<br>
+
 ### Operaciones de agregación
 
 Las [**agregaciones**](https://docs.mongodb.com/manual/aggregation/) en MongoDB son operaciones avanzadas que se pueden realizar en MongoDB.
+
+<br>
 
 ### Manejo de índices
 

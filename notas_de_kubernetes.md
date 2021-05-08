@@ -48,6 +48,8 @@ Los contenedores en Kubernetes o en cualquier otra plataforma que use contenedor
 La arquitectura de Kubernetes se basa en dos tipos de nodos, al igual que la mayoría de los sistemas de cómputo distribuido los nodos se dividen en maestro y esclavo, los maestros, que son designados usando el algoritmo [**raft**](https://www.freecodecamp.org/news/in-search-of-an-understandable-consensus-algorithm-a-summary-4bc294c97e0d/) son los encargados de administrar todos los recursos del cluster y de la asignacion de las tareas, mientras que los esclavos se encargan de ejecutar todas las tareas que les son asignadas por los maestros, Kubernetes permite tener maestros redundantes ademas de poder utilizar mas de un maestro al tiempo, de tal modo que si un maestro falla por alguna razon este puede ser reemplazado casi de inmediato, ademas, en caso de que no se pueda reemplazar y el cluster no disponga de nodos maestro que lo reemplacen los demas componentes del cluster seguiran funcionando, simplemente el cluster no se podra administrar hasta que no se asigne un nuevo nodo maestro que lo controle.
 Kubernetes para comunicarse con los nodos maestro utiliza una API, todas las acciones de administración tiene que pasar por esta API para llegar a los nodos maestro, además del API Kubernetes da una interfaz de usuario y un CLI, ambos utilizan el API para comunicarse con los nodos maestro, pero también se pueden enviar las instrucciones de administración directamente al API.
 
+<br>
+
 ### Componentes de los nodos maestro en Kubernetes
 
 - **Etcd:** Key value store que permite que el cluster esté altamente disponible.
@@ -58,6 +60,8 @@ Kubernetes para comunicarse con los nodos maestro utiliza una API, todas las acc
   - **Deployment manager**
   - **Replica manager**
   - **Service manager**
+
+<br>
 
 ### Componentes de los nodos esclavo en Kubernetes
 

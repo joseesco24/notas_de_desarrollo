@@ -49,6 +49,8 @@ Al gestionar una solución productiva basada en Docker Swarm es sumamente import
 
 El cluster, enjambre o Swarm es lo que permite que una aplicación basada en Docker Swarm escale sobre un hardware virtualmente infinito, es por esto que si bien el cluster no es muy difícil de administrar y no hay muchos comandos con los cuales administrarlo, es importante tener en cuenta los comandos necesarios para administrar y escalar el cluster, ya que del cluster depende que tanto puede escalar la aplicación a nivel de Hardware.
 
+<br>
+
 ### Comandos básicos de administración de un cluster
 
 ```bash
@@ -56,6 +58,8 @@ docker swarm [comando] --help
 ```
 
 Muestra a grandes rasgos los comandos disponibles para administrar el cluster y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+
+<br>
 
 ### Iniciar un cluster
 
@@ -67,6 +71,8 @@ Inicia un cluster utilizando la máquina actual como el primer manager del clust
 
 - **--advertise-addr [ip]:** Al iniciar un cluster en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del cluster.
 
+<br>
+
 ### Conectar máquinas al cluster
 
 ```bash
@@ -74,6 +80,8 @@ docker swarm join-token [parametros] [worker|manager]
 ```
 
 Genera un token que es utilizado para agregar una nueva máquina al cluster, hay dos tipos de tokens, uno para agregar managers y otro para agregar workers, al utilizar este comando además de imprimir el token se imprime el comando que permitirá utilizarlo para unir una máquina nueva al cluster.
+
+<br>
 
 ### Desconectar máquinas del cluster
 
@@ -91,6 +99,8 @@ Permite a la máquina actual abandonar el cluster, para dejar el cluster con **d
 
 Los nodos son las maquinas que estan conectadas al cluster, no hay muchas opciones para administrar nodos, pero varios de estos comandos son muy útiles y es bueno tomarlos en cuenta, además, la administración de nodos sólo puede hacerse desde un manager, ya que los workers no suelen tener acceso a estas acciones.
 
+<br>
+
 ### Comandos básicos de administración de nodos
 
 ```bash
@@ -99,6 +109,8 @@ docker node [comando] --help
 
 Muestra a grandes rasgos los comandos disponibles para administrar los nodos de un cluster y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
 
+<br>
+
 ### Listar los nodos conectados al cluster
 
 ```bash
@@ -106,6 +118,8 @@ docker node ls [parámetros]
 ```
 
 Lista los nodos pertenecientes a un cluster, mostrando su id, nombre, estatus, disponibilidad, su versión de Docker Engine y si es manager o worker, además, se indica con \* el nodo en el que se está actualmente.
+
+<br>
 
 ### Inspeccionar un nodo
 
@@ -116,6 +130,8 @@ docker node inspect [parámetros] [id o nombre del nodo]
 Muestra en detalle la configuración de un nodo en un archivo JSON, algunos de los parámetros más útiles al inspeccionar un nodo con **docker node inspect** son:
 
 - **--pretty:** Cambia el formato JSON con el que se muestran los datos por un formato clásico de consola que es más fácil de leer, pero omite ciertas partes de la configuración al cambiar el formato del texto.
+
+<br>
 
 ### Actualizar las configuraciones de un nodo
 
@@ -133,6 +149,8 @@ Permite actualizar ciertas configuraciones de un nodo, algunos de los parámetro
 
 Los servicios son la base de Docker Swarm, al igual que en Docker Compose un servicio es una aplicación contenerizada que está desplegada en uno o más contenedores, en Docker Swarm la ventaja es que estos contenedores pueden estar ejecutándose en cualquier nodo del cluster y además pueden moverse entre nodos fácilmente, es debido a esto que los servicios son altamente disponibles y escalables, al trabajar con servicios se trabaja implícitamente con contenedores ya que Docker Swarm se encarga de gestionar los contenedores en función de la declaración del servicio.
 
+<br>
+
 ### Comandos básicos de administración de servicios
 
 ```bash
@@ -140,6 +158,8 @@ docker service [comando] --help
 ```
 
 Muestra a grandes rasgos los comandos disponibles para administrar servicios y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+
+<br>
 
 ### Iniciar un servicio
 
@@ -157,6 +177,8 @@ Permite iniciar un servicio basado en Docker Swarm especificando la imagen y el 
 - **--label [metadatos]:** Permite agregar un listado de metadatos útiles para los otros servicios que necesitan encontrar el nuevo servicio.
   **--mode [replicated|global|replicated-job|global-job]:** Cambia el modo en el que se ejecuta un servicio.
 
+<br>
+
 ### Visualizar servicios
 
 ```bash
@@ -165,6 +187,8 @@ docker service ls [parámetros]
 
 Lista todos los servicios del cluster junto con su id, nombre, modo, número de réplicas, imagen y puertos.
 
+<br>
+
 ### Visualizar tareas de un servicio
 
 ```bash
@@ -172,6 +196,8 @@ docker service ps [parámetros] [id o nombre del servicio]
 ```
 
 Muestra las tareas de uno o más servicios, además de su id, nombre, imagen, nodo de ejecución, estado actual y deseado, errores y puertos.
+
+<br>
 
 ### Inspeccionar un servicio
 
@@ -182,6 +208,8 @@ docker service inspect [parámetros] [id o nombre del servicio]
 Muestra en detalle la configuración de un servicio en un archivo JSON, algunos de los parámetros más útiles al inspeccionar un servicio con **docker service inspect** son:
 
 - **--pretty:** Cambia el formato JSON con el que se muestran los datos por un formato clásico de consola que es más fácil de leer, pero omite ciertas partes de la configuración al cambiar el formato del texto.
+
+<br>
 
 ### Modificar la configuración de un servicio
 
@@ -202,6 +230,8 @@ Actualiza la configuración de un servicio, algunos de los parámetros más úti
 - **--env-add [nombre de la variable de entorno]=[valor de la variable de entorno]:** Agrega o actualiza el valor de una o varias variables de entorno.
 - **--image [nombre o id de la imagen]:** Cambia en tiempo de ejecución la imagen que ejecutan los contenedores de un servicio.
 
+<br>
+
 ### Visualizar logs de un servicio
 
 ```bash
@@ -212,6 +242,8 @@ Muestra los logs de los de un servicio o tarea, algunos de los parámetros más 
 
 - **--follow:** Permite hacer follow de los logs del servicio o tarea, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
 
+<br>
+
 ### Escalar un servicio
 
 ```bash
@@ -220,6 +252,8 @@ docker service scale [parámetros] [id o nombre del servicio]=[número de répli
 
 Permite escalar uno o varios servicios estableciendo el número de réplicas necesarias por cada servicio.
 
+<br>
+
 ### Restaurar un servicio a su estado anterior
 
 ```bash
@@ -227,6 +261,8 @@ docker service rollback [parámetros] [id o nombre del servicio]
 ```
 
 Permite restaurar un servicio a su estado anterior.
+
+<br>
 
 ### Eliminar un servicio
 
@@ -241,6 +277,8 @@ Elimina un servicio junto con todos sus contenedores y tareas.
 ## Administración de redes de Docker Swarm
 
 Al utilizar Docker en modo Swarm Docker necesita dos tipos de redes adicionales a las que se usan normalmente, las cuales se usan para comunicar las diferentes tareas o contenedores de un servicio a nivel de nodo y cluster, estas redes son: **docker_gwbridge** e **ingress**, la red docker_gwbrigde por su parte se encarga de comunicar los contenedores del nodo entre ellos y la red ingress, ingress por su parte se encarga de la comunicación de todas las redes docker_gwbrigde a través de todos los nodos del cluster, formando así una red que comunica todos los contenedores de un servicio cuyos contenedores están distribuidos en diferentes nodos, también se diferencian en el alcance y driver, docker_gwbridge está disponible sólo dentro de un nodo y utiliza un driver **bridge** estándar, mientras que ingress está disponible en todos los nodos y utiliza un driver **overlay**, al crear un cluster basado en Docker Swarm las redes docker_gwbridge se crean automáticamente y se conectan a ingress (que es una red creada por defecto), pero también es posible crear redes con funcionalidades similares a la red ingress a las cuales conectar varios servicios para lograr comunicación entre los contenedores de diferentes servicios sin sobrecargar ingress, esto se logra simplemente creando una red con un driver **overlay**.
+
+<br>
 
 ### Crear una red overlay
 

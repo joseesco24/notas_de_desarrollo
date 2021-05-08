@@ -87,6 +87,8 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 Por último se utilizan los comandos anteriores para actualizar el índice de paquetes de apt y luego instalar Docker Engine.
 
+<br>
+
 ### Comprobación de la instalación
 
 Una forma sencilla de comprobar el funcionamiento de Docker Engine es utilizando la imagen de Hello-World, para hacer esto se ejecuta el siguiente comando.
@@ -104,6 +106,8 @@ docker --version
 ```bash
 docker info
 ```
+
+<br>
 
 ### En caso de errores
 
@@ -167,6 +171,8 @@ Elimina todos los volúmenes, contenedores y redes que no se estén usando, adem
 
 La administración de contenedores es una actividad clave al utilizar Docker ya que los contenedores son las entidades más importantes que se pueden manejar en Docker, esto se debe a que los contenedores son los encargados de virtualizar el ambiente aislado donde se ejecutarán las aplicaciones desplegadas con Docker, es mediante el uso de contenedores que Docker adquiere tres de sus características más importantes, concretamente el uso de contenedores aporta **flexibilidad**, **seguridad** y **bajo acoplamiento** a las aplicaciones. Algunos de los comandos más importantes provistos por Docker para administrar contenedores se listan en esta sección.
 
+<br>
+
 ### Ejecutar contenedores
 
 ```bash
@@ -192,6 +198,8 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando indi
 - Los status de salida con código por encima de 128 indican salidas forzosas y normalmente indican que el cierre de ese contenedor causó que varios procesos que se estaban llevando a cabo se detuvieran sin finalizarse.
 - Un código de salida 137 indica que el proceso fue cerrado por la señal **sigkill**.
 
+<br>
+
 ### Renombrar contenedores
 
 ```bash
@@ -199,6 +207,8 @@ docker rename [nombre o id del contenedor] [nuevo nombre]
 ```
 
 Renombra el contenedor indicado.
+
+<br>
 
 ### Revisar el estado de los contenedores
 
@@ -217,6 +227,8 @@ docker inspect [parámetros] [nombre o id del contenedor]
 
 Muestra en formato JSON toda la información de la configuración del contenedor indicado.
 
+<br>
+
 ### Mover archivos y directorio entre el anfitrión y los contenedores
 
 ```bash
@@ -231,6 +243,8 @@ docker cp [parámetros] [nombre o id del contenedor]:[ruta contenedor] [ruta hos
 
 Copia un archivo o directorio desde la ruta de origen del contenedor indicado en la ruta de destino de la máquina anfitrión.
 
+<br>
+
 ### Visualizar los logs de los contenedores
 
 ```bash
@@ -241,6 +255,8 @@ Sirve para ver los logs del contenedor indicado, algunos de los parámetros más
 
 - **--follow:** Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitrión a la salida estándar del contenedor para logs para verlos en la medida en la que se imprimen.
 - **--tail [número de logs]:** Imprime los últimos logs limitándose al número de logs indicado.
+
+<br>
 
 ### Ejecutar tareas en contenedores
 
@@ -268,6 +284,8 @@ docker exec -it [nombre o id del contenedor] /bin/bash
 
 El comando anterior es una extensión de **docker exec** que permite usar de forma interactiva el shell de un contenedor.
 
+<br>
+
 ### Apagar contenedores
 
 ```bash
@@ -281,6 +299,8 @@ docker kill [parámetros] [nombre o id del contenedor]
 ```
 
 Apaga manualmente un contenedor usando la señal **sigkill**.
+
+<br>
 
 ### Eliminar contenedores
 
@@ -312,6 +332,8 @@ El comando anterior es una extensión de **docker rm** pero tiene la funcionalid
 
 En términos de relevancia las imágenes en Docker podrían considerarse como el segundo tipo de entidad más relevantes después de los contenedores, estando casi a la par en relevancia, lo que hace a la administración de imágenes el segundo tipo de actividad más relevante al usar Docker, si bien los contenedores son la forma de virtualizar un ambiente aislado sobre el que se ejecutara la aplicación, las imágenes se encargan de indicar la forma en la que el contenedor debe construir ese ambiente, además es gracias a las imágenes que es fácil mover, desplegar y replicar un contenedor las veces que haga falta, sin alterar el funcionamiento del mismo, es por esto que las imágenes son las que aportan a las aplicaciones contenerizadas las tres características restantes principales de Docker, concretamente las imágenes aportan **escalabilidad**, **portabilidad** y **ligereza** a nuestros proyectos. Algunos de los comandos más importantes provistos por Docker para administrar imágenes se listan en esta sección.
 
+<br>
+
 ### Construir imágenes
 
 ```bash
@@ -323,6 +345,8 @@ Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el c
 - **--tag [nombre de la nueva imagen]:[tag de la nueva imagen]:** Permite personalizar el nombre y tag de la nueva imagen que será construida.
 - **--file [ruta del Dockerfile]:** Permite cambiar o especificar la ruta al **Dockerfile** con el cual se construirá la imagen.
 
+<br>
+
 ### Bajar imágenes
 
 ```bash
@@ -330,6 +354,8 @@ docker pull [parámetros] [nombre o id de la imagen]:[tag de la imagen]
 ```
 
 Baja la imagen con el nombre y el tag especificado, si no se especifica un tag se baja la versión más reciente (latest) o por defecto de la imagen.
+
+<br>
 
 ### Subir imágenes
 
@@ -347,6 +373,8 @@ docker push [parámetros] [repositorio o nombre de usuario de Docker Hub]/[nombr
 
 Sube la imagen con el nombre y el tag especificado al repositorio indicado.
 
+<br>
+
 ### Cambiar tag de imágenes
 
 ```bash
@@ -355,6 +383,8 @@ docker tag [nombre o id de la imagen de origen]:[tag de la imagen de origen] [re
 
 Crea una nueva imagen con un nuevo tag que hace referencia a una ya existente y que se puede publicar en nuestro repositorio.
 
+<br>
+
 ### Listar imágenes
 
 ```bash
@@ -362,6 +392,8 @@ docker image ls [parámetros]
 ```
 
 Lista todas las imágenes almacenadas localmente.
+
+<br>
 
 ### Visualizar capas de imágenes
 
@@ -383,6 +415,8 @@ Para abrir los detalles de la imagen con dive, luego de abrir una imagen podemos
 - **flechas:** Navegar entre las capas y archivos.
 - **ctrl + u:** Filtra los archivos que fueron cambiados en la capa actual.
 - **ctrl + c:** Salir de dive.
+
+<br>
 
 ### Eliminar imágenes
 
@@ -412,6 +446,8 @@ El comando anterior es una extensión de **docker image rm** pero tiene la funci
 
 Los volúmenes son una parte fundamental al usar Docker para desarrollar aplicaciones contenerizadas ya que son las unidades virtuales de almacenamiento que normalmente usan los contenedores para guardar y compartir datos entre ellos de forma sencilla, usar volúmenes garantiza que los datos almacenados persistirán incluso si se detienen o eliminan todos los contenedores que hacían uso del volumen, cabe aclarar que los volúmenes son espacios de memoria del anfitrión que Docker usa para almacenar archivos de los contenedores, al igual que con los bind, pero a diferencia de los bind los volúmenes son administrados únicamente por Docker y no conceden al contenedor acceso al sistema de directorios del anfitrión, lo que los hace más seguros de usar que los bind, es por esto último que los volúmenes son la opción más recomendable para almacenar datos de los contenedores en una solución desplegada para producción. Los comandos provistos por Docker para administrar volúmenes se listan en esta sección.
 
+<br>
+
 ### Crear volúmenes
 
 ```bash
@@ -420,6 +456,8 @@ docker volume create [parámetros] [nombre]
 
 Crea un volúmen y le asigna el nombre indicado.
 
+<br>
+
 ### Listar volúmenes
 
 ```bash
@@ -427,6 +465,8 @@ docker volume ls [parámetros]
 ```
 
 Lista todos los volúmenes disponibles.
+
+<br>
 
 ### Eliminar volúmenes
 
@@ -456,6 +496,8 @@ El comando anterior es una extensión de **docker volume rm** pero tiene la func
 
 Las redes son una parte fundamental al usar Docker para desarrollar una aplicación contenerizada ya que usándolas se puede lograr que varios contenedores en la misma red se comunican, y cooperan generando un esquema de micro servicios, una de las principales ventajas de usar redes de Docker es que se puede usar directamente el nombre del contenedor para establecer las comunicaciones y a diferencia de el uso de conexiones directas por API usando redes de Docker no hace falta que un contenedor salga a internet para comunicarse con otro. Los comandos provistos por Docker para administrar redes se listan en esta sección.
 
+<br>
+
 ### Crear redes
 
 ```bash
@@ -467,6 +509,8 @@ Crea un nueva red de Docker, algunos de los parámetros más útiles al crear un
 - **--attachable:** Habilita la opción de agregar contendores manualmente a la red.
 - **--driver:** Indica el driver con el que debe crearse la nueva red.
 
+<br>
+
 ### Listar redes
 
 ```bash
@@ -475,6 +519,8 @@ docker network ls [parámetros]
 
 Lista todas las redes disponibles.
 
+<br>
+
 ### Inspeccionar redes
 
 ```bash
@@ -482,6 +528,8 @@ docker network inspect [parámetros] [nombre o id de la red]
 ```
 
 Muestra la configuración de la red indicada en formato JSON y ciertos datos de la red, incluidos los contenedores conectados.
+
+<br>
 
 ### Conectar y desconectar redes con contenedores
 
@@ -496,6 +544,8 @@ docker network disconnect [parámetros] [id o nombre de la red] [id o nombre del
 ```
 
 Desconecta un contenedor de una red.
+
+<br>
 
 ### Eliminar redes
 
@@ -548,6 +598,8 @@ Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los 
 - **ENTRYPOINT ["parte 1 del comando", "parte 2 del comando"]:** Exec form para ejecutar un entrypoint, ejecuta el entrypoint como proceso principal.
 - **ENTRYPOINT [comando entero]:** Bash form para ejecutar un entrypoint, ejecuta el entrypoint como proceso hijo del bash.
 - **VOLUME [ruta dentro del contenedor]:** Crea un volumen y monta los archivos de la ruta indicada en el volumen nuevo.
+
+<br>
 
 ### Tips de Dockerfile
 
