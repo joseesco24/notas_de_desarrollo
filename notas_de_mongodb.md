@@ -24,15 +24,31 @@
   - [Crear nueva base de datos o usar una ya creada](#crear-nueva-base-de-datos-o-usar-una-ya-creada)
   - [Ver nombre de la base de datos a la que está conectado el shell](#ver-nombre-de-la-base-de-datos-a-la-que-está-conectado-el-shell)
   - [Ver funciones disponibles](#ver-funciones-disponibles)
+    - [En una base de datos](#en-una-base-de-datos)
+    - [En una colección](#en-una-colección)
 - [**Operaciones con bases de datos en MongoDB Shell**](#operaciones-con-bases-de-datos-en-mongodb-shell)
 - [**Operaciones con colecciones y documentos en MongoDB Shell**](#operaciones-con-colecciones-y-documentos-en-mongodb-shell)
   - [Documentos de filtros](#documentos-de-filtros)
+    - [operador equal](#operador-equal)
+    - [operador lower than](#operador-lower-than)
+    - [operador and](#operador-and)
+    - [operador or](#operador-or)
   - [Insertar documentos en una colección](#insertar-documentos-en-una-colección)
+    - [Inserción individual](#inserción-individual)
+    - [Inserción grupal](#inserción-grupal)
   - [Buscar documentos en una colección](#buscar-documentos-en-una-colección)
+    - [Búsqueda individual](#búsqueda-individual)
+    - [Búsqueda grupal](#búsqueda-grupal)
   - [Actualizar documentos de una colección](#actualizar-documentos-de-una-colección)
+    - [Actualización individual](#actualización-individual)
+    - [Actualización grupal](#actualización-grupal)
   - [Eliminar documentos de una colección](#eliminar-documentos-de-una-colección)
+    - [Eliminación individual](#eliminación-individual)
+    - [Eliminación grupal](#eliminación-grupal)
   - [Operaciones de agregación](#operaciones-de-agregación)
   - [Manejo de índices](#manejo-de-índices)
+    - [Listar índices](#listar-índices)
+    - [Crear nuevo índice](#crear-nuevo-índice)
 
 <br>
 
@@ -302,7 +318,7 @@ db.inventory.help()
 
 Los documentos de filtros son parte fundamental de la mayoría de las operaciones [**CRUD**](https://docs.mongodb.com/manual/crud/) com MongoDB, ya que permiten, como su nombre indica, filtrar los documentos resultantes de una búsqueda, para esto MongoDB dispone de varios [**operadores**](https://docs.mongodb.com/manual/reference/operator/) que se usan en el MongoDB Shell para realizar todo tipo de operaciones necesarias para filtrar datos, a continuación se muestran algunos ejemplos de la sintaxis de algunos de los operadores más comunes.
 
-#### equal
+#### operador equal
 
 ```JavaScript
 db.inventory.find(
@@ -310,7 +326,7 @@ db.inventory.find(
 )
 ```
 
-#### lower than
+#### operador lower than
 
 ```JavaScript
 db.inventory.find(
@@ -318,7 +334,7 @@ db.inventory.find(
 )
 ```
 
-#### and
+#### operador and
 
 ```JavaScript
 db.inventory.find(
@@ -329,7 +345,7 @@ db.inventory.find(
 )
 ```
 
-#### or
+#### operador or
 
 ```JavaScript
 db.inventory.find(
