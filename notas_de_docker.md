@@ -32,19 +32,25 @@ Además de las capas con las que es necesario interactuar para usar Docker, Dock
 
 <br>
 
-- [Instalación de Docker en Mac o Windows](#instalación-de-docker-en-mac-o-windows)
-- [Instalación de Docker en Ubuntu](#instalación-de-docker-en-ubuntu)
-  - [Comandos de instalación de Docker](#comandos-de-instalación-de-docker)
+- [Instalación en sistemas Mac o Windows](#instalación-en-sistemas-mac-o-windows)
+- [Instalación en sistemas Ubuntu](#instalación-en-sistemas-ubuntu)
+  - [Comandos de instalación](#comandos-de-instalación)
   - [Comprobación de la instalación](#comprobación-de-la-instalación)
   - [En caso de errores](#en-caso-de-errores)
-- [Comandos básicos de administración en Docker](#comandos-básicos-de-administración-en-docker)
+- [Manejo básico de Docker](#manejo-básico-de-docker)
+  - [Abrir el manual](#abrir-el-manual)
+  - [Inspeccionar el uso de un comando](#inspeccionar-el-uso-de-un-comando)
+  - [Inspeccionar la versión del Docker Engine](#inspeccionar-la-versión-del-docker-engine)
+  - [Inspeccionar información del Docker Daemon](#inspeccionar-información-del-docker-daemon)
+  - [Inspeccionar los recursos usados por Docker](#inspeccionar-los-recursos-usados-por-docker)
+  - [Limpiar recursos residuales](#limpiar-recursos-residuales)
 - [Administración de contenedores](#administración-de-contenedores)
   - [Ejecutar contenedores](#ejecutar-contenedores)
     - [Apuntes adicionales sobre la ejecución de contenedores](#apuntes-adicionales-sobre-la-ejecución-de-contenedores)
   - [Renombrar contenedores](#renombrar-contenedores)
   - [Revisar el estado de los contenedores](#revisar-el-estado-de-los-contenedores)
   - [Mover archivos y directorio entre el anfitrión y los contenedores](#mover-archivos-y-directorio-entre-el-anfitrión-y-los-contenedores)
-  - [Visualizar los logs de los contenedores](#visualizar-los-logs-de-los-contenedores)
+  - [Inspeccionar los logs de un contenedor](#inspeccionar-los-logs-de-un-contenedor)
   - [Ejecutar tareas en contenedores](#ejecutar-tareas-en-contenedores)
     - [Comando pré construído para ver procesos dentro de un contenedor](#comando-pré-construído-para-ver-procesos-dentro-de-un-contenedor)
     - [Comando pré construído para ver usar el shell de un contenedor](#comando-pré-construído-para-ver-usar-el-shell-de-un-contenedor)
@@ -53,11 +59,11 @@ Además de las capas con las que es necesario interactuar para usar Docker, Dock
     - [Comando pré construído para eliminar contenedores](#comando-pré-construído-para-eliminar-contenedores)
 - [Administración de imágenes](#administración-de-imágenes)
   - [Construir imágenes](#construir-imágenes)
-  - [Bajar imágenes](#bajar-imágenes)
+  - [Descargar imágenes](#descargar-imágenes)
   - [Subir imágenes](#subir-imágenes)
-  - [Cambiar tag de imágenes](#cambiar-tag-de-imágenes)
+  - [Cambiar el tag de una imágen](#cambiar-el-tag-de-una-imágen)
   - [Listar imágenes](#listar-imágenes)
-  - [Visualizar capas de imágenes](#visualizar-capas-de-imágenes)
+  - [Inspeccionar capas de una imágen](#inspeccionar-capas-de-una-imágen)
   - [Eliminar imágenes](#eliminar-imágenes)
     - [Comando pré construído para eliminar imágenes](#comando-pré-construído-para-eliminar-imágenes)
 - [Administración de volúmenes](#administración-de-volúmenes)
@@ -75,20 +81,20 @@ Además de las capas con las que es necesario interactuar para usar Docker, Dock
 - [Comandos pre construidos de limpieza](#comandos-pre-construidos-de-limpieza)
 - [Archivos Dockerfile](#archivos-dockerfile)
   - [Tips de Dockerfile](#tips-de-dockerfile)
-    - [Ejemplo de cache por capas en Dockerfile](#ejemplo-de-cache-por-capas-en-dockerfile)
-    - [Ejemplo de .dockerignore](#ejemplo-de-dockerignore)
-    - [Ejemplo de entrypoint y cmd en Dockerfile](#ejemplo-de-entrypoint-y-cmd-en-dockerfile)
-    - [Ejemplo de un Dockerfile multi etapa](#ejemplo-de-un-dockerfile-multi-etapa)
+  - [Ejemplo de cache por capas en Dockerfile](#ejemplo-de-cache-por-capas-en-dockerfile)
+  - [Ejemplo de un archivo dockerignore](#ejemplo-de-un-archivo-dockerignore)
+  - [Ejemplo de entrypoint y cmd en Dockerfile](#ejemplo-de-entrypoint-y-cmd-en-dockerfile)
+  - [Ejemplo de un Dockerfile multi etapa](#ejemplo-de-un-dockerfile-multi-etapa)
 
 <br>
 
-## Instalación de Docker en Mac o Windows
+## Instalación en sistemas Mac o Windows
 
 Para realizar la instalación de Docker en MacOS o en Windows basta con descargar de [**Docker Hub**](https://hub.docker.com/) la aplicación de escritorio (Docker Desktop).
 
 <br>
 
-## Instalación de Docker en Ubuntu
+## Instalación en sistemas Ubuntu
 
 Esta pequeña guía de instalación está basada en la [**guía oficial**](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker Hub para instalar Docker Engine en **Ubuntu** mediante el sistema de repositorios, cabe aclarar que en Linux no hace falta instalar Docker Desktop como en Mac o en Windows, con solo Docker Engine es suficiente y además la manipulación del Docker Daemon en Linux se hace solo por consola, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de **Ubuntu**:
 
@@ -99,7 +105,7 @@ Esta pequeña guía de instalación está basada en la [**guía oficial**](https
 
 <br>
 
-### Comandos de instalación de Docker
+### Comandos de instalación
 
 ```bash
 sudo apt-get update
@@ -177,7 +183,11 @@ newgrp docker
 
 <br>
 
-## Comandos básicos de administración en Docker
+## Manejo básico de Docker
+
+<br>
+
+### Abrir el manual
 
 ```bash
 man docker
@@ -185,11 +195,19 @@ man docker
 
 Muestra el manual de Docker.
 
+<br>
+
+### Inspeccionar el uso de un comando
+
 ```unknown
 docker <comando> --help
 ```
 
 Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
+
+<br>
+
+### Inspeccionar la versión del Docker Engine
 
 ```bash
 docker --version
@@ -197,17 +215,29 @@ docker --version
 
 Permite ver la versión de Docker Engine instalada actualmente en la máquina anfitrión.
 
+<br>
+
+### Inspeccionar información del Docker Daemon
+
 ```unknown
 docker info <parámetros>
 ```
 
 Muestra información del Docker Daemon, como el número de imágenes descargadas, el estado del modo Swarm o incluso la versión del kernel, entre otros.
 
+<br>
+
+### Inspeccionar los recursos usados por Docker
+
 ```unknown
 docker stats <parámetros> <id o nombre del contenedor>
 ```
 
 Muestra los recursos que está utilizando cada contenedor y Docker en general, si se especifica un contenedor con su id o nombre se muestran solo los recursos que está usando ese contenedor.
+
+<br>
+
+### Limpiar recursos residuales
 
 ```unknown
 docker system prune <parámetros>
@@ -295,7 +325,7 @@ Copia un archivo o directorio desde la ruta de origen del contenedor indicado en
 
 <br>
 
-### Visualizar los logs de los contenedores
+### Inspeccionar los logs de un contenedor
 
 ```unknown
 docker logs <parámetros> <nombre o id del contenedor>
@@ -397,7 +427,7 @@ Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el c
 
 <br>
 
-### Bajar imágenes
+### Descargar imágenes
 
 ```unknown
 docker pull <parámetros> <nombre o id de la imagen>:<tag de la imagen>
@@ -425,7 +455,7 @@ Sube la imagen con el nombre y el tag especificado al repositorio indicado.
 
 <br>
 
-### Cambiar tag de imágenes
+### Cambiar el tag de una imágen
 
 ```unknown
 docker tag <nombre o id de la imagen de origen>:<tag de la imagen de origen> <repositorio o nombre de usuario de Docker Hub>/<nombre o id de la nueva imagen>:<tag de la nueva imagen>
@@ -445,7 +475,7 @@ Lista todas las imágenes almacenadas localmente.
 
 <br>
 
-### Visualizar capas de imágenes
+### Inspeccionar capas de una imágen
 
 ```unknown
 docker history <parámetros> <nombre o id de la imagen>:<tag de la imagen>
@@ -663,7 +693,7 @@ Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los 
 - El resultado de construir una imagen con un **Dockerfile** multi etapa siempre es la imagen resultante de la etapa final.
 - Cuando se realizan construcciones con múltiples etapas se utiliza el indicativo **as** junto a FROM para nombrar la imagen previa y además se puede utilizar **--from=&lt;nombre&gt;** para que una imagen posterior referencia una imagen previa.
 
-#### Ejemplo de cache por capas en Dockerfile
+### Ejemplo de cache por capas en Dockerfile
 
 ```dockerfile
 FROM node:14
@@ -677,7 +707,7 @@ CMD ["node", "index.js"]
 
 El efecto de utilizar el caché por capas en el **Dockerfile** anterior copiando al principio solo los archivos de dependencias, instalarlas y luego copiando de nuevo todos los archivos, es que al momento de instalar dependencias se pueda utilizar el caché siempre que no hayan habido cambios en las declaraciones de las dependencias, si se copiaran todos los archivos y luego se instalarán dependencias siempre sería necesario instalar dependencias, ya que Docker identificó cambios en la capa en la que se copian los archivos a pesar de que no sean los archivos de dependencias, por lo que no usaría cache en esa etapa y por lo tanto tampoco en la de instalación de dependencias, además del caché pr dependencias en el **Dockerfile** anterior se expone la aplicación mediante el puerto 3000 y se inicia un proceso usando un comando cmd en exec form.
 
-#### Ejemplo de .dockerignore
+### Ejemplo de un archivo dockerignore
 
 ```ignore
 *.log
@@ -693,7 +723,7 @@ README.md
 
 El principal efecto de el .dockerignore anterior es evitar que la imagen de la aplicación se llene de archivos innecesarios para su ejecución como los pertenecientes a git y además evita que ciertos archivos que podrían generar errores como los pertenecientes al directorio node_modules se copien en imagen.
 
-#### Ejemplo de entrypoint y cmd en Dockerfile
+### Ejemplo de entrypoint y cmd en Dockerfile
 
 ```dockerfile
 FROM ubuntu:trusty
@@ -703,7 +733,7 @@ CMD ["localhost"]
 
 El efecto de utilizar comandos mediante entrypoints y cmd en el **Dockerfile** anterior es que se puede cambiar la dirección a la que se hace ping al ejecutar un contenedor o al modificar el comando del contenedor sin poder alterar el resto del comando.
 
-#### Ejemplo de un Dockerfile multi etapa
+### Ejemplo de un Dockerfile multi etapa
 
 ```dockerfile
 # etapa 1.
