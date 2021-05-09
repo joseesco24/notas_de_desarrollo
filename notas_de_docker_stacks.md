@@ -70,7 +70,7 @@ Para utilizar Stack Files como origen de una arquitectura basada en Docker Swarm
 
 ### Comandos de administración general de un stack
 
-```bash
+```unknown
 docker stack <comando> --help
 ```
 
@@ -80,7 +80,7 @@ Muestra a grandes rasgos los comandos disponibles para administrar Docker Stacks
 
 ### Iniciar o actualizar un stack
 
-```bash
+```unknown
 docker stack deploy <parámetros> <nombre del nuevo stack>
 ```
 
@@ -93,7 +93,7 @@ Inicia o actualiza un stack, algunos de los parámetros más útiles al utilizar
 
 ### Listar stacks
 
-```bash
+```unknown
 docker stack ls <parámetros>
 ```
 
@@ -101,7 +101,7 @@ docker stack ls <parámetros>
 
 ### Listar tareas de un stack
 
-```bash
+```unknown
 docker stack ps <parámetros> <nombre del stack>
 ```
 
@@ -111,7 +111,7 @@ Lista todas las tareas pertenecientes a un stack.
 
 ### Listar servicios de un stack
 
-```bash
+```unknown
 docker stack services <parámetros> <nombre del stack>
 ```
 
@@ -121,7 +121,7 @@ Lista todos los servicios pertenecientes a un stack.
 
 ### Eliminar un stack
 
-```bash
+```unknown
 docker stack rm <parámetros> <nombre del stack>
 ```
 
