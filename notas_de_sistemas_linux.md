@@ -204,7 +204,7 @@ Algunos de los parámetros más utilizados junto a read son:
 
 - **-p:** Permite ingresar una frase o prompt antes de pedir una entrada.
 - **-s:** Modo Sigiloso. No muestra ningún carácter en la terminal, útil para contraseñas o información sensible.
-- **-n [número de caracteres]:** Permite leer como máximo cierto número de caracteres.
+- **-n &lt;número de caracteres&gt;:** Permite leer como máximo cierto número de caracteres.
 - **-r:** Toma el botón de retroceso o backspace como un carácter y no borra ningún otro carácter previamente escrito.
 
 <br>
