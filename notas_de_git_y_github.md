@@ -300,7 +300,7 @@ Algunos de los parámetros adicionales que también acepta **git branch** para t
 ### Fusionar ramas
 
 ```unknown
-git merge [parámetros] [nombre de la rama]
+git merge <parámetros> <nombre de la rama>
 ```
 
 Fusiona los archivos de la rama indicada con la rama actual, algunos de los parámetros más útiles al usar **git merge** son:
