@@ -45,6 +45,34 @@ Al gestionar una solución productiva basada en Docker Swarm es sumamente import
 
 <br>
 
+## Tabla de contenidos
+
+- [**Administración de un cluster**](#administración-de-un-cluster)
+  - [Comandos básicos de administración de un cluster](#comandos-básicos-de-administración-de-un-cluster)
+  - [Iniciar un cluster](#iniciar-un-cluster)
+  - [Conectar máquinas al cluster](#conectar-máquinas-al-cluster)
+  - [Desconectar máquinas del cluster](#desconectar-máquinas-del-cluster)
+- [**Administración de nodos pertenecientes a un cluster**](#administración-de-nodos-pertenecientes-a-un-cluster)
+  - [Comandos básicos de administración de nodos](#comandos-básicos-de-administración-de-nodos)
+  - [Listar los nodos conectados al cluster](#listar-los-nodos-conectados-al-cluster)
+  - [Inspeccionar un nodo](#inspeccionar-un-nodo)
+  - [Actualizar las configuraciones de un nodo](#actualizar-las-configuraciones-de-un-nodo)
+- [**Administración de servicios basados en Docker Swarm**](#administración-de-servicios-basados-en-docker-swarm)
+  - [Comandos básicos de administración de servicios](#comandos-básicos-de-administración-de-servicios)
+  - [Iniciar un servicio](#iniciar-un-servicio)
+  - [Visualizar servicios](#visualizar-servicios)
+  - [Visualizar tareas de un servicio](#visualizar-tareas-de-un-servicio)
+  - [Inspeccionar un servicio](#inspeccionar-un-servicio)
+  - [Modificar la configuración de un servicio](#modificar-la-configuración-de-un-servicio)
+  - [Visualizar logs de un servicio](#visualizar-logs-de-un-servicio)
+  - [Escalar un servicio](#escalar-un-servicio)
+  - [Restaurar un servicio a su estado anterior](#restaurar-un-servicio-a-su-estado-anterior)
+  - [Eliminar un servicio](#eliminar-un-servicio)
+- [**Administración de redes de Docker Swarm**](#administración-de-redes-de-docker-swarm)
+  - [Crear una red overlay](#crear-una-red-overlay)
+
+<br>
+
 ## Administración de un cluster
 
 El cluster, enjambre o Swarm es lo que permite que una aplicación basada en Docker Swarm escale sobre un hardware virtualmente infinito, es por esto que si bien el cluster no es muy difícil de administrar y no hay muchos comandos con los cuales administrarlo, es importante tener en cuenta los comandos necesarios para administrar y escalar el cluster, ya que del cluster depende que tanto puede escalar la aplicación a nivel de Hardware.
