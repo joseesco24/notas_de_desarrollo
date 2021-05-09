@@ -82,7 +82,7 @@ El cluster, enjambre o Swarm es lo que permite que una aplicación basada en Doc
 ### Comandos básicos de administración de un cluster
 
 ```bash
-docker swarm [comando] --help
+docker swarm <comando> --help
 ```
 
 Muestra a grandes rasgos los comandos disponibles para administrar el cluster y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
@@ -92,19 +92,19 @@ Muestra a grandes rasgos los comandos disponibles para administrar el cluster y 
 ### Iniciar un cluster
 
 ```bash
-docker swarm init [parámetros]
+docker swarm init <parámetros>
 ```
 
 Inicia un cluster utilizando la máquina actual como el primer manager del cluster, algunos de los parámetros más útiles al utilizar **docker swarm init** para iniciar un cluster son:
 
-- **--advertise-addr [ip]:** Al iniciar un cluster en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del cluster.
+- **--advertise-addr &lt; ip &gt;:** Al iniciar un cluster en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del cluster.
 
 <br>
 
 ### Conectar máquinas al cluster
 
 ```bash
-docker swarm join-token [parametros] [worker|manager]
+docker swarm join-token <parametros> <worker|manager>
 ```
 
 Genera un token que es utilizado para agregar una nueva máquina al cluster, hay dos tipos de tokens, uno para agregar managers y otro para agregar workers, al utilizar este comando además de imprimir el token se imprime el comando que permitirá utilizarlo para unir una máquina nueva al cluster.
@@ -114,7 +114,7 @@ Genera un token que es utilizado para agregar una nueva máquina al cluster, hay
 ### Desconectar máquinas del cluster
 
 ```bash
-docker swarm leave [parametros]
+docker swarm leave <parametros>
 ```
 
 Permite a la máquina actual abandonar el cluster, para dejar el cluster con **docker swarm leave** solo puede utilizarse un parámetro adicional, éste es:
@@ -132,7 +132,7 @@ Los nodos son las maquinas que estan conectadas al cluster, no hay muchas opcion
 ### Comandos básicos de administración de nodos
 
 ```bash
-docker node [comando] --help
+docker node <comando> --help
 ```
 
 Muestra a grandes rasgos los comandos disponibles para administrar los nodos de un cluster y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
@@ -142,7 +142,7 @@ Muestra a grandes rasgos los comandos disponibles para administrar los nodos de 
 ### Listar los nodos conectados al cluster
 
 ```bash
-docker node ls [parámetros]
+docker node ls <parámetros>
 ```
 
 Lista los nodos pertenecientes a un cluster, mostrando su id, nombre, estatus, disponibilidad, su versión de Docker Engine y si es manager o worker, además, se indica con \* el nodo en el que se está actualmente.
@@ -152,7 +152,7 @@ Lista los nodos pertenecientes a un cluster, mostrando su id, nombre, estatus, d
 ### Inspeccionar un nodo
 
 ```bash
-docker node inspect [parámetros] [id o nombre del nodo]
+docker node inspect <parámetros> <id o nombre del nodo>
 ```
 
 Muestra en detalle la configuración de un nodo en un archivo JSON, algunos de los parámetros más útiles al inspeccionar un nodo con **docker node inspect** son:
@@ -164,12 +164,12 @@ Muestra en detalle la configuración de un nodo en un archivo JSON, algunos de l
 ### Actualizar las configuraciones de un nodo
 
 ```bash
-docker node update [parámetros] [id o nombre del nodo]
+docker node update <parámetros> <id o nombre del nodo>
 ```
 
 Permite actualizar ciertas configuraciones de un nodo, algunos de los parámetros más útiles al actualizar la configuración de un nodo con **docker node update** son:
 
-- **--availability [active|pause|drain]:** Permite cambiar la disponibilidad de un nodo, en estado activo se le pueden asignar tareas al nodo sin problema, en estado pausado el nodo no recibe tareas y en estado de drenado se sacan del nodo todas las tareas y se envían a otros nodos antes de ser puesto el nodo en estado pausado.
+- **--availability &lt; active|pause|drain &gt;:** Permite cambiar la disponibilidad de un nodo, en estado activo se le pueden asignar tareas al nodo sin problema, en estado pausado el nodo no recibe tareas y en estado de drenado se sacan del nodo todas las tareas y se envían a otros nodos antes de ser puesto el nodo en estado pausado.
 
 <br>
 
@@ -182,7 +182,7 @@ Los servicios son la base de Docker Swarm, al igual que en Docker Compose un ser
 ### Comandos básicos de administración de servicios
 
 ```bash
-docker service [comando] --help
+docker service <comando> --help
 ```
 
 Muestra a grandes rasgos los comandos disponibles para administrar servicios y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
@@ -192,25 +192,25 @@ Muestra a grandes rasgos los comandos disponibles para administrar servicios y s
 ### Iniciar un servicio
 
 ```bash
-docker service create [parámetros] [nombre o id de la imagen] [comando]
+docker service create <parámetros> <nombre o id de la imagen> <comando>
 ```
 
 Permite iniciar un servicio basado en Docker Swarm especificando la imagen y el comando del proceso principal, si no se especifica el comando del proceso principal se usa el proceso principal por defecto, algunos de los parámetros más útiles al iniciar un servicio con **docker service create** son:
 
-- **--name [nombre del servicio]:** Establece el nombre indicado como nombre del servicio.
-- **--publish [puerto del anfitrión]:[puerto del contenedor]:** Utiliza la red ingress y el routing mesh de Docker Swarm para exponer la aplicación.
-- **--replicas [número de réplicas]:** Establece el número de réplicas o contenedores que deben ejecutarse de cierto servicio.
-- **--constraint node.role==[worker|manager]:** Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
+- **--name &lt; nombre del servicio &gt;:** Establece el nombre indicado como nombre del servicio.
+- **--publish &lt; puerto del anfitrión &gt;:&lt; puerto del contenedor &gt;:** Utiliza la red ingress y el routing mesh de Docker Swarm para exponer la aplicación.
+- **--replicas &lt; número de réplicas &gt;:** Establece el número de réplicas o contenedores que deben ejecutarse de cierto servicio.
+- **--constraint node.role==&lt; worker|manager &gt;:** Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
 - **--network:** Conecta los servicios a cierta red que tenga un driver overlay, si no se indica una red Docker conectara los servicios a la red ingress por defecto.
-- **--label [metadatos]:** Permite agregar un listado de metadatos útiles para los otros servicios que necesitan encontrar el nuevo servicio.
-  **--mode [replicated|global|replicated-job|global-job]:** Cambia el modo en el que se ejecuta un servicio.
+- **--label &lt; metadatos &gt;:** Permite agregar un listado de metadatos útiles para los otros servicios que necesitan encontrar el nuevo servicio.
+  **--mode &lt; replicated|global|replicated-job|global-job &gt;:** Cambia el modo en el que se ejecuta un servicio.
 
 <br>
 
 ### Visualizar servicios
 
 ```bash
-docker service ls [parámetros]
+docker service ls <parámetros>
 ```
 
 Lista todos los servicios del cluster junto con su id, nombre, modo, número de réplicas, imagen y puertos.
@@ -220,7 +220,7 @@ Lista todos los servicios del cluster junto con su id, nombre, modo, número de 
 ### Visualizar tareas de un servicio
 
 ```bash
-docker service ps [parámetros] [id o nombre del servicio]
+docker service ps <parámetros> <id o nombre del servicio>
 ```
 
 Muestra las tareas de uno o más servicios, además de su id, nombre, imagen, nodo de ejecución, estado actual y deseado, errores y puertos.
@@ -230,7 +230,7 @@ Muestra las tareas de uno o más servicios, además de su id, nombre, imagen, no
 ### Inspeccionar un servicio
 
 ```bash
-docker service inspect [parámetros] [id o nombre del servicio]
+docker service inspect <parámetros> <id o nombre del servicio>
 ```
 
 Muestra en detalle la configuración de un servicio en un archivo JSON, algunos de los parámetros más útiles al inspeccionar un servicio con **docker service inspect** son:
@@ -242,28 +242,28 @@ Muestra en detalle la configuración de un servicio en un archivo JSON, algunos 
 ### Modificar la configuración de un servicio
 
 ```bash
-docker service update [parámetros] [id o nombre del servicio]
+docker service update <parámetros> <id o nombre del servicio>
 ```
 
 Actualiza la configuración de un servicio, algunos de los parámetros más útiles al actualizar las configuraciones de un servicio con **docker service update** son:
 
-- **--args [comando]:** Cambia el comando o los parámetros de la tarea principal según la configuración de la imagen del servicio.
-- **--replicas [número de réplicas]:** Actualiza el número de réplicas de servicio.
-- **--update-parallelism [número de tareas en paralelo]:** Cambia el número de tareas que se actualizan en paralelo, 0 actualiza todo en paralelo.
-- **--update-order [start-first|stop-first]:** Cambia el orden en el que se actualizan las tareas, con stop-first las tareas se finalizan antes de iniciar las nuevas tareas, con start-first las tareas viejas no se apagan hasta que las nuevas están arriba.
-- **--update-failure-action [pause|continue|rollback]:** Cambia la acción por defecto que se debe realizar en caso de fallar una tarea.
-- **--update-max-failure-ratio [porcentaje de fallo]:** Indica el porcentaje de tareas que pueden fallar antes de realizar la acción en caso de fallo.
-- **--rollback-parallelism [número de tareas de restauración paralelo]:** Cambia el número de tareas que se restauran en paralelo, 0 actualiza todo en paralelo.
-- **--constraint-add node.role==[worker|manager]:** Modifica las restricciones de carga de un servicio a nodos con cierto rol.
-- **--env-add [nombre de la variable de entorno]=[valor de la variable de entorno]:** Agrega o actualiza el valor de una o varias variables de entorno.
-- **--image [nombre o id de la imagen]:** Cambia en tiempo de ejecución la imagen que ejecutan los contenedores de un servicio.
+- **--args &lt; comando &gt;:** Cambia el comando o los parámetros de la tarea principal según la configuración de la imagen del servicio.
+- **--replicas &lt; número de réplicas &gt;:** Actualiza el número de réplicas de servicio.
+- **--update-parallelism &lt; número de tareas en paralelo &gt;:** Cambia el número de tareas que se actualizan en paralelo, 0 actualiza todo en paralelo.
+- **--update-order &lt; start-first|stop-first &gt;:** Cambia el orden en el que se actualizan las tareas, con stop-first las tareas se finalizan antes de iniciar las nuevas tareas, con start-first las tareas viejas no se apagan hasta que las nuevas están arriba.
+- **--update-failure-action &lt; pause|continue|rollback &gt;:** Cambia la acción por defecto que se debe realizar en caso de fallar una tarea.
+- **--update-max-failure-ratio &lt; porcentaje de fallo &gt;:** Indica el porcentaje de tareas que pueden fallar antes de realizar la acción en caso de fallo.
+- **--rollback-parallelism &lt; número de tareas de restauración paralelo &gt;:** Cambia el número de tareas que se restauran en paralelo, 0 actualiza todo en paralelo.
+- **--constraint-add node.role==&lt; worker|manager &gt;:** Modifica las restricciones de carga de un servicio a nodos con cierto rol.
+- **--env-add &lt; nombre de la variable de entorno &gt;=&lt; valor de la variable de entorno &gt;:** Agrega o actualiza el valor de una o varias variables de entorno.
+- **--image &lt; nombre o id de la imagen &gt;:** Cambia en tiempo de ejecución la imagen que ejecutan los contenedores de un servicio.
 
 <br>
 
 ### Visualizar logs de un servicio
 
 ```bash
-docker service logs [parámetros] [id o nombre del servicio|id o nombre de la tarea]
+docker service logs <parámetros> <id o nombre del servicio|id o nombre de la tarea>
 ```
 
 Muestra los logs de los de un servicio o tarea, algunos de los parámetros más útiles al visualizar los logs de un servicio o tarea con **docker service logs** son:
@@ -275,7 +275,7 @@ Muestra los logs de los de un servicio o tarea, algunos de los parámetros más 
 ### Escalar un servicio
 
 ```bash
-docker service scale [parámetros] [id o nombre del servicio]=[número de réplicas]
+docker service scale <parámetros> <id o nombre del servicio>=<número de réplicas>
 ```
 
 Permite escalar uno o varios servicios estableciendo el número de réplicas necesarias por cada servicio.
@@ -285,7 +285,7 @@ Permite escalar uno o varios servicios estableciendo el número de réplicas nec
 ### Restaurar un servicio a su estado anterior
 
 ```bash
-docker service rollback [parámetros] [id o nombre del servicio]
+docker service rollback <parámetros> <id o nombre del servicio>
 ```
 
 Permite restaurar un servicio a su estado anterior.
@@ -295,7 +295,7 @@ Permite restaurar un servicio a su estado anterior.
 ### Eliminar un servicio
 
 ```bash
-docker service rm [id o nombre del servicio]
+docker service rm <id o nombre del servicio>
 ```
 
 Elimina un servicio junto con todos sus contenedores y tareas.
@@ -311,7 +311,7 @@ Al utilizar Docker en modo Swarm Docker necesita dos tipos de redes adicionales 
 ### Crear una red overlay
 
 ```bash
-docker network create --driver overlay [nombre de la red]
+docker network create --driver overlay <nombre de la red>
 ```
 
 Crea una red con un driver overlay la cual tiene conectividad con todo el cluster y funciona de forma similar a la red ingress, por lo que uno o varios servicios se pueden conectar a la nueva red.
