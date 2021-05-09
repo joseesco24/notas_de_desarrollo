@@ -97,7 +97,7 @@ docker swarm init <parámetros>
 
 Inicia un cluster utilizando la máquina actual como el primer manager del cluster, algunos de los parámetros más útiles al utilizar **docker swarm init** para iniciar un cluster son:
 
-- **--advertise-addr &lt; ip &gt;:** Al iniciar un cluster en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del cluster.
+- **--advertise-addr &lt;ip&gt;:** Al iniciar un cluster en una máquina con múltiples interfaces de red se utiliza para indicar al manager cuál de estas debe utilizar para las comunicaciones del cluster.
 
 <br>
 
@@ -169,7 +169,7 @@ docker node update <parámetros> <id o nombre del nodo>
 
 Permite actualizar ciertas configuraciones de un nodo, algunos de los parámetros más útiles al actualizar la configuración de un nodo con **docker node update** son:
 
-- **--availability &lt; active|pause|drain &gt;:** Permite cambiar la disponibilidad de un nodo, en estado activo se le pueden asignar tareas al nodo sin problema, en estado pausado el nodo no recibe tareas y en estado de drenado se sacan del nodo todas las tareas y se envían a otros nodos antes de ser puesto el nodo en estado pausado.
+- **--availability &lt;active|pause|drain&gt;:** Permite cambiar la disponibilidad de un nodo, en estado activo se le pueden asignar tareas al nodo sin problema, en estado pausado el nodo no recibe tareas y en estado de drenado se sacan del nodo todas las tareas y se envían a otros nodos antes de ser puesto el nodo en estado pausado.
 
 <br>
 
@@ -197,13 +197,13 @@ docker service create <parámetros> <nombre o id de la imagen> <comando>
 
 Permite iniciar un servicio basado en Docker Swarm especificando la imagen y el comando del proceso principal, si no se especifica el comando del proceso principal se usa el proceso principal por defecto, algunos de los parámetros más útiles al iniciar un servicio con **docker service create** son:
 
-- **--name &lt; nombre del servicio &gt;:** Establece el nombre indicado como nombre del servicio.
-- **--publish &lt; puerto del anfitrión &gt;:&lt; puerto del contenedor &gt;:** Utiliza la red ingress y el routing mesh de Docker Swarm para exponer la aplicación.
-- **--replicas &lt; número de réplicas &gt;:** Establece el número de réplicas o contenedores que deben ejecutarse de cierto servicio.
-- **--constraint node.role==&lt; worker|manager &gt;:** Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
+- **--name &lt;nombre del servicio&gt;:** Establece el nombre indicado como nombre del servicio.
+- **--publish &lt;puerto del anfitrión&gt;:&lt;puerto del contenedor&gt;:** Utiliza la red ingress y el routing mesh de Docker Swarm para exponer la aplicación.
+- **--replicas &lt;número de réplicas&gt;:** Establece el número de réplicas o contenedores que deben ejecutarse de cierto servicio.
+- **--constraint node.role==&lt;worker|manager&gt;:** Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
 - **--network:** Conecta los servicios a cierta red que tenga un driver overlay, si no se indica una red Docker conectara los servicios a la red ingress por defecto.
-- **--label &lt; metadatos &gt;:** Permite agregar un listado de metadatos útiles para los otros servicios que necesitan encontrar el nuevo servicio.
-  **--mode &lt; replicated|global|replicated-job|global-job &gt;:** Cambia el modo en el que se ejecuta un servicio.
+- **--label &lt;metadatos&gt;:** Permite agregar un listado de metadatos útiles para los otros servicios que necesitan encontrar el nuevo servicio.
+  **--mode &lt;replicated|global|replicated-job|global-job&gt;:** Cambia el modo en el que se ejecuta un servicio.
 
 <br>
 
@@ -247,16 +247,16 @@ docker service update <parámetros> <id o nombre del servicio>
 
 Actualiza la configuración de un servicio, algunos de los parámetros más útiles al actualizar las configuraciones de un servicio con **docker service update** son:
 
-- **--args &lt; comando &gt;:** Cambia el comando o los parámetros de la tarea principal según la configuración de la imagen del servicio.
-- **--replicas &lt; número de réplicas &gt;:** Actualiza el número de réplicas de servicio.
-- **--update-parallelism &lt; número de tareas en paralelo &gt;:** Cambia el número de tareas que se actualizan en paralelo, 0 actualiza todo en paralelo.
-- **--update-order &lt; start-first|stop-first &gt;:** Cambia el orden en el que se actualizan las tareas, con stop-first las tareas se finalizan antes de iniciar las nuevas tareas, con start-first las tareas viejas no se apagan hasta que las nuevas están arriba.
-- **--update-failure-action &lt; pause|continue|rollback &gt;:** Cambia la acción por defecto que se debe realizar en caso de fallar una tarea.
-- **--update-max-failure-ratio &lt; porcentaje de fallo &gt;:** Indica el porcentaje de tareas que pueden fallar antes de realizar la acción en caso de fallo.
-- **--rollback-parallelism &lt; número de tareas de restauración paralelo &gt;:** Cambia el número de tareas que se restauran en paralelo, 0 actualiza todo en paralelo.
-- **--constraint-add node.role==&lt; worker|manager &gt;:** Modifica las restricciones de carga de un servicio a nodos con cierto rol.
-- **--env-add &lt; nombre de la variable de entorno &gt;=&lt; valor de la variable de entorno &gt;:** Agrega o actualiza el valor de una o varias variables de entorno.
-- **--image &lt; nombre o id de la imagen &gt;:** Cambia en tiempo de ejecución la imagen que ejecutan los contenedores de un servicio.
+- **--args &lt;comando&gt;:** Cambia el comando o los parámetros de la tarea principal según la configuración de la imagen del servicio.
+- **--replicas &lt;número de réplicas&gt;:** Actualiza el número de réplicas de servicio.
+- **--update-parallelism &lt;número de tareas en paralelo&gt;:** Cambia el número de tareas que se actualizan en paralelo, 0 actualiza todo en paralelo.
+- **--update-order &lt;start-first|stop-first&gt;:** Cambia el orden en el que se actualizan las tareas, con stop-first las tareas se finalizan antes de iniciar las nuevas tareas, con start-first las tareas viejas no se apagan hasta que las nuevas están arriba.
+- **--update-failure-action &lt;pause|continue|rollback&gt;:** Cambia la acción por defecto que se debe realizar en caso de fallar una tarea.
+- **--update-max-failure-ratio &lt;porcentaje de fallo&gt;:** Indica el porcentaje de tareas que pueden fallar antes de realizar la acción en caso de fallo.
+- **--rollback-parallelism &lt;número de tareas de restauración paralelo&gt;:** Cambia el número de tareas que se restauran en paralelo, 0 actualiza todo en paralelo.
+- **--constraint-add node.role==&lt;worker|manager&gt;:** Modifica las restricciones de carga de un servicio a nodos con cierto rol.
+- **--env-add &lt;nombre de la variable de entorno&gt;=&lt;valor de la variable de entorno&gt;:** Agrega o actualiza el valor de una o varias variables de entorno.
+- **--image &lt;nombre o id de la imagen&gt;:** Cambia en tiempo de ejecución la imagen que ejecutan los contenedores de un servicio.
 
 <br>
 
