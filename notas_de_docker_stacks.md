@@ -4,12 +4,10 @@
 
 <br>
 
-## Tabla de contenidos
-
-- [**Archivos stack-file.yml**](#archivos-stack-fileyml)
+- [Archivos stack-file.yml](#archivos-stack-fileyml)
   - [Tips de Docker Stacks](#tips-de-docker-stacks)
   - [Ejemplo de un Stack File](#ejemplo-de-un-stack-file)
-- [**Subcomandos de Docker Stacks**](#subcomandos-de-docker-stacks)
+- [Subcomandos de Docker Stacks](#subcomandos-de-docker-stacks)
   - [Comandos de administración general de un stack](#comandos-de-administración-general-de-un-stack)
   - [Iniciar o actualizar un stack](#iniciar-o-actualizar-un-stack)
   - [Listar stacks](#listar-stacks)

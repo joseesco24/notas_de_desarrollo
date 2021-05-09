@@ -4,19 +4,17 @@
 
 <br>
 
-## Tabla de contenidos
-
-- [**Componentes principales de MongoDB**](#componentes-principales-de-mongodb)
+- [Componentes principales de MongoDB](#componentes-principales-de-mongodb)
   - [Bases de datos](#bases-de-datos)
   - [Colecciones](#colecciones)
   - [Documentos](#documentos)
-- [**Ecosistema de MongoDB**](#ecosistema-de-mongodb)
+- [Ecosistema de MongoDB](#ecosistema-de-mongodb)
   - [MongoDB Server](#mongodb-server)
   - [MongoDB Shell](#mongodb-shell)
   - [Conectores de MongoDB](#conectores-de-mongodb)
-- [**Relaciones entre documentos en MongoDB**](#relaciones-entre-documentos-en-mongodb)
-- [**Conexión con MongoDB Server**](#conexión-con-mongodb-server)
-- [**Operaciones básicas en MongoDB Shell**](#operaciones-básicas-con-mongodb-shell)
+- [Relaciones entre documentos en MongoDB](#relaciones-entre-documentos-en-mongodb)
+- [Conexión con MongoDB Server](#conexión-con-mongodb-server)
+- [Operaciones básicas con MongoDB Shell](#operaciones-básicas-con-mongodb-shell)
   - [Iniciar shell](#iniciar-shell)
   - [Limpiar shell](#limpiar-shell)
   - [Ver bases de datos disponibles](#ver-bases-de-datos-disponibles)
@@ -26,8 +24,8 @@
   - [Ver funciones disponibles](#ver-funciones-disponibles)
     - [En una base de datos](#en-una-base-de-datos)
     - [En una colección](#en-una-colección)
-- [**Operaciones con bases de datos en MongoDB Shell**](#operaciones-con-bases-de-datos-en-mongodb-shell)
-- [**Operaciones con colecciones y documentos en MongoDB Shell**](#operaciones-con-colecciones-y-documentos-en-mongodb-shell)
+- [Operaciones con bases de datos en MongoDB Shell](#operaciones-con-bases-de-datos-en-mongodb-shell)
+- [Operaciones con colecciones y documentos en MongoDB Shell](#operaciones-con-colecciones-y-documentos-en-mongodb-shell)
   - [Documentos de filtros](#documentos-de-filtros)
     - [operador equal](#operador-equal)
     - [operador lower than](#operador-lower-than)

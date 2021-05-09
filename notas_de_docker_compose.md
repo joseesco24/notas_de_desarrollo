@@ -5,15 +5,13 @@ Docker Compose se basa en servicios, no en contenedores, un servicio en Docker p
 
 <br>
 
-## Tabla de contenidos
-
-- [**Instalación de Docker Compose en Ubuntu**](#instalación-de-docker-compose-en-ubuntu)
-- [**Archivos docker-compose.yml**](#archivos-docker-composeyml)
+- [Instalación de Docker Compose en Ubuntu](#instalación-de-docker-compose-en-ubuntu)
+- [Archivos docker-compose.yml](#archivos-docker-composeyml)
   - [Tips de Docker Compose](#tips-de-docker-compose)
   - [Ejemplo de un Docker Compose con dos servicios y volúmenes](#ejemplo-de-un-docker-compose-con-dos-servicios-y-volúmenes)
   - [Ejemplo de un Docker Compose con dos servicios y un bind mount](#ejemplo-de-un-docker-compose-con-dos-servicios-y-un-bind-mount)
   - [Ejemplo de un docker-compose.override](#ejemplo-de-un-docker-composeoverride)
-- [**Subcomandos de Docker Compose**](#subcomandos-de-docker-compose)
+- [Subcomandos de Docker Compose](#subcomandos-de-docker-compose)
   - [Comandos de administración general de una aplicación compose](#comandos-de-administración-general-de-una-aplicación-compose)
   - [Construir las imágenes necesarias para una aplicación compose](#construir-las-imágenes-necesarias-para-una-aplicación-compose)
   - [Iniciar una aplicación compose](#iniciar-una-aplicación-compose)

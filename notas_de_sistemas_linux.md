@@ -21,12 +21,10 @@ En los sistemas Linux existen varios tipos de shell de las cuales el usuario pue
 
 <br>
 
-## Tabla de contenidos
-
-- [**Comandos Bash**](#comandos-bash)
+- [Comandos Bash](#comandos-bash)
   - [Comandos básicos](#comandos-básicos)
   - [Comandos de compresión de archivos](#comandos-de-compresión-de-archivos)
-- [**Scripts Bash**](#scripts-bash)
+- [Scripts Bash](#scripts-bash)
   - [Crear un script Bash](#crear-un-script-bash)
   - [Otorgar permisos de ejecución al script](#otorgar-permisos-de-ejecución-al-script)
   - [Establecer Bash como intérprete del script](#establecer-bash-como-intérprete-del-script)

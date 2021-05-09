@@ -45,19 +45,17 @@ Al gestionar una solución productiva basada en Docker Swarm es sumamente import
 
 <br>
 
-## Tabla de contenidos
-
-- [**Administración de un cluster**](#administración-de-un-cluster)
+- [Administración de un cluster](#administración-de-un-cluster)
   - [Comandos básicos de administración de un cluster](#comandos-básicos-de-administración-de-un-cluster)
   - [Iniciar un cluster](#iniciar-un-cluster)
   - [Conectar máquinas al cluster](#conectar-máquinas-al-cluster)
   - [Desconectar máquinas del cluster](#desconectar-máquinas-del-cluster)
-- [**Administración de nodos pertenecientes a un cluster**](#administración-de-nodos-pertenecientes-a-un-cluster)
+- [Administración de nodos pertenecientes a un cluster](#administración-de-nodos-pertenecientes-a-un-cluster)
   - [Comandos básicos de administración de nodos](#comandos-básicos-de-administración-de-nodos)
   - [Listar los nodos conectados al cluster](#listar-los-nodos-conectados-al-cluster)
   - [Inspeccionar un nodo](#inspeccionar-un-nodo)
   - [Actualizar las configuraciones de un nodo](#actualizar-las-configuraciones-de-un-nodo)
-- [**Administración de servicios basados en Docker Swarm**](#administración-de-servicios-basados-en-docker-swarm)
+- [Administración de servicios basados en Docker Swarm](#administración-de-servicios-basados-en-docker-swarm)
   - [Comandos básicos de administración de servicios](#comandos-básicos-de-administración-de-servicios)
   - [Iniciar un servicio](#iniciar-un-servicio)
   - [Visualizar servicios](#visualizar-servicios)
@@ -68,7 +66,7 @@ Al gestionar una solución productiva basada en Docker Swarm es sumamente import
   - [Escalar un servicio](#escalar-un-servicio)
   - [Restaurar un servicio a su estado anterior](#restaurar-un-servicio-a-su-estado-anterior)
   - [Eliminar un servicio](#eliminar-un-servicio)
-- [**Administración de redes de Docker Swarm**](#administración-de-redes-de-docker-swarm)
+- [Administración de redes de Docker Swarm](#administración-de-redes-de-docker-swarm)
   - [Crear una red overlay](#crear-una-red-overlay)
 
 <br>
