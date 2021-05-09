@@ -81,7 +81,7 @@ El cluster, enjambre o Swarm es lo que permite que una aplicación basada en Doc
 
 ### Comandos básicos de administración de un cluster
 
-```bash
+```unknown
 docker swarm <comando> --help
 ```
 
@@ -91,7 +91,7 @@ Muestra a grandes rasgos los comandos disponibles para administrar el cluster y 
 
 ### Iniciar un cluster
 
-```bash
+```unknown
 docker swarm init <parámetros>
 ```
 
@@ -103,7 +103,7 @@ Inicia un cluster utilizando la máquina actual como el primer manager del clust
 
 ### Conectar máquinas al cluster
 
-```bash
+```unknown
 docker swarm join-token <parametros> <worker|manager>
 ```
 
@@ -113,7 +113,7 @@ Genera un token que es utilizado para agregar una nueva máquina al cluster, hay
 
 ### Desconectar máquinas del cluster
 
-```bash
+```unknown
 docker swarm leave <parametros>
 ```
 
@@ -131,7 +131,7 @@ Los nodos son las maquinas que estan conectadas al cluster, no hay muchas opcion
 
 ### Comandos básicos de administración de nodos
 
-```bash
+```unknown
 docker node <comando> --help
 ```
 
@@ -141,7 +141,7 @@ Muestra a grandes rasgos los comandos disponibles para administrar los nodos de 
 
 ### Listar los nodos conectados al cluster
 
-```bash
+```unknown
 docker node ls <parámetros>
 ```
 
@@ -151,7 +151,7 @@ Lista los nodos pertenecientes a un cluster, mostrando su id, nombre, estatus, d
 
 ### Inspeccionar un nodo
 
-```bash
+```unknown
 docker node inspect <parámetros> <id o nombre del nodo>
 ```
 
@@ -163,7 +163,7 @@ Muestra en detalle la configuración de un nodo en un archivo JSON, algunos de l
 
 ### Actualizar las configuraciones de un nodo
 
-```bash
+```unknown
 docker node update <parámetros> <id o nombre del nodo>
 ```
 
@@ -181,7 +181,7 @@ Los servicios son la base de Docker Swarm, al igual que en Docker Compose un ser
 
 ### Comandos básicos de administración de servicios
 
-```bash
+```unknown
 docker service <comando> --help
 ```
 
@@ -191,7 +191,7 @@ Muestra a grandes rasgos los comandos disponibles para administrar servicios y s
 
 ### Iniciar un servicio
 
-```bash
+```unknown
 docker service create <parámetros> <nombre o id de la imagen> <comando>
 ```
 
@@ -209,7 +209,7 @@ Permite iniciar un servicio basado en Docker Swarm especificando la imagen y el 
 
 ### Visualizar servicios
 
-```bash
+```unknown
 docker service ls <parámetros>
 ```
 
@@ -219,7 +219,7 @@ Lista todos los servicios del cluster junto con su id, nombre, modo, número de 
 
 ### Visualizar tareas de un servicio
 
-```bash
+```unknown
 docker service ps <parámetros> <id o nombre del servicio>
 ```
 
@@ -229,7 +229,7 @@ Muestra las tareas de uno o más servicios, además de su id, nombre, imagen, no
 
 ### Inspeccionar un servicio
 
-```bash
+```unknown
 docker service inspect <parámetros> <id o nombre del servicio>
 ```
 
@@ -241,7 +241,7 @@ Muestra en detalle la configuración de un servicio en un archivo JSON, algunos 
 
 ### Modificar la configuración de un servicio
 
-```bash
+```unknown
 docker service update <parámetros> <id o nombre del servicio>
 ```
 
@@ -262,7 +262,7 @@ Actualiza la configuración de un servicio, algunos de los parámetros más úti
 
 ### Visualizar logs de un servicio
 
-```bash
+```unknown
 docker service logs <parámetros> <id o nombre del servicio|id o nombre de la tarea>
 ```
 
@@ -274,7 +274,7 @@ Muestra los logs de los de un servicio o tarea, algunos de los parámetros más 
 
 ### Escalar un servicio
 
-```bash
+```unknown
 docker service scale <parámetros> <id o nombre del servicio>=<número de réplicas>
 ```
 
@@ -284,7 +284,7 @@ Permite escalar uno o varios servicios estableciendo el número de réplicas nec
 
 ### Restaurar un servicio a su estado anterior
 
-```bash
+```unknown
 docker service rollback <parámetros> <id o nombre del servicio>
 ```
 
@@ -294,7 +294,7 @@ Permite restaurar un servicio a su estado anterior.
 
 ### Eliminar un servicio
 
-```bash
+```unknown
 docker service rm <id o nombre del servicio>
 ```
 
@@ -310,7 +310,7 @@ Al utilizar Docker en modo Swarm Docker necesita dos tipos de redes adicionales 
 
 ### Crear una red overlay
 
-```bash
+```unknown
 docker network create --driver overlay <nombre de la red>
 ```
 
