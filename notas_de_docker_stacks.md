@@ -71,7 +71,7 @@ Para utilizar Stack Files como origen de una arquitectura basada en Docker Swarm
 ### Comandos de administración general de un stack
 
 ```bash
-docker stack [comando] --help
+docker stack <comando> --help
 ```
 
 Muestra a grandes rasgos los comandos disponibles para administrar Docker Stacks y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
@@ -81,20 +81,20 @@ Muestra a grandes rasgos los comandos disponibles para administrar Docker Stacks
 ### Iniciar o actualizar un stack
 
 ```bash
-docker stack deploy [parámetros] [nombre del nuevo stack]
+docker stack deploy <parámetros> <nombre del nuevo stack>
 ```
 
 Inicia o actualiza un stack, algunos de los parámetros más útiles al utilizar **docker stack deploy** para iniciar un stack son:
 
-- **--compose-file [ruta al Stack File]:** Establece el Compose File que se utilizará para generar el nuevo stack.
-- **--orchestrator [swarm|kubernetes|all]:** Establece el orquestador del stack, por defecto se usa swarm.
+- **--compose-file &lt;ruta al Stack File&gt;:** Establece el Compose File que se utilizará para generar el nuevo stack.
+- **--orchestrator &lt;swarm|kubernetes|all&gt;:** Establece el orquestador del stack, por defecto se usa swarm.
 
 <br>
 
 ### Listar stacks
 
 ```bash
-docker stack ls [parámetros]
+docker stack ls <parámetros>
 ```
 
 <br>
@@ -102,7 +102,7 @@ docker stack ls [parámetros]
 ### Listar tareas de un stack
 
 ```bash
-docker stack ps [parámetros] [nombre del stack]
+docker stack ps <parámetros> <nombre del stack>
 ```
 
 Lista todas las tareas pertenecientes a un stack.
@@ -112,7 +112,7 @@ Lista todas las tareas pertenecientes a un stack.
 ### Listar servicios de un stack
 
 ```bash
-docker stack services [parámetros] [nombre del stack]
+docker stack services <parámetros> <nombre del stack>
 ```
 
 Lista todos los servicios pertenecientes a un stack.
@@ -122,7 +122,7 @@ Lista todos los servicios pertenecientes a un stack.
 ### Eliminar un stack
 
 ```bash
-docker stack rm [parámetros] [nombre del stack]
+docker stack rm <parámetros> <nombre del stack>
 ```
 
 Elimina un stack junto con todas sus tareas, contenedores, redes y volúmenes.
