@@ -32,6 +32,47 @@ Además de las capas con las que es necesario interactuar para usar Docker, Dock
 
 <br>
 
+## Tabla de contenidos
+
+- [**Instalación de Docker en Mac o Windows**](#instalación-de-docker-en-mac-o-windows)
+- [**Instalación de Docker en Ubuntu**](#instalación-de-docker-en-ubuntu)
+  - [Comandos de instalación de Docker](#comandos-de-instalación-de-docker)
+  - [Comprobación de la instalación](#comprobación-de-la-instalación)
+  - [En caso de errores](#en-caso-de-errores)
+- [**Comandos básicos de administración en Docker**](#comandos-básicos-de-administración-en-docker)
+- [**Administración de contenedores**](#administración-de-contenedores)
+  - [Ejecutar contenedores](#ejecutar-contenedores)
+  - [Renombrar contenedores](#renombrar-contenedores)
+  - [Revisar el estado de los contenedores](#revisar-el-estado-de-los-contenedores)
+  - [Mover archivos y directorio entre el anfitrión y los contenedores](#mover-archivos-y-directorio-entre-el-anfitrión-y-los-contenedores)
+  - [Visualizar los logs de los contenedores](#visualizar-los-logs-de-los-contenedores)
+  - [Ejecutar tareas en contenedores](#ejecutar-tareas-en-contenedores)
+  - [Apagar contenedores](#apagar-contenedores)
+  - [Eliminar contenedores](#eliminar-contenedores)
+- [**Administración de imágenes**](#administración-de-imágenes)
+  - [Construir imágenes](#construir-imágenes)
+  - [Bajar imágenes](#bajar-imágenes)
+  - [Subir imágenes](#subir-imágenes)
+  - [Cambiar tag de imágenes](#cambiar-tag-de-imágenes)
+  - [Listar imágenes](#listar-imágenes)
+  - [Visualizar capas de imágenes](#visualizar-capas-de-imágenes)
+  - [Eliminar imágenes](#eliminar-imágenes)
+- [**Administración de volúmenes**](#administración-de-volúmenes)
+  - [Crear volúmenes](#crear-volúmenes)
+  - [Listar volúmenes](#listar-volúmenes)
+  - [Eliminar volúmenes](#eliminar-volúmenes)
+- [**Administración de redes**](#administración-de-redes)
+  - [Crear redes](#crear-redes)
+  - [Listar redes](#listar-redes)
+  - [Inspeccionar redes](#inspeccionar-redes)
+  - [Conectar y desconectar redes con contenedores](#conectar-y-desconectar-redes-con-contenedores)
+  - [Eliminar redes](#eliminar-redes)
+- [**Comandos pre construidos de limpieza**](#comandos-pre-construidos-de-limpieza)
+- [**Archivos Dockerfile**](#archivos-dockerfile)
+  - [Tips de Dockerfile](#tips-de-Dockerfile)
+
+<br>
+
 ## Instalación de Docker en Mac o Windows
 
 Para realizar la instalación de Docker en MacOS o en Windows basta con descargar de [**Docker Hub**](https://hub.docker.com/) la aplicación de escritorio (Docker Desktop).
@@ -49,7 +90,7 @@ Esta pequeña guía de instalación está basada en la [**guía oficial**](https
 
 <br>
 
-## Comandos de instalación de Docker
+### Comandos de instalación de Docker
 
 ```bash
 sudo apt-get update
