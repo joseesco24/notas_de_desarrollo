@@ -91,9 +91,9 @@ Permite aplicar ciertas configuraciones a un repositorio, algunos de los paráme
 
 Algunos de los parámetros configurables más importantes de un repositorio son:
 
-- **user.email=<correo del usuario>:** Cambia el correo electrónico del usuario.
-- **user.name=<nombre del usuario>:** Cambia el nombre del usuario.
-- **alias.<nombre del alias> "<comando>":** Permite agregar a Git alias para nuevos comandos.
+- **user.email=&lt;correo del usuario&gt;:** Cambia el correo electrónico del usuario.
+- **user.name=&lt;nombre del usuario&gt;:** Cambia el nombre del usuario.
+- **alias.&lt;nombre del alias&gt; "&lt;comando&gt;":** Permite agregar a Git alias para nuevos comandos.
 
 <br>
 
@@ -125,7 +125,7 @@ git commit <parámetros>
 
 Envía los últimos cambios desde el área de staging al repositorio para que este los registre en su base de datos de cambios, creando así una nueva versión basándose en los cambios realizados sobre uno o varios archivos, al crear una nueva versión a esta se le asigna un Id de versión y los cambios realizados en los archivo que son visibles para todos en el repositorio, por defecto los commit se realizan sobre la rama **master** si no se cambia la rama de trabajo actual, algunos de los parámetros más útiles al utilizar **git commit** para enviar los cambios del área de staging al repositorio son:
 
-- **-m, --message "<mensaje>":** Permite agregar un mensaje al commit, idealmente todos los commits deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión de los cambios hechos.
+- **-m, --message "&lt;mensaje&gt;":** Permite agregar un mensaje al commit, idealmente todos los commits deben tener un mensaje que describa los cambios que se realizaron en la última versión subida al repositorio para facilitar la comprensión de los cambios hechos.
 - **-a, --all:** Indica a Git que al hacer el commit pase al área de staging todos los cambios en los archivos que han sido previamente rastreados antes de hacer el commit, es equivalente a realizar un **git add** solo sobre los archivos que ya han sido registrados y luego un **git commit** estándar, por lo que sí se han agregado nuevos archivos desde el último commit si es necesario utilizar un **git add** primero, incluso usando este parámetro.
 - **--amend:** Permite "remendar" el último commit pegando los últimos cambios al último commit.
 
@@ -208,7 +208,7 @@ Elimina todos los archivos no rastreados por el repositorio del directorio de tr
 ### Eliminar archivos del repositorio
 
 ```unknown
-git rm [parámetros] [nombre del archivo]
+git rm <parámetros> <nombre del archivo>
 ```
 
 Elimina uno o varios archivos del área de staging o del repositorio, **git rm** necesita alguno de los siguientes parámetros para ejecutarse correctamente:
@@ -256,7 +256,7 @@ git branch <parámetros>
 
 La acción por defecto de **git branch** si no se dan parámetros y no se da un nombre es listar las ramas disponibles resaltando la rama actual, algunos de los parámetros más útiles para listar ramas usando **git branch** son:
 
-- **-l, --list <patron>:** Es equivalente a usar **git branch** sin parámetros, pero adicionalmente se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
+- **-l, --list &lt;patron&gt;:** Es equivalente a usar **git branch** sin parámetros, pero adicionalmente se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
 - **-r, --remotes:** Modifica la función del comando para listar las ramas remotas, al combinarlo con **--list** se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
 - **-a, --all:** Modifica la función del comando para listar ramas locales y remotas, al combinarlo con **--list** se puede proporcionar un patrón para listar solo las ramas cuyo nombre coincide con el patrón dado.
 
@@ -289,8 +289,8 @@ Para eliminar una rama se debe usar el comando **git branch** junto al parámetr
 
 Algunos de los parámetros adicionales que también acepta **git branch** para tener funciones adicionales son:
 
-- **-m, --move <nuevo nombre>:** Renombra la rama actual.
-- **-c, --copy <nombre de copia de la rama>:** Crear una copia de la rama actual.
+- **-m, --move &lt;nuevo nombre&gt;:** Renombra la rama actual.
+- **-c, --copy &lt;nombre de copia de la rama&gt;:** Crear una copia de la rama actual.
 - **-f, --force:** Restablece el estado de la rama actual a su estado inicial, incluso si el nombre inicial de la rama fue asignado a otra rama que aún existe, al combinarse con **--move** permite renombrar la rama actual incluso si el nombre nuevo ya existe y al combinarse con **--copy** permite crear una copia de la rama actual incluso si el nombre de la copia ya existe.
 - **-M:** Atajo para la combinación de **--move --force**.
 - **-C:** Atajo para la combinación de **--copy --force**.
@@ -305,7 +305,7 @@ git merge [parámetros] [nombre de la rama]
 
 Fusiona los archivos de la rama indicada con la rama actual, algunos de los parámetros más útiles al usar **git merge** son:
 
-- **-m <mensaje>:** Un merge por defecto genera una nueva versión y un commit, por lo que es necesario que haya un mensaje que indique los cambios que se hicieron en el último commit.
+- **-m &lt;mensaje&gt;:** Un merge por defecto genera una nueva versión y un commit, por lo que es necesario que haya un mensaje que indique los cambios que se hicieron en el último commit.
 
 Al fusionar dos o más ramas con **merge** pueden presentarse conflictos cuando en las ramas se alteran las mismas líneas de diferentes formas, para solventar estos conflictos se deben borrar todas las líneas que no correspondan con los cambios que se desean conservar en la rama, la forma en la que Git representa un conflicto en un archivo es usando **<<<<<<< HEAD** para indicar donde inicia el código de la rama actual, **>>>>>>> new_branch_to_merge_later** para indicar donde finaliza el código de la rama que se quiere fusionar con la rama actual (en este caso **new_branch_to_merge_later**) y **=======** para indicar el final del código de la rama actual y el inicio del de la rama que se quiere fusionar, un ejemplo de cómo se representa un conflicto en Git sería el siguiente:
 
@@ -538,7 +538,7 @@ git clone <parámetros> <url del repositorio remoto>
 
 Crea una copia de todos los archivos del repositorio remoto en el repositorio local y en el directorio de trabajo, sin cambiar nada en el área de staging, además vincula la copia local con la remota, por lo que si se tiene los permisos se pueden hacer acciones como **git push**, **git pull** o **git fetch** sin realizar configuraciones adicionales, algunos de los parámetros más útiles al clonar un repositorio con **git clone** son:
 
-- **-o <nombre del repositorio remoto>, --origin <nombre del repositorio remoto>:** Cambia el nombre de referencia del repositorio remoto para no usar **origin** como nombre de referencia.
+- **-o &lt;nombre del repositorio remoto&gt;, --origin &lt;nombre del repositorio remoto&gt;:** Cambia el nombre de referencia del repositorio remoto para no usar **origin** como nombre de referencia.
 
 <br>
 
