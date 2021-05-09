@@ -203,7 +203,7 @@ Permite iniciar un servicio basado en Docker Swarm especificando la imagen y el 
 - **--constraint node.role==&lt;worker|manager&gt;:** Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
 - **--network:** Conecta los servicios a cierta red que tenga un driver overlay, si no se indica una red Docker conectara los servicios a la red ingress por defecto.
 - **--label &lt;metadatos&gt;:** Permite agregar un listado de metadatos útiles para los otros servicios que necesitan encontrar el nuevo servicio.
-  **--mode &lt;replicated|global|replicated-job|global-job&gt;:** Cambia el modo en el que se ejecuta un servicio.
+- **--mode &lt;replicated|global|replicated-job|global-job&gt;:** Cambia el modo en el que se ejecuta un servicio.
 
 <br>
 
