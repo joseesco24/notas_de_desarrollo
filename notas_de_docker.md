@@ -176,8 +176,8 @@ man docker
 
 Muestra el manual de Docker.
 
-```bash
-docker [comando] --help
+```unknown
+docker <comando> --help
 ```
 
 Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar un comando en concreto, al especificar un comando se puede profundizar más en el uso del comando y los parámetros adicionales que acepta para alterar su funcionamiento.
@@ -188,20 +188,20 @@ docker --version
 
 Permite ver la versión de Docker Engine instalada actualmente en la máquina anfitrión.
 
-```bash
-docker info [parámetros]
+```unknown
+docker info <parámetros>
 ```
 
 Muestra información del Docker Daemon, como el número de imágenes descargadas, el estado del modo Swarm o incluso la versión del kernel, entre otros.
 
-```bash
-docker stats [parámetros] [id o nombre del contenedor]
+```unknown
+docker stats <parámetros> <id o nombre del contenedor>
 ```
 
 Muestra los recursos que está utilizando cada contenedor y Docker en general, si se especifica un contenedor con su id o nombre se muestran solo los recursos que está usando ese contenedor.
 
-```bash
-docker system prune [parámetros]
+```unknown
+docker system prune <parámetros>
 ```
 
 Elimina todos los volúmenes, contenedores y redes que no se estén usando, además de imágenes residuales.
@@ -216,22 +216,22 @@ La administración de contenedores es una actividad clave al utilizar Docker ya 
 
 ### Ejecutar contenedores
 
-```bash
-docker run [parámetros] [imagen] [comando]
+```unknown
+docker run <parámetros> <imagen> <comando>
 ```
 
 Ejecuta un contenedor usando la imagen especificada y ejecutando el comando indicado como proceso principal, en caso de ser dado un comando, si no es definido un comando para ejecutarse como proceso principal ni en la imagen (por defecto) ni por comando el contenedor nunca se inicia ya que un contenedor se detiene cuando su proceso principal finaliza y al no haber un proceso principal realmente el contenedor nunca arranca, algunos de los parámetros más útiles al ejecutar un contenedor con **docker run** son:
 
-- **--name [nombre del nuevo contenedor]:** Permite asignar un nombre personalizado al contenedor el cual puede ser utilizado para referenciar al contenedor como si fuera su id, además es único e irrepetible, en caso de no especificarse un nombre con este parámetro Docker asigna un nombre aleatorio al contenedor.
+- **--name &lt;nombre del nuevo contenedor&gt;:** Permite asignar un nombre personalizado al contenedor el cual puede ser utilizado para referenciar al contenedor como si fuera su id, además es único e irrepetible, en caso de no especificarse un nombre con este parámetro Docker asigna un nombre aleatorio al contenedor.
 - **--interactive:** Ejecuta el contenedor y abre una terminal mediante la cual se puede interactuar con el contenedor, al combinarlo con **--tty** se consigue una terminal interactiva entre el anfitrión y el contenedor.
 - **--tty:** Muestra en la salida estándar los resultados de ejecutar un comando, al combinarlo con **--interactive** se consigue una terminal interactiva entre el anfitrión y el contenedor.
 - **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su ID para poder manipularlo posteriormente en caso de que haga falta.
-- **--publish [puerto del anfitrión]:[puerto del contenedor]:** Expone el puerto designado del contenedor en el puerto designado de la máquina anfitrión.
+- **--publish &lt;puerto del anfitrión&gt;:&lt;puerto del contenedor&gt;:** Expone el puerto designado del contenedor en el puerto designado de la máquina anfitrión.
 - **--rm:** Indica a Docker que ese contenedor debe eliminarse tan pronto como se detiene, es decir al finalizar su proceso principal.
-- **--volume [ruta en el anfitrión]:[ruta en el contenedor]:** Crea un bind vinculando la ruta designada del contenedor con la ruta designada del anfitrión.
-- **--mount src=[nombre o id del volumen],dst=[ruta en el contenedor]:** Vincula la ruta designada del contenedor a un volumen de Docker.
-- **--memory [cantidad de memoria ram designada] [g|m]:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que necesite.
-- **--env [nombre de la variable de ambiente]=[valor de la variable de ambiente]:** Establece una variable de ambiente a la que tendrá acceso el contenedor.
+- **--volume &lt;ruta en el anfitrión&gt;:&lt;ruta en el contenedor&gt;:** Crea un bind vinculando la ruta designada del contenedor con la ruta designada del anfitrión.
+- **--mount src=&lt;nombre o id del volumen&gt;,dst=&lt;ruta en el contenedor&gt;:** Vincula la ruta designada del contenedor a un volumen de Docker.
+- **--memory &lt;cantidad de memoria ram designada&gt; &lt;g|m&gt;:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que necesite.
+- **--env &lt;nombre de la variable de ambiente&gt;=&lt;valor de la variable de ambiente&gt;:** Establece una variable de ambiente a la que tendrá acceso el contenedor.
 
 #### Apuntes adicionales sobre la ejecución de contenedores
 
@@ -243,8 +243,8 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando indi
 
 ### Renombrar contenedores
 
-```bash
-docker rename [nombre o id del contenedor] [nuevo nombre]
+```unknown
+docker rename <nombre o id del contenedor> <nuevo nombre>
 ```
 
 Renombra el contenedor indicado.
@@ -253,8 +253,8 @@ Renombra el contenedor indicado.
 
 ### Revisar el estado de los contenedores
 
-```bash
-docker ps [parámetros]
+```unknown
+docker ps <parámetros>
 ```
 
 Muestra todos los contenedores activos en la máquina anfitrión, algunos de los parámetros más útiles al ver los datos de los contenedores activos con **docker ps** son:
@@ -262,8 +262,8 @@ Muestra todos los contenedores activos en la máquina anfitrión, algunos de los
 - **--all:** Incluye los contenedores que están actualmente inactivos.
 - **--latest:** Muestra sólo los datos del último contenedor ejecutado.
 
-```bash
-docker inspect [parámetros] [nombre o id del contenedor]
+```unknown
+docker inspect <parámetros> <nombre o id del contenedor>
 ```
 
 Muestra en formato JSON toda la información de la configuración del contenedor indicado.
@@ -272,14 +272,14 @@ Muestra en formato JSON toda la información de la configuración del contenedor
 
 ### Mover archivos y directorio entre el anfitrión y los contenedores
 
-```bash
-docker cp [parámetros] [ruta host] [nombre o id del contenedor]:[ruta contenedor]
+```unknown
+docker cp <parámetros> <ruta host> <nombre o id del contenedor>:<ruta contenedor>
 ```
 
 Copia un archivo o directorio desde la ruta de origen de la máquina anfitrión en la ruta de destino del contenedor indicado.
 
-```bash
-docker cp [parámetros] [nombre o id del contenedor]:[ruta contenedor] [ruta host]
+```unknown
+docker cp <parámetros> <nombre o id del contenedor>:<ruta contenedor> <ruta host>
 ```
 
 Copia un archivo o directorio desde la ruta de origen del contenedor indicado en la ruta de destino de la máquina anfitrión.
@@ -288,21 +288,21 @@ Copia un archivo o directorio desde la ruta de origen del contenedor indicado en
 
 ### Visualizar los logs de los contenedores
 
-```bash
-docker logs [parámetros] [nombre o id del contenedor]
+```unknown
+docker logs <parámetros> <nombre o id del contenedor>
 ```
 
 Sirve para ver los logs del contenedor indicado, algunos de los parámetros más útiles al ver los logs de un contenedor con **docker logs** son:
 
 - **--follow:** Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitrión a la salida estándar del contenedor para logs para verlos en la medida en la que se imprimen.
-- **--tail [número de logs]:** Imprime los últimos logs limitándose al número de logs indicado.
+- **--tail &lt;número de logs&gt;:** Imprime los últimos logs limitándose al número de logs indicado.
 
 <br>
 
 ### Ejecutar tareas en contenedores
 
-```bash
-docker exec [parámetros] [nombre o id del contenedor] [comando]
+```unknown
+docker exec <parámetros> <nombre o id del contenedor> <comando>
 ```
 
 Permite ejecutar un comando en un contenedor activo, algunos de los parámetros más útiles al ejecutar un comando en un contenedor con **docker exec** son:
@@ -311,16 +311,16 @@ Permite ejecutar un comando en un contenedor activo, algunos de los parámetros 
 
 #### Comando pré construído para ver procesos dentro de un contenedor
 
-```bash
-docker exec [nombre o id del contenedor] ps -ef
+```unknown
+docker exec <nombre o id del contenedor> ps -ef
 ```
 
 El comando anterior es una extensión de **docker exec** que muestra los procesos que se están ejecutando dentro del contenedor indicado.
 
 #### Comando pré construído para ver usar el shell de un contenedor
 
-```bash
-docker exec -it [nombre o id del contenedor] /bin/bash
+```unknown
+docker exec -it <nombre o id del contenedor> /bin/bash
 ```
 
 El comando anterior es una extensión de **docker exec** que permite usar de forma interactiva el shell de un contenedor.
@@ -329,14 +329,14 @@ El comando anterior es una extensión de **docker exec** que permite usar de for
 
 ### Apagar contenedores
 
-```bash
-docker stop [parámetros] [nombre o id del contenedor]
+```unknown
+docker stop <parámetros> <nombre o id del contenedor>
 ```
 
 Apaga manualmente un contenedor usando la señal **sigterm**, en caso de que la señal **sigterm** no logre apagar el contenedor se envía la señal **sigkill** 5 segundos después.
 
-```bash
-docker kill [parámetros] [nombre o id del contenedor]
+```unknown
+docker kill <parámetros> <nombre o id del contenedor>
 ```
 
 Apaga manualmente un contenedor usando la señal **sigkill**.
@@ -345,16 +345,16 @@ Apaga manualmente un contenedor usando la señal **sigkill**.
 
 ### Eliminar contenedores
 
-```bash
-docker rm [parámetros] [nombre o id del contenedor]
+```unknown
+docker rm <parámetros> <nombre o id del contenedor>
 ```
 
 Sirve para borrar contenedores, Docker por defecto no elimina ningún contenedor, al finalizar el proceso principal del contenedor simplemente lo detiene, por lo que es usual tener que borrar contenedores manualmente para mantener el espacio de trabajo ordenado y evitar llenar el almacenamiento con contenedores que no es están usando, algunos de los parámetros más útiles al borrar un contenedor con **docker rm** son:
 
 - **--force:** Detiene un contenedor actualmente activo para así poder eliminarlo, la detención del contenedor se fuerza usando la señal **sigkill**.
 
-```bash
-docker container prune [parámetros]
+```unknown
+docker container prune <parámetros>
 ```
 
 Borra todos los contenedores inactivos.
@@ -377,21 +377,21 @@ En términos de relevancia las imágenes en Docker podrían considerarse como el
 
 ### Construir imágenes
 
-```bash
-docker build [parámetros] [ruta del contexto]
+```unknown
+docker build <parámetros> <ruta del contexto>
 ```
 
 Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, **Dockerfile** y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, es importante que siempre en el contexto haya un **Dockerfile**, ya que el **Dockerfile** es el que indica la forma en la que se construye una imagen, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
 
-- **--tag [nombre de la nueva imagen]:[tag de la nueva imagen]:** Permite personalizar el nombre y tag de la nueva imagen que será construida.
-- **--file [ruta del Dockerfile]:** Permite cambiar o especificar la ruta al **Dockerfile** con el cual se construirá la imagen.
+- **--tag &lt;nombre de la nueva imagen&gt;:&lt;tag de la nueva imagen&gt;:** Permite personalizar el nombre y tag de la nueva imagen que será construida.
+- **--file &lt;ruta del Dockerfile&gt;:** Permite cambiar o especificar la ruta al **Dockerfile** con el cual se construirá la imagen.
 
 <br>
 
 ### Bajar imágenes
 
-```bash
-docker pull [parámetros] [nombre o id de la imagen]:[tag de la imagen]
+```unknown
+docker pull <parámetros> <nombre o id de la imagen>:<tag de la imagen>
 ```
 
 Baja la imagen con el nombre y el tag especificado, si no se especifica un tag se baja la versión más reciente (latest) o por defecto de la imagen.
@@ -402,14 +402,14 @@ Baja la imagen con el nombre y el tag especificado, si no se especifica un tag s
 
 Antes de subir una imagen a nuestro repositorio es necesario iniciar sesión con nuestro usuario en el CLI de Docker, esto se hace con el siguiente comando.
 
-```bash
-docker login [parámetros]
+```unknown
+docker login <parámetros>
 ```
 
 Una vez iniciada la sesión ya podemos cargar nuestra imagen a nuestro repositorio con el siguiente comando.
 
-```bash
-docker push [parámetros] [repositorio o nombre de usuario de Docker Hub]/[nombre o id de la imagen]:[tag de la imagen]
+```unknown
+docker push <parámetros> <repositorio o nombre de usuario de Docker Hub>/<nombre o id de la imagen>:<tag de la imagen>
 ```
 
 Sube la imagen con el nombre y el tag especificado al repositorio indicado.
@@ -418,8 +418,8 @@ Sube la imagen con el nombre y el tag especificado al repositorio indicado.
 
 ### Cambiar tag de imágenes
 
-```bash
-docker tag [nombre o id de la imagen de origen]:[tag de la imagen de origen] [repositorio o nombre de usuario de Docker Hub]/[nombre o id de la nueva imagen]:[tag de la nueva imagen]
+```unknown
+docker tag <nombre o id de la imagen de origen>:<tag de la imagen de origen> <repositorio o nombre de usuario de Docker Hub>/<nombre o id de la nueva imagen>:<tag de la nueva imagen>
 ```
 
 Crea una nueva imagen con un nuevo tag que hace referencia a una ya existente y que se puede publicar en nuestro repositorio.
@@ -428,8 +428,8 @@ Crea una nueva imagen con un nuevo tag que hace referencia a una ya existente y 
 
 ### Listar imágenes
 
-```bash
-docker image ls [parámetros]
+```unknown
+docker image ls <parámetros>
 ```
 
 Lista todas las imágenes almacenadas localmente.
@@ -438,16 +438,16 @@ Lista todas las imágenes almacenadas localmente.
 
 ### Visualizar capas de imágenes
 
-```bash
-docker history [parámetros] [nombre o id de la imagen]:[tag de la imagen]
+```unknown
+docker history <parámetros> <nombre o id de la imagen>:<tag de la imagen>
 ```
 
 Muestra las capas de una imagen de forma simplificada.
 
 Otra herramienta muy útil para visualizar las capas de una imagen con más profundidad es [**dive**](https://github.com/wagoodman/dive), dive a diferencia del CLI de Docker da más información sobre las capas de cada imagen, algunos de los comandos básicos para ver información de las imágenes con dive son:
 
-```bash
-dive [nombre o id de la imagen]:[tag de la imagen]
+```unknown
+dive <nombre o id de la imagen>:<tag de la imagen>
 ```
 
 Para abrir los detalles de la imagen con dive, luego de abrir una imagen podemos usar las siguientes combinaciones de teclas para navegar por las secciones de dive:
@@ -461,14 +461,14 @@ Para abrir los detalles de la imagen con dive, luego de abrir una imagen podemos
 
 ### Eliminar imágenes
 
-```bash
-docker image rm [parámetros] [nombre o id de la imagen]:[tag de la imagen]
+```unknown
+docker image rm <parámetros> <nombre o id de la imagen>:<tag de la imagen>
 ```
 
 Elimina la imagen indicada.
 
-```bash
-docker image prune [parámetros]
+```unknown
+docker image prune <parámetros>
 ```
 
 Elimina todas las imágenes residuales o inactivas.
@@ -491,8 +491,8 @@ Los volúmenes son una parte fundamental al usar Docker para desarrollar aplicac
 
 ### Crear volúmenes
 
-```bash
-docker volume create [parámetros] [nombre]
+```unknown
+docker volume create <parámetros> <nombre>
 ```
 
 Crea un volúmen y le asigna el nombre indicado.
@@ -501,8 +501,8 @@ Crea un volúmen y le asigna el nombre indicado.
 
 ### Listar volúmenes
 
-```bash
-docker volume ls [parámetros]
+```unknown
+docker volume ls <parámetros>
 ```
 
 Lista todos los volúmenes disponibles.
@@ -511,14 +511,14 @@ Lista todos los volúmenes disponibles.
 
 ### Eliminar volúmenes
 
-```bash
-docker volume rm [parámetros] [nombre]
+```unknown
+docker volume rm <parámetros> <nombre>
 ```
 
 Elimina el volumen indicado.
 
-```bash
-docker volume prune [parámetros]
+```unknown
+docker volume prune <parámetros>
 ```
 
 Elimina todos los volúmenes residuales o inactivos almacenados localmente.
@@ -541,8 +541,8 @@ Las redes son una parte fundamental al usar Docker para desarrollar una aplicaci
 
 ### Crear redes
 
-```bash
-docker network create [parámetros] [nombre]
+```unknown
+docker network create <parámetros> <nombre>
 ```
 
 Crea un nueva red de Docker, algunos de los parámetros más útiles al crear una red con **docker network create** son:
@@ -554,8 +554,8 @@ Crea un nueva red de Docker, algunos de los parámetros más útiles al crear un
 
 ### Listar redes
 
-```bash
-docker network ls [parámetros]
+```unknown
+docker network ls <parámetros>
 ```
 
 Lista todas las redes disponibles.
@@ -564,8 +564,8 @@ Lista todas las redes disponibles.
 
 ### Inspeccionar redes
 
-```bash
-docker network inspect [parámetros] [nombre o id de la red]
+```unknown
+docker network inspect <parámetros> <nombre o id de la red>
 ```
 
 Muestra la configuración de la red indicada en formato JSON y ciertos datos de la red, incluidos los contenedores conectados.
@@ -574,14 +574,14 @@ Muestra la configuración de la red indicada en formato JSON y ciertos datos de 
 
 ### Conectar y desconectar redes con contenedores
 
-```bash
-docker network connect [parámetros] [id o nombre de la red] [id o nombre del contenedor]
+```unknown
+docker network connect <parámetros> <id o nombre de la red> <id o nombre del contenedor>
 ```
 
 Conecta un contenedor a una red.
 
-```bash
-docker network disconnect [parámetros] [id o nombre de la red] [id o nombre del contenedor]
+```unknown
+docker network disconnect <parámetros> <id o nombre de la red> <id o nombre del contenedor>
 ```
 
 Desconecta un contenedor de una red.
@@ -590,14 +590,14 @@ Desconecta un contenedor de una red.
 
 ### Eliminar redes
 
-```bash
-docker network rm [parámetros] [nombre]
+```unknown
+docker network rm <parámetros> <nombre>
 ```
 
 Elimina la red indicada.
 
-```bash
-docker network prune [parámetros]
+```unknown
+docker network prune <parámetros>
 ```
 
 Elimina todas las redes residuales o inactivas.
@@ -629,16 +629,16 @@ docker network rm $(docker network ls -q)
 
 Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un **Dockerfile** en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un **Dockerfile** y sus funciones se listan a continuación:
 
-- **FROM [nombre de la imagen]:[versión de la imagen]:** Indica la imagen base, o primera capa que se va a utilizar para construir la nueva imagen, siempre es el primer comando de un **Dockerfile**.
-- **RUN [comando]:** Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con RUN solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un **Dockerfile** que implemente esta instrucción.
-- **WORKDIR [ruta dentro del contenedor]:** Establece un directorio de trabajo que será el directorio en el que se posicionará el contenedor al iniciar su ejecución.
-- **COPY [ruta archivo 0, ruta archivo 1, ... ruta archivo n, ruta destino contenedor]:** Copia todos los archivos indicados en la ruta de destino de la imagen, cabe aclarar que Docker en tiempo de construcción solo da acceso a la imagen al directorio especificado como contexto, por lo que los archivos que se quieren copiar a la imagen deben estar dentro del contexto de construcción para poder ser empaquetados dentro de la misma.
-- **EXPOSE [número de puerto]:** Expone un puerto del contenedor permitiendo que ese puerto sea vinculable o bindable a un puerto de la máquina anfitrión.
-- **CMD ["parte 1 del comando", "parte 2 del comando"]:** Exec form para ejecutar un comando, ejecutar procesos con exec form hace que los procesos se ejecuten directamente, lo que pone el proceso indicado como proceso principal del contenedor.
-- **CMD [comando entero]:** Bash form para ejecutar un comando, ejecutar procesos con bash form hace que los procesos se ejecuten como procesos hijos de un bash, lo que pone al bash como proceso principal del contenedor en lugar del proceso indicado.
-- **ENTRYPOINT ["parte 1 del comando", "parte 2 del comando"]:** Exec form para ejecutar un entrypoint, ejecuta el entrypoint como proceso principal.
-- **ENTRYPOINT [comando entero]:** Bash form para ejecutar un entrypoint, ejecuta el entrypoint como proceso hijo del bash.
-- **VOLUME [ruta dentro del contenedor]:** Crea un volumen y monta los archivos de la ruta indicada en el volumen nuevo.
+- **FROM &lt;nombre de la imagen&gt;:&lt;versión de la imagen&gt;:** Indica la imagen base, o primera capa que se va a utilizar para construir la nueva imagen, siempre es el primer comando de un **Dockerfile**.
+- **RUN &lt;comando&gt;:** Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con RUN solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un **Dockerfile** que implemente esta instrucción.
+- **WORKDIR &lt;ruta dentro del contenedor&gt;:** Establece un directorio de trabajo que será el directorio en el que se posicionará el contenedor al iniciar su ejecución.
+- **COPY &lt;ruta archivo 0, ruta archivo 1, ... ruta archivo n, ruta destino contenedor]:** Copia todos los archivos indicados en la ruta de destino de la imagen, cabe aclarar que Docker en tiempo de construcción solo da acceso a la imagen al directorio especificado como contexto, por lo que los archivos que se quieren copiar a la imagen deben estar dentro del contexto de construcción para poder ser empaquetados dentro de la misma.
+- **EXPOSE &lt;número de puerto&gt;:** Expone un puerto del contenedor permitiendo que ese puerto sea vinculable o bindable a un puerto de la máquina anfitrión.
+- **CMD &lt;"parte 1 del comando", "parte 2 del comando"&gt;:** Exec form para ejecutar un comando, ejecutar procesos con exec form hace que los procesos se ejecuten directamente, lo que pone el proceso indicado como proceso principal del contenedor.
+- **CMD &lt;comando entero&gt;:** Bash form para ejecutar un comando, ejecutar procesos con bash form hace que los procesos se ejecuten como procesos hijos de un bash, lo que pone al bash como proceso principal del contenedor en lugar del proceso indicado.
+- **ENTRYPOINT &lt;"parte 1 del comando", "parte 2 del comando"&gt;:** Exec form para ejecutar un entrypoint, ejecuta el entrypoint como proceso principal.
+- **ENTRYPOINT &lt;comando entero&gt;:** Bash form para ejecutar un entrypoint, ejecuta el entrypoint como proceso hijo del bash.
+- **VOLUME &lt;ruta dentro del contenedor&gt;:** Crea un volumen y monta los archivos de la ruta indicada en el volumen nuevo.
 
 <br>
 
@@ -652,7 +652,7 @@ Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los 
 - Cuando cuando se utilizan entrypoints y cmd en un mismo **Dockerfile** es importante que ambos utilicen o bash form o exec form, no es recomendable que usen formas diferentes de ejecutar el comando.
 - En Docker se pueden hacer construcciones con múltiples etapas en los **Dockerfile**, al utilizar múltiples etapas se pueden crear imágenes previas a la imagen final de producción, la utilidad de utilizar construcciones con múltiples etapas es que se pueden generar imágenes de pruebas que contiene código adicional para las pruebas e imágenes finales, que son las imágenes resultantes de superar todas las etapas previas sin errores y contiene solo el codigo de produccion, si en algun momento de una construcción multi etapa falla la la construcción de una capa la construcción se detiene en ese punto.
 - El resultado de construir una imagen con un **Dockerfile** multi etapa siempre es la imagen resultante de la etapa final.
-- Cuando se realizan construcciones con múltiples etapas se utiliza el indicativo **as** junto a FROM para nombrar la imagen previa y además se puede utilizar **--from=[nombre]** para que una imagen posterior referencia una imagen previa.
+- Cuando se realizan construcciones con múltiples etapas se utiliza el indicativo **as** junto a FROM para nombrar la imagen previa y además se puede utilizar **--from=&lt;nombre&gt;** para que una imagen posterior referencia una imagen previa.
 
 #### Ejemplo de cache por capas en Dockerfile
 
