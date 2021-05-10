@@ -1,49 +1,49 @@
-# Notas de MongoDB
+# Notas De Mongodb
 
 - [Introducción](#introducción)
-- [Componentes principales de MongoDB](#componentes-principales-de-mongodb)
-  - [Bases de datos](#bases-de-datos)
+- [Componentes Principales De Mongodb](#componentes-principales-de-mongodb)
+  - [Bases De Datos](#bases-de-datos)
   - [Colecciones](#colecciones)
   - [Documentos](#documentos)
-- [Ecosistema de MongoDB](#ecosistema-de-mongodb)
-  - [MongoDB Server](#mongodb-server)
-  - [MongoDB Shell](#mongodb-shell)
-  - [Conectores de MongoDB](#conectores-de-mongodb)
-- [Relaciones entre documentos en MongoDB](#relaciones-entre-documentos-en-mongodb)
-- [Conexión con MongoDB Server](#conexión-con-mongodb-server)
-- [Operaciones básicas con MongoDB Shell](#operaciones-básicas-con-mongodb-shell)
-  - [Iniciar shell](#iniciar-shell)
-  - [Limpiar shell](#limpiar-shell)
-  - [Ver bases de datos disponibles](#ver-bases-de-datos-disponibles)
-  - [Ver colecciones disponibles](#ver-colecciones-disponibles)
-  - [Crear nueva base de datos o usar una ya creada](#crear-nueva-base-de-datos-o-usar-una-ya-creada)
-  - [Ver nombre de la base de datos a la que está conectado el shell](#ver-nombre-de-la-base-de-datos-a-la-que-está-conectado-el-shell)
-  - [Ver funciones disponibles](#ver-funciones-disponibles)
-    - [En una base de datos](#en-una-base-de-datos)
-    - [En una colección](#en-una-colección)
-- [Operaciones con bases de datos en MongoDB Shell](#operaciones-con-bases-de-datos-en-mongodb-shell)
-- [Operaciones con colecciones y documentos en MongoDB Shell](#operaciones-con-colecciones-y-documentos-en-mongodb-shell)
-  - [Documentos de filtros](#documentos-de-filtros)
-    - [operador equal](#operador-equal)
-    - [operador lower than](#operador-lower-than)
-    - [operador and](#operador-and)
-    - [operador or](#operador-or)
-  - [Insertar documentos en una colección](#insertar-documentos-en-una-colección)
-    - [Inserción individual](#inserción-individual)
-    - [Inserción grupal](#inserción-grupal)
-  - [Buscar documentos en una colección](#buscar-documentos-en-una-colección)
-    - [Búsqueda individual](#búsqueda-individual)
-    - [Búsqueda grupal](#búsqueda-grupal)
-  - [Actualizar documentos de una colección](#actualizar-documentos-de-una-colección)
-    - [Actualización individual](#actualización-individual)
-    - [Actualización grupal](#actualización-grupal)
-  - [Eliminar documentos de una colección](#eliminar-documentos-de-una-colección)
-    - [Eliminación individual](#eliminación-individual)
-    - [Eliminación grupal](#eliminación-grupal)
-  - [Operaciones de agregación](#operaciones-de-agregación)
-  - [Manejo de índices](#manejo-de-índices)
-    - [Listar índices](#listar-índices)
-    - [Crear nuevo índice](#crear-nuevo-índice)
+- [Ecosistema De Mongodb](#ecosistema-de-mongodb)
+  - [Mongodb Server](#mongodb-server)
+  - [Mongodb Shell](#mongodb-shell)
+  - [Conectores De Mongodb](#conectores-de-mongodb)
+- [Relaciones Entre Documentos En Mongodb](#relaciones-entre-documentos-en-mongodb)
+- [Conexión Con Mongodb Server](#conexión-con-mongodb-server)
+- [Operaciones Básicas Con Mongodb Shell](#operaciones-básicas-con-mongodb-shell)
+  - [Iniciar Shell](#iniciar-shell)
+  - [Limpiar Shell](#limpiar-shell)
+  - [Ver Bases De Datos Disponibles](#ver-bases-de-datos-disponibles)
+  - [Ver Colecciones Disponibles](#ver-colecciones-disponibles)
+  - [Crear Nueva Base De Datos O Usar Una Ya Creada](#crear-nueva-base-de-datos-o-usar-una-ya-creada)
+  - [Ver Nombre De La Base De Datos A La Que Está Conectado El Shell](#ver-nombre-de-la-base-de-datos-a-la-que-está-conectado-el-shell)
+  - [Ver Funciones Disponibles](#ver-funciones-disponibles)
+    - [En Una Base De Datos](#en-una-base-de-datos)
+    - [En Una Colección](#en-una-colección)
+- [Operaciones Con Bases De Datos En Mongodb Shell](#operaciones-con-bases-de-datos-en-mongodb-shell)
+- [Operaciones Con Colecciones Y Documentos En Mongodb Shell](#operaciones-con-colecciones-y-documentos-en-mongodb-shell)
+  - [Documentos De Filtros](#documentos-de-filtros)
+    - [Operador Equal](#operador-equal)
+    - [Operador Lower Than](#operador-lower-than)
+    - [Operador And](#operador-and)
+    - [Operador Or](#operador-or)
+  - [Insertar Documentos En Una Colección](#insertar-documentos-en-una-colección)
+    - [Inserción Individual](#inserción-individual)
+    - [Inserción Grupal](#inserción-grupal)
+  - [Buscar Documentos En Una Colección](#buscar-documentos-en-una-colección)
+    - [Búsqueda Individual](#búsqueda-individual)
+    - [Búsqueda Grupal](#búsqueda-grupal)
+  - [Actualizar Documentos De Una Colección](#actualizar-documentos-de-una-colección)
+    - [Actualización Individual](#actualización-individual)
+    - [Actualización Grupal](#actualización-grupal)
+  - [Eliminar Documentos De Una Colección](#eliminar-documentos-de-una-colección)
+    - [Eliminación Individual](#eliminación-individual)
+    - [Eliminación Grupal](#eliminación-grupal)
+  - [Operaciones De Agregación](#operaciones-de-agregación)
+  - [Manejo De Índices](#manejo-de-índices)
+    - [Listar Índices](#listar-índices)
+    - [Crear Nuevo Índice](#crear-nuevo-índice)
 
 <br>
 
@@ -53,7 +53,7 @@
 
 <br>
 
-## Componentes principales de MongoDB
+## Componentes Principales De Mongodb
 
 <p align="center">
 <img src="imagenes/notas_de_mongodb/componentes_de_mongodb.svg" width="80%" height="auto"/>
@@ -61,7 +61,7 @@
 
 <br>
 
-### Bases de datos
+### Bases De Datos
 
 Las [**bases de datos**](https://docs.mongodb.com/manual/core/databases-and-collections/#databases) en MongoDB son los espacios de almacenamiento como tal en los que se guardan las colecciones, cada base de datos tiene su propio archivo dentro del sistema de archivos del host en el que se ejecuta MongoDB, además en un cluster de MongoDB Atlas pueden haber múltiples bases de datos distribuidas o replicadas entre los diferentes nodos del cluster.
 
@@ -79,7 +79,7 @@ Los [**documentos**](https://docs.mongodb.com/manual/core/document/) en MongoDB 
 
 <br>
 
-## Ecosistema de MongoDB
+## Ecosistema De Mongodb
 
 <p align="center">
 <img src="imagenes/notas_de_mongodb/ecosistema_mongodb.svg" width="80%" height="auto"/>
@@ -87,25 +87,25 @@ Los [**documentos**](https://docs.mongodb.com/manual/core/document/) en MongoDB 
 
 <br>
 
-### MongoDB Server
+### Mongodb Server
 
 El servidor de MongoDB es el servidor encargado de gestionar las bases de datos como tal, sus principales funciones son almacenar las bases de datos en el sistema de archivos del host, mantener disponibles las bases de datos y realizar el cruce de datos y la entrega de resultados de todas las peticiones que se le hagan. Al igual que la gran mayoría del software de código abierto el servidor de MongoDB tiene dos versiones, una versión community y una enterprise, con la diferencia de que la versión enterprise gana algunas características adicionales respecto a la versión community.
 
 <br>
 
-### MongoDB Shell
+### Mongodb Shell
 
 Es shell de MongoDB es el shell con la que se interactúa de forma directa con el servidor de MongoDB.
 
 <br>
 
-### Conectores de MongoDB
+### Conectores De Mongodb
 
 Los conectores de MongoDB son todas las [**bibliotecas**](https://docs.mongodb.com/drivers/) dentro de los diferentes lenguajes de programación que se usan para interactuar con el servidor de MongoDB.
 
 <br>
 
-## Relaciones entre documentos en MongoDB
+## Relaciones Entre Documentos En Mongodb
 
 En MongoDB y en el resto de sistemas de bases de datos no relacionales basadas en documentos suele haber solo dos formas para expresar las relaciones entre documentos, usando documentos anidados o usando referencias dentro de un documento a otro documento. Los documentos anidados suelen usarse en relaciones **uno a uno**, ya que se aprovecha más la estructura de las bases de datos no relacionales para hacer solo un scan. Si la relación es de **uno a muchos** lo adecuado es usar referencias si el documento que se va a relacionar va a estar actualizándose constantemente, ya que de esta forma las actualizaciones pueden hacerse en un solo documento y los cambios se verán reflejados en todos los documentos con los que está relacionado, usar referencias hace más lentas las búsquedas ya que no se aprovecha la estructura no relacional de MongoDB, razón por la cual hace falta hacer más de un scan a cambio de facilitar la actualización de los documentos relacionados y optimizar el almacenamiento, sin embargo es lo ideal en este tipo de escenarios. Si por el contrario el documento que se va a relacionar en una relación **uno a muchos** no se va a actualizar de forma constante se puede anidar simplemente como una copia dentro de cada documento con el que se relaciona sí no importa el almacenamiento, ya que de nuevo, de esta forma se aprovecha más la estructura de las bases de datos no relacionales para hacer un solo scan.
 
@@ -195,7 +195,7 @@ Ejemplo de múltiples documentos referenciados:
 
 <br>
 
-## Conexión con MongoDB Server
+## Conexión Con Mongodb Server
 
 Para establecer una conexión entre MongoDB con cualquier aplicación o driver, independientemente de la versión de MongoDB Server, es necesario usar un [**string de conexión en formato uri**](https://docs.mongodb.com/manual/reference/connection-string/#connection-string-uri-format), a continuación se muestra el formato estándar para establecer una conexión entre una aplicación y un MongoDB Server ambos dentro del mismo host.
 
@@ -211,13 +211,13 @@ mongodb://127.0.0.1:27017
 
 <br>
 
-## Operaciones básicas con MongoDB Shell
+## Operaciones Básicas Con Mongodb Shell
 
 El shell de MongoDB o [**MongoDB Shell**](https://docs.mongodb.com/manual/mongo/) es una interfaz interactiva basada en JavaScript que se usa para interactuar de forma directa con el MongoDB Server mediante la terminal, al ser un shell basado en JavaScript el shell de MongoDB permite usar comandos con sintaxis de [**shell**](https://docs.mongodb.com/manual/reference/program/mongo/#mongodb-binary-bin.mongo) o comandos con sintaxis de [**JavaScript**](https://docs.mongodb.com/manual/reference/method/), sin embargo la mayoría de las operaciones sólo están disponibles usando la sintaxis de JavaScript, además de poder realizar acciones simples en MongoDB Shell también se pueden crear [**scripts**](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/) basados en JavaScript que se ejecuten sobre el shell de MongoDB, por lo que se pueden automatizar varios tipos de tareas o consultas en usando JavaScript.
 
 <br>
 
-### Iniciar shell
+### Iniciar Shell
 
 ```unknown
 mongo
@@ -225,7 +225,7 @@ mongo
 
 <br>
 
-### Limpiar shell
+### Limpiar Shell
 
 ```unknown
 ctrl + l
@@ -237,7 +237,7 @@ cls
 
 <br>
 
-### Ver bases de datos disponibles
+### Ver Bases De Datos Disponibles
 
 ```unknown
 show databases
@@ -249,7 +249,7 @@ show dbs
 
 <br>
 
-### Ver colecciones disponibles
+### Ver Colecciones Disponibles
 
 ```unknown
 show collections
@@ -257,7 +257,7 @@ show collections
 
 <br>
 
-### Crear nueva base de datos o usar una ya creada
+### Crear Nueva Base De Datos O Usar Una Ya Creada
 
 ```unknown
 use <nombre de la nueva base de datos>
@@ -271,7 +271,7 @@ use db
 
 <br>
 
-### Ver nombre de la base de datos a la que está conectado el shell
+### Ver Nombre De La Base De Datos A La Que Está Conectado El Shell
 
 ```unknown
 db
@@ -279,9 +279,9 @@ db
 
 <br>
 
-### Ver funciones disponibles
+### Ver Funciones Disponibles
 
-#### En una base de datos
+#### En Una Base De Datos
 
 ```unknown
 <nombre de la base de datos>.help()
@@ -293,7 +293,7 @@ Ejemplo:
 db.help()
 ```
 
-#### En una colección
+#### En Una Colección
 
 ```unknown
 <nombre de la base de datos>.<nombre de la colección>.help()
@@ -307,19 +307,19 @@ db.inventory.help()
 
 <br>
 
-## Operaciones con bases de datos en MongoDB Shell
+## Operaciones Con Bases De Datos En Mongodb Shell
 
 <br>
 
-## Operaciones con colecciones y documentos en MongoDB Shell
+## Operaciones Con Colecciones Y Documentos En Mongodb Shell
 
 <br>
 
-### Documentos de filtros
+### Documentos De Filtros
 
 Los documentos de filtros son parte fundamental de la mayoría de las operaciones [**CRUD**](https://docs.mongodb.com/manual/crud/) com MongoDB, ya que permiten, como su nombre indica, filtrar los documentos resultantes de una búsqueda, para esto MongoDB dispone de varios [**operadores**](https://docs.mongodb.com/manual/reference/operator/) que se usan en el MongoDB Shell para realizar todo tipo de operaciones necesarias para filtrar datos, a continuación se muestran algunos ejemplos de la sintaxis de algunos de los operadores más comunes.
 
-#### operador equal
+#### Operador Equal
 
 ```JavaScript
 db.inventory.find(
@@ -327,7 +327,7 @@ db.inventory.find(
 )
 ```
 
-#### operador lower than
+#### Operador Lower Than
 
 ```JavaScript
 db.inventory.find(
@@ -335,7 +335,7 @@ db.inventory.find(
 )
 ```
 
-#### operador and
+#### Operador And
 
 ```JavaScript
 db.inventory.find(
@@ -346,7 +346,7 @@ db.inventory.find(
 )
 ```
 
-#### operador or
+#### Operador Or
 
 ```JavaScript
 db.inventory.find(
@@ -361,12 +361,12 @@ db.inventory.find(
 
 <br>
 
-### Insertar documentos en una colección
+### Insertar Documentos En Una Colección
 
 MongoDB por defecto no crea bases de datos vacías, por lo que es necesario luego de crear una nueva base de datos crear al menos una colección y un documento, si la colección en la que se quiere insertar el documento no existe MongoDB crea una nueva colección con el nombre indicado.\
 Al insertar un documento el id se puede especificar usando el tag **\_id**, si no se indica el id del documento usando este tag MongoDB asigna al documento un id por defecto, además el id no se puede repetir, por lo que si se ingresa un documento con un id que ya existe la operación fallará, por lo que es una buena práctica dejar que MongoDB genere el id de forma automática.
 
-#### Inserción individual
+#### Inserción Individual
 
 ```unknown
 <nombre de la base de datos>.<nombre de la colección>.insertOne(<documento en formato JSON>)
@@ -380,7 +380,7 @@ db.inventory.insertOne(
 )
 ```
 
-#### Inserción grupal
+#### Inserción Grupal
 
 ```unknown
 <nombre de la base de datos>.<nombre de la colección>.insertMany(<arreglo de documentos en formato JSON>)
@@ -400,9 +400,9 @@ db.inventory.insertMany(
 
 <br>
 
-### Buscar documentos en una colección
+### Buscar Documentos En Una Colección
 
-#### Búsqueda individual
+#### Búsqueda Individual
 
 ```unknown
 <nombre de la base de datos>.<nombre de la colección>.findOne(<documento de filtros en formato JSON>, <proyección en formato JSON>)
@@ -420,7 +420,7 @@ db.inventory.findOne(
 En el ejemplo anterior se usa una proyección y un filtro, el filtro **({item: "canvas"})** se usa para retornar solamente los documentos que cumplan con ciertos parámetros y la proyección **({\_id:0, item:1, status:1})** asegura que se muestren solo ciertos campos de los documentos retornados, los filtros son parte fundamental de cualquier operación de búsqueda, mientras que las proyecciones pueden facilitar en gran medida la lectura de los resultados omitiendo la información innecesaria.\
 Al usar el método **findOne** solamente se retorna el primer documento que cumpla con las condiciones de la búsqueda según el orden natural de los documentos de MongoDB.
 
-#### Búsqueda grupal
+#### Búsqueda Grupal
 
 ```unknown
 <nombre de la base de datos>.<nombre de la colección>.find(<documento de filtros en formato JSON>, <proyección en formato JSON>)
@@ -445,9 +445,9 @@ El método find además se puede combinar con otros métodos como:
 
 <br>
 
-### Actualizar documentos de una colección
+### Actualizar Documentos De Una Colección
 
-#### Actualización individual
+#### Actualización Individual
 
 ```unknown
 <nombre de la base de datos>.<nombre de la colección>.updateOne(<documento de filtros en formato JSON>, <JSON>)
@@ -466,7 +466,7 @@ db.inventory.updateOne(
 )
 ```
 
-#### Actualización grupal
+#### Actualización Grupal
 
 ```unknown
 <nombre de la base de datos>.<nombre de la colección>.updateMany(<documento de filtros en formato JSON>, <JSON>)
@@ -487,9 +487,9 @@ db.inventory.updateMany(
 
 <br>
 
-### Eliminar documentos de una colección
+### Eliminar Documentos De Una Colección
 
-#### Eliminación individual
+#### Eliminación Individual
 
 ```unknown
 <nombre de la base de datos>.<nombre de la colección>.deleteOne(<documento de filtros en formato JSON>)
@@ -505,7 +505,7 @@ db.inventory.deleteOne(
 
 El documento eliminado con deleteOne siempre es el primer documento que cumple con las condiciones del JSON de filtros según el orden natural de MongoDB.
 
-#### Eliminación grupal
+#### Eliminación Grupal
 
 ```unknown
 <nombre de la base de datos>.<nombre de la colección>.deleteMany(<documento de filtros en formato JSON>)
@@ -521,13 +521,13 @@ db.inventory.deleteMany(
 
 <br>
 
-### Operaciones de agregación
+### Operaciones De Agregación
 
 Las [**agregaciones**](https://docs.mongodb.com/manual/aggregation/) en MongoDB son operaciones avanzadas que se pueden realizar en MongoDB.
 
 <br>
 
-### Manejo de índices
+### Manejo De Índices
 
 Los [**índices**](https://docs.mongodb.com/manual/indexes/) en MongoDB se usan para evitar que MongoDB tenga que hacer un escaneo completo de toda una colección en búsqueda de un elemento, facilitando así los querys, los tipos de índices disponibles en MongoDB se listan a continuación.
 
@@ -538,7 +538,7 @@ Los [**índices**](https://docs.mongodb.com/manual/indexes/) en MongoDB se usan 
 - **De texto:**
 - **Hashed:**
 
-#### Listar índices
+#### Listar Índices
 
 ```unknown
 <nombre de la base de datos>.<nombre de la colección>.getIndexes()
@@ -550,7 +550,7 @@ Ejemplo:
 db.inventory.getIndexes()
 ```
 
-#### Crear nuevo índice
+#### Crear Nuevo Índice
 
 ```unknown
 <nombre de la base de datos>.<nombre de la colección>.createIndex({<nombre del campo que se usará como índice>:<tipo de índice>})

@@ -1,12 +1,12 @@
-# Notas de Kubernetes
+# Notas De Kubernetes
 
 - [Introducción](#introducción)
-- [Contenedores en Kubernetes](#contenedores-en-kubernetes)
-- [Arquitectura de Kubernetes](#arquitectura-de-kubernetes)
-  - [Componentes de los nodos maestro en Kubernetes](#componentes-de-los-nodos-maestro-en-kubernetes)
-  - [Componentes de los nodos esclavo en Kubernetes](#componentes-de-los-nodos-esclavo-en-kubernetes)
-- [Sistemas declarativos e imperativos en Kubernetes](#sistemas-declarativos-e-imperativos-en-kubernetes)
-- [Redes en Kubernetes](#redes-en-kubernetes)
+- [Contenedores En Kubernetes](#contenedores-en-kubernetes)
+- [Arquitectura De Kubernetes](#arquitectura-de-kubernetes)
+  - [Componentes De Los Nodos Maestro En Kubernetes](#componentes-de-los-nodos-maestro-en-kubernetes)
+  - [Componentes De Los Nodos Esclavo En Kubernetes](#componentes-de-los-nodos-esclavo-en-kubernetes)
+- [Sistemas Declarativos E Imperativos En Kubernetes](#sistemas-declarativos-e-imperativos-en-kubernetes)
+- [Redes En Kubernetes](#redes-en-kubernetes)
 
 <br>
 
@@ -30,7 +30,7 @@ Cuando se escala algo en Kubernetes no se agregan más contenedores, se agregan 
 
 <br>
 
-## Contenedores en Kubernetes
+## Contenedores En Kubernetes
 
 Los contenedores en Kubernetes o en cualquier otra plataforma que use contenedores son entidades que no están definidas dentro del sistema operativo como las máquinas virtuales, los contendores son abstracciones puramente lógicas, que son el resultado de combinar varias tecnologías potenciando unas con otras para generar ambientes de ejecución aislados equivalentes a los de una máquina virtual, sin ser máquinas virtuales con sistemas operativos aislados, de hecho todos los contenedores comparten un mismo sistema operativo. Las tres principales tecnologías que hacen posibles los contenedores en Kubernetes y en la mayoría de las plataformas que usan contenedores son:
 
@@ -44,14 +44,14 @@ Los contenedores en Kubernetes o en cualquier otra plataforma que use contenedor
 
 <br>
 
-## Arquitectura de Kubernetes
+## Arquitectura De Kubernetes
 
 La arquitectura de Kubernetes se basa en dos tipos de nodos, al igual que la mayoría de los sistemas de cómputo distribuido los nodos se dividen en maestro y esclavo, los maestros, que son designados usando el algoritmo [**raft**](https://www.freecodecamp.org/news/in-search-of-an-understandable-consensus-algorithm-a-summary-4bc294c97e0d/) son los encargados de administrar todos los recursos del cluster y de la asignacion de las tareas, mientras que los esclavos se encargan de ejecutar todas las tareas que les son asignadas por los maestros, Kubernetes permite tener maestros redundantes ademas de poder utilizar mas de un maestro al tiempo, de tal modo que si un maestro falla por alguna razon este puede ser reemplazado casi de inmediato, ademas, en caso de que no se pueda reemplazar y el cluster no disponga de nodos maestro que lo reemplacen los demas componentes del cluster seguiran funcionando, simplemente el cluster no se podra administrar hasta que no se asigne un nuevo nodo maestro que lo controle.
 Kubernetes para comunicarse con los nodos maestro utiliza una API, todas las acciones de administración tiene que pasar por esta API para llegar a los nodos maestro, además del API Kubernetes da una interfaz de usuario y un CLI, ambos utilizan el API para comunicarse con los nodos maestro, pero también se pueden enviar las instrucciones de administración directamente al API.
 
 <br>
 
-### Componentes de los nodos maestro en Kubernetes
+### Componentes De Los Nodos Maestro En Kubernetes
 
 - **Etcd:** Key value store que permite que el cluster esté altamente disponible.
 - **Servidor API:** El servidor API es a donde llegan todas las conexiones internas y externas del cluster, como los agentes de Kubernetes, el CLI, el dashboard y demás. Cuando un nodo maestro falla solo se pierde el API que se usa para conectarse a ese nodo.
@@ -64,20 +64,20 @@ Kubernetes para comunicarse con los nodos maestro utiliza una API, todas las acc
 
 <br>
 
-### Componentes de los nodos esclavo en Kubernetes
+### Componentes De Los Nodos Esclavo En Kubernetes
 
 - **Kubelet:** Los Kubelet son agentes de Kubernetes que se conectan con el scheduler y solicitan recursos (pods o contenedores) para ejecutar. Además los Kubelet monitorean los pods constantemente para saber si se están ejecutando correctamente, monitorea también los recursos disponibles y comunica constantemente al scheduler el estado de los recursos y las tareas.
 - **Kube-proxy:** Se encarga de balancear el tráfico que se mueve entre los contenedores o servicios.
 
 <br>
 
-## Sistemas declarativos e imperativos en Kubernetes
+## Sistemas Declarativos E Imperativos En Kubernetes
 
 En Kubernetes todo se crea a través de una especificación en un archivo yml o manifest, estos archivos pueden variar segun la configuracion de Kubernetes, la cual puede ser declarativa o imperativa, en el modo declarativo la especificación entregada a Kubernetes indica el estado deseado del cluster y Kubernetes trata de converger al estado deseado que le fue proporcionado, cuando Kubernetes está configurado en modo declarativo constantemente revisa los cambios en el sistema y si algo falla calcula la diferencia entre el estado deseado, el estado actual y trata de que el estado actual converja hacia el estado deseado, por lo que al usar una configuración declarativa es totalmente necesario que el estado deseado pueda ser computado y comparado con el actual. Cuando la configuración es imperativa los archivos de configuración se componen de una serie de pasos que Kubernetes sigue ciegamente, su principal desventaja respecto a los sistemas declarativos es que al no proveer un contexto en caso de fallo del sistema debe iniciar desde cero su ejecución.
 
 <br>
 
-## Redes en Kubernetes
+## Redes En Kubernetes
 
 Las redes en todos los clusters son fundamentales, ya que es mediante una red que se comunican todos los nodos del cluster, las redes en un cluster de Kubernetes deben obedecer las siguientes reglas para que el cluster funcione correctamente.
 

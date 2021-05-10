@@ -1,16 +1,16 @@
-# Notas de Docker Stacks
+# Notas De Docker Stacks
 
 - [Introducción](#introducción)
-- [Archivos stack-file.yml](#archivos-stack-fileyml)
-  - [Tips de Docker Stacks](#tips-de-docker-stacks)
-  - [Ejemplo de un Stack File](#ejemplo-de-un-stack-file)
-- [Subcomandos de Docker Stacks](#subcomandos-de-docker-stacks)
-  - [Comandos de administración general de un stack](#comandos-de-administración-general-de-un-stack)
-  - [Iniciar o actualizar un stack](#iniciar-o-actualizar-un-stack)
-  - [Listar stacks](#listar-stacks)
-  - [Listar tareas de un stack](#listar-tareas-de-un-stack)
-  - [Listar servicios de un stack](#listar-servicios-de-un-stack)
-  - [Eliminar un stack](#eliminar-un-stack)
+- [Archivos Stack File](#archivos-stack-file)
+  - [Tips De Docker Stacks](#tips-de-docker-stacks)
+  - [Ejemplo De Un Stack File](#ejemplo-de-un-stack-file)
+- [Subcomandos De Docker Stacks](#subcomandos-de-docker-stacks)
+  - [Inspeccionar Comandos De Administración De Stacks](#inspeccionar-comandos-de-administración-de-stacks)
+  - [Iniciar O Actualizar Un Stack](#iniciar-o-actualizar-un-stack)
+  - [Listar Stacks](#listar-stacks)
+  - [Listar Tareas De Un Stack](#listar-tareas-de-un-stack)
+  - [Listar Servicios De Un Stack](#listar-servicios-de-un-stack)
+  - [Eliminar Stacks](#eliminar-stacks)
 
 <br>
 
@@ -20,7 +20,7 @@
 
 <br>
 
-## Archivos stack-file.yml
+## Archivos Stack File
 
 Algunos de los componentes adicionales que soporta Docker Stack en los archivos **stack-file.yml** respecto a Docker Compose y sus funciones son:
 
@@ -30,7 +30,7 @@ Algunos de los componentes adicionales que soporta Docker Stack en los archivos 
 
 <br>
 
-### Tips de Docker Stacks
+### Tips De Docker Stacks
 
 - Los stacks a diferencia de Compose son agrupaciones de servicios, en lugar de ser objetos propios de Docker como en Compose, donde cada Compose es un objeto de Docker.
 - Al tener desplegados varios servicios con uno o varios stacks sobre un cluster se debe utilizar un servicio de reverse proxy como [**traefik**](https://traefik.io/) para lograr que usando un solo dominio se puedan redireccionar todas las peticiones a los diferentes servicios disponibles en el cluster, para esto, además, es necesario es que el servicio de reverse proxy este contenerizado, desplegado sobre un manager y que esté en la misma red de los servicios a los que debe redireccionar las peticiones, además para balancear la carga entre los servicios traefik necesita un socket daemon para ver los eventos de Docker Swarm, por lo que debemos compartir la ruta usando un bind (--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock) y adicionalmente al ser un proxy http público debe exponerse en el puerto 80.
@@ -38,7 +38,7 @@ Algunos de los componentes adicionales que soporta Docker Stack en los archivos 
 
 <br>
 
-### Ejemplo de un Stack File
+### Ejemplo De Un Stack File
 
 ```yml
 version: "3"
@@ -63,13 +63,13 @@ services:
 
 <br>
 
-## Subcomandos de Docker Stacks
+## Subcomandos De Docker Stacks
 
 Para utilizar Stack Files como origen de una arquitectura basada en Docker Swarm hay varios subcomandos similares a los usados en la administración regular de Docker Swarm y Docker Compose, algunos de los más relevantes para utilizar aplicaciones basadas en Docker Swarm con Stack Files son:
 
 <br>
 
-### Comandos de administración general de un stack
+### Inspeccionar Comandos De Administración De Stacks
 
 ```unknown
 docker stack <comando> --help
@@ -79,7 +79,7 @@ Muestra a grandes rasgos los comandos disponibles para administrar Docker Stacks
 
 <br>
 
-### Iniciar o actualizar un stack
+### Iniciar O Actualizar Un Stack
 
 ```unknown
 docker stack deploy <parámetros> <nombre del nuevo stack>
@@ -92,7 +92,7 @@ Inicia o actualiza un stack, algunos de los parámetros más útiles al utilizar
 
 <br>
 
-### Listar stacks
+### Listar Stacks
 
 ```unknown
 docker stack ls <parámetros>
@@ -100,7 +100,7 @@ docker stack ls <parámetros>
 
 <br>
 
-### Listar tareas de un stack
+### Listar Tareas De Un Stack
 
 ```unknown
 docker stack ps <parámetros> <nombre del stack>
@@ -110,7 +110,7 @@ Lista todas las tareas pertenecientes a un stack.
 
 <br>
 
-### Listar servicios de un stack
+### Listar Servicios De Un Stack
 
 ```unknown
 docker stack services <parámetros> <nombre del stack>
@@ -120,7 +120,7 @@ Lista todos los servicios pertenecientes a un stack.
 
 <br>
 
-### Eliminar un stack
+### Eliminar Stacks
 
 ```unknown
 docker stack rm <parámetros> <nombre del stack>

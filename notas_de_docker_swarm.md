@@ -1,29 +1,29 @@
-# Notas de Docker Swarm
+# Notas De Docker Swarm
 
 - [Introducción](#introducción)
-- [Administración de un cluster](#administración-de-un-cluster)
-  - [Comandos básicos de administración de un cluster](#comandos-básicos-de-administración-de-un-cluster)
-  - [Iniciar un cluster](#iniciar-un-cluster)
-  - [Conectar máquinas al cluster](#conectar-máquinas-al-cluster)
-  - [Desconectar máquinas del cluster](#desconectar-máquinas-del-cluster)
-- [Administración de nodos pertenecientes a un cluster](#administración-de-nodos-pertenecientes-a-un-cluster)
-  - [Comandos básicos de administración de nodos](#comandos-básicos-de-administración-de-nodos)
-  - [Listar los nodos conectados al cluster](#listar-los-nodos-conectados-al-cluster)
-  - [Inspeccionar un nodo](#inspeccionar-un-nodo)
-  - [Actualizar las configuraciones de un nodo](#actualizar-las-configuraciones-de-un-nodo)
-- [Administración de servicios basados en Docker Swarm](#administración-de-servicios-basados-en-docker-swarm)
-  - [Comandos básicos de administración de servicios](#comandos-básicos-de-administración-de-servicios)
-  - [Iniciar un servicio](#iniciar-un-servicio)
-  - [Visualizar servicios](#visualizar-servicios)
-  - [Visualizar tareas de un servicio](#visualizar-tareas-de-un-servicio)
-  - [Inspeccionar un servicio](#inspeccionar-un-servicio)
-  - [Modificar la configuración de un servicio](#modificar-la-configuración-de-un-servicio)
-  - [Visualizar logs de un servicio](#visualizar-logs-de-un-servicio)
-  - [Escalar un servicio](#escalar-un-servicio)
-  - [Restaurar un servicio a su estado anterior](#restaurar-un-servicio-a-su-estado-anterior)
-  - [Eliminar un servicio](#eliminar-un-servicio)
-- [Administración de redes de Docker Swarm](#administración-de-redes-de-docker-swarm)
-  - [Crear una red overlay](#crear-una-red-overlay)
+- [Administración De Un Cluster](#administración-de-un-cluster)
+  - [Inspeccionar Un Comando De Administración Del Cluster De Docker Swarm](#inspeccionar-un-comando-de-administración-del-cluster-de-docker-swarm)
+  - [Iniciar Un Cluster](#iniciar-un-cluster)
+  - [Conectar Máquinas Al Cluster](#conectar-máquinas-al-cluster)
+  - [Desconectar Máquinas Del Cluster](#desconectar-máquinas-del-cluster)
+- [Administración De Nodos Pertenecientes A Un Cluster](#administración-de-nodos-pertenecientes-a-un-cluster)
+  - [Inspeccionar Un Comando De Administración De Nodos De Docker Swarm](#inspeccionar-un-comando-de-administración-de-nodos-de-docker-swarm)
+  - [Listar Los Nodos Conectados Al Cluster](#listar-los-nodos-conectados-al-cluster)
+  - [Inspeccionar Un Nodo](#inspeccionar-un-nodo)
+  - [Actualizar Las Configuraciones De Un Nodo](#actualizar-las-configuraciones-de-un-nodo)
+- [Administración De Servicios Basados En Docker Swarm](#administración-de-servicios-basados-en-docker-swarm)
+  - [Inspeccionar Un Comando De Administración De Servicios De Docker Swarm](#inspeccionar-un-comando-de-administración-de-servicios-de-docker-swarm)
+  - [Iniciar Un Servicio](#iniciar-un-servicio)
+  - [Listar Servicios](#listar-servicios)
+  - [Inspeccionar Tareas De Un Servicio](#inspeccionar-tareas-de-un-servicio)
+  - [Inspeccionar Un Servicio](#inspeccionar-un-servicio)
+  - [Modificar La Configuración De Un Servicio](#modificar-la-configuración-de-un-servicio)
+  - [Inspeccionar Los Logs De Un Servicio](#inspeccionar-los-logs-de-un-servicio)
+  - [Escalar Un Servicio](#escalar-un-servicio)
+  - [Restaurar Un Servicio A Su Estado Anterior](#restaurar-un-servicio-a-su-estado-anterior)
+  - [Eliminar Un Servicio](#eliminar-un-servicio)
+- [Administración De Redes De Docker Swarm](#administración-de-redes-de-docker-swarm)
+  - [Crear Una Red Overlay](#crear-una-red-overlay)
 
 <br>
 
@@ -74,13 +74,13 @@ Al gestionar una solución productiva basada en Docker Swarm es sumamente import
 
 <br>
 
-## Administración de un cluster
+## Administración De Un Cluster
 
 El cluster, enjambre o Swarm es lo que permite que una aplicación basada en Docker Swarm escale sobre un hardware virtualmente infinito, es por esto que si bien el cluster no es muy difícil de administrar y no hay muchos comandos con los cuales administrarlo, es importante tener en cuenta los comandos necesarios para administrar y escalar el cluster, ya que del cluster depende que tanto puede escalar la aplicación a nivel de Hardware.
 
 <br>
 
-### Comandos básicos de administración de un cluster
+### Inspeccionar Un Comando De Administración Del Cluster De Docker Swarm
 
 ```unknown
 docker swarm <comando> --help
@@ -90,7 +90,7 @@ Muestra a grandes rasgos los comandos disponibles para administrar el cluster y 
 
 <br>
 
-### Iniciar un cluster
+### Iniciar Un Cluster
 
 ```unknown
 docker swarm init <parámetros>
@@ -102,7 +102,7 @@ Inicia un cluster utilizando la máquina actual como el primer manager del clust
 
 <br>
 
-### Conectar máquinas al cluster
+### Conectar Máquinas Al Cluster
 
 ```unknown
 docker swarm join-token <parametros> <worker|manager>
@@ -112,7 +112,7 @@ Genera un token que es utilizado para agregar una nueva máquina al cluster, hay
 
 <br>
 
-### Desconectar máquinas del cluster
+### Desconectar Máquinas Del Cluster
 
 ```unknown
 docker swarm leave <parametros>
@@ -124,13 +124,13 @@ Permite a la máquina actual abandonar el cluster, para dejar el cluster con **d
 
 <br>
 
-## Administración de nodos pertenecientes a un cluster
+## Administración De Nodos Pertenecientes A Un Cluster
 
 Los nodos son las maquinas que estan conectadas al cluster, no hay muchas opciones para administrar nodos, pero varios de estos comandos son muy útiles y es bueno tomarlos en cuenta, además, la administración de nodos sólo puede hacerse desde un manager, ya que los workers no suelen tener acceso a estas acciones.
 
 <br>
 
-### Comandos básicos de administración de nodos
+### Inspeccionar Un Comando De Administración De Nodos De Docker Swarm
 
 ```unknown
 docker node <comando> --help
@@ -140,7 +140,7 @@ Muestra a grandes rasgos los comandos disponibles para administrar los nodos de 
 
 <br>
 
-### Listar los nodos conectados al cluster
+### Listar Los Nodos Conectados Al Cluster
 
 ```unknown
 docker node ls <parámetros>
@@ -150,7 +150,7 @@ Lista los nodos pertenecientes a un cluster, mostrando su id, nombre, estatus, d
 
 <br>
 
-### Inspeccionar un nodo
+### Inspeccionar Un Nodo
 
 ```unknown
 docker node inspect <parámetros> <id o nombre del nodo>
@@ -162,7 +162,7 @@ Muestra en detalle la configuración de un nodo en un archivo JSON, algunos de l
 
 <br>
 
-### Actualizar las configuraciones de un nodo
+### Actualizar Las Configuraciones De Un Nodo
 
 ```unknown
 docker node update <parámetros> <id o nombre del nodo>
@@ -174,13 +174,13 @@ Permite actualizar ciertas configuraciones de un nodo, algunos de los parámetro
 
 <br>
 
-## Administración de servicios basados en Docker Swarm
+## Administración De Servicios Basados En Docker Swarm
 
 Los servicios son la base de Docker Swarm, al igual que en Docker Compose un servicio es una aplicación contenerizada que está desplegada en uno o más contenedores, en Docker Swarm la ventaja es que estos contenedores pueden estar ejecutándose en cualquier nodo del cluster y además pueden moverse entre nodos fácilmente, es debido a esto que los servicios son altamente disponibles y escalables, al trabajar con servicios se trabaja implícitamente con contenedores ya que Docker Swarm se encarga de gestionar los contenedores en función de la declaración del servicio.
 
 <br>
 
-### Comandos básicos de administración de servicios
+### Inspeccionar Un Comando De Administración De Servicios De Docker Swarm
 
 ```unknown
 docker service <comando> --help
@@ -190,7 +190,7 @@ Muestra a grandes rasgos los comandos disponibles para administrar servicios y s
 
 <br>
 
-### Iniciar un servicio
+### Iniciar Un Servicio
 
 ```unknown
 docker service create <parámetros> <nombre o id de la imagen> <comando>
@@ -208,7 +208,7 @@ Permite iniciar un servicio basado en Docker Swarm especificando la imagen y el 
 
 <br>
 
-### Visualizar servicios
+### Listar Servicios
 
 ```unknown
 docker service ls <parámetros>
@@ -218,7 +218,7 @@ Lista todos los servicios del cluster junto con su id, nombre, modo, número de 
 
 <br>
 
-### Visualizar tareas de un servicio
+### Inspeccionar Tareas De Un Servicio
 
 ```unknown
 docker service ps <parámetros> <id o nombre del servicio>
@@ -228,7 +228,7 @@ Muestra las tareas de uno o más servicios, además de su id, nombre, imagen, no
 
 <br>
 
-### Inspeccionar un servicio
+### Inspeccionar Un Servicio
 
 ```unknown
 docker service inspect <parámetros> <id o nombre del servicio>
@@ -240,7 +240,7 @@ Muestra en detalle la configuración de un servicio en un archivo JSON, algunos 
 
 <br>
 
-### Modificar la configuración de un servicio
+### Modificar La Configuración De Un Servicio
 
 ```unknown
 docker service update <parámetros> <id o nombre del servicio>
@@ -261,7 +261,7 @@ Actualiza la configuración de un servicio, algunos de los parámetros más úti
 
 <br>
 
-### Visualizar logs de un servicio
+### Inspeccionar Los Logs De Un Servicio
 
 ```unknown
 docker service logs <parámetros> <id o nombre del servicio|id o nombre de la tarea>
@@ -273,7 +273,7 @@ Muestra los logs de los de un servicio o tarea, algunos de los parámetros más 
 
 <br>
 
-### Escalar un servicio
+### Escalar Un Servicio
 
 ```unknown
 docker service scale <parámetros> <id o nombre del servicio>=<número de réplicas>
@@ -283,7 +283,7 @@ Permite escalar uno o varios servicios estableciendo el número de réplicas nec
 
 <br>
 
-### Restaurar un servicio a su estado anterior
+### Restaurar Un Servicio A Su Estado Anterior
 
 ```unknown
 docker service rollback <parámetros> <id o nombre del servicio>
@@ -293,7 +293,7 @@ Permite restaurar un servicio a su estado anterior.
 
 <br>
 
-### Eliminar un servicio
+### Eliminar Un Servicio
 
 ```unknown
 docker service rm <id o nombre del servicio>
@@ -303,13 +303,13 @@ Elimina un servicio junto con todos sus contenedores y tareas.
 
 <br>
 
-## Administración de redes de Docker Swarm
+## Administración De Redes De Docker Swarm
 
 Al utilizar Docker en modo Swarm Docker necesita dos tipos de redes adicionales a las que se usan normalmente, las cuales se usan para comunicar las diferentes tareas o contenedores de un servicio a nivel de nodo y cluster, estas redes son: **docker_gwbridge** e **ingress**, la red docker_gwbrigde por su parte se encarga de comunicar los contenedores del nodo entre ellos y la red ingress, ingress por su parte se encarga de la comunicación de todas las redes docker_gwbrigde a través de todos los nodos del cluster, formando así una red que comunica todos los contenedores de un servicio cuyos contenedores están distribuidos en diferentes nodos, también se diferencian en el alcance y driver, docker_gwbridge está disponible sólo dentro de un nodo y utiliza un driver **bridge** estándar, mientras que ingress está disponible en todos los nodos y utiliza un driver **overlay**, al crear un cluster basado en Docker Swarm las redes docker_gwbridge se crean automáticamente y se conectan a ingress (que es una red creada por defecto), pero también es posible crear redes con funcionalidades similares a la red ingress a las cuales conectar varios servicios para lograr comunicación entre los contenedores de diferentes servicios sin sobrecargar ingress, esto se logra simplemente creando una red con un driver **overlay**.
 
 <br>
 
-### Crear una red overlay
+### Crear Una Red Overlay
 
 ```unknown
 docker network create --driver overlay <nombre de la red>

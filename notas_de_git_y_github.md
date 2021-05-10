@@ -1,55 +1,55 @@
-# Notas de Git y GitHub
+# Notas De Git Y Github
 
 - [Introducción](#introducción)
-- [Flujo de trabajo básico con Git](#flujo-de-trabajo-básico-con-git)
-  - [Mostrar comandos populares de Git](#mostrar-comandos-populares-de-git)
-  - [Mostrar ayuda de un comando](#mostrar-ayuda-de-un-comando)
-  - [Configuración de Git](#configuración-de-git)
-  - [Iniciar o finalizar un repositorio](#iniciar-o-finalizar-un-repositorio)
-  - [Agregar archivos al área de staging del repositorio](#agregar-archivos-al-área-de-staging-del-repositorio)
-  - [Registrar cambios en el repositorio](#registrar-cambios-en-el-repositorio)
-  - [Comprobar el estatus de la base de datos de cambios del repositorio](#comprobar-el-estatus-de-la-base-de-datos-de-cambios-del-repositorio)
-  - [Comparar cambios entre versiones del repositorio](#comparar-cambios-entre-versiones-del-repositorio)
-  - [Mostrar los logs del repositorio](#mostrar-los-logs-del-repositorio)
-  - [Mostrar los logs completos del repositorio](#mostrar-los-logs-completos-del-repositorio)
-  - [Mostrar los cambios del repositorio](#mostrar-los-cambios-del-repositorio)
-  - [Limpiar el directorio de trabajo](#limpiar-el-directorio-de-trabajo)
-  - [Eliminar archivos del repositorio](#eliminar-archivos-del-repositorio)
-- [Administración de ramas y versiones con Git](#administración-de-ramas-y-versiones-con-git)
-  - [Administrar ramas](#administrar-ramas)
-    - [Crear ramas](#crear-ramas)
-    - [Listar ramas](#listar-ramas)
-    - [Eliminar ramas](#eliminar-ramas)
-    - [Parámetros adicionales](#parámetros-adicionales)
-  - [Fusionar ramas](#fusionar-ramas)
-  - [Moverse entre ramas y versiones](#moverse-entre-ramas-y-versiones)
-    - [Moverse entre versiones](#moverse-entre-versiones)
-    - [Moverse entre ramas](#moverse-entre-ramas)
-  - [Hacer rebase a una rama](#hacer-rebase-a-una-rama)
-  - [Administrar la reserva de cambios de Git](#administrar-la-reserva-de-cambios-de-git)
-  - [Administrar tags](#administrar-tags)
-    - [Crear tags](#crear-tags)
-    - [Listar tags](#listar-tags)
-    - [Eliminar tags](#eliminar-tags)
-  - [Traer a una rama cambios viejos de otra](#traer-a-una-rama-cambios-viejos-de-otra)
-  - [Regresar a versiones anteriores del repositorio](#regresar-a-versiones-anteriores-del-repositorio)
-- [Administración de repositorios remotos con Git y GitHub](#administración-de-repositorios-remotos-con-git-y-github)
-  - [Administrar repositorios remotos](#administrar-repositorios-remotos)
-    - [Agregar repositorio remoto al repositorio local](#agregar-repositorio-remoto-al-repositorio-local)
-  - [Cambiar la url de un repositorio remoto](#cambiar-la-url-de-un-repositorio-remoto)
-  - [Clonar un repositorio remoto](#clonar-un-repositorio-remoto)
-  - [Traer los cambios del repositorio remoto al repositorio local](#traer-los-cambios-del-repositorio-remoto-al-repositorio-local)
-  - [Traer los cambios repositorio remoto al repositorio local y al directorio de trabajo](#traer-los-cambios-repositorio-remoto-al-repositorio-local-y-al-directorio-de-trabajo)
-  - [Subir cambios del repositorio local al repositorio remoto](#subir-cambios-del-repositorio-local-al-repositorio-remoto)
-- [Conexión con GitHub usando protocolo SSH](#conexión-con-github-usando-protocolo-ssh)
-  - [1. Crear el par de llaves](#1-crear-el-par-de-llaves)
-  - [2. Comprobar funcionamiento del servidor SSH](#2-comprobar-funcionamiento-del-servidor-ssh)
-  - [3. Agregar llave al servidor SSH](#3-agregar-llave-al-servidor-ssh)
-  - [4. Agregar a GitHub la llave pública](#4-agregar-a-github-la-llave-pública)
-  - [5. Cambiar la url del repositorio remoto para usar la conexión SSH](#5-cambiar-la-url-del-repositorio-remoto-para-usar-la-conexión-ssh)
-- [Pull Requests con GitHub](#pull-requests-con-github)
-- [Forks con GitHub](#forks-con-github)
-- [Uso de archivos gitignore con Git y GitHub](#uso-de-archivos-gitignore-con-git-y-github)
+- [Flujo De Trabajo Básico Con Git](#flujo-de-trabajo-básico-con-git)
+  - [Mostrar Comandos Populares De Git](#mostrar-comandos-populares-de-git)
+  - [Inspeccionar Un Comando De Git](#inspeccionar-un-comando-de-git)
+  - [Configuración De Git](#configuración-de-git)
+  - [Iniciar O Finalizar Un Repositorio](#iniciar-o-finalizar-un-repositorio)
+  - [Agregar Archivos Al Área De Staging Del Repositorio](#agregar-archivos-al-área-de-staging-del-repositorio)
+  - [Registrar Cambios En El Repositorio](#registrar-cambios-en-el-repositorio)
+  - [Comprobar El Estatus De La Base De Datos De Cambios Del Repositorio](#comprobar-el-estatus-de-la-base-de-datos-de-cambios-del-repositorio)
+  - [Comparar Cambios Entre Versiones Del Repositorio](#comparar-cambios-entre-versiones-del-repositorio)
+  - [Mostrar Los Logs Del Repositorio](#mostrar-los-logs-del-repositorio)
+  - [Mostrar Los Logs Completos Del Repositorio](#mostrar-los-logs-completos-del-repositorio)
+  - [Mostrar Los Cambios Del Repositorio](#mostrar-los-cambios-del-repositorio)
+  - [Limpiar El Directorio De Trabajo](#limpiar-el-directorio-de-trabajo)
+  - [Eliminar Archivos Del Repositorio](#eliminar-archivos-del-repositorio)
+- [Administración De Ramas Y Versiones Con Git](#administración-de-ramas-y-versiones-con-git)
+  - [Administrar Ramas](#administrar-ramas)
+    - [Crear Ramas](#crear-ramas)
+    - [Listar Ramas](#listar-ramas)
+    - [Eliminar Ramas](#eliminar-ramas)
+    - [Parámetros Adicionales](#parámetros-adicionales)
+  - [Fusionar Ramas](#fusionar-ramas)
+  - [Moverse Entre Ramas Y Versiones](#moverse-entre-ramas-y-versiones)
+    - [Moverse Entre Versiones](#moverse-entre-versiones)
+    - [Moverse Entre Ramas](#moverse-entre-ramas)
+  - [Hacer Rebase A Una Rama](#hacer-rebase-a-una-rama)
+  - [Administrar La Reserva De Cambios De Git](#administrar-la-reserva-de-cambios-de-git)
+  - [Administrar Tags](#administrar-tags)
+    - [Crear Tags](#crear-tags)
+    - [Listar Tags](#listar-tags)
+    - [Eliminar Tags](#eliminar-tags)
+  - [Traer A Una Rama Cambios Viejos De Otra](#traer-a-una-rama-cambios-viejos-de-otra)
+  - [Regresar A Versiones Anteriores Del Repositorio](#regresar-a-versiones-anteriores-del-repositorio)
+- [Administración De Repositorios Remotos Con Git Y Github](#administración-de-repositorios-remotos-con-git-y-github)
+  - [Administrar Repositorios Remotos](#administrar-repositorios-remotos)
+    - [Agregar Repositorio Remoto Al Repositorio Local](#agregar-repositorio-remoto-al-repositorio-local)
+  - [Cambiar La Url De Un Repositorio Remoto](#cambiar-la-url-de-un-repositorio-remoto)
+  - [Clonar Un Repositorio Remoto](#clonar-un-repositorio-remoto)
+  - [Traer Los Cambios Del Repositorio Remoto Al Repositorio Local](#traer-los-cambios-del-repositorio-remoto-al-repositorio-local)
+  - [Traer Los Cambios Repositorio Remoto Al Repositorio Local Y Al Directorio De Trabajo](#traer-los-cambios-repositorio-remoto-al-repositorio-local-y-al-directorio-de-trabajo)
+  - [Subir Cambios Del Repositorio Local Al Repositorio Remoto](#subir-cambios-del-repositorio-local-al-repositorio-remoto)
+- [Conexión Con Github Usando Protocolo Ssh](#conexión-con-github-usando-protocolo-ssh)
+  - [Crear El Par De Llaves](#crear-el-par-de-llaves)
+  - [Comprobar Funcionamiento Del Servidor Ssh](#comprobar-funcionamiento-del-servidor-ssh)
+  - [Agregar Llave Al Servidor Ssh](#agregar-llave-al-servidor-ssh)
+  - [Agregar A Github La Llave Pública](#agregar-a-github-la-llave-pública)
+  - [Cambiar La Url Del Repositorio Remoto Para Usar La Conexión Ssh](#cambiar-la-url-del-repositorio-remoto-para-usar-la-conexión-ssh)
+- [Pull Requests Con Github](#pull-requests-con-github)
+- [Forks Con Github](#forks-con-github)
+- [Uso De Archivos Gitignore Con Git Y Github](#uso-de-archivos-gitignore-con-git-y-github)
 
 <br>
 
@@ -61,7 +61,7 @@ Git y GitHub soportan versionamiento de archivos binarios, pero el versionamient
 
 <br>
 
-## Flujo de trabajo básico con Git
+## Flujo De Trabajo Básico Con Git
 
 <p align="center">
 <img src="imagenes/notas_de_git_y_github/flujo_basico_con_repositorios_locales_git.svg" width="100%" height="auto"/>
@@ -74,7 +74,7 @@ Cuando se versionan archivos con repositorios Git locales los cambios pueden est
 
 <br>
 
-### Mostrar comandos populares de Git
+### Mostrar Comandos Populares De Git
 
 ```unknown
 git
@@ -84,7 +84,7 @@ Muestra algunos de los comandos más comunes usados en Git junto con una breve d
 
 <br>
 
-### Mostrar ayuda de un comando
+### Inspeccionar Un Comando De Git
 
 ```unknown
 git <comando> --help
@@ -94,7 +94,7 @@ Muestra todos los parámetros que acepta un comando, además de una descripción
 
 <br>
 
-### Configuración de Git
+### Configuración De Git
 
 ```unknown
 git config <parámetros> <configuraciones>
@@ -113,7 +113,7 @@ Algunos de los parámetros configurables más importantes de un repositorio son:
 
 <br>
 
-### Iniciar o finalizar un repositorio
+### Iniciar O Finalizar Un Repositorio
 
 ```unknown
 git init <parámetros>
@@ -123,7 +123,7 @@ Inicia un repositorio Git en el directorio actual o lo elimina si el repositorio
 
 <br>
 
-### Agregar archivos al área de staging del repositorio
+### Agregar Archivos Al Área De Staging Del Repositorio
 
 ```unknown
 git add <parámetros> <ruta del archivo o directorio>
@@ -133,7 +133,7 @@ Inicia el rastreo de uno o varios archivos agregandolos al área de staging del 
 
 <br>
 
-### Registrar cambios en el repositorio
+### Registrar Cambios En El Repositorio
 
 ```unknown
 git commit <parámetros>
@@ -147,7 +147,7 @@ Envía los últimos cambios desde el área de staging al repositorio para que es
 
 <br>
 
-### Comprobar el estatus de la base de datos de cambios del repositorio
+### Comprobar El Estatus De La Base De Datos De Cambios Del Repositorio
 
 ```unknown
 git status
@@ -157,7 +157,7 @@ Muestra el estatus de la base de datos de cambios del repositorio.
 
 <br>
 
-### Comparar cambios entre versiones del repositorio
+### Comparar Cambios Entre Versiones Del Repositorio
 
 ```unknown
 git diff <parámetros> <Id del commit antiguo> <Id del commit nuevo>
@@ -167,7 +167,7 @@ Muestra los cambios entre una versión y otra del repositorio basadas en la mism
 
 <br>
 
-### Mostrar los logs del repositorio
+### Mostrar Los Logs Del Repositorio
 
 ```unknown
 git log <parámetros>
@@ -184,7 +184,7 @@ Muestra todos los cambios históricos hechos en el repositorio al no incluir par
 
 <br>
 
-### Mostrar los logs completos del repositorio
+### Mostrar Los Logs Completos Del Repositorio
 
 ```unknown
 git reflog <parámetros>
@@ -196,7 +196,7 @@ Muestra todos los cambios históricos hechos en el repositorio al no incluir par
 
 <br>
 
-### Mostrar los cambios del repositorio
+### Mostrar Los Cambios Del Repositorio
 
 ```unknown
 git show <parámetros>
@@ -206,7 +206,7 @@ Muestra todos los cambios históricos hechos en el repositorio al no incluir par
 
 <br>
 
-### Limpiar el directorio de trabajo
+### Limpiar El Directorio De Trabajo
 
 ```unknown
 git clean <parámetros>
@@ -221,7 +221,7 @@ Elimina todos los archivos no rastreados por el repositorio del directorio de tr
 
 <br>
 
-### Eliminar archivos del repositorio
+### Eliminar Archivos Del Repositorio
 
 ```unknown
 git rm <parámetros> <nombre del archivo>
@@ -238,7 +238,7 @@ Algunos de los parámetros opcionales más útiles al utilizar **git rm** para e
 
 <br>
 
-## Administración de ramas y versiones con Git
+## Administración De Ramas Y Versiones Con Git
 
 <p align="center">
 <img src="imagenes/notas_de_git_y_github/sistema_de_ramas_de_git.svg" width="100%" height="auto"/>
@@ -252,11 +252,11 @@ Algunos de los conceptos más útiles al trabajar con ramas en Git son:
 
 <br>
 
-### Administrar ramas
+### Administrar Ramas
 
 El comando **git branch** se emplea para realizar las principales acciones que realiza Git en relación con ramas, como crear, listar y eliminar ramas, además de otras adicionales, como crear copias de ramas o renombrar ramas.
 
-#### Crear ramas
+#### Crear Ramas
 
 ```unknown
 git branch <parámetros> <nombre de la rama>
@@ -264,7 +264,7 @@ git branch <parámetros> <nombre de la rama>
 
 La acción por defecto de **git branch** si no se dan parámetros y se da un nombre es crear una nueva rama con el nombre indicado, la nueva rama se crea en base a la rama en la que se está posicionado actualmente, por lo que al crear una nueva rama es recomendable estar posicionado en la rama más actualizada.
 
-#### Listar ramas
+#### Listar Ramas
 
 ```unknown
 git branch <parámetros>
@@ -290,7 +290,7 @@ git show-branch <parámetros>
 
 - **-a, --all:** Modifica la función del comando para listar todo el historial de commits y ramas disponibles.
 
-#### Eliminar ramas
+#### Eliminar Ramas
 
 ```unknown
 git branch --delete <parámetros adicionales>
@@ -301,7 +301,7 @@ Para eliminar una rama se debe usar el comando **git branch** junto al parámetr
 - **-f, --force:** Al usare con **--delete** permite borrar una rama independientemente de su estatus.
 - **-D:** Atajo para la combinación de **--delete --force**.
 
-#### Parámetros adicionales
+#### Parámetros Adicionales
 
 Algunos de los parámetros adicionales que también acepta **git branch** para tener funciones adicionales son:
 
@@ -313,7 +313,7 @@ Algunos de los parámetros adicionales que también acepta **git branch** para t
 
 <br>
 
-### Fusionar ramas
+### Fusionar Ramas
 
 ```unknown
 git merge <parámetros> <nombre de la rama>
@@ -349,11 +349,11 @@ Algunos editores tienen herramientas para resolución de conflictos integradas, 
 
 <br>
 
-### Moverse entre ramas y versiones
+### Moverse Entre Ramas Y Versiones
 
 El comando **git checkout** actualiza los archivos del directorio de trabajo para que correspondan con los de una rama o una versión específica del repositorio.
 
-#### Moverse entre versiones
+#### Moverse Entre Versiones
 
 ```unknown
 git checkout <parámetros> <Id del commit> <nombre del archivo>
@@ -361,7 +361,7 @@ git checkout <parámetros> <Id del commit> <nombre del archivo>
 
 Traer versiones especificadas de un archivo al directorio de trabajo, si no se indica un archivo al final del comando se traerán todos los archivos de la versión indicada al directorio de trabajo, para conservar los cambios luego de traer uno o varios archivos al directorio de trabajo basta con hacer un **git add** y un **git commit**, si no se quieren conservar los cambios hechos por el checkout basta con hacer un nuevo checkout apuntando a la última versión o HEAD para descartarlos. Si checkout se usa para moverse entre versiones de una misma rama con cada checkout se generará una nueva rama, para eliminar los cambios de esa nueva rama basta con hacer un nuevo checkout a la rama master en caso de no querer guardar los cambios en una rama aparte.
 
-#### Moverse entre ramas
+#### Moverse Entre Ramas
 
 ```unknown
 git checkout <parámetros> <nombre de la rama>
@@ -371,7 +371,7 @@ Traer los archivos de una rama al directorio de trabajo y cambiar la rama actual
 
 <br>
 
-### Hacer rebase a una rama
+### Hacer Rebase A Una Rama
 
 ```unknown
 git rebase <rama a la que se enviaran los cambios de la rama actual>
@@ -383,7 +383,7 @@ Rebase permiten pegar una rama al final de otra sin dejar registros de la rama q
 
 <br>
 
-### Administrar la reserva de cambios de Git
+### Administrar La Reserva De Cambios De Git
 
 La reserva de cambios de Git o stash permite guardar temporalmente en un listado de los cambios que aún no están listos para ser enviados al repositorio, es bastante útil en escenarios en los que se necesitan archivos de otras ramas diferentes a la rama en la que están los cambios, pero estos no están listos para un commit, por lo que no se puede hacer un checkout ya que hacerlo sin un commit eliminaría los cambios, al hacer un stash en un rama todos los cambios hechos en el directorio de trabajo de esa rama luego del HEAD son enviados a la lista de stashs, lo que además permite volver al HEAD de forma rápida y segura sin perder los cambios, los stash son extremadamente útiles cuando se quieren realizar pequeñas pruebas o experimentos en los que no vale la pena crear una nueva rama.
 
@@ -431,11 +431,11 @@ Elimina todos los stash en la lista de stashs.
 
 <br>
 
-### Administrar tags
+### Administrar Tags
 
 Los tag son una manera de etiquetar estados de un repositorio, se usan comúnmente para indicar las versiones o releases de un proyecto mantenido con Git, sin embargo, el versionamiento no afecta internamente al proyecto, solo establece etiquetas asociadas a los releases, usualmente el etiquetado de versiones usando tags se hace siguiendo el [**versionamiento semántico**](https://semver.org/lang/es/), que es uno de los más populares y sencillos de usar, la mayor parte de las acciones que se realizan en Git con relación a los tags se realizan usando el comando **git tag**.
 
-#### Crear tags
+#### Crear Tags
 
 ```unknown
 git tag -a <nombre del tag> -m <mensaje> <id del commit>
@@ -453,7 +453,7 @@ Al crear un nuevo tag es útil usar antes el siguiente comando para ver de forma
 git log --all --graph --decorate --oneline
 ```
 
-#### Listar tags
+#### Listar Tags
 
 ```unknown
 git tag
@@ -467,7 +467,7 @@ git show-ref --tags
 
 El comando **git show-ref** seguido por el parámetro **--tags** tiene un comportamiento similar a **git tag** con la ventaja de que además lista el id del commit que corresponde con cada tag.
 
-#### Eliminar tags
+#### Eliminar Tags
 
 ```unknown
 git tag -d <nombre del tag>
@@ -481,7 +481,7 @@ git push <nombre del repositorio remoto> :refs/tags/<nombre del tag>
 
 <br>
 
-### Traer a una rama cambios viejos de otra
+### Traer A Una Rama Cambios Viejos De Otra
 
 ```unknown
 git cherry-pick <parámetros> <Id del commit>
@@ -491,7 +491,7 @@ Permite traer los cambios de un commit específico a la rama actual sin tener qu
 
 <br>
 
-### Regresar a versiones anteriores del repositorio
+### Regresar A Versiones Anteriores Del Repositorio
 
 ```unknown
 git reset <modo> <Id del commit>
@@ -505,7 +505,7 @@ Mueve el HEAD del commit actual al commit indicado, dependiendo del modo al camb
 
 <br>
 
-## Administración de repositorios remotos con Git y GitHub
+## Administración De Repositorios Remotos Con Git Y Github
 
 <p align="center">
 <img src="imagenes/notas_de_git_y_github/flujo_basico_con_repositorios_remotos_github.svg" width="100%" height="auto"/>
@@ -516,7 +516,7 @@ Las guías para crear repositorios remotos con [**GitHub**](https://guides.githu
 
 <br>
 
-### Administrar repositorios remotos
+### Administrar Repositorios Remotos
 
 ```unknown
 git remote <sub comandos> --verbose
@@ -526,7 +526,7 @@ Permite realizar varias acciones en los diferentes repositorios remotos vinculad
 
 - **-v, --verbose:** Hace que se muestran las urls además de los nombres asignados a los repositorios remotos al listarlos.
 
-#### Agregar repositorio remoto al repositorio local
+#### Agregar Repositorio Remoto Al Repositorio Local
 
 ```unknown
 git remote add <nombre del repositorio remoto> <url del repositorio remoto>
@@ -536,7 +536,7 @@ Vincula al repositorio local un repositorio remoto, el cual se puede llamar post
 
 <br>
 
-### Cambiar la url de un repositorio remoto
+### Cambiar La Url De Un Repositorio Remoto
 
 ```unknown
 git remote set-url <nombre del repositorio remoto> <url del repositorio remoto>
@@ -546,7 +546,7 @@ Cambia la url del repositorio remoto, es especialmente útil cuando se quiere ca
 
 <br>
 
-### Clonar un repositorio remoto
+### Clonar Un Repositorio Remoto
 
 ```unknown
 git clone <parámetros> <url del repositorio remoto>
@@ -558,7 +558,7 @@ Crea una copia de todos los archivos del repositorio remoto en el repositorio lo
 
 <br>
 
-### Traer los cambios del repositorio remoto al repositorio local
+### Traer Los Cambios Del Repositorio Remoto Al Repositorio Local
 
 ```unknown
 git fetch <parámetros> <nombre del repositorio remoto> <rama del repositorio local>
@@ -568,7 +568,7 @@ Actualiza una rama del repositorio local con los últimos cambios de la misma ra
 
 <br>
 
-### Traer los cambios repositorio remoto al repositorio local y al directorio de trabajo
+### Traer Los Cambios Repositorio Remoto Al Repositorio Local Y Al Directorio De Trabajo
 
 ```unknown
 git pull <parámetros> <nombre del repositorio remoto> <nombre de la rama>
@@ -578,7 +578,7 @@ Actualiza una rama del repositorio local con los últimos cambios de la misma ra
 
 <br>
 
-### Subir cambios del repositorio local al repositorio remoto
+### Subir Cambios Del Repositorio Local Al Repositorio Remoto
 
 ```unknown
 git push <parámetros> <nombre del repositorio remoto> <nombre de la rama>
@@ -591,7 +591,7 @@ Envía los cambios hechos en una rama del repositorio local al repositorio remot
 
 <br>
 
-## Conexión con GitHub usando protocolo SSH
+## Conexión Con Github Usando Protocolo Ssh
 
 <p align="center">
 <img src="imagenes/notas_de_git_y_github/sistema_de_conexion_ssh_de_github.svg" width="100%" height="auto"/>
@@ -602,7 +602,7 @@ Los pasos para establecer una conexión SSH segura entre el repositorio y la má
 
 <br>
 
-### 1. Crear el par de llaves
+### Crear El Par De Llaves
 
 ```unknown
 ssh-keygen -t rsa -b 4096 -C "Correo electrónico vinculado al usuario de GitHub"
@@ -612,7 +612,7 @@ El primer paso para usar SSH en lugar de HTTPS es generar un par de llaves SSH, 
 
 <br>
 
-### 2. Comprobar funcionamiento del servidor SSH
+### Comprobar Funcionamiento Del Servidor Ssh
 
 ```unknown
 eval $(ssh-agent -s)
@@ -622,7 +622,7 @@ Tras generar el par de llaves hay que verificar que el servidor encargado de man
 
 <br>
 
-### 3. Agregar llave al servidor SSH
+### Agregar Llave Al Servidor Ssh
 
 ```unknown
 ssh-add <ruta en la que se guardaron las llaves en el paso 1>
@@ -632,13 +632,13 @@ Tras verificar que el servidor SSH este activo hay que indicarle al servidor que
 
 <br>
 
-### 4. Agregar a GitHub la llave pública
+### Agregar A Github La Llave Pública
 
 Ya teniendo toda la configuración local hay que enviar la llave pública a GitHub, para agregar la llave pública hay que copiar el contenido de la llave publica, entrar al usuario de GitHub con el que se va a hacer la conexión SSH, en el usuario hay que ir a **Profile > Settings > SSH and GPG keys** seleccionar la opción que dice **New SSH Key** y pegar el contenido de la llave pública.
 
 <br>
 
-### 5. Cambiar la url del repositorio remoto para usar la conexión SSH
+### Cambiar La Url Del Repositorio Remoto Para Usar La Conexión Ssh
 
 ```unknown
 git remote set-url <nombre del repositorio remoto> <url del repositorio remoto>
@@ -648,7 +648,7 @@ Como último paso hay que actualizar la url del repositorio local reemplazandola
 
 <br>
 
-## Pull Requests con GitHub
+## Pull Requests Con Github
 
 <p align="center">
 <img src="imagenes/notas_de_git_y_github/sistema_de_pull_requests_de_github.svg" width="100%" height="auto"/>
@@ -668,7 +668,7 @@ El flujo de trabajo normal de un Pull Request es el siguiente
 
 <br>
 
-## Forks con GitHub
+## Forks Con Github
 
 <p align="center">
 <img src="imagenes/notas_de_git_y_github/sistema_de_forks_de_github.svg" width="100%" height="auto"/>
@@ -682,18 +682,18 @@ Para mantener actualizado un Fork hay dos opciones, desde GitHub se pueden hacer
 
 <br>
 
-## Uso de archivos gitignore con Git y GitHub
+## Uso De Archivos Gitignore Con Git Y Github
 
 ```ignore
 
-# Archivos de NodeJS
+# Archivos De Nodejs
 node_modules
 
-# Archivos de Docker
+# Archivos De Docker
 .dockerignore
 Dockerfile
 
-# Archivos de logs
+# Archivos De Logs
 *.log
 
 # Imágenes

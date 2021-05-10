@@ -1,59 +1,59 @@
-# Notas de Docker
+# Notas De Docker
 
 - [Introducción](#introducción)
-- [Instalación en sistemas Mac o Windows](#instalación-en-sistemas-mac-o-windows)
-- [Instalación en sistemas Ubuntu](#instalación-en-sistemas-ubuntu)
-  - [Comandos de instalación](#comandos-de-instalación)
-  - [Comprobación de la instalación](#comprobación-de-la-instalación)
-  - [En caso de errores](#en-caso-de-errores)
-- [Manejo básico de Docker](#manejo-básico-de-docker)
-  - [Abrir el manual](#abrir-el-manual)
-  - [Inspeccionar el uso de un comando](#inspeccionar-el-uso-de-un-comando)
-  - [Inspeccionar la versión del Docker Engine](#inspeccionar-la-versión-del-docker-engine)
-  - [Inspeccionar información del Docker Daemon](#inspeccionar-información-del-docker-daemon)
-  - [Inspeccionar los recursos usados por Docker](#inspeccionar-los-recursos-usados-por-docker)
-  - [Limpiar recursos residuales](#limpiar-recursos-residuales)
-- [Administración de contenedores](#administración-de-contenedores)
-  - [Ejecutar contenedores](#ejecutar-contenedores)
-    - [Apuntes adicionales sobre la ejecución de contenedores](#apuntes-adicionales-sobre-la-ejecución-de-contenedores)
-  - [Renombrar contenedores](#renombrar-contenedores)
-  - [Revisar el estado de los contenedores](#revisar-el-estado-de-los-contenedores)
-  - [Mover archivos y directorio entre el anfitrión y los contenedores](#mover-archivos-y-directorio-entre-el-anfitrión-y-los-contenedores)
-  - [Inspeccionar los logs de un contenedor](#inspeccionar-los-logs-de-un-contenedor)
-  - [Ejecutar tareas en contenedores](#ejecutar-tareas-en-contenedores)
-    - [Comando pré construído para ver procesos dentro de un contenedor](#comando-pré-construído-para-ver-procesos-dentro-de-un-contenedor)
-    - [Comando pré construído para ver usar el shell de un contenedor](#comando-pré-construído-para-ver-usar-el-shell-de-un-contenedor)
-  - [Apagar contenedores](#apagar-contenedores)
-  - [Eliminar contenedores](#eliminar-contenedores)
-    - [Comando pré construído para eliminar contenedores](#comando-pré-construído-para-eliminar-contenedores)
-- [Administración de imágenes](#administración-de-imágenes)
-  - [Construir imágenes](#construir-imágenes)
-  - [Descargar imágenes](#descargar-imágenes)
-  - [Subir imágenes](#subir-imágenes)
-  - [Cambiar el tag de una imágen](#cambiar-el-tag-de-una-imágen)
-  - [Listar imágenes](#listar-imágenes)
-  - [Inspeccionar capas de una imágen](#inspeccionar-capas-de-una-imágen)
-  - [Eliminar imágenes](#eliminar-imágenes)
-    - [Comando pré construído para eliminar imágenes](#comando-pré-construído-para-eliminar-imágenes)
-- [Administración de volúmenes](#administración-de-volúmenes)
-  - [Crear volúmenes](#crear-volúmenes)
-  - [Listar volúmenes](#listar-volúmenes)
-  - [Eliminar volúmenes](#eliminar-volúmenes)
-    - [Comando pré construído para eliminar volúmenes](#comando-pré-construído-para-eliminar-volúmenes)
-- [Administración de redes](#administración-de-redes)
-  - [Crear redes](#crear-redes)
-  - [Listar redes](#listar-redes)
-  - [Inspeccionar redes](#inspeccionar-redes)
-  - [Conectar y desconectar redes con contenedores](#conectar-y-desconectar-redes-con-contenedores)
-  - [Eliminar redes](#eliminar-redes)
-    - [Comando pré construído para eliminar redes](#comando-pré-construído-para-eliminar-redes)
-- [Comandos pre construidos de limpieza](#comandos-pre-construidos-de-limpieza)
+- [Instalación En Sistemas Mac O Windows](#instalación-en-sistemas-mac-o-windows)
+- [Instalación En Sistemas Ubuntu](#instalación-en-sistemas-ubuntu)
+  - [Comandos De Instalación](#comandos-de-instalación)
+  - [Comprobación De La Instalación](#comprobación-de-la-instalación)
+  - [En Caso De Errores](#en-caso-de-errores)
+- [Manejo Básico De Docker](#manejo-básico-de-docker)
+  - [Abrir El Manual De Docker](#abrir-el-manual-de-docker)
+  - [Inspeccionar Un Comando De Docker](#inspeccionar-un-comando-de-docker)
+  - [Inspeccionar La Versión Del Docker Engine](#inspeccionar-la-versión-del-docker-engine)
+  - [Inspeccionar Información Del Docker Daemon](#inspeccionar-información-del-docker-daemon)
+  - [Inspeccionar Los Recursos Usados Por Docker](#inspeccionar-los-recursos-usados-por-docker)
+  - [Limpiar Recursos Residuales](#limpiar-recursos-residuales)
+- [Administración De Contenedores](#administración-de-contenedores)
+  - [Ejecutar Contenedores](#ejecutar-contenedores)
+    - [Apuntes Adicionales Sobre La Ejecución De Contenedores](#apuntes-adicionales-sobre-la-ejecución-de-contenedores)
+  - [Renombrar Contenedores](#renombrar-contenedores)
+  - [Revisar El Estado De Los Contenedores](#revisar-el-estado-de-los-contenedores)
+  - [Mover Archivos Y Directorio Entre El Anfitrión Y Los Contenedores](#mover-archivos-y-directorio-entre-el-anfitrión-y-los-contenedores)
+  - [Inspeccionar Los Logs De Un Contenedor](#inspeccionar-los-logs-de-un-contenedor)
+  - [Ejecutar Tareas En Contenedores](#ejecutar-tareas-en-contenedores)
+    - [Comando Pré Construído Para Ver Procesos Dentro De Un Contenedor](#comando-pré-construído-para-ver-procesos-dentro-de-un-contenedor)
+    - [Comando Pré Construído Para Ver Usar El Shell De Un Contenedor](#comando-pré-construído-para-ver-usar-el-shell-de-un-contenedor)
+  - [Apagar Contenedores](#apagar-contenedores)
+  - [Eliminar Contenedores](#eliminar-contenedores)
+    - [Comando Pré Construído Para Eliminar Contenedores](#comando-pré-construído-para-eliminar-contenedores)
+- [Administración De Imágenes](#administración-de-imágenes)
+  - [Construir Imágenes](#construir-imágenes)
+  - [Descargar Imágenes](#descargar-imágenes)
+  - [Subir Imágenes](#subir-imágenes)
+  - [Cambiar El Tag De Una Imágen](#cambiar-el-tag-de-una-imágen)
+  - [Listar Imágenes](#listar-imágenes)
+  - [Inspeccionar Capas De Una Imágen](#inspeccionar-capas-de-una-imágen)
+  - [Eliminar Imágenes](#eliminar-imágenes)
+    - [Comando Pré Construído Para Eliminar Imágenes](#comando-pré-construído-para-eliminar-imágenes)
+- [Administración De Volúmenes](#administración-de-volúmenes)
+  - [Crear Volúmenes](#crear-volúmenes)
+  - [Listar Volúmenes](#listar-volúmenes)
+  - [Eliminar Volúmenes](#eliminar-volúmenes)
+    - [Comando Pré Construído Para Eliminar Volúmenes](#comando-pré-construído-para-eliminar-volúmenes)
+- [Administración De Redes](#administración-de-redes)
+  - [Crear Redes](#crear-redes)
+  - [Listar Redes](#listar-redes)
+  - [Inspeccionar Redes](#inspeccionar-redes)
+  - [Conectar Y Desconectar Redes Con Contenedores](#conectar-y-desconectar-redes-con-contenedores)
+  - [Eliminar Redes](#eliminar-redes)
+    - [Comando Pré Construído Para Eliminar Redes](#comando-pré-construído-para-eliminar-redes)
+- [Comandos Pre Construidos De Limpieza](#comandos-pre-construidos-de-limpieza)
 - [Archivos Dockerfile](#archivos-dockerfile)
-  - [Tips de Dockerfile](#tips-de-dockerfile)
-  - [Ejemplo de cache por capas en Dockerfile](#ejemplo-de-cache-por-capas-en-dockerfile)
-  - [Ejemplo de un archivo dockerignore](#ejemplo-de-un-archivo-dockerignore)
-  - [Ejemplo de entrypoint y cmd en Dockerfile](#ejemplo-de-entrypoint-y-cmd-en-dockerfile)
-  - [Ejemplo de un Dockerfile multi etapa](#ejemplo-de-un-dockerfile-multi-etapa)
+  - [Tips De Dockerfile](#tips-de-dockerfile)
+  - [Ejemplo De Cache Por Capas En Dockerfile](#ejemplo-de-cache-por-capas-en-dockerfile)
+  - [Ejemplo De Un Archivo Dockerignore](#ejemplo-de-un-archivo-dockerignore)
+  - [Ejemplo De Entrypoint Y Cmd En Dockerfile](#ejemplo-de-entrypoint-y-cmd-en-dockerfile)
+  - [Ejemplo De Un Dockerfile Multi Etapa](#ejemplo-de-un-dockerfile-multi-etapa)
 
 <br>
 
@@ -91,13 +91,13 @@ Además de las capas con las que es necesario interactuar para usar Docker, Dock
 
 <br>
 
-## Instalación en sistemas Mac o Windows
+## Instalación En Sistemas Mac O Windows
 
 Para realizar la instalación de Docker en MacOS o en Windows basta con descargar de [**Docker Hub**](https://hub.docker.com/) la aplicación de escritorio (Docker Desktop).
 
 <br>
 
-## Instalación en sistemas Ubuntu
+## Instalación En Sistemas Ubuntu
 
 Esta pequeña guía de instalación está basada en la [**guía oficial**](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker Hub para instalar Docker Engine en **Ubuntu** mediante el sistema de repositorios, cabe aclarar que en Linux no hace falta instalar Docker Desktop como en Mac o en Windows, con solo Docker Engine es suficiente y además la manipulación del Docker Daemon en Linux se hace solo por consola, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de **Ubuntu**:
 
@@ -108,7 +108,7 @@ Esta pequeña guía de instalación está basada en la [**guía oficial**](https
 
 <br>
 
-### Comandos de instalación
+### Comandos De Instalación
 
 ```bash
 sudo apt-get update
@@ -148,7 +148,7 @@ Por último se utilizan los comandos anteriores para actualizar el índice de pa
 
 <br>
 
-### Comprobación de la instalación
+### Comprobación De La Instalación
 
 Una forma sencilla de comprobar el funcionamiento de Docker Engine es utilizando la imagen de Hello-World, para hacer esto se ejecuta el siguiente comando.
 
@@ -168,7 +168,7 @@ docker info
 
 <br>
 
-### En caso de errores
+### En Caso De Errores
 
 Un error comun al instalar Docker en **Ubuntu** es que al realizar la instalacion solo el usuario root posee permisos para ejecutar acciones manipulando el Docker Daemon, por lo tanto si se ejecutan comandos de Docker sin usar el super usuario aparecerá un mensaje de error de denegación de permisos, como el presente a continuación.
 
@@ -186,11 +186,11 @@ newgrp docker
 
 <br>
 
-## Manejo básico de Docker
+## Manejo Básico De Docker
 
 <br>
 
-### Abrir el manual
+### Abrir El Manual De Docker
 
 ```bash
 man docker
@@ -200,7 +200,7 @@ Muestra el manual de Docker.
 
 <br>
 
-### Inspeccionar el uso de un comando
+### Inspeccionar Un Comando De Docker
 
 ```unknown
 docker <comando> --help
@@ -210,7 +210,7 @@ Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar u
 
 <br>
 
-### Inspeccionar la versión del Docker Engine
+### Inspeccionar La Versión Del Docker Engine
 
 ```bash
 docker --version
@@ -220,7 +220,7 @@ Permite ver la versión de Docker Engine instalada actualmente en la máquina an
 
 <br>
 
-### Inspeccionar información del Docker Daemon
+### Inspeccionar Información Del Docker Daemon
 
 ```unknown
 docker info <parámetros>
@@ -230,7 +230,7 @@ Muestra información del Docker Daemon, como el número de imágenes descargadas
 
 <br>
 
-### Inspeccionar los recursos usados por Docker
+### Inspeccionar Los Recursos Usados Por Docker
 
 ```unknown
 docker stats <parámetros> <id o nombre del contenedor>
@@ -240,7 +240,7 @@ Muestra los recursos que está utilizando cada contenedor y Docker en general, s
 
 <br>
 
-### Limpiar recursos residuales
+### Limpiar Recursos Residuales
 
 ```unknown
 docker system prune <parámetros>
@@ -250,13 +250,13 @@ Elimina todos los volúmenes, contenedores y redes que no se estén usando, adem
 
 <br>
 
-## Administración de contenedores
+## Administración De Contenedores
 
 La administración de contenedores es una actividad clave al utilizar Docker ya que los contenedores son las entidades más importantes que se pueden manejar en Docker, esto se debe a que los contenedores son los encargados de virtualizar el ambiente aislado donde se ejecutarán las aplicaciones desplegadas con Docker, es mediante el uso de contenedores que Docker adquiere tres de sus características más importantes, concretamente el uso de contenedores aporta **flexibilidad**, **seguridad** y **bajo acoplamiento** a las aplicaciones. Algunos de los comandos más importantes provistos por Docker para administrar contenedores se listan en esta sección.
 
 <br>
 
-### Ejecutar contenedores
+### Ejecutar Contenedores
 
 ```unknown
 docker run <parámetros> <imagen> <comando>
@@ -275,7 +275,7 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando indi
 - **--memory &lt;cantidad de memoria ram designada&gt; &lt;g|m&gt;:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que necesite.
 - **--env &lt;nombre de la variable de ambiente&gt;=&lt;valor de la variable de ambiente&gt;:** Establece una variable de ambiente a la que tendrá acceso el contenedor.
 
-#### Apuntes adicionales sobre la ejecución de contenedores
+#### Apuntes Adicionales Sobre La Ejecución De Contenedores
 
 - Al restringir la memoria ram que puede usar una aplicación es posible que esta se finalice con el estatus **OOMKilled**, el cual se puede ver al hacer un **docker inspect** sobre el contenedor, este estatus indica que el contenedor se detuvo debido a que la memoria con la que contaba le fue insuficiente para ejecutar todos sus procesos y por lo tanto colapsó y se detuvo.
 - Los status de salida con código por encima de 128 indican salidas forzosas y normalmente indican que el cierre de ese contenedor causó que varios procesos que se estaban llevando a cabo se detuvieran sin finalizarse.
@@ -283,7 +283,7 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando indi
 
 <br>
 
-### Renombrar contenedores
+### Renombrar Contenedores
 
 ```unknown
 docker rename <nombre o id del contenedor> <nuevo nombre>
@@ -293,7 +293,7 @@ Renombra el contenedor indicado.
 
 <br>
 
-### Revisar el estado de los contenedores
+### Revisar El Estado De Los Contenedores
 
 ```unknown
 docker ps <parámetros>
@@ -312,7 +312,7 @@ Muestra en formato JSON toda la información de la configuración del contenedor
 
 <br>
 
-### Mover archivos y directorio entre el anfitrión y los contenedores
+### Mover Archivos Y Directorio Entre El Anfitrión Y Los Contenedores
 
 ```unknown
 docker cp <parámetros> <ruta host> <nombre o id del contenedor>:<ruta contenedor>
@@ -328,7 +328,7 @@ Copia un archivo o directorio desde la ruta de origen del contenedor indicado en
 
 <br>
 
-### Inspeccionar los logs de un contenedor
+### Inspeccionar Los Logs De Un Contenedor
 
 ```unknown
 docker logs <parámetros> <nombre o id del contenedor>
@@ -341,7 +341,7 @@ Sirve para ver los logs del contenedor indicado, algunos de los parámetros más
 
 <br>
 
-### Ejecutar tareas en contenedores
+### Ejecutar Tareas En Contenedores
 
 ```unknown
 docker exec <parámetros> <nombre o id del contenedor> <comando>
@@ -351,7 +351,7 @@ Permite ejecutar un comando en un contenedor activo, algunos de los parámetros 
 
 - **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del comando en el contenedor, ejecutando en el background del contenedor el comando.
 
-#### Comando pré construído para ver procesos dentro de un contenedor
+#### Comando Pré Construído Para Ver Procesos Dentro De Un Contenedor
 
 ```unknown
 docker exec <nombre o id del contenedor> ps -ef
@@ -359,7 +359,7 @@ docker exec <nombre o id del contenedor> ps -ef
 
 El comando anterior es una extensión de **docker exec** que muestra los procesos que se están ejecutando dentro del contenedor indicado.
 
-#### Comando pré construído para ver usar el shell de un contenedor
+#### Comando Pré Construído Para Ver Usar El Shell De Un Contenedor
 
 ```unknown
 docker exec -it <nombre o id del contenedor> /bin/bash
@@ -369,7 +369,7 @@ El comando anterior es una extensión de **docker exec** que permite usar de for
 
 <br>
 
-### Apagar contenedores
+### Apagar Contenedores
 
 ```unknown
 docker stop <parámetros> <nombre o id del contenedor>
@@ -385,7 +385,7 @@ Apaga manualmente un contenedor usando la señal **sigkill**.
 
 <br>
 
-### Eliminar contenedores
+### Eliminar Contenedores
 
 ```unknown
 docker rm <parámetros> <nombre o id del contenedor>
@@ -401,7 +401,7 @@ docker container prune <parámetros>
 
 Borra todos los contenedores inactivos.
 
-#### Comando pré construído para eliminar contenedores
+#### Comando Pré Construído Para Eliminar Contenedores
 
 ```bash
 docker rm -f $(docker ps -aq)
@@ -411,13 +411,13 @@ El comando anterior es una extensión de **docker rm** pero tiene la funcionalid
 
 <br>
 
-## Administración de imágenes
+## Administración De Imágenes
 
 En términos de relevancia las imágenes en Docker podrían considerarse como el segundo tipo de entidad más relevantes después de los contenedores, estando casi a la par en relevancia, lo que hace a la administración de imágenes el segundo tipo de actividad más relevante al usar Docker, si bien los contenedores son la forma de virtualizar un ambiente aislado sobre el que se ejecutara la aplicación, las imágenes se encargan de indicar la forma en la que el contenedor debe construir ese ambiente, además es gracias a las imágenes que es fácil mover, desplegar y replicar un contenedor las veces que haga falta, sin alterar el funcionamiento del mismo, es por esto que las imágenes son las que aportan a las aplicaciones contenerizadas las tres características restantes principales de Docker, concretamente las imágenes aportan **escalabilidad**, **portabilidad** y **ligereza** a nuestros proyectos. Algunos de los comandos más importantes provistos por Docker para administrar imágenes se listan en esta sección.
 
 <br>
 
-### Construir imágenes
+### Construir Imágenes
 
 ```unknown
 docker build <parámetros> <ruta del contexto>
@@ -430,7 +430,7 @@ Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el c
 
 <br>
 
-### Descargar imágenes
+### Descargar Imágenes
 
 ```unknown
 docker pull <parámetros> <nombre o id de la imagen>:<tag de la imagen>
@@ -440,7 +440,7 @@ Baja la imagen con el nombre y el tag especificado, si no se especifica un tag s
 
 <br>
 
-### Subir imágenes
+### Subir Imágenes
 
 Antes de subir una imagen a nuestro repositorio es necesario iniciar sesión con nuestro usuario en el CLI de Docker, esto se hace con el siguiente comando.
 
@@ -458,7 +458,7 @@ Sube la imagen con el nombre y el tag especificado al repositorio indicado.
 
 <br>
 
-### Cambiar el tag de una imágen
+### Cambiar El Tag De Una Imágen
 
 ```unknown
 docker tag <nombre o id de la imagen de origen>:<tag de la imagen de origen> <repositorio o nombre de usuario de Docker Hub>/<nombre o id de la nueva imagen>:<tag de la nueva imagen>
@@ -468,7 +468,7 @@ Crea una nueva imagen con un nuevo tag que hace referencia a una ya existente y 
 
 <br>
 
-### Listar imágenes
+### Listar Imágenes
 
 ```unknown
 docker image ls <parámetros>
@@ -478,7 +478,7 @@ Lista todas las imágenes almacenadas localmente.
 
 <br>
 
-### Inspeccionar capas de una imágen
+### Inspeccionar Capas De Una Imágen
 
 ```unknown
 docker history <parámetros> <nombre o id de la imagen>:<tag de la imagen>
@@ -501,7 +501,7 @@ Para abrir los detalles de la imagen con dive, luego de abrir una imagen podemos
 
 <br>
 
-### Eliminar imágenes
+### Eliminar Imágenes
 
 ```unknown
 docker image rm <parámetros> <nombre o id de la imagen>:<tag de la imagen>
@@ -515,7 +515,7 @@ docker image prune <parámetros>
 
 Elimina todas las imágenes residuales o inactivas.
 
-#### Comando pré construído para eliminar imágenes
+#### Comando Pré Construído Para Eliminar Imágenes
 
 ```bash
 docker image rm -f $(docker image ls -q)
@@ -525,13 +525,13 @@ El comando anterior es una extensión de **docker image rm** pero tiene la funci
 
 <br>
 
-## Administración de volúmenes
+## Administración De Volúmenes
 
 Los volúmenes son una parte fundamental al usar Docker para desarrollar aplicaciones contenerizadas ya que son las unidades virtuales de almacenamiento que normalmente usan los contenedores para guardar y compartir datos entre ellos de forma sencilla, usar volúmenes garantiza que los datos almacenados persistirán incluso si se detienen o eliminan todos los contenedores que hacían uso del volumen, cabe aclarar que los volúmenes son espacios de memoria del anfitrión que Docker usa para almacenar archivos de los contenedores, al igual que con los bind, pero a diferencia de los bind los volúmenes son administrados únicamente por Docker y no conceden al contenedor acceso al sistema de directorios del anfitrión, lo que los hace más seguros de usar que los bind, es por esto último que los volúmenes son la opción más recomendable para almacenar datos de los contenedores en una solución desplegada para producción. Los comandos provistos por Docker para administrar volúmenes se listan en esta sección.
 
 <br>
 
-### Crear volúmenes
+### Crear Volúmenes
 
 ```unknown
 docker volume create <parámetros> <nombre>
@@ -541,7 +541,7 @@ Crea un volúmen y le asigna el nombre indicado.
 
 <br>
 
-### Listar volúmenes
+### Listar Volúmenes
 
 ```unknown
 docker volume ls <parámetros>
@@ -551,7 +551,7 @@ Lista todos los volúmenes disponibles.
 
 <br>
 
-### Eliminar volúmenes
+### Eliminar Volúmenes
 
 ```unknown
 docker volume rm <parámetros> <nombre>
@@ -565,7 +565,7 @@ docker volume prune <parámetros>
 
 Elimina todos los volúmenes residuales o inactivos almacenados localmente.
 
-#### Comando pré construído para eliminar volúmenes
+#### Comando Pré Construído Para Eliminar Volúmenes
 
 ```bash
 docker volume rm -f $(docker volume ls -q)
@@ -575,13 +575,13 @@ El comando anterior es una extensión de **docker volume rm** pero tiene la func
 
 <br>
 
-## Administración de redes
+## Administración De Redes
 
 Las redes son una parte fundamental al usar Docker para desarrollar una aplicación contenerizada ya que usándolas se puede lograr que varios contenedores en la misma red se comunican, y cooperan generando un esquema de micro servicios, una de las principales ventajas de usar redes de Docker es que se puede usar directamente el nombre del contenedor para establecer las comunicaciones y a diferencia de el uso de conexiones directas por API usando redes de Docker no hace falta que un contenedor salga a internet para comunicarse con otro. Los comandos provistos por Docker para administrar redes se listan en esta sección.
 
 <br>
 
-### Crear redes
+### Crear Redes
 
 ```unknown
 docker network create <parámetros> <nombre>
@@ -594,7 +594,7 @@ Crea un nueva red de Docker, algunos de los parámetros más útiles al crear un
 
 <br>
 
-### Listar redes
+### Listar Redes
 
 ```unknown
 docker network ls <parámetros>
@@ -604,7 +604,7 @@ Lista todas las redes disponibles.
 
 <br>
 
-### Inspeccionar redes
+### Inspeccionar Redes
 
 ```unknown
 docker network inspect <parámetros> <nombre o id de la red>
@@ -614,7 +614,7 @@ Muestra la configuración de la red indicada en formato JSON y ciertos datos de 
 
 <br>
 
-### Conectar y desconectar redes con contenedores
+### Conectar Y Desconectar Redes Con Contenedores
 
 ```unknown
 docker network connect <parámetros> <id o nombre de la red> <id o nombre del contenedor>
@@ -630,7 +630,7 @@ Desconecta un contenedor de una red.
 
 <br>
 
-### Eliminar redes
+### Eliminar Redes
 
 ```unknown
 docker network rm <parámetros> <nombre>
@@ -644,7 +644,7 @@ docker network prune <parámetros>
 
 Elimina todas las redes residuales o inactivas.
 
-#### Comando pré construído para eliminar redes
+#### Comando Pré Construído Para Eliminar Redes
 
 ```bash
 docker network rm $(docker network ls -q)
@@ -654,7 +654,7 @@ El comando anterior es una extensión de **docker network rm** pero tiene la fun
 
 <br>
 
-## Comandos pre construidos de limpieza
+## Comandos Pre Construidos De Limpieza
 
 Los siguientes comandos simplemente son una compilación de los comandos de las secciones anteriores, en conjunto y ejecutados en secuencia eliminan todos los contenedores, imágenes, volúmenes y redes que se hayan creado sin discriminar si son o no residuales.
 
@@ -684,7 +684,7 @@ Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los 
 
 <br>
 
-### Tips de Dockerfile
+### Tips De Dockerfile
 
 - Docker no construye de nuevo las capas a no ser que haya cambios, esto lo logra utilizando el caché de capas, considerar el caché de capas al momento de construir un **Dockerfile** puede facilitar el desarrollo, mejorando considerablemente el tiempo en el que de construye una imagen, ya que se puede ahorrar la reconstrucción de ciertas capas usando el cache.
 - Utilizando monitores de scripting y bind mounts, como nodemon, se puede lograr que Docker actualice el código que se está ejecutando en tiempo de ejecución sin tener que reconstruir la imagen de nuevo.
@@ -696,7 +696,7 @@ Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los 
 - El resultado de construir una imagen con un **Dockerfile** multi etapa siempre es la imagen resultante de la etapa final.
 - Cuando se realizan construcciones con múltiples etapas se utiliza el indicativo **as** junto a FROM para nombrar la imagen previa y además se puede utilizar **--from=&lt;nombre&gt;** para que una imagen posterior referencia una imagen previa.
 
-### Ejemplo de cache por capas en Dockerfile
+### Ejemplo De Cache Por Capas En Dockerfile
 
 ```dockerfile
 FROM node:14
@@ -710,7 +710,7 @@ CMD ["node", "index.js"]
 
 El efecto de utilizar el caché por capas en el **Dockerfile** anterior copiando al principio solo los archivos de dependencias, instalarlas y luego copiando de nuevo todos los archivos, es que al momento de instalar dependencias se pueda utilizar el caché siempre que no hayan habido cambios en las declaraciones de las dependencias, si se copiaran todos los archivos y luego se instalarán dependencias siempre sería necesario instalar dependencias, ya que Docker identificó cambios en la capa en la que se copian los archivos a pesar de que no sean los archivos de dependencias, por lo que no usaría cache en esa etapa y por lo tanto tampoco en la de instalación de dependencias, además del caché pr dependencias en el **Dockerfile** anterior se expone la aplicación mediante el puerto 3000 y se inicia un proceso usando un comando cmd en exec form.
 
-### Ejemplo de un archivo dockerignore
+### Ejemplo De Un Archivo Dockerignore
 
 ```ignore
 *.log
@@ -726,7 +726,7 @@ README.md
 
 El principal efecto de el .dockerignore anterior es evitar que la imagen de la aplicación se llene de archivos innecesarios para su ejecución como los pertenecientes a git y además evita que ciertos archivos que podrían generar errores como los pertenecientes al directorio node_modules se copien en imagen.
 
-### Ejemplo de entrypoint y cmd en Dockerfile
+### Ejemplo De Entrypoint Y Cmd En Dockerfile
 
 ```dockerfile
 FROM ubuntu:trusty
@@ -736,10 +736,10 @@ CMD ["localhost"]
 
 El efecto de utilizar comandos mediante entrypoints y cmd en el **Dockerfile** anterior es que se puede cambiar la dirección a la que se hace ping al ejecutar un contenedor o al modificar el comando del contenedor sin poder alterar el resto del comando.
 
-### Ejemplo de un Dockerfile multi etapa
+### Ejemplo De Un Dockerfile Multi Etapa
 
 ```dockerfile
-# etapa 1.
+# Etapa 1.
 FROM node:12 as builder
 COPY ["package.json", "package-lock.json", "/usr/src/"]
 WORKDIR /usr/src
@@ -748,7 +748,7 @@ COPY [".", "/usr/src/"]
 RUN npm install --only=development
 RUN npm run test
 
-# etapa 2
+# Etapa 2
 FROM node:12
 COPY ["package.json", "package-lock.json", "/usr/src/"]
 WORKDIR /usr/src

@@ -1,11 +1,11 @@
-# Sobre este repositorio
+# Sobre Este Repositorio
 
 El único propósito de este repositorio es guardar y tener disponibles notas útiles sobre algunas de las tecnologías que he aprendido y que podrían serme útiles en el futuro.\
 En casi todos los archivos de notas hay gráficas, estas gráficas no se podrán visualizar de forma correcta si GitHub no está configurado en modo claro, ya que todas se diseñaron para verse bien en el modo oscuro de GitHub.
 
 <br>
 
-## Notas en este repositorio
+## Notas En Este Repositorio
 
 - [Notas de Sistemas Linux](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_sistemas_linux.md)
 - [Notas de Git y GitHub](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_git_y_github.md)
