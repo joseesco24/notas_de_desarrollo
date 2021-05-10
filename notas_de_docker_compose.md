@@ -1,10 +1,6 @@
 # Notas de Docker Compose
 
-[**Docker Compose**](https://docs.docker.com/compose/) permite usar los 4 recursos principales de Docker juntos fácilmente desde un solo archivo [**docker-compose.yml**](https://docs.docker.com/compose/compose-file/), usando este archivo también llamado Compose File se pueden integrar fácilmente recursos de red, volúmenes, imagenes y contenedores sin necesidad de administrar uno a uno cada tipo de recurso, en síntesis lo que permite Docker Compose es describir de forma declarativa la arquitectura de servicios que la aplicación necesita, y Docker se encargará de crear e integrar cada recursos declarado por detrás evitando que el desarrollador tenga que administraba uno a uno los recursos necesarios para levantar una aplicación basada en varios servicios contenerizados que interactúan entre sí.\
-Docker Compose se basa en servicios, no en contenedores, un servicio en Docker puede componerse de una o más aplicaciones contenerizadas creadas a partir de la misma imagen, es decir que pueden haber varias réplicas de un contenedor en un mismo servicio, en un esquema de servicios con réplicas además se distribuyen las diferentes peticiones entre las réplicas de la aplicación, lo que permite que la aplicación se más ágil atendiendo peticiones y además pueda atender más en simultáneo al mismo tiempo que aprovecha los recursos disponibles a nivel de hardware, en Docker compose se manejan servicios en lugar de contenedores para así dar a los desarrolladores la posibilidad de escalar fácilmente el número de contenedores que realizan la misma tarea.
-
-<br>
-
+- [Introducción](#introducción)
 - [Instalación de Docker Compose en Ubuntu](#instalación-de-docker-compose-en-ubuntu)
 - [Archivos docker-compose.yml](#archivos-docker-composeyml)
   - [Tips de Docker Compose](#tips-de-docker-compose)
@@ -19,6 +15,13 @@ Docker Compose se basa en servicios, no en contenedores, un servicio en Docker p
   - [Revisar los logs de una aplicación compose](#revisar-los-logs-de-una-aplicación-compose)
   - [Ejecutar comandos en servicios de una aplicación compose](#ejecutar-comandos-en-servicios-de-una-aplicación-compose)
   - [Detener y eliminar todos los servicios de una aplicación compose](#detener-y-eliminar-todos-los-servicios-de-una-aplicación-compose)
+
+<br>
+
+## Introducción
+
+[**Docker Compose**](https://docs.docker.com/compose/) permite usar los 4 recursos principales de Docker juntos fácilmente desde un solo archivo [**docker-compose.yml**](https://docs.docker.com/compose/compose-file/), usando este archivo también llamado Compose File se pueden integrar fácilmente recursos de red, volúmenes, imagenes y contenedores sin necesidad de administrar uno a uno cada tipo de recurso, en síntesis lo que permite Docker Compose es describir de forma declarativa la arquitectura de servicios que la aplicación necesita, y Docker se encargará de crear e integrar cada recursos declarado por detrás evitando que el desarrollador tenga que administraba uno a uno los recursos necesarios para levantar una aplicación basada en varios servicios contenerizados que interactúan entre sí.\
+Docker Compose se basa en servicios, no en contenedores, un servicio en Docker puede componerse de una o más aplicaciones contenerizadas creadas a partir de la misma imagen, es decir que pueden haber varias réplicas de un contenedor en un mismo servicio, en un esquema de servicios con réplicas además se distribuyen las diferentes peticiones entre las réplicas de la aplicación, lo que permite que la aplicación se más ágil atendiendo peticiones y además pueda atender más en simultáneo al mismo tiempo que aprovecha los recursos disponibles a nivel de hardware, en Docker compose se manejan servicios en lugar de contenedores para así dar a los desarrolladores la posibilidad de escalar fácilmente el número de contenedores que realizan la misma tarea.
 
 <br>
 

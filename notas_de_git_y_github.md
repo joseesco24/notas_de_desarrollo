@@ -1,11 +1,6 @@
 # Notas de Git y GitHub
 
-[**Git**](https://git-scm.com/doc) es el sistema de versionamiento más usado en la industria del desarrollo de software en general, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la más reciente, lo que hace posible registrar la evolución de los archivos con cada actualización sin almacenar los archivos de cada versión en su totalidad, para esto Git emplea al interior de cada repositorio una base de datos que guarda los cambios de forma incremental, la cual se actualiza con cada versión nueva que llega al repositorio.\
-[**GitHub**](https://docs.github.com/es) por su parte es el sistema de versionamiento remoto más usado en la industria del desarrollo de software en general, GitHub permite trabajo colaborativo sobre los archivos de un repositorio remoto, además de permitir publicar proyectos y su progreso, entre otras de sus funciones.\
-Git y GitHub soportan versionamiento de archivos binarios, pero el versionamiento de archivos binarios no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan Git y GitHub solo para archivos de texto plano, como el código.
-
-<br>
-
+- [Introducción](#introducción)
 - [Flujo de trabajo básico con Git](#flujo-de-trabajo-básico-con-git)
   - [Mostrar comandos populares de Git](#mostrar-comandos-populares-de-git)
   - [Mostrar ayuda de un comando](#mostrar-ayuda-de-un-comando)
@@ -55,6 +50,14 @@ Git y GitHub soportan versionamiento de archivos binarios, pero el versionamient
 - [Pull Requests con GitHub](#pull-requests-con-github)
 - [Forks con GitHub](#forks-con-github)
 - [Uso de archivos gitignore con Git y GitHub](#uso-de-archivos-gitignore-con-git-y-github)
+
+<br>
+
+## Introducción
+
+[**Git**](https://git-scm.com/doc) es el sistema de versionamiento más usado en la industria del desarrollo de software en general, Git permite guardar el historial de cambios y el crecimiento de los archivos de un proyecto de forma atómica e incremental, por lo que cada cambio se escribe sobre el anterior y así sucesivamente desde la versión inicial hasta la más reciente, lo que hace posible registrar la evolución de los archivos con cada actualización sin almacenar los archivos de cada versión en su totalidad, para esto Git emplea al interior de cada repositorio una base de datos que guarda los cambios de forma incremental, la cual se actualiza con cada versión nueva que llega al repositorio.\
+[**GitHub**](https://docs.github.com/es) por su parte es el sistema de versionamiento remoto más usado en la industria del desarrollo de software en general, GitHub permite trabajo colaborativo sobre los archivos de un repositorio remoto, además de permitir publicar proyectos y su progreso, entre otras de sus funciones.\
+Git y GitHub soportan versionamiento de archivos binarios, pero el versionamiento de archivos binarios no es tan preciso como con archivos basados en texto plano, por lo que normalmente se utilizan Git y GitHub solo para archivos de texto plano, como el código.
 
 <br>
 

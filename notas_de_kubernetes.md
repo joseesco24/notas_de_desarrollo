@@ -1,5 +1,17 @@
 # Notas de Kubernetes
 
+- [Introducción](#introducción)
+- [Contenedores en Kubernetes](#contenedores-en-kubernetes)
+- [Arquitectura de Kubernetes](#arquitectura-de-kubernetes)
+  - [Componentes de los nodos maestro en Kubernetes](#componentes-de-los-nodos-maestro-en-kubernetes)
+  - [Componentes de los nodos esclavo en Kubernetes](#componentes-de-los-nodos-esclavo-en-kubernetes)
+- [Sistemas declarativos e imperativos en Kubernetes](#sistemas-declarativos-e-imperativos-en-kubernetes)
+- [Redes en Kubernetes](#redes-en-kubernetes)
+
+<br>
+
+## Introducción
+
 <p align="center">
 <img src="imagenes/notas_de_kubernetes/arquitectura_basica_kubernetes.svg" width="100%" height="auto"/>
 </p>
@@ -15,15 +27,6 @@
 
 En Kubernetes un pod es una agrupación de contenedores que se ejecutan en el mismo host y que además comparten un namespace o interfaz de red, por lo que todos los contenedores dentro de un pod tienen la misma IP, gracias a esto todos los contenedores que están dentro de un pod se ven unos a otros como procesos ejecutándose dentro del mismo sistema, además en un pod pueden haber varios tipos de contenedores, lo que permite tener en un pod varios tipos de aplicaciones que necesariamente deben trabajar juntas.
 Cuando se escala algo en Kubernetes no se agregan más contenedores, se agregan más pods.
-
-<br>
-
-- [Contenedores en Kubernetes](#contenedores-en-kubernetes)
-- [Arquitectura de Kubernetes](#arquitectura-de-kubernetes)
-  - [Componentes de los nodos maestro en Kubernetes](#componentes-de-los-nodos-maestro-en-kubernetes)
-  - [Componentes de los nodos esclavo en Kubernetes](#componentes-de-los-nodos-esclavo-en-kubernetes)
-- [Sistemas declarativos e imperativos en Kubernetes](#sistemas-declarativos-e-imperativos-en-kubernetes)
-- [Redes en Kubernetes](#redes-en-kubernetes)
 
 <br>
 

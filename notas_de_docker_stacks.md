@@ -1,9 +1,6 @@
 # Notas de Docker Stacks
 
-[**Docker Stack**](https://docs.docker.com/engine/reference/commandline/stack/) es la solucion que da Docker a situaciones en las que se se quieren desplegar varias aplicaciones como servicios en un cluster basado en Docker Swarm sin configurar cada servicio uno a uno. Al igual que Docker Compose, Docker Stack permite que se integren los 4 recursos principales de Docker en una sola aplicacion basada en varios servicios que se pueden comunicar o no entre si y ademas se ejecutan sobre un cluster, todo usando un archivo llamado [**stack-file.yml**](https://docs.docker.com/compose/compose-file/), estos archivos son en realidad Compose Files "enriquecidos", utilizan la misma sintaxis y los mismos componentes de un Compose File normal, por lo que permiten declarar de forma declarativa la arquitectura de servicios que la aplicación necesita y por detrás Docker se encargará de e integrar cada recurso, pero los Stack File utilizan configuraciones adicionales a las de los Compose File dedicadas a los [**Stacks**](https://docs.docker.com/compose/compose-file/compose-file-v3/#deploy), la principal diferencia es que los Stack File sirven para generar esquemas de servicios basados en Docker Swarm sobre más de una máquina en un cluster, a diferencia de los Compose File, que cumplen la misma función, pero solo en una máquina, los Stack File además soportan componentes que Docker Compose ignora y de la misma forma los Compose Files regulares utilizan ciertos componentes que los Stack Files ignoran.
-
-<br>
-
+- [Introducción](#introducción)
 - [Archivos stack-file.yml](#archivos-stack-fileyml)
   - [Tips de Docker Stacks](#tips-de-docker-stacks)
   - [Ejemplo de un Stack File](#ejemplo-de-un-stack-file)
@@ -14,6 +11,12 @@
   - [Listar tareas de un stack](#listar-tareas-de-un-stack)
   - [Listar servicios de un stack](#listar-servicios-de-un-stack)
   - [Eliminar un stack](#eliminar-un-stack)
+
+<br>
+
+## Introducción
+
+[**Docker Stack**](https://docs.docker.com/engine/reference/commandline/stack/) es la solucion que da Docker a situaciones en las que se se quieren desplegar varias aplicaciones como servicios en un cluster basado en Docker Swarm sin configurar cada servicio uno a uno. Al igual que Docker Compose, Docker Stack permite que se integren los 4 recursos principales de Docker en una sola aplicacion basada en varios servicios que se pueden comunicar o no entre si y ademas se ejecutan sobre un cluster, todo usando un archivo llamado [**stack-file.yml**](https://docs.docker.com/compose/compose-file/), estos archivos son en realidad Compose Files "enriquecidos", utilizan la misma sintaxis y los mismos componentes de un Compose File normal, por lo que permiten declarar de forma declarativa la arquitectura de servicios que la aplicación necesita y por detrás Docker se encargará de e integrar cada recurso, pero los Stack File utilizan configuraciones adicionales a las de los Compose File dedicadas a los [**Stacks**](https://docs.docker.com/compose/compose-file/compose-file-v3/#deploy), la principal diferencia es que los Stack File sirven para generar esquemas de servicios basados en Docker Swarm sobre más de una máquina en un cluster, a diferencia de los Compose File, que cumplen la misma función, pero solo en una máquina, los Stack File además soportan componentes que Docker Compose ignora y de la misma forma los Compose Files regulares utilizan ciertos componentes que los Stack Files ignoran.
 
 <br>
 

@@ -1,5 +1,34 @@
 # Notas de Docker Swarm
 
+- [Introducción](#introducción)
+- [Administración de un cluster](#administración-de-un-cluster)
+  - [Comandos básicos de administración de un cluster](#comandos-básicos-de-administración-de-un-cluster)
+  - [Iniciar un cluster](#iniciar-un-cluster)
+  - [Conectar máquinas al cluster](#conectar-máquinas-al-cluster)
+  - [Desconectar máquinas del cluster](#desconectar-máquinas-del-cluster)
+- [Administración de nodos pertenecientes a un cluster](#administración-de-nodos-pertenecientes-a-un-cluster)
+  - [Comandos básicos de administración de nodos](#comandos-básicos-de-administración-de-nodos)
+  - [Listar los nodos conectados al cluster](#listar-los-nodos-conectados-al-cluster)
+  - [Inspeccionar un nodo](#inspeccionar-un-nodo)
+  - [Actualizar las configuraciones de un nodo](#actualizar-las-configuraciones-de-un-nodo)
+- [Administración de servicios basados en Docker Swarm](#administración-de-servicios-basados-en-docker-swarm)
+  - [Comandos básicos de administración de servicios](#comandos-básicos-de-administración-de-servicios)
+  - [Iniciar un servicio](#iniciar-un-servicio)
+  - [Visualizar servicios](#visualizar-servicios)
+  - [Visualizar tareas de un servicio](#visualizar-tareas-de-un-servicio)
+  - [Inspeccionar un servicio](#inspeccionar-un-servicio)
+  - [Modificar la configuración de un servicio](#modificar-la-configuración-de-un-servicio)
+  - [Visualizar logs de un servicio](#visualizar-logs-de-un-servicio)
+  - [Escalar un servicio](#escalar-un-servicio)
+  - [Restaurar un servicio a su estado anterior](#restaurar-un-servicio-a-su-estado-anterior)
+  - [Eliminar un servicio](#eliminar-un-servicio)
+- [Administración de redes de Docker Swarm](#administración-de-redes-de-docker-swarm)
+  - [Crear una red overlay](#crear-una-red-overlay)
+
+<br>
+
+## Introducción
+
 [**Docker Swarm**](https://docs.docker.com/engine/swarm/) es la solución nativa que ofrece Docker para montar aplicaciones basadas en cómputo distribuido y en contenedores, lo que propone Docker Swarm es que al montar un cluster en el que se quieren desplegar aplicaciones contenerizadas bajo el esquema de servicios el cluster debe ser fácilmente administrable, bajo esta premisa Docker Swarm ha llegado hasta el punto en el que un desarrollador puede tratar la totalidad del cluster como si se tratase de un solo entorno de Docker que atraviesan muchas máquinas, gracias a esto es que usando Docker Swarm es posible administrar un cluster casi con la facilidad con la que se administra una sola máquina con un solo Docker Daemon, cuando en realidad son varias máquinas cada uno con su propio Docker Daemon. Para conseguir este funcionamiento Docker Swarm se basa en tres conceptos fundamentales, estos tres conceptos son **Swarm**, **Nodos** y **Servicios**, cada uno de estos conceptos corresponde a un tipo de entidad que compone una aplicación basada en Docker Swarm, las definiciones resumidas de cada uno de estos conceptos se listan a continuación:
 
 - **Swarm:** Swarm, cluster o enjambre son referencias del mismo concepto, una agrupación de varias máquinas que cooperan para realizar la misma tarea, en el caso de Docker Swarm, desplegar contenedores de una aplicación para aumentar su disponibilidad y escalabilidad.
@@ -42,32 +71,6 @@ Antes de desplegar una aplicación basada en Docker Swarm lo adecuado es revisar
 
 Docker Swarm además viene instalado con Docker Engine, por lo que no hace falta instalarlo una vez ya está instalado Docker Engine, Docker Swarm además admite instalar plugins y clientes para administrar los contenedores y demás recursos de forma gráfica como [**portainer**](https://www.portainer.io/), ademas de agragar servicios para relizar monitoreo como [**swarmprom**](https://github.com/stefanprodan/swarmprom) o gestionar recursos como [**docker-cleanup**](https://github.com/meltwater/docker-cleanup).\
 Al gestionar una solución productiva basada en Docker Swarm es sumamente importante mantener los nodos limpios, es decir sin imágenes, contenedores o demás recursos residuales que ocupen disco, gestionar los logs de los servicios para que no llenen los discos de los nodos y poder visualizar el estado del cluster.
-
-<br>
-
-- [Administración de un cluster](#administración-de-un-cluster)
-  - [Comandos básicos de administración de un cluster](#comandos-básicos-de-administración-de-un-cluster)
-  - [Iniciar un cluster](#iniciar-un-cluster)
-  - [Conectar máquinas al cluster](#conectar-máquinas-al-cluster)
-  - [Desconectar máquinas del cluster](#desconectar-máquinas-del-cluster)
-- [Administración de nodos pertenecientes a un cluster](#administración-de-nodos-pertenecientes-a-un-cluster)
-  - [Comandos básicos de administración de nodos](#comandos-básicos-de-administración-de-nodos)
-  - [Listar los nodos conectados al cluster](#listar-los-nodos-conectados-al-cluster)
-  - [Inspeccionar un nodo](#inspeccionar-un-nodo)
-  - [Actualizar las configuraciones de un nodo](#actualizar-las-configuraciones-de-un-nodo)
-- [Administración de servicios basados en Docker Swarm](#administración-de-servicios-basados-en-docker-swarm)
-  - [Comandos básicos de administración de servicios](#comandos-básicos-de-administración-de-servicios)
-  - [Iniciar un servicio](#iniciar-un-servicio)
-  - [Visualizar servicios](#visualizar-servicios)
-  - [Visualizar tareas de un servicio](#visualizar-tareas-de-un-servicio)
-  - [Inspeccionar un servicio](#inspeccionar-un-servicio)
-  - [Modificar la configuración de un servicio](#modificar-la-configuración-de-un-servicio)
-  - [Visualizar logs de un servicio](#visualizar-logs-de-un-servicio)
-  - [Escalar un servicio](#escalar-un-servicio)
-  - [Restaurar un servicio a su estado anterior](#restaurar-un-servicio-a-su-estado-anterior)
-  - [Eliminar un servicio](#eliminar-un-servicio)
-- [Administración de redes de Docker Swarm](#administración-de-redes-de-docker-swarm)
-  - [Crear una red overlay](#crear-una-red-overlay)
 
 <br>
 
