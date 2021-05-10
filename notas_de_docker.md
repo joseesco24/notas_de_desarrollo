@@ -59,7 +59,7 @@
 
 ## Introducción
 
-[**Docker**](https://docs.docker.com/get-started/overview/) es una plataforma de contenedores que permite que una aplicación este autocontenida y se ejecute sobre un contenedor, que es básicamente un sistema operativo linux superligero, los contenedores en Docker se empacan y despliegan a partir de imágenes, las cuales indican al contenedor todo lo que requiere para ejecutar la aplicación y la forma en la que esta debe ser ejecutada, al desplegarse un nuevo contenedor a partir de una imagen este **aprovecha partes del sistema operativo de la máquina anfitrión** para completar las partes necesarias para ejecutarse correctamente, Docker logra esto gracias a su arquitectura por capas, en un contenedor de Docker cada capa corresponde con una parte necesaria para que el contenedor se ejecute como un sistema operativo aislado sobre el que se ejecutara la aplicación, en consecuencia cuando un nuevo contenedor llega a la máquina anfitrión empaquetado como imagen y se despliega, al ya estar presentes las capas más pesadas, normalmente del kernel y demas paquetes del sistema operativo, solo hace falta descargar e instalar las más livianas, que por lo general son las dependencias de la aplicación en sí, por lo que no hace falta mover las capas más pesadas dentro de la imagen, es por esto que las imágenes suelen ser muy livianas y además al desplegarse como contenedores proveen todas las funcionalidades de un sistema operativo totalmente virtualizado y aislado, sin ser los contenedores sistemas operativos virtualizados totalmente desacoplados, como los utilizados en las máquinas virtuales.\
+[**Docker**](https://docs.docker.com/get-started/overview/) es una plataforma de contenedores que permite que una aplicación este autocontenida y se ejecute sobre un contenedor, que es básicamente un sistema operativo linux superligero, los contenedores en Docker se empacan y despliegan a partir de imágenes, las cuales indican al contenedor todo lo que requiere para ejecutar la aplicación y la forma en la que esta debe ser ejecutada, al desplegarse un nuevo contenedor a partir de una imagen este aprovecha partes del sistema operativo de la máquina anfitrión para completar las partes necesarias para ejecutarse correctamente, Docker logra esto gracias a su arquitectura por capas, en un contenedor de Docker cada capa corresponde con una parte necesaria para que el contenedor se ejecute como un sistema operativo aislado sobre el que se ejecutara la aplicación, en consecuencia cuando un nuevo contenedor llega a la máquina anfitrión empaquetado como imagen y se despliega, al ya estar presentes las capas más pesadas, normalmente del kernel y demas paquetes del sistema operativo, solo hace falta descargar e instalar las más livianas, que por lo general son las dependencias de la aplicación en sí, por lo que no hace falta mover las capas más pesadas dentro de la imagen, es por esto que las imágenes suelen ser muy livianas y además al desplegarse como contenedores proveen todas las funcionalidades de un sistema operativo totalmente virtualizado y aislado, sin ser los contenedores sistemas operativos virtualizados totalmente desacoplados, como los utilizados en las máquinas virtuales.\
 Cabe aclarar que el aislamiento de procesos en Docker es puramente lógico ya que por debajo los procesos son ejecutados por el sistema operativo de la máquina anfitrión, no por un sistema operativo virtual que usa el hardware de la máquina anfitrión, en un sistema linux se pueden revisar todos los procesos de Docker usando top o htop, en sistemas mac o windows no se pueden ver directamente los procesos de Docker, ya que al instalar Docker desktop, Docker por debajo instala una maquina virtual con un sistema operativo linux que es el que se utiliza para completar las capas más bajas de los contenedores y por lo tanto es en el sistema operativo virtual de esa máquina virtual en el que se ejecutan los procesos de los mismos.\
 Al desplegar aplicaciones sobre contenedores de Docker se agrega una capa adicional de abstracción (el contenedor en sí) sobre la cual trabaja la aplicación, utilizar esta capa adicional además de aportar las ventajas ya mencionadas también ayuda a simplificar algunos de los desafíos más importantes al momento de realizar un desarrollo profesional de software, como lo son los relacionados con la construcción, distribución y ejecución de aplicaciones:
 
@@ -87,7 +87,7 @@ Además de las capas con las que es necesario interactuar para usar Docker, Dock
 - **Contenedores:** Son la clave del funcionamiento de Docker, son ambientes autocontenidos que aprovechan partes del sistema operativo de la máquina anfitrión para dar a las aplicaciones ambientes de ejecución iguales y aislados de forma lógica en cualquier anfitrión con Docker Engine instalado.
 - **Imágenes:** Las imágenes son la forma en la cual Docker puede empaquetar, transportar y replicar el funcionamiento de un contenedor en cualquier máquina que tenga Docker Engine instalado.
 - **Redes:** Las redes internas de Docker permiten que las diferentes aplicaciones desplegadas en diferentes contenedores puedan interactuar entre sí.
-- **Volúmenes De Almacenamiento:** Los volúmenes de almacenamiento son la forma que provee Docker para que una aplicación desplegada en un contenedor puede almacenar datos para que otro contenedor pueda usarlos o simplemente para poder usarlos en ejecuciones posteriores o para almacenarlos, los volúmenes de almacenamiento a pesar de ser espacios de almacenamiento en la máquina anfitrión son totalmente administrados por Docker, lo que los hace inaccesibles para la máquina anfitrión.
+- **Volúmenes:** Los volúmenes son la forma que provee Docker para que una aplicación desplegada en un contenedor puede almacenar datos para que otro contenedor pueda usarlos o simplemente para poder usarlos en ejecuciones posteriores o para almacenarlos, los volúmenes de almacenamiento a pesar de ser espacios de almacenamiento en la máquina anfitrión son totalmente administrados por Docker, lo que los hace inaccesibles para la máquina anfitrión.
 
 <br>
 
@@ -99,7 +99,7 @@ Para realizar la instalación de Docker en macos o en windows basta con descarga
 
 ## Instalación En Sistemas Ubuntu
 
-Esta pequeña guía de instalación está basada en la [**guía oficial**](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker hub para instalar Docker Engine en **ubuntu** mediante el sistema de repositorios, cabe aclarar que en linux no hace falta instalar Docker desktop como en mac o en windows, con solo Docker Engine es suficiente y además la manipulación del Docker Daemon en linux se hace solo por consola, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de **ubuntu**:
+Esta pequeña guía de instalación está basada en la [**Guía Oficial**](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker hub para instalar Docker Engine en ubuntu mediante el sistema de repositorios, cabe aclarar que en linux no hace falta instalar Docker desktop como en mac o en windows, con solo Docker Engine es suficiente y además la manipulación del Docker Daemon en linux se hace solo por consola, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de ubuntu:
 
 - ubuntu focal 20.04 (lts)
 - ubuntu groovy 20.10
@@ -170,7 +170,7 @@ docker info
 
 ### En Caso De Errores De Permisos
 
-Un error comun al instalar Docker en **ubuntu** es que al realizar la instalacion solo el usuario root posee permisos para ejecutar acciones manipulando el Docker Daemon, por lo tanto si se ejecutan comandos de Docker sin usar el super usuario aparecerá un mensaje de error de denegación de permisos, como el presente a continuación.
+Un error comun al instalar Docker en ubuntu es que al realizar la instalacion solo el usuario root posee permisos para ejecutar acciones manipulando el Docker Daemon, por lo tanto si se ejecutan comandos de Docker sin usar el super usuario aparecerá un mensaje de error de denegación de permisos, como el presente a continuación.
 
 ```bash
 docker: got permission denied while trying to connect to the Docker Daemon socket atunix:///var/run/docker.sock: post http:/%2fvar%2frun%2fdocker.sock/v1.24/containers/create: dial unix/var/run/docker.sock: connect: permission denied.see 'docker run --help'.
@@ -252,7 +252,7 @@ Elimina todos los volúmenes, contenedores y redes que no se estén usando, adem
 
 ## Administración De Contenedores
 
-La administración de contenedores es una actividad clave al utilizar Docker ya que los contenedores son las entidades más importantes que se pueden manejar en Docker, esto se debe a que los contenedores son los encargados de virtualizar el ambiente aislado donde se ejecutarán las aplicaciones desplegadas con Docker, es mediante el uso de contenedores que Docker adquiere tres de sus características más importantes, concretamente el uso de contenedores aporta **flexibilidad**, **seguridad** y **bajo acoplamiento** a las aplicaciones. Algunos de los comandos más importantes provistos por Docker para administrar contenedores se listan en esta sección.
+La administración de contenedores es una actividad clave al utilizar Docker ya que los contenedores son las entidades más importantes que se pueden manejar en Docker, esto se debe a que los contenedores son los encargados de virtualizar el ambiente aislado donde se ejecutarán las aplicaciones desplegadas con Docker, es mediante el uso de contenedores que Docker adquiere tres de sus características más importantes, concretamente el uso de contenedores aporta flexibilidad, seguridad y bajo acoplamiento a las aplicaciones. Algunos de los comandos más importantes provistos por Docker para administrar contenedores se listan en esta sección.
 
 <br>
 
@@ -277,9 +277,9 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando indi
 
 #### Apuntes Adicionales Sobre La Ejecución De Contenedores
 
-- Al restringir la memoria ram que puede usar una aplicación es posible que esta se finalice con el estatus **oomkilled**, el cual se puede ver al hacer un **docker inspect** sobre el contenedor, este estatus indica que el contenedor se detuvo debido a que la memoria con la que contaba le fue insuficiente para ejecutar todos sus procesos y por lo tanto colapsó y se detuvo.
+- Al restringir la memoria ram que puede usar una aplicación es posible que esta se finalice con el estatus oomkilled, el cual se puede ver al hacer un **docker inspect** sobre el contenedor, este estatus indica que el contenedor se detuvo debido a que la memoria con la que contaba le fue insuficiente para ejecutar todos sus procesos y por lo tanto colapsó y se detuvo.
 - Los status de salida con código por encima de 128 indican salidas forzosas y normalmente indican que el cierre de ese contenedor causó que varios procesos que se estaban llevando a cabo se detuvieran sin finalizarse.
-- Un código de salida 137 indica que el proceso fue cerrado por la señal **sigkill**.
+- Un código de salida 137 indica que el proceso fue cerrado por la señal sigkill.
 
 <br>
 
@@ -301,8 +301,8 @@ docker ps <parámetros>
 
 Muestra todos los contenedores activos en la máquina anfitrión, algunos de los parámetros más útiles al ver los datos de los contenedores activos con **docker ps** son:
 
-- **--all:** incluye los contenedores que están actualmente inactivos.
-- **--latest:** muestra sólo los datos del último contenedor ejecutado.
+- **--all:** Incluye los contenedores que están actualmente inactivos.
+- **--latest:** Muestra sólo los datos del último contenedor ejecutado.
 
 ```unknown
 docker inspect <parámetros> <nombre o id del contenedor>
@@ -375,13 +375,13 @@ El comando anterior es una extensión de **docker exec** que permite usar de for
 docker stop <parámetros> <nombre o id del contenedor>
 ```
 
-Apaga manualmente un contenedor usando la señal **sigterm**, en caso de que la señal **sigterm** no logre apagar el contenedor se envía la señal **sigkill** 5 segundos después.
+Apaga manualmente un contenedor usando la señal sigterm, en caso de que la señal sigterm no logre apagar el contenedor se envía la señal sigkill 5 segundos después.
 
 ```unknown
 docker kill <parámetros> <nombre o id del contenedor>
 ```
 
-Apaga manualmente un contenedor usando la señal **sigkill**.
+Apaga manualmente un contenedor usando la señal sigkill.
 
 <br>
 
@@ -393,7 +393,7 @@ docker rm <parámetros> <nombre o id del contenedor>
 
 Sirve para borrar contenedores, Docker por defecto no elimina ningún contenedor, al finalizar el proceso principal del contenedor simplemente lo detiene, por lo que es usual tener que borrar contenedores manualmente para mantener el espacio de trabajo ordenado y evitar llenar el almacenamiento con contenedores que no es están usando, algunos de los parámetros más útiles al borrar un contenedor con **docker rm** son:
 
-- **--force:** detiene un contenedor actualmente activo para así poder eliminarlo, la detención del contenedor se fuerza usando la señal **sigkill**.
+- **--force:** Detiene un contenedor actualmente activo para así poder eliminarlo, la detención del contenedor se fuerza usando la señal sigkill.
 
 ```unknown
 docker container prune <parámetros>
@@ -407,13 +407,13 @@ Borra todos los contenedores inactivos.
 docker rm -f $(docker ps -aq)
 ```
 
-El comando anterior es una extensión de **docker rm** pero tiene la funcionalidad de eliminar todos los contenedores activos o inactivos, para eliminar los activos fuerza su detención antes de eliminarlos con la señal **sigkill**.
+El comando anterior es una extensión de **docker rm** pero tiene la funcionalidad de eliminar todos los contenedores activos o inactivos, para eliminar los activos fuerza su detención antes de eliminarlos con la señal sigkill.
 
 <br>
 
 ## Administración De Imágenes
 
-En términos de relevancia las imágenes en Docker podrían considerarse como el segundo tipo de entidad más relevantes después de los contenedores, estando casi a la par en relevancia, lo que hace a la administración de imágenes el segundo tipo de actividad más relevante al usar Docker, si bien los contenedores son la forma de virtualizar un ambiente aislado sobre el que se ejecutara la aplicación, las imágenes se encargan de indicar la forma en la que el contenedor debe construir ese ambiente, además es gracias a las imágenes que es fácil mover, desplegar y replicar un contenedor las veces que haga falta, sin alterar el funcionamiento del mismo, es por esto que las imágenes son las que aportan a las aplicaciones contenerizadas las tres características restantes principales de Docker, concretamente las imágenes aportan **escalabilidad**, **portabilidad** y **ligereza** a nuestros proyectos. Algunos de los comandos más importantes provistos por Docker para administrar imágenes se listan en esta sección.
+En términos de relevancia las imágenes en Docker podrían considerarse como el segundo tipo de entidad más relevantes después de los contenedores, estando casi a la par en relevancia, lo que hace a la administración de imágenes el segundo tipo de actividad más relevante al usar Docker, si bien los contenedores son la forma de virtualizar un ambiente aislado sobre el que se ejecutara la aplicación, las imágenes se encargan de indicar la forma en la que el contenedor debe construir ese ambiente, además es gracias a las imágenes que es fácil mover, desplegar y replicar un contenedor las veces que haga falta, sin alterar el funcionamiento del mismo, es por esto que las imágenes son las que aportan a las aplicaciones contenerizadas las tres características restantes principales de Docker, concretamente las imágenes aportan escalabilidad, portabilidad y ligereza a nuestros proyectos. Algunos de los comandos más importantes provistos por Docker para administrar imágenes se listan en esta sección.
 
 <br>
 
@@ -423,10 +423,10 @@ En términos de relevancia las imágenes en Docker podrían considerarse como el
 docker build <parámetros> <ruta del contexto>
 ```
 
-Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, **Dockerfile** y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, es importante que siempre en el contexto haya un **Dockerfile**, ya que el **Dockerfile** es el que indica la forma en la que se construye una imagen, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
+Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, Dockerfile y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, es importante que siempre en el contexto haya un Dockerfile, ya que el Dockerfile es el que indica la forma en la que se construye una imagen, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
 
 - **--tag &lt;nombre de la nueva imagen&gt;:&lt;tag de la nueva imagen&gt;:** Permite personalizar el nombre y tag de la nueva imagen que será construida.
-- **--file &lt;ruta del Dockerfile&gt;:** Permite cambiar o especificar la ruta al **Dockerfile** con el cual se construirá la imagen.
+- **--file &lt;ruta del Dockerfile&gt;:** Permite cambiar o especificar la ruta al Dockerfi con el cual se construirá la imagen.
 
 <br>
 
@@ -589,8 +589,8 @@ docker network create <parámetros> <nombre>
 
 Crea un nueva red de Docker, algunos de los parámetros más útiles al crear una red con **docker network create** son:
 
-- **--attachable:** habilita la opción de agregar contendores manualmente a la red.
-- **--driver:** indica el driver con el que debe crearse la nueva red.
+- **--attachable:** Habilita la opción de agregar contendores manualmente a la red.
+- **--driver:** Indica el driver con el que debe crearse la nueva red.
 
 <br>
 
@@ -669,10 +669,10 @@ docker network rm $(docker network ls -q)
 
 ## Archivos Dockerfile
 
-Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un **Dockerfile** en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un **Dockerfile** y sus funciones se listan a continuación:
+Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los archivos que usa Docker al momento de construir una imagen para indicar qué archivos necesita esa imagen, qué dependencias tiene que instalar y que comandos deben ejecutarse al momento de iniciarse un contenedor a partir de esa imagen, cada instrucción que se ejecuta en un Dockerfile en tiempo de construcción es una nueva capa, algunos de los instrucciones que se pueden usar en un Dockerfile y sus funciones se listan a continuación:
 
-- **from &lt;nombre de la imagen&gt;:&lt;versión de la imagen&gt;:** Indica la imagen base, o primera capa que se va a utilizar para construir la nueva imagen, siempre es el primer comando de un **Dockerfile**.
-- **run &lt;comando&gt;:** Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con run solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un **Dockerfile** que implemente esta instrucción.
+- **from &lt;nombre de la imagen&gt;:&lt;versión de la imagen&gt;:** Indica la imagen base, o primera capa que se va a utilizar para construir la nueva imagen, siempre es el primer comando de un Dockerfile.
+- **run &lt;comando&gt;:** Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con run solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un Dockerfile que implemente esta instrucción.
 - **workdir &lt;ruta dentro del contenedor&gt;:** Establece un directorio de trabajo que será el directorio en el que se posicionará el contenedor al iniciar su ejecución.
 - **copy &lt;ruta archivo 0, ruta archivo 1, ... ruta archivo n, ruta destino contenedor&gt;:** Copia todos los archivos indicados en la ruta de destino de la imagen, cabe aclarar que Docker en tiempo de construcción solo da acceso a la imagen al directorio especificado como contexto, por lo que los archivos que se quieren copiar a la imagen deben estar dentro del contexto de construcción para poder ser empaquetados dentro de la misma.
 - **expose &lt;número de puerto&gt;:** Expone un puerto del contenedor permitiendo que ese puerto sea vinculable o bindable a un puerto de la máquina anfitrión.
@@ -686,14 +686,14 @@ Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los 
 
 ### Tips De Dockerfile
 
-- Docker no construye de nuevo las capas a no ser que haya cambios, esto lo logra utilizando el caché de capas, considerar el caché de capas al momento de construir un **Dockerfile** puede facilitar el desarrollo, mejorando considerablemente el tiempo en el que de construye una imagen, ya que se puede ahorrar la reconstrucción de ciertas capas usando el cache.
+- Docker no construye de nuevo las capas a no ser que haya cambios, esto lo logra utilizando el caché de capas, considerar el caché de capas al momento de construir un Dockerfile puede facilitar el desarrollo, mejorando considerablemente el tiempo en el que de construye una imagen, ya que se puede ahorrar la reconstrucción de ciertas capas usando el cache.
 - Utilizando monitores de scripting y bind mounts, como nodemon, se puede lograr que Docker actualice el código que se está ejecutando en tiempo de ejecución sin tener que reconstruir la imagen de nuevo.
 - En Docker existe un archivo llamado [**.dockerignore**](https://docs.docker.com/engine/reference/builder/#dockerignore-file) que funciona igual que [**.gitignore**](https://git-scm.com/docs/gitignore), su función es evitar que ciertos archivos se copien en la imagen al momento de construirla.
 - Los comandos ejecutados por entrypoints a diferencia de los ejecutados por cmd no pueden ser sobreescritos a no ser que se utilice un flag especial al momento de ejecutar un contenedor, por lo que si el contenedor está destinado a tener solo un uso específico es recomendable usar entrypoints en lugar de cmd para establecer el comando por defecto.
 - Los comandos ejecutados por entrypoints se ejecutan siempre como comandos por defecto al tener prioridad sobre los comandos ejecutados por cmd, además al combinarse entrypoints y cmd los comandos ejecutados por entrypoints utilizan los comandos de cmd como parámetros al final del comando del entrypoint, por lo que el comando del proceso principal termina siendo el comando del entrypoint concatenado con el comando de cmd, lo que hace que al no enviar comandos al momento de ejecutar el contenedor esté use lo que hay por defecto en cmd como parámetro y al enviar comandos estos se reemplazan en cmd y se usan como parámetros al final del comando del entrypoint.
-- Cuando cuando se utilizan entrypoints y cmd en un mismo **Dockerfile** es importante que ambos utilicen o Bash form o Exec form, no es recomendable que usen formas diferentes de ejecutar el comando.
-- En Docker se pueden hacer construcciones con múltiples etapas en los **Dockerfile**, al utilizar múltiples etapas se pueden crear imágenes previas a la imagen final de producción, la utilidad de utilizar construcciones con múltiples etapas es que se pueden generar imágenes de pruebas que contiene código adicional para las pruebas e imágenes finales, que son las imágenes resultantes de superar todas las etapas previas sin errores y contiene solo el codigo de produccion, si en algun momento de una construcción multi etapa falla la la construcción de una capa la construcción se detiene en ese punto.
-- El resultado de construir una imagen con un **Dockerfile** multi etapa siempre es la imagen resultante de la etapa final.
+- Cuando cuando se utilizan entrypoints y cmd en un mismo Dockerfile es importante que ambos utilicen o Bash form o Exec form, no es recomendable que usen formas diferentes de ejecutar el comando.
+- En Docker se pueden hacer construcciones con múltiples etapas en los Dockerfile, al utilizar múltiples etapas se pueden crear imágenes previas a la imagen final de producción, la utilidad de utilizar construcciones con múltiples etapas es que se pueden generar imágenes de pruebas que contiene código adicional para las pruebas e imágenes finales, que son las imágenes resultantes de superar todas las etapas previas sin errores y contiene solo el codigo de produccion, si en algun momento de una construcción multi etapa falla la la construcción de una capa la construcción se detiene en ese punto.
+- El resultado de construir una imagen con un Dockerfile multi etapa siempre es la imagen resultante de la etapa final.
 - Cuando se realizan construcciones con múltiples etapas se utiliza el indicativo **as** junto a from para nombrar la imagen previa y además se puede utilizar **--from=&lt;nombre&gt;** para que una imagen posterior referencia una imagen previa.
 
 ### Ejemplo De Cache Por Capas En Dockerfile
@@ -708,7 +708,7 @@ expose 3000
 cmd ["node", "index.js"]
 ```
 
-El efecto de utilizar el caché por capas en el **Dockerfile** anterior copiando al principio solo los archivos de dependencias, instalarlas y luego copiando de nuevo todos los archivos, es que al momento de instalar dependencias se pueda utilizar el caché siempre que no hayan habido cambios en las declaraciones de las dependencias, si se copiaran todos los archivos y luego se instalarán dependencias siempre sería necesario instalar dependencias, ya que Docker identificó cambios en la capa en la que se copian los archivos a pesar de que no sean los archivos de dependencias, por lo que no usaría cache en esa etapa y por lo tanto tampoco en la de instalación de dependencias, además del caché pr dependencias en el **Dockerfile** anterior se expone la aplicación mediante el puerto 3000 y se inicia un proceso usando un comando cmd en Exec form.
+El efecto de utilizar el caché por capas en el Dockerfile anterior copiando al principio solo los archivos de dependencias, instalarlas y luego copiando de nuevo todos los archivos, es que al momento de instalar dependencias se pueda utilizar el caché siempre que no hayan habido cambios en las declaraciones de las dependencias, si se copiaran todos los archivos y luego se instalarán dependencias siempre sería necesario instalar dependencias, ya que Docker identificó cambios en la capa en la que se copian los archivos a pesar de que no sean los archivos de dependencias, por lo que no usaría cache en esa etapa y por lo tanto tampoco en la de instalación de dependencias, además del caché pr dependencias en el Dockerfile anterior se expone la aplicación mediante el puerto 3000 y se inicia un proceso usando un comando cmd en Exec form.
 
 ### Ejemplo De Un Archivo Dockerignore
 
@@ -734,7 +734,7 @@ entrypoint ["/bin/ping", "-c", "3"]
 cmd ["localhost"]
 ```
 
-El efecto de utilizar comandos mediante entrypoints y cmd en el **Dockerfile** anterior es que se puede cambiar la dirección a la que se hace ping al ejecutar un contenedor o al modificar el comando del contenedor sin poder alterar el resto del comando.
+El efecto de utilizar comandos mediante entrypoints y cmd en el Dockerfile anterior es que se puede cambiar la dirección a la que se hace ping al ejecutar un contenedor o al modificar el comando del contenedor sin poder alterar el resto del comando.
 
 ### Ejemplo De Un Dockerfile Multi Etapa
 
@@ -758,6 +758,6 @@ expose 3000
 cmd ["node", "index.js"]
 ```
 
-El efecto de utilizar un **Dockerfile** multi etapa en el **Dockerfile** anterior es que en la primera etapa se copien los archivos y se realicen las pruebas necesarias, si se pasan las pruebas se construye una imagen final en base a los archivos de la imagen de prueba de la etapa 1.
+El efecto de utilizar un Dockerfile multi etapa en el Dockerfile anterior es que en la primera etapa se copien los archivos y se realicen las pruebas necesarias, si se pasan las pruebas se construye una imagen final en base a los archivos de la imagen de prueba de la etapa 1.
 
 <br>

@@ -60,15 +60,15 @@ Los archivos **docker-compose.yml** son sumamente sensibles a la indentación co
 
 ### Tips De Docker Compose
 
-- Al usar Docker Compose Docker por detrás crea una red dedicada a esa arquitectura a la que conecta todos los contenedores de todos los servicios declarados, el nombre de la red se asigna en base al nombre del directorio de trabajo en el siguiente formato **&lt;nombre del directorio de trabajo&gt;\_default**.
-- Al usar Docker Compose Docker por detras trata de asignar nombres únicos a cada contenedor para evitar conflictos a causa de los nombres, los nombres de los contenedores se asigna en base del nombre del directorio de trabajo, el nombre del servicio y un número que diferencia los diferentes contenedores de un servicio en el siguiente formato **&lt;nombre del directorio de trabajo&gt;\_&lt;nombre del servicio&gt;\_&lt;número de contenedor&gt;**.
+- Al usar Docker Compose Docker por detrás crea una red dedicada a esa arquitectura a la que conecta todos los contenedores de todos los servicios declarados, el nombre de la red se asigna en base al nombre del directorio de trabajo en el siguiente formato &lt;nombre del directorio de trabajo&gt;\_default.
+- Al usar Docker Compose Docker por detras trata de asignar nombres únicos a cada contenedor para evitar conflictos a causa de los nombres, los nombres de los contenedores se asigna en base del nombre del directorio de trabajo, el nombre del servicio y un número que diferencia los diferentes contenedores de un servicio en el siguiente formato &lt;nombre del directorio de trabajo&gt;\_&lt;nombre del servicio&gt;\_&lt;número de contenedor&gt;.
 - Al usar Docker Compose Docker por detrás se asegura que a pesar de los nuevos nombres asignados a los contenedores estos sigan siendo alcanzables por los demás contenedores solo con el nombre del servicio que ejecutan.
-- Junto a **docker-compose.yml** se puede utilizar **docker-compose.override.yml**, la ventaja de utilizar Docker Compose Override es que se puede personalizar el compose file sin cambiarlo directamente, lo que evita alterar el compose file de producción pero nos permite probar pequeños cambios en él sin alterarlo directamente, además Docker por defecto trata de unir y conservar las definiciones de ambos archivos.
-- Las variables de entorno son sencillas de manejar con los archivos **compose** y **compose.override** ya que simplemente se unen las definiciones de ambas y en caso de redefinición en **compose.override** simplemente se sobreescribe el valor de la variable.
-- Para el manejo de los puertos lo recomendable es no utilizar definiciones de puertos fuera de **compose** y en caso de hacerse la definición de los puertos debe estar solo en un archivo.
-- Las dependencias de servicios se usan siempre desde el **compose.override**.
-- Para usar un **compose.override** solo hace falta construir la imagen de forma normal, Docker por defecto detecta el archivo de sobre escritura y lo utiliza.
-- Al poner **image** y **build** en un mismo compose la imagen se construye pero se le asigna el nombre de imagen en lugar del nombre por defecto.
+- Junto al archivo **docker-compose.yml** se puede utilizar tambien un segundo archivo **docker-compose.override.yml**, la ventaja de utilizar Docker Compose Override es que se puede personalizar el compose file sin cambiarlo directamente, lo que evita alterar el compose file de producción pero nos permite probar pequeños cambios en él sin alterarlo directamente, además Docker por defecto trata de unir y conservar las definiciones de ambos archivos.
+- Las variables de entorno son sencillas de manejar con los archivos compose y compose. verride ya que simplemente se unen las definiciones de ambas y en caso de redefinición en compose override simplemente se sobreescribe el valor de la variable.
+- Para el manejo de los puertos lo recomendable es no utilizar definiciones de puertos fuera de compose y en caso de hacerse la definición de los puertos debe estar solo en un archivo.
+- Las dependencias de servicios se usan siempre desde el compose override.
+- Para usar un compose override solo hace falta construir la imagen de forma normal, Docker por defecto detecta el archivo de sobre escritura y lo utiliza.
+- Al poner image y build en un mismo compose la imagen se construye pero se le asigna el nombre de imagen en lugar del nombre por defecto.
 
 <br>
 
