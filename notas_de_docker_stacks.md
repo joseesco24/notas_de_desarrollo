@@ -26,7 +26,7 @@ Algunos de los componentes adicionales que soporta Docker Stacks en los archivos
 
 - **delpoy:** Establece la sección de las configuraciones del compose file que corresponde al despliegue de un stack, todas las demás configuraciones dirigidas al stack tiene que estar debajo de esta etiqueta.
 - **placement:** Establece las restricciones del despliegue de las tareas del servicio.
-- **réplicas:** Establece el número de tareas replicadas para ese servicio.
+- **replicas:** Establece el número de tareas replicadas para ese servicio.
 
 <br>
 
