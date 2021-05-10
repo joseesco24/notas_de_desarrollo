@@ -7,13 +7,13 @@ En casi todos los archivos de notas hay gráficas, estas gráficas no se podrán
 
 ## Notas En Este Repositorio
 
-- [Notas de Sistemas Linux](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_sistemas_linux.md)
-- [Notas de Git y GitHub](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_git_y_github.md)
-- [Notas de MongoDB](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md)
-- [Notas de Docker](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_docker.md)
-- [Notas de Docker Compose](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_docker_compose.md)
-- [Notas de Docker Swarm](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_docker_swarm.md)
-- [Notas de Docker Stacks](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_docker_stacks.md)
-- [Notas de Kubernetes](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_kubernetes.md)
+- [Notas De Sistemas Linux](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_sistemas_linux.md)
+- [Notas De Git Y GitHub](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_git_y_github.md)
+- [Notas De MongoDB](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md)
+- [Notas De Docker](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_docker.md)
+- [Notas De Docker Compose](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_docker_compose.md)
+- [Notas De Docker Swarm](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_docker_swarm.md)
+- [Notas De Docker Stacks](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_docker_stacks.md)
+- [Notas De Kubernetes](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_kubernetes.md)
 
 <br>

@@ -48,7 +48,7 @@
   - [Lectura De Archivos Con Bash](#lectura-de-archivos-con-bash)
     - [Lectura Normal Con Cat](#lectura-normal-con-cat)
     - [Lectura Normal Con Cat Y Sustitución De Variable](#lectura-normal-con-cat-y-sustitución-de-variable)
-    - [Lectura Linea A Linea Con IFS Y While](#lectura-linea-a-linea-con-ifs-y-while)
+    - [Lectura Linea A Linea Con Ifs Y While](#lectura-linea-a-linea-con-ifs-y-while)
   - [Escritura De Archivos Con Bash](#escritura-de-archivos-con-bash)
 
 <br>
@@ -460,7 +460,7 @@ en sus versiones más recientes bash soporta el uso de tablas o diccionarios, lo
 declare -a ppa_instalations=(
     ["indicator-sysmonitor"]="ppa:fossfreedom/indicator-sysmonitor"
     ["timeshift"]="ppa:teejee2008/timeshift"
-    ["nEOFetch"]="ppa:dawidd0811/nEOFetch"
+    ["neofetch"]="ppa:dawidd0811/neofetch"
     ["tilix"]="ppa:ubuntuhandbook1/tilix"
     ["python3.7"]="ppa:deadsnakes/ppa"
 )
@@ -721,7 +721,7 @@ bash -x script.sh
 
 ### Lectura De Archivos Con Bash
 
-la lectura de archivos suele ser algo normal al programar en bash, normalmente se emplea el comando cat para leer archivos, pero en caso de necesitar leer line a línea se usa la palabra reservada **IFS** con un while para iterar sobre las líneas del archivo.
+la lectura de archivos suele ser algo normal al programar en bash, normalmente se emplea el comando cat para leer archivos, pero en caso de necesitar leer line a línea se usa la palabra reservada **ifs** con un while para iterar sobre las líneas del archivo.
 
 #### Lectura Normal Con Cat
 
@@ -735,10 +735,10 @@ cat archivo.txt
 contenido = $(cat archivo.txt)
 ```
 
-#### Lectura Linea A Linea Con IFS Y While
+#### Lectura Linea A Linea Con Ifs Y While
 
 ```bash
-while IFS= read linea
+while ifs= read linea
 do
     echo "$linea"
 done < archivo.txt
@@ -748,17 +748,17 @@ done < archivo.txt
 
 ### Escritura De Archivos Con Bash
 
-para escribir en archivos desde bash se puede usar dos opciones, el operador **>** junto a echo o **EOM**: end of message y **EOF**: end of file junto a cat, la principal ventaja de usar EOM o EOF respecto al operador >> es que tanto EOM como EOF permiten escribir múltiples líneas directamente, mientras que con el operador >> sería necesario iterar para escribir múltiples líneas.
+para escribir en archivos desde bash se puede usar dos opciones, el operador **>** junto a echo o **eom**: end of message y **eof**: end of file junto a cat, la principal ventaja de usar eom o eof respecto al operador >> es que tanto eom como eof permiten escribir múltiples líneas directamente, mientras que con el operador >> sería necesario iterar para escribir múltiples líneas.
 
 ```bash
 echo "valores escritos con echo" > archivo.txt
 ```
 
 ```bash
-cat <<EOM > archivo.txt
+cat <<eom > archivo.txt
 valores escritos
 con cat
-EOM
+eom
 ```
 
 <br>
