@@ -63,7 +63,7 @@ Los archivos **docker-compose.yml** son sumamente sensibles a la indentación co
 - Al usar Docker Compose Docker por detrás crea una red dedicada a esa arquitectura a la que conecta todos los contenedores de todos los servicios declarados, el nombre de la red se asigna en base al nombre del directorio de trabajo en el siguiente formato &lt;nombre del directorio de trabajo&gt;\_default.
 - Al usar Docker Compose Docker por detras trata de asignar nombres únicos a cada contenedor para evitar conflictos a causa de los nombres, los nombres de los contenedores se asigna en base del nombre del directorio de trabajo, el nombre del servicio y un número que diferencia los diferentes contenedores de un servicio en el siguiente formato &lt;nombre del directorio de trabajo&gt;\_&lt;nombre del servicio&gt;\_&lt;número de contenedor&gt;.
 - Al usar Docker Compose Docker por detrás se asegura que a pesar de los nuevos nombres asignados a los contenedores estos sigan siendo alcanzables por los demás contenedores solo con el nombre del servicio que ejecutan.
-- Junto al archivo **docker-compose.yml** se puede utilizar tambien un segundo archivo **docker-compose.override.yml**, la ventaja de utilizar Docker Compose Override es que se puede personalizar el compose file sin cambiarlo directamente, lo que evita alterar el compose file de producción pero nos permite probar pequeños cambios en él sin alterarlo directamente, además Docker por defecto trata de unir y conservar las definiciones de ambos archivos.
+- Junto al archivo **docker-compose.yml** se puede utilizar también un segundo archivo **docker-compose.override.yml**, la ventaja de utilizar Docker Compose Override es que se puede personalizar el compose file sin cambiarlo directamente, lo que evita alterar el compose file de producción pero nos permite probar pequeños cambios en él sin alterarlo directamente, además Docker por defecto trata de unir y conservar las definiciones de ambos archivos.
 - Las variables de entorno son sencillas de manejar con los archivos compose y compose. verride ya que simplemente se unen las definiciones de ambas y en caso de redefinición en compose override simplemente se sobreescribe el valor de la variable.
 - Para el manejo de los puertos lo recomendable es no utilizar definiciones de puertos fuera de compose y en caso de hacerse la definición de los puertos debe estar solo en un archivo.
 - Las dependencias de servicios se usan siempre desde el compose override.
@@ -94,7 +94,7 @@ services:
     image: mongo
 ```
 
-El compose anterior utiliza un volumen en app, además de una variable de ambiente, un puerto vinculado, un cambio en el comando por defecto y construye una imagen para los contenedores del servicio app.
+El compose anterior utiliza un volumen en app, además de una variable de entorno, un puerto vinculado, un cambio en el comando por defecto y construye una imagen para los contenedores del servicio app.
 
 <br>
 
@@ -120,7 +120,7 @@ services:
     image: mongo
 ```
 
-El compose anterior utiliza un bind mount, indica una ruta que no debe ser alterada por el bind, además, utiliza una variable de ambiente y un rango de puertos del host que pueden ser vinculados a los contenedores del servicio app.
+El compose anterior utiliza un bind mount, indica una ruta que no debe ser alterada por el bind, además, utiliza una variable de entorno y un rango de puertos del host que pueden ser vinculados a los contenedores del servicio app.
 
 <br>
 
@@ -136,7 +136,7 @@ services:
       nueva_variable: "mongodb://db:27017/test"
 ```
 
-Al declarar un **docker-compose.override.yml** como el anterior junto a cualquiera de los **docker-compose.yml** se logra que se construya la imagen y se agregue la variable de ambiente nueva a la imagen.
+Al declarar un **docker-compose.override.yml** como el anterior junto a cualquiera de los **docker-compose.yml** se logra que se construya la imagen y se agregue la variable de entorno nueva a la imagen.
 
 <br>
 
