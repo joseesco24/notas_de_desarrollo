@@ -696,6 +696,8 @@ Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los 
 - El resultado de construir una imagen con un Dockerfile multi etapa siempre es la imagen resultante de la etapa final.
 - Cuando se realizan construcciones con múltiples etapas se utiliza el indicativo **as** junto a from para nombrar la imagen previa y además se puede utilizar **--from=&lt;nombre&gt;** para que una imagen posterior referencia una imagen previa.
 
+<br>
+
 ### Ejemplo De Cache Por Capas En Dockerfile
 
 ```dockerfile
@@ -709,6 +711,8 @@ cmd ["node", "index.js"]
 ```
 
 El efecto de utilizar el caché por capas en el Dockerfile anterior copiando al principio solo los archivos de dependencias, instalarlas y luego copiando de nuevo todos los archivos, es que al momento de instalar dependencias se pueda utilizar el caché siempre que no hayan habido cambios en las declaraciones de las dependencias, si se copiaran todos los archivos y luego se instalarán dependencias siempre sería necesario instalar dependencias, ya que Docker identificó cambios en la capa en la que se copian los archivos a pesar de que no sean los archivos de dependencias, por lo que no usaría cache en esa etapa y por lo tanto tampoco en la de instalación de dependencias, además del caché pr dependencias en el Dockerfile anterior se expone la aplicación mediante el puerto 3000 y se inicia un proceso usando un comando cmd en Exec form.
+
+<br>
 
 ### Ejemplo De Un Archivo Dockerignore
 
@@ -726,6 +730,8 @@ readme.md
 
 El principal efecto de el .dockerignore anterior es evitar que la imagen de la aplicación se llene de archivos innecesarios para su ejecución como los pertenecientes a git y además evita que ciertos archivos que podrían generar errores como los pertenecientes al directorio node_modules se copien en imagen.
 
+<br>
+
 ### Ejemplo De Entrypoint Y Cmd En Dockerfile
 
 ```dockerfile
@@ -735,6 +741,8 @@ cmd ["localhost"]
 ```
 
 El efecto de utilizar comandos mediante entrypoints y cmd en el Dockerfile anterior es que se puede cambiar la dirección a la que se hace ping al ejecutar un contenedor o al modificar el comando del contenedor sin poder alterar el resto del comando.
+
+<br>
 
 ### Ejemplo De Un Dockerfile Multi Etapa
 
