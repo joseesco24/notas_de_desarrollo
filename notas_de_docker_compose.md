@@ -27,7 +27,7 @@ Docker Compose se basa en servicios, no en contenedores, un servicio en Docker p
 
 ## Instalación De Docker Compose En Ubuntu
 
-Docker Compose se instala junto a las versiones de escritorio de windows o mac, sin embargo, en la versión de ubuntu es necesario instalarlo manualmente con los siguientes comandos, los cuales son extraídos de la guia oficial de [**Docker Hub**](https://docs.docker.com/compose/install/):
+Docker Compose se instala junto a las versiones de escritorio de Windows o Mac , sin embargo, en la versión de ubuntu es necesario instalarlo manualmente con los siguientes comandos, los cuales son extraídos de la guia oficial de [**Docker Hub**](https://docs.docker.com/compose/install/):
 
 ```bash
 sudo curl -l "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -48,7 +48,7 @@ Algunos de los componentes que soporta Docker Compose en los archivos **docker-c
 - **image:** Establece la imagen que se va a utilizar para ejecutar los contenedores de cierto servicio.
 - **environment:** Permite definir variables de ambiente a las que pueden acceder los contenedores de un servicio.
 - **depends_on:** Establece las dependencias entre servicios, si un servicio declara dependencia de otro este no deberá ejecutarse si antes no se ejecuta el o los servicios de los que depende.
-- **ports:** Bindea un puerto o un rango de puertos de la máquina anfitrión con un puerto de uno o varios contenedores.
+- **ports:** Vincula un puerto o un rango de puertos del host con un puerto de uno o varios contenedores.
 - **volumes:** Indica los volúmenes y bind mounts de un servicio.
 - **command:** Cambia el comando o los argumentos del proceso principal por defecto de los contenedores de un servicio.
 - **build:** Indica el contexto con el que se debe construir una nueva imagen que se desplegará en todos los contenedores del servicio indicado, el nombre de la nueva imagen se construye en base al nombre del directorio de trabajo y el nombre del servicio en el siguiente formato **&lt;nombre del directorio de trabajo&gt;\_&lt;nombre del servicio&gt;**.
@@ -120,7 +120,7 @@ services:
     image: mongo
 ```
 
-El compose anterior utiliza un bind mount, indica una ruta que no debe ser alterada por el bind, además, utiliza una variable de ambiente y un rango de puertos del anfitrión que pueden ser vinculados a los contenedores del servicio app.
+El compose anterior utiliza un bind mount, indica una ruta que no debe ser alterada por el bind, además, utiliza una variable de ambiente y un rango de puertos del host que pueden ser vinculados a los contenedores del servicio app.
 
 <br>
 
@@ -174,7 +174,7 @@ docker-compose up <parámetros> <nombre del servicio>
 
 Levanta la arquitectura descrita por el compose file en caso de no indicarse un servicio en concreto, si se indica un servicio solo ese servicio será ejecutado, algunos de los parámetros más útiles al utilizar **docker-compose up** para levantar una arquitectura son:
 
-- **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su id para poder manipularlo posteriormente en caso de que haga falta.
+- **--detach:** Evita que la terminal del host quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su id para poder manipularlo posteriormente en caso de que haga falta.
 - **--scale &lt;nombre o id del servicio&gt;=&lt;número de contenedores&gt;:** Escala un determinado servicio al número de contenedores indicado.
 
 <br>

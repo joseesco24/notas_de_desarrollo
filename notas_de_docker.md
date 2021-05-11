@@ -18,7 +18,7 @@
     - [Apuntes Adicionales Sobre La Ejecución De Contenedores](#apuntes-adicionales-sobre-la-ejecución-de-contenedores)
   - [Renombrar Contenedores](#renombrar-contenedores)
   - [Revisar El Estado De Los Contenedores](#revisar-el-estado-de-los-contenedores)
-  - [Mover Archivos Y Directorio Entre El Anfitrión Y Los Contenedores](#mover-archivos-y-directorio-entre-el-anfitrión-y-los-contenedores)
+  - [Mover Archivos Y Directorio Entre El Host Y Los Contenedores](#mover-archivos-y-directorio-entre-el-host-y-los-contenedores)
   - [Inspeccionar Los Logs De Un Contenedor](#inspeccionar-los-logs-de-un-contenedor)
   - [Ejecutar Tareas En Contenedores](#ejecutar-tareas-en-contenedores)
     - [Comando Pré Construído Para Ver Procesos Dentro De Un Contenedor](#comando-pré-construído-para-ver-procesos-dentro-de-un-contenedor)
@@ -59,52 +59,52 @@
 
 ## Introducción
 
-[**Docker**](https://docs.docker.com/get-started/overview/) es una plataforma de contenedores que permite que una aplicación este autocontenida y se ejecute sobre un contenedor, que es básicamente un sistema operativo linux superligero, los contenedores en Docker se empacan y despliegan a partir de imágenes, las cuales indican al contenedor todo lo que requiere para ejecutar la aplicación y la forma en la que esta debe ser ejecutada, al desplegarse un nuevo contenedor a partir de una imagen este aprovecha partes del sistema operativo de la máquina anfitrión para completar las partes necesarias para ejecutarse correctamente, Docker logra esto gracias a su arquitectura por capas, en un contenedor de Docker cada capa corresponde con una parte necesaria para que el contenedor se ejecute como un sistema operativo aislado sobre el que se ejecutara la aplicación, en consecuencia cuando un nuevo contenedor llega a la máquina anfitrión empaquetado como imagen y se despliega, al ya estar presentes las capas más pesadas, normalmente del kernel y demas paquetes del sistema operativo, solo hace falta descargar e instalar las más livianas, que por lo general son las dependencias de la aplicación en sí, por lo que no hace falta mover las capas más pesadas dentro de la imagen, es por esto que las imágenes suelen ser muy livianas y además al desplegarse como contenedores proveen todas las funcionalidades de un sistema operativo totalmente virtualizado y aislado, sin ser los contenedores sistemas operativos virtualizados totalmente desacoplados, como los utilizados en las máquinas virtuales.\
-Cabe aclarar que el aislamiento de procesos en Docker es puramente lógico ya que por debajo los procesos son ejecutados por el sistema operativo de la máquina anfitrión, no por un sistema operativo virtual que usa el hardware de la máquina anfitrión, en un sistema linux se pueden revisar todos los procesos de Docker usando top o htop, en sistemas mac o windows no se pueden ver directamente los procesos de Docker, ya que al instalar Docker desktop, Docker por debajo instala una maquina virtual con un sistema operativo linux que es el que se utiliza para completar las capas más bajas de los contenedores y por lo tanto es en el sistema operativo virtual de esa máquina virtual en el que se ejecutan los procesos de los mismos.\
-Al desplegar aplicaciones sobre contenedores de Docker se agrega una capa adicional de abstracción (el contenedor en sí) sobre la cual trabaja la aplicación, utilizar esta capa adicional además de aportar las ventajas ya mencionadas también ayuda a simplificar algunos de los desafíos más importantes al momento de realizar un desarrollo profesional de software, como lo son los relacionados con la construcción, distribución y ejecución de aplicaciones:
+[**Docker**](https://docs.docker.com/get-started/overview/) es una plataforma de código abierto que permite desplegar y gestionar contenedores, usando Docker se puede lograr entre otras cosas que una aplicación este autocontenida y se ejecute en un contenedor, que es básicamente un sistema operativo linux superligero. Los contenedores en Docker se empacan y despliegan a partir de imágenes, las cuales indican al contenedor todo lo que requiere para ejecutar la aplicación y la forma en la que esta debe ser ejecutada, al desplegarse un nuevo contenedor a partir de una imagen este aprovecha partes del sistema operativo del host para completar las partes necesarias para ejecutarse correctamente. Docker logra esto gracias a su arquitectura por capas, en un contenedor de Docker cada capa corresponde con una parte necesaria para que el contenedor se ejecute como un sistema operativo aislado sobre el cual se ejecutará la aplicación, por esto cuando un nuevo contenedor llega al host empaquetado como imagen y se despliega, al ya estar presentes las capas más pesadas, normalmente del kernel y demas paquetes del sistema operativo, solo hace falta descargar e instalar las más livianas, que por lo general son las dependencias de la aplicación en sí, por lo que no hace falta mover las capas más pesadas dentro de la imagen, es por esto que las imágenes suelen ser muy livianas y además al desplegarse como contenedores proveen todas las funcionalidades de un sistema operativo totalmente virtualizado y aislado, sin ser los contenedores sistemas operativos virtualizados totalmente desacoplados, como los utilizados en las máquinas virtuales.\
+Cabe aclarar que el aislamiento de procesos en Docker es puramente lógico ya que por debajo los procesos son ejecutados por el sistema operativo del host, no por un sistema operativo virtual que usa el hardware del host, en un sistema linux se pueden revisar todos los procesos de Docker usando top o htop, en sistemas Mac o Windows no se pueden ver directamente los procesos de Docker, ya que al instalar Docker Desktop, Docker por debajo instala una maquina virtual con un sistema operativo linux que es el que se utiliza para completar las capas más bajas de los contenedores y por lo tanto es en el sistema operativo virtual de esa máquina virtual en el que se ejecutan los procesos de los mismos.\
+Al desplegar aplicaciones en contenedores de Docker se agrega una capa adicional de abstracción (el contenedor en sí) sobre la cual trabaja la aplicación, utilizar esta capa adicional además de aportar las ventajas ya mencionadas también ayuda a simplificar algunos de los desafíos más importantes al momento de realizar un desarrollo profesional de software, como lo son los relacionados con la construcción, distribución y ejecución de aplicaciones.
 
-- **Construcción:** Al construir o desarrollar aplicaciones con Docker uno de los principales beneficios es que cuando se empieza a usar Docker los entornos de desarrollo y ejecución pueden ser equivalentes, ya que todos los contenedores tendrán las mismas dependencias, paquetes y se ejecutarán sobre el mismo sistema operativo independientemente de si es un ambiente de desarrollo o de ejecución, además incluso gracias a Docker se pueden simular condiciones de ejecución con ciertos recursos como la ram limitados.
-- **Distribución:** Al distribuir aplicaciones mediante imágenes de Docker se garantiza que las dependencias de la aplicación serán instaladas y además, se garantiza que no tendrán conflicto con las del sistema operativo de la máquina anfitrión, ya que se instalan en ambientes aislados, otro beneficio de utilizar imágenes de Docker es que se pueden distribuir y usar fácilmente, ya que son bastante ligeras y además la instalación de dependencias es un proceso automatizado, por lo que independientemente del número de copias siempre que se hagan con base en la misma imagen y no se altere la aplicación esta se comportará de la misma forma siempre.
+- **Construcción:** Al construir o desarrollar aplicaciones con Docker uno de los principales beneficios es que los entornos de desarrollo y ejecución se vuelven equivalentes, ya que todos los contenedores tendrán las mismas dependencias, paquetes y se ejecutarán sobre el mismo sistema operativo independientemente de si es un ambiente de desarrollo o de ejecución, además incluso gracias a Docker se pueden simular condiciones de ejecución con ciertos recursos limitados.
+- **Distribución:** Al distribuir aplicaciones mediante imágenes de Docker se garantiza que las dependencias de la aplicación serán instaladas y que no tendrán conflicto con las del sistema operativo del host ya que se instalan en ambientes aislados, otro beneficio de utilizar imágenes de Docker es que se pueden distribuir y usar fácilmente, ya que son bastante ligeras y además la instalación de dependencias es un proceso automatizado, por lo que independientemente del número de copias siempre que se hagan con base en la misma imagen y no se altere la aplicación esta se comportará de la misma forma siempre.
 - **Ejecución:** Ya que los entornos de ejecución y desarrollo son equivalentes gracias a que se ejecutan bajo el mismo sistema operativo utilizando las mismas dependencias pre establecidas se descarta totalmente la posibilidad de que algo que funciona en desarrollo no funcione en un entorno de ejecución productivo, además Docker incluso permite limitar recursos, razón por la cual se pueden simular incluso condiciones de ejecución adversas.
 
-Otra ventaja de Docker es que los contenedores a diferencia de las máquinas virtuales tiene un costo de administración mínimo y además se destruyen, construyen y despliegan con mucha facilidad. Las aplicaciones contenerizadas con Docker (que emplean Docker para construir y desplegar software) tienen varias características, pero los principales son las siguientes:
+Otra ventaja de Docker es que los contenedores a diferencia de las máquinas virtuales tiene un costo de administración mínimo y además se destruyen, construyen y despliegan con mucha facilidad. Las aplicaciones contenerizadas con Docker (que emplean Docker para construir y desplegar software) tienen varias características, pero las principales son las siguientes.
 
 - **Son flexibles:** Docker Engine puede ejecutarse en casi cualquier parte y un contenedor solo necesita de Docker Engine para ejecutarse, por lo que los contenedores pueden ejecutarse casi en cualquier parte.
-- **Son livianas:** Al utilizar la arquitectura por capas y reutilizar partes del sistema operativo de la máquina anfitrión no hace falta empacar las partes más pesadas del sistema operativo usado en las imágenes, por lo que usualmente las imágenes solo contienen las capas más ligeras de la aplicación.
+- **Son livianas:** Al utilizar la arquitectura por capas y reutilizar partes del sistema operativo del host no hace falta empacar las partes más pesadas del sistema operativo usado en las imágenes, por lo que usualmente las imágenes solo contienen las capas más ligeras de la aplicación.
 - **Son portables:** Las imágenes creadas con Docker se ejecutan de la misma forma en cualquier máquina que tenga Docker Engine independientemente de su software o hardware.
 - **Tienen un bajo acoplamiento:** Cada aplicación contenerizada es una aplicación autocontenida, no requiere de recursos externos fuera del contenedor para funcionar.
 - **Son escalables:** Es extremadamente sencillo replicar varios contenedores para que trabajen al mismo tiempo e incluso es fácil configurarlos para que se comuniquen y trabajen cooperando entre ellos.
-- **Son seguras:** Los contenedores acceden solo a los recursos a los que deben acceder, jamás acceden a secciones o funciones del sistema operativo de la máquina anfitrión, a no ser que se configuren manualmente estos accesos.
+- **Son seguras:** Los contenedores acceden solo a los recursos a los que deben acceder, jamás acceden a secciones o funciones del sistema operativo del host, a no ser que se configuren manualmente estos accesos.
 
-Docker como plataforma de contenedores se divide en tres capas, con cada una de estas capas es necesario interactuar de cierta forma para para acceder a todas las funcionalidades y poder sacarle provecho a Docker, estas capas son:
+Docker como plataforma de contenedores se divide en tres capas, con cada una de estas capas es necesario interactuar de cierta forma para para acceder a todas las funcionalidades y poder sacarle provecho a Docker, estas capas son.
 
 - **Docker Daemon:** Es el núcleo de Docker, se encarga de manejar todas las entidades que administra Docker.
-- **Rest Api:** Permite comunicar el Docker Daemon con el cli ya sea local o remoto, además de con otras interfaces que necesiten interactuar con el Docker Daemon, como programas de administración de contenedores, es importante resaltar que cada lenguaje posee su forma de acceder al Docker Daemon mediante el uso de esta api y que es la única forma de interactuar con el Docker Daemon.
-- **Docker Cli:** Interfaz de línea de comandos que se utiliza de forma local para comunicarse con el Docker Daemon, es la forma más sencilla de usar Docker.
+- **Rest Api:** Permite comunicar el Docker Daemon con el CLI ya sea local o remoto, además de con otras interfaces que necesiten interactuar con el Docker Daemon, como programas de administración de contenedores, es importante resaltar que cada lenguaje posee su forma de acceder al Docker Daemon mediante el uso de esta api y que es la única forma de interactuar con el Docker Daemon.
+- **Docker CLI:** Interfaz de línea de comandos que se utiliza de forma local para comunicarse con el Docker Daemon, es la forma más sencilla de usar Docker.
 
-Además de las capas con las que es necesario interactuar para usar Docker, Docker también dispone de ciertos recursos o entidades que son los que se utilizan para desplegar, empacar y construir aplicaciones contenerizadas, los cuales son:
+Además de las capas con las que es necesario interactuar para usar Docker, Docker también dispone de ciertos recursos o entidades que son los que se utilizan para desplegar, empacar y construir aplicaciones contenerizadas, los cuales son.
 
-- **Contenedores:** Son la clave del funcionamiento de Docker, son ambientes autocontenidos que aprovechan partes del sistema operativo de la máquina anfitrión para dar a las aplicaciones ambientes de ejecución iguales y aislados de forma lógica en cualquier anfitrión con Docker Engine instalado.
+- **Contenedores:** Son la clave del funcionamiento de Docker, son ambientes autocontenidos que aprovechan partes del sistema operativo del host para dar a las aplicaciones ambientes de ejecución iguales y aislados de forma lógica en cualquier host con Docker Engine instalado.
 - **Imágenes:** Las imágenes son la forma en la cual Docker puede empaquetar, transportar y replicar el funcionamiento de un contenedor en cualquier máquina que tenga Docker Engine instalado.
 - **Redes:** Las redes internas de Docker permiten que las diferentes aplicaciones desplegadas en diferentes contenedores puedan interactuar entre sí.
-- **Volúmenes:** Los volúmenes son la forma que provee Docker para que una aplicación desplegada en un contenedor puede almacenar datos para que otro contenedor pueda usarlos o simplemente para poder usarlos en ejecuciones posteriores o para almacenarlos, los volúmenes de almacenamiento a pesar de ser espacios de almacenamiento en la máquina anfitrión son totalmente administrados por Docker, lo que los hace inaccesibles para la máquina anfitrión.
+- **Volúmenes:** Los volúmenes son la forma que provee Docker para que una aplicación desplegada en un contenedor puede almacenar datos para que otro contenedor pueda usarlos o simplemente para poder usarlos en ejecuciones posteriores o para almacenarlos, los volúmenes de almacenamiento a pesar de ser espacios de almacenamiento en el host son totalmente administrados por Docker, lo que los hace inaccesibles para el host.
 
 <br>
 
 ## Instalación En Sistemas Mac O Windows
 
-Para realizar la instalación de Docker en macos o en windows basta con descargar de [**Docker Hub**](https://hub.docker.com/) la aplicación de escritorio (Docker Desktop).
+Para realizar la instalación de Docker en MacOS o en Windows basta con descargar de [**Docker Hub**](https://hub.docker.com/) la aplicación de escritorio (Docker Desktop).
 
 <br>
 
 ## Instalación En Sistemas Ubuntu
 
-Esta pequeña guía de instalación está basada en la [**Guía Oficial**](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker hub para instalar Docker Engine en ubuntu mediante el sistema de repositorios, cabe aclarar que en linux no hace falta instalar Docker desktop como en mac o en windows, con solo Docker Engine es suficiente y además la manipulación del Docker Daemon en linux se hace solo por consola, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de ubuntu:
+Esta pequeña guía de instalación está basada en la [**Guía Oficial**](https://docs.docker.com/engine/install/ubuntu/) ofrecida en Docker hub para instalar Docker Engine en Ubuntu mediante el sistema de repositorios, cabe aclarar que en linux no hace falta instalar Docker Desktop como en Mac o en Windows, con solo Docker Engine es suficiente y además la manipulación del Docker Daemon en linux se hace solo mediante el DOcker CLI, sin interfaz gráfica, este proceso de instalación aplica para las siguientes versiones de Ubuntu.
 
-- ubuntu focal 20.04 (lts)
-- ubuntu groovy 20.10
-- ubuntu bionic 18.04 (lts)
-- ubuntu xenial 16.04 (lts)
+- Ubuntu Focal 20.04 (lts)
+- Ubuntu Groovy 20.10
+- Ubuntu Bionic 18.04 (lts)
+- Ubuntu Xenial 16.04 (lts)
 
 <br>
 
@@ -116,7 +116,7 @@ sudo apt-get update
 sudo apt-get remove docker docker-engine docker.io containerd runc
 ```
 
-Antes de iniciar con la instalación es necesario eliminar cualquier instalación previa de Docker que se haya hecho en la máquina anfitrión, si no han habido instalaciones previas de Docker en la máquina anfitrión se puede omitir el primer comando.
+Antes de iniciar con la instalación es necesario eliminar cualquier instalación previa de Docker que se haya hecho en host, si no han habido instalaciones previas de Docker se puede omitir el primer comando.
 
 ```bash
 sudo apt-get update
@@ -130,13 +130,13 @@ Luego de haber desinstalado las versiones anteriores de Docker se configuran los
 curl -fssl https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 ```
 
-Tras configurar los repositorios necesarios lo siguiente es descargar la llave gpg oficial de docker.
+Tras configurar los repositorios necesarios lo siguiente es descargar la llave GPG oficial de docker.
 
 ```bash
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
-Una vez descargada la llave gpg lo siguiente es agregarla al archivo null.
+Una vez descargada la llave GPG lo siguiente es agregarla al archivo null.
 
 ```bash
 sudo apt-get update
@@ -150,7 +150,7 @@ Por último se utilizan los comandos anteriores para actualizar el índice de pa
 
 ### Comprobación De La Instalación
 
-Una forma sencilla de comprobar el funcionamiento de Docker Engine es utilizando la imagen de hello-world, para hacer esto se ejecuta el siguiente comando.
+Una forma sencilla de comprobar el funcionamiento de Docker Engine es utilizando la imagen hello-world, para hacer esto se ejecuta el siguiente comando.
 
 ```bash
 docker run hello-world
@@ -170,7 +170,7 @@ docker info
 
 ### En Caso De Errores De Permisos
 
-Un error comun al instalar Docker en ubuntu es que al realizar la instalacion solo el usuario root posee permisos para ejecutar acciones manipulando el Docker Daemon, por lo tanto si se ejecutan comandos de Docker sin usar el super usuario aparecerá un mensaje de error de denegación de permisos, como el presente a continuación.
+Un error comun al instalar Docker en Ubuntu es que al realizar la instalacion solo el usuario root posee permisos para ejecutar acciones manipulando el Docker Daemon, por lo tanto si se ejecutan comandos de Docker sin usar el super usuario aparecerá un mensaje de error de denegación de permisos, como el presente a continuación.
 
 ```bash
 docker: got permission denied while trying to connect to the Docker Daemon socket atunix:///var/run/docker.sock: post http:/%2fvar%2frun%2fdocker.sock/v1.24/containers/create: dial unix/var/run/docker.sock: connect: permission denied.see 'docker run --help'.
@@ -216,7 +216,7 @@ Muestra a grandes rasgos los comandos disponibles y sus usos al no especificar u
 docker --version
 ```
 
-Permite ver la versión de Docker Engine instalada actualmente en la máquina anfitrión.
+Permite ver la versión de Docker Engine instalada actualmente en el host.
 
 <br>
 
@@ -226,7 +226,7 @@ Permite ver la versión de Docker Engine instalada actualmente en la máquina an
 docker info <parámetros>
 ```
 
-Muestra información del Docker Daemon, como el número de imágenes descargadas, el estado del modo swarm o incluso la versión del kernel, entre otros.
+Muestra información del Docker Daemon, como el número de imágenes descargadas, el estado de Docker Swarm o incluso la versión del kernel, entre otros.
 
 <br>
 
@@ -246,13 +246,13 @@ Muestra los recursos que está utilizando cada contenedor y Docker en general, s
 docker system prune <parámetros>
 ```
 
-Elimina todos los volúmenes, contenedores y redes que no se estén usando, además de imágenes residuales.
+Elimina todos los volúmenes, contenedores y redes que no se estén usando, además de también elimina las imágenes residuales.
 
 <br>
 
 ## Administración De Contenedores
 
-La administración de contenedores es una actividad clave al utilizar Docker ya que los contenedores son las entidades más importantes que se pueden manejar en Docker, esto se debe a que los contenedores son los encargados de virtualizar el ambiente aislado donde se ejecutarán las aplicaciones desplegadas con Docker, es mediante el uso de contenedores que Docker adquiere tres de sus características más importantes, concretamente el uso de contenedores aporta flexibilidad, seguridad y bajo acoplamiento a las aplicaciones. Algunos de los comandos más importantes provistos por Docker para administrar contenedores se listan en esta sección.
+La administración de contenedores es una actividad clave al utilizar Docker ya que los contenedores son las entidades más importantes que se pueden manejar en Docker, esto se debe a que los contenedores son los encargados de virtualizar el ambiente aislado donde se ejecutarán las aplicaciones desplegadas con Docker. Es mediante el uso de contenedores que Docker adquiere tres de sus características más importantes, concretamente el uso de contenedores aporta flexibilidad, seguridad y bajo acoplamiento a las aplicaciones que usan Docker. Algunos de los comandos más importantes provistos por Docker para administrar contenedores se listan en esta sección.
 
 <br>
 
@@ -265,15 +265,15 @@ docker run <parámetros> <imagen> <comando>
 Ejecuta un contenedor usando la imagen especificada y ejecutando el comando indicado como proceso principal, en caso de ser dado un comando, si no es definido un comando para ejecutarse como proceso principal ni en la imagen (por defecto) ni por comando el contenedor nunca se inicia ya que un contenedor se detiene cuando su proceso principal finaliza y al no haber un proceso principal realmente el contenedor nunca arranca, algunos de los parámetros más útiles al ejecutar un contenedor con **docker run** son:
 
 - **--name &lt;nombre del nuevo contenedor&gt;:** Permite asignar un nombre personalizado al contenedor el cual puede ser utilizado para referenciar al contenedor como si fuera su id, además es único e irrepetible, en caso de no especificarse un nombre con este parámetro Docker asigna un nombre aleatorio al contenedor.
-- **--interactive:** Ejecuta el contenedor y abre una terminal mediante la cual se puede interactuar con el contenedor, al combinarlo con **--tty** se consigue una terminal interactiva entre el anfitrión y el contenedor.
-- **--tty:** Muestra en la salida estándar los resultados de ejecutar un comando, al combinarlo con **--interactive** se consigue una terminal interactiva entre el anfitrión y el contenedor.
-- **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su id para poder manipularlo posteriormente en caso de que haga falta.
-- **--publish &lt;puerto del anfitrión&gt;:&lt;puerto del contenedor&gt;:** Expone el puerto designado del contenedor en el puerto designado de la máquina anfitrión.
+- **-i, --interactive:** Ejecuta el contenedor y abre una terminal mediante la cual se puede interactuar con el contenedor, al combinarlo con **--tty** se consigue una terminal interactiva entre el host y el contenedor.
+- **-t, --tty:** Muestra en la salida estándar los resultados de ejecutar un comando, al combinarlo con **--interactive** se consigue una terminal interactiva entre el host y el contenedor.
+- **-d, --detach:** Evita que la terminal del host quede atada a la ejecución del contenedor ejecutando en background e imprimiendo su id para poder manipularlo posteriormente en caso de que haga falta.
+- **-p, --publish &lt;puerto del host&gt;:&lt;puerto del contenedor&gt;:** Expone el puerto designado del contenedor en el puerto designado del host.
 - **--rm:** Indica a Docker que ese contenedor debe eliminarse tan pronto como se detiene, es decir al finalizar su proceso principal.
-- **--volume &lt;ruta en el anfitrión&gt;:&lt;ruta en el contenedor&gt;:** Crea un bind vinculando la ruta designada del contenedor con la ruta designada del anfitrión.
+- **-v, --volume &lt;ruta en el host&gt;:&lt;ruta en el contenedor&gt;:** Vincula la ruta designada del contenedor con la ruta designada del host.
 - **--mount src=&lt;nombre o id del volumen&gt;,dst=&lt;ruta en el contenedor&gt;:** Vincula la ruta designada del contenedor a un volumen de Docker.
 - **--memory &lt;cantidad de memoria ram designada&gt; &lt;g|m&gt;:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que necesite.
-- **--env &lt;nombre de la variable de ambiente&gt;=&lt;valor de la variable de ambiente&gt;:** Establece una variable de ambiente a la que tendrá acceso el contenedor.
+- **-e, --env &lt;nombre de la variable de entorno&gt;=&lt;valor de la variable de entorno&gt;:** Establece una o varias variables de entorno a la que tendrá acceso el contenedor.
 
 #### Apuntes Adicionales Sobre La Ejecución De Contenedores
 
@@ -299,7 +299,7 @@ Renombra el contenedor indicado.
 docker ps <parámetros>
 ```
 
-Muestra todos los contenedores activos en la máquina anfitrión, algunos de los parámetros más útiles al ver los datos de los contenedores activos con **docker ps** son:
+Muestra todos los contenedores activos en el host, algunos de los parámetros más útiles al ver los datos de los contenedores activos con **docker ps** son:
 
 - **--all:** Incluye los contenedores que están actualmente inactivos.
 - **--latest:** Muestra sólo los datos del último contenedor ejecutado.
@@ -312,19 +312,19 @@ Muestra en formato json toda la información de la configuración del contenedor
 
 <br>
 
-### Mover Archivos Y Directorio Entre El Anfitrión Y Los Contenedores
+### Mover Archivos Y Directorio Entre El Host Y Los Contenedores
 
 ```unknown
 docker cp <parámetros> <ruta host> <nombre o id del contenedor>:<ruta contenedor>
 ```
 
-Copia un archivo o directorio desde la ruta de origen de la máquina anfitrión en la ruta de destino del contenedor indicado.
+Copia un archivo o directorio desde la ruta de origen del host en la ruta de destino del contenedor indicado.
 
 ```unknown
 docker cp <parámetros> <nombre o id del contenedor>:<ruta contenedor> <ruta host>
 ```
 
-Copia un archivo o directorio desde la ruta de origen del contenedor indicado en la ruta de destino de la máquina anfitrión.
+Copia un archivo o directorio desde la ruta de origen del contenedor indicado en la ruta de destino del host.
 
 <br>
 
@@ -336,7 +336,7 @@ docker logs <parámetros> <nombre o id del contenedor>
 
 Sirve para ver los logs del contenedor indicado, algunos de los parámetros más útiles al ver los logs de un contenedor con **docker logs** son:
 
-- **--follow:** Permite hacer follow de los logs del contenedor, es decir que se liga la consola de la máquina anfitrión a la salida estándar del contenedor para logs para verlos en la medida en la que se imprimen.
+- **--follow:** Permite hacer follow de los logs del contenedor, es decir que se liga el Docker CLI a la salida estándar del contenedor para logs para verlos en la medida en la que se imprimen.
 - **--tail &lt;número de logs&gt;:** Imprime los últimos logs limitándose al número de logs indicado.
 
 <br>
@@ -349,7 +349,7 @@ docker exec <parámetros> <nombre o id del contenedor> <comando>
 
 Permite ejecutar un comando en un contenedor activo, algunos de los parámetros más útiles al ejecutar un comando en un contenedor con **docker exec** son:
 
-- **--detach:** Evita que la terminal del anfitrión quede atada a la ejecución del comando en el contenedor, ejecutando en el background del contenedor el comando.
+- **--detach:** Evita que la terminal del host quede atada a la ejecución del comando en el contenedor, ejecutando en el background del contenedor el comando.
 
 #### Comando Pré Construído Para Ver Procesos Dentro De Un Contenedor
 
@@ -425,8 +425,8 @@ docker build <parámetros> <ruta del contexto>
 
 Crea y almacena una nueva imagen usando como contexto la ruta suministrada, el contexto es la ruta donde estan los archivos que se necesitan para construir la imagen, como los .dockerignore, Dockerfile y los archivos que se cargaran a la imagen, entre otros, si no se dan parámetros la imagen se crea solo con un id, sin guardar un nombre o un tag, es importante que siempre en el contexto haya un Dockerfile, ya que el Dockerfile es el que indica la forma en la que se construye una imagen, algunos de los parámetros más útiles al crear una imagen con **docker build** son:
 
-- **--tag &lt;nombre de la nueva imagen&gt;:&lt;tag de la nueva imagen&gt;:** Permite personalizar el nombre y tag de la nueva imagen que será construida.
-- **--file &lt;ruta del Dockerfile&gt;:** Permite cambiar o especificar la ruta al Dockerfi con el cual se construirá la imagen.
+- **-t, --tag &lt;nombre de la nueva imagen&gt;:&lt;tag de la nueva imagen&gt;:** Permite personalizar el nombre y tag de la nueva imagen que será construida.
+- **-f, --file &lt;ruta del Dockerfile&gt;:** Permite cambiar o especificar la ruta al Dockerfi con el cual se construirá la imagen.
 
 <br>
 
@@ -442,7 +442,7 @@ Descarga la imagen con el nombre y el tag especificado, si no se especifica un t
 
 ### Subir Imágenes
 
-Antes de subir una imagen a nuestro repositorio es necesario iniciar sesión con nuestro usuario en el cli de Docker, esto se hace con el siguiente comando.
+Antes de subir una imagen a nuestro repositorio es necesario iniciar sesión con nuestro usuario en el CLI de Docker, esto se hace con el siguiente comando.
 
 ```unknown
 docker login <parámetros>
@@ -486,7 +486,7 @@ docker history <parámetros> <nombre o id de la imagen>:<tag de la imagen>
 
 Muestra las capas de una imagen de forma simplificada.
 
-Otra herramienta muy útil para visualizar las capas de una imagen con más profundidad es [**dive**](https://github.com/wagoodman/dive), dive a diferencia del cli de Docker da más información sobre las capas de cada imagen, algunos de los comandos básicos para ver información de las imágenes con dive son:
+Otra herramienta muy útil para visualizar las capas de una imagen con más profundidad es [**dive**](https://github.com/wagoodman/dive), dive a diferencia del CLI de Docker da más información sobre las capas de cada imagen, algunos de los comandos básicos para ver información de las imágenes con dive son:
 
 ```unknown
 dive <nombre o id de la imagen>:<tag de la imagen>
@@ -527,7 +527,7 @@ El comando anterior es una extensión de **docker image rm** pero tiene la funci
 
 ## Administración De Volúmenes
 
-Los volúmenes son una parte fundamental al usar Docker para desarrollar aplicaciones contenerizadas ya que son las unidades virtuales de almacenamiento que normalmente usan los contenedores para guardar y compartir datos entre ellos de forma sencilla, usar volúmenes garantiza que los datos almacenados persistirán incluso si se detienen o eliminan todos los contenedores que hacían uso del volumen, cabe aclarar que los volúmenes son espacios de memoria del anfitrión que Docker usa para almacenar archivos de los contenedores, al igual que con los bind, pero a diferencia de los bind los volúmenes son administrados únicamente por Docker y no conceden al contenedor acceso al sistema de directorios del anfitrión, lo que los hace más seguros de usar que los bind, es por esto último que los volúmenes son la opción más recomendable para almacenar datos de los contenedores en una solución desplegada para producción. Los comandos provistos por Docker para administrar volúmenes se listan en esta sección.
+Los volúmenes son una parte fundamental al usar Docker para desarrollar aplicaciones contenerizadas ya que son las unidades virtuales de almacenamiento que normalmente usan los contenedores para guardar y compartir datos entre ellos de forma sencilla, usar volúmenes garantiza que los datos almacenados persistirán incluso si se detienen o eliminan todos los contenedores que hacían uso del volumen, cabe aclarar que los volúmenes son espacios de memoria del host que Docker usa para almacenar archivos de los contenedores, al igual que con los bind, pero a diferencia de los bind los volúmenes son administrados únicamente por Docker y no conceden al contenedor acceso al sistema de directorios del host, lo que los hace más seguros de usar que los bind, es por esto último que los volúmenes son la opción más recomendable para almacenar datos de los contenedores en una solución desplegada para producción. Los comandos provistos por Docker para administrar volúmenes se listan en esta sección.
 
 <br>
 
@@ -675,7 +675,7 @@ Los [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) son los 
 - **run &lt;comando&gt;:** Ejecuta un comando en tiempo de construcción, los comandos que se ejecutan con run solo se ejecutan al momento de construir una imagen, no al momento de iniciar un contenedor a partir de una imagen resultante de un Dockerfile que implemente esta instrucción.
 - **workdir &lt;ruta dentro del contenedor&gt;:** Establece un directorio de trabajo que será el directorio en el que se posicionará el contenedor al iniciar su ejecución.
 - **copy &lt;ruta archivo 0, ruta archivo 1, ... ruta archivo n, ruta destino contenedor&gt;:** Copia todos los archivos indicados en la ruta de destino de la imagen, cabe aclarar que Docker en tiempo de construcción solo da acceso a la imagen al directorio especificado como contexto, por lo que los archivos que se quieren copiar a la imagen deben estar dentro del contexto de construcción para poder ser empaquetados dentro de la misma.
-- **expose &lt;número de puerto&gt;:** Expone un puerto del contenedor permitiendo que ese puerto sea vinculable o bindable a un puerto de la máquina anfitrión.
+- **expose &lt;número de puerto&gt;:** Expone un puerto del contenedor permitiendo que ese puerto sea vinculable o bindable a un puerto del host.
 - **cmd &lt;"parte 1 del comando", "parte 2 del comando"&gt;:** Exec form para ejecutar un comando, ejecutar procesos con Exec form hace que los procesos se ejecuten directamente, lo que pone el proceso indicado como proceso principal del contenedor.
 - **cmd &lt;comando entero&gt;:** Bash form para ejecutar un comando, ejecutar procesos con Bash form hace que los procesos se ejecuten como procesos hijos de un bash, lo que pone al bash como proceso principal del contenedor en lugar del proceso indicado.
 - **entrypoint &lt;"parte 1 del comando", "parte 2 del comando"&gt;:** Exec form para ejecutar un entrypoint, ejecuta el entrypoint como proceso principal.

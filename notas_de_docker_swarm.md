@@ -199,7 +199,7 @@ docker service create <parámetros> <nombre o id de la imagen> <comando>
 permite iniciar un servicio basado en Docker Swarm especificando la imagen y el comando del proceso principal, si no se especifica el comando del proceso principal se usa el proceso principal por defecto, algunos de los parámetros más útiles al iniciar un servicio con **docker service create** son:
 
 - **--name &lt;nombre del servicio&gt;:** Establece el nombre indicado como nombre del servicio.
-- **--publish &lt;puerto del anfitrión&gt;:&lt;puerto del contenedor&gt;:** Utiliza la red ingress y el routing mesh de Docker Swarm para exponer la aplicación.
+- **--publish &lt;puerto del host&gt;:&lt;puerto del contenedor&gt;:** Utiliza la red ingress y el routing mesh de Docker Swarm para exponer la aplicación.
 - **--replicas &lt;número de réplicas&gt;:** Establece el número de réplicas o contenedores que deben ejecutarse de cierto servicio.
 - **--constraint node.role==&lt;worker|manager&gt;:** Limita los contenedores del servicio para que solo se ejecuten en los nodos con cierto rol.
 - **--network:** Conecta los servicios a cierta red que tenga un driver overlay, si no se indica una red Docker conectara los servicios a la red ingress por defecto.
@@ -269,7 +269,7 @@ docker service logs <parámetros> <id o nombre del servicio|id o nombre de la ta
 
 muestra los logs de los de un servicio o tarea, algunos de los parámetros más útiles al visualizar los logs de un servicio o tarea con **docker service logs** son:
 
-- **--follow:** Permite hacer follow de los logs del servicio o tarea, es decir que se liga la consola de la máquina anfitrión a los logs para verlos en la medida en la que se imprimen.
+- **--follow:** Permite hacer follow de los logs del servicio o tarea, es decir que se liga la consola del host a los logs para verlos en la medida en la que se imprimen.
 
 <br>
 
