@@ -273,6 +273,7 @@ Ejecuta un contenedor usando la imagen especificada y ejecutando el comando indi
 - **-v, --volume &lt;ruta en el host&gt;:&lt;ruta en el contenedor&gt;:** Vincula la ruta designada del contenedor con la ruta designada del host.
 - **--mount src=&lt;nombre o id del volumen&gt;,dst=&lt;ruta en el contenedor&gt;:** Vincula la ruta designada del contenedor a un volumen de Docker.
 - **--memory &lt;cantidad de memoria ram designada&gt; &lt;g|m&gt;:** Limita la cantidad de memoria ram que puede utilizar el contenedor, si no se limita la ram mediante este parámetro el contenedor utilizar toda la memoria ram que necesite.
+- **--cpus:** Permite establecer el numero de nucleos del procesador que puede usar el contenedor.
 - **-e, --env &lt;nombre de la variable de entorno&gt;=&lt;valor de la variable de entorno&gt;:** Establece una o varias variables de entorno a las que tendrá acceso el contenedor.
 
 #### Apuntes Adicionales Sobre La Ejecución De Contenedores
