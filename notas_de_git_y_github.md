@@ -605,7 +605,7 @@ los pasos para establecer una conexión ssh segura entre el repositorio y la má
 ### Crear El Par De Llaves
 
 ```unknown
-ssh-keygen -t rsa -b 4096 -c "correo electrónico vinculado al usuario de github"
+ssh-keygen -t rsa -b 4096 -C "correo electrónico vinculado al usuario de github"
 ```
 
 el primer paso para usar ssh en lugar de https es generar un par de llaves ssh, al crear las llaves hay que vincular el correo del usuario de github y además se puede agregar un password a la llave privada para tener más seguridad al usarla. al generarse el par de llaves la llave privada se guarda sin extensión y la pública se guarda con la extensión **.pub**. en sistemas linux ambas llaves son almacenadas en **~/.ssh/id_rsa** si no se indica otra ruta.
