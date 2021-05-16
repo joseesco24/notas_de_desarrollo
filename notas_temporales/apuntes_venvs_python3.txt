@@ -28,5 +28,5 @@ npm init -y                                                    <------ Se puede 
 npm i                                                          <------ Instala dependencias faltantes o no instaladas pero declaradas en el .json
 npm install -g npm@latest                                      <------ Actualizar version de NPM  a la ultima.
 
-
+pipdeptree --warn silence | grep -E '^\w+' > requirements.txt
 
