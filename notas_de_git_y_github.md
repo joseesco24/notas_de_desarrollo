@@ -107,8 +107,8 @@ permite aplicar ciertas configuraciones a un repositorio, algunos de los paráme
 
 algunos de los parámetros configurables más importantes de un repositorio son:
 
-- **user.email=&lt;correo del usuario&gt;:** cambia el correo electrónico del usuario.
-- **user.name=&lt;nombre del usuario&gt;:** cambia el nombre del usuario.
+- **user.email &lt;correo del usuario&gt;:** cambia el correo electrónico del usuario.
+- **user.name &lt;nombre del usuario&gt;:** cambia el nombre del usuario.
 - **alias.&lt;nombre del alias&gt; "&lt;comando&gt;":** permite agregar a git alias para nuevos comandos.
 
 <br>
