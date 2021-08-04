@@ -1,7 +1,6 @@
 # Sobre Este Repositorio
 
-El único propósito de este repositorio es guardar y tener disponibles notas útiles sobre algunas de las tecnologías que he aprendido y que podrían serme útiles en el futuro.\
-En casi todos los archivos de notas hay gráficas, estas gráficas no se podrán visualizar de forma correcta si GitHub no está configurado en modo claro, ya que todas se diseñaron para verse bien en el modo oscuro de GitHub.
+El único propósito de este repositorio es guardar y tener disponibles notas útiles sobre algunas de las tecnologías que he aprendido y que podrían serme útiles en el futuro.
 
 <br>
 
