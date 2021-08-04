@@ -1,6 +1,8 @@
 # Notas De Go
 
 - [Introducción](#introducción)
+- [Compilar](#compilar)
+- [Compilar y ejecutar](#compilar-y-ejecutar)
 
 <br>
 
@@ -36,5 +38,24 @@ export GOBIN=$GOPATH/bin
 export GOROOT=/usr/local/go
 
 export PATH=$PATH:$GOBIN:$GOROOT/bin
+```
 
+<br>
+
+## Compilar
+
+Al compilar cualquier proyecto en Go el resultado de la compilación se guarda en el directorio src, para compilar un main.go por ejemplo se usa el comando **go build**:
+
+```bash
+go build main.go
+```
+
+<br>
+
+## Compilar y ejecutar
+
+Go también permite compilar y ejecutar un proyecto almacenando temporalmente las compilaciones de tal modo que la carpeta src no se llene de archivos compilados, para esto se usa el comando **go run**:
+
+```bash
+go build main.go
 ```
