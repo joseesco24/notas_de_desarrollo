@@ -7,7 +7,7 @@ El único propósito de este repositorio es guardar y tener disponibles notas ú
 ## Notas En Este Repositorio
 
 - [Notas De Sistemas Linux](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_sistemas_linux.md)
-- [Notas De Golang](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_golang.md)
+- [Notas De Go](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_go.md)
 - [Notas De Git Y GitHub](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_git_y_github.md)
 - [Notas De MongoDB](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_mongodb.md)
 - [Notas De Docker](https://github.com/Joseesc24/mis_notas_de_desarrollo/blob/master/notas_de_docker.md)
