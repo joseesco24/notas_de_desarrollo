@@ -63,10 +63,6 @@ git y github soportan versionamiento de archivos binarios, pero el versionamient
 
 ## Flujo De Trabajo Básico Con Git
 
-<p align="center">
-<img src="imagenes/notas_de_git_y_github/flujo_basico_con_repositorios_locales_git.svg" width="100%" height="auto"/>
-</p>
-
 cuando se versionan archivos con repositorios git locales los cambios pueden estar almacenados en tres posibles áreas, la primera es el **directorio de trabajo**, que simplemente es el directorio dentro de la máquina local en el que se inició el repositorio, la segunda área es el **área de staging**, que es un área de almacenamiento en la ram de la máquina local donde se preparan los cambios para ser agregados al repositorio y por ultimo esta el **repositorio**, que es un área de almacenamiento local o remota donde se guardan los archivos y se registran sus respectivos cambios a través de cada versión, dependiendo del nivel en el que esté un cambio este se puede considerar como **no rastreado** cuando solo está presente en el **directorio de trabajo**, **en espera** cuando está presente en el **directorio de trabajo** y el **área de staging** y **rastreado** cuando pasa a estar en **las tres áreas** luego de ser enviado del **área de staging** al **repositorio**, algunos de los conceptos más útiles al trabajar con git de forma básica son:
 
 - **commit:** un commit es lo que sucede cuando un cambio pasa del área de staging al repositorio, es decir que pasa de estra **en espera** a estar **rastreado** por la base de datos de cambios del repositorio, al ser aceptado un cambio como una nueva versión con un commit, git le asigna un número de versión o id que identifica esa nueva versión, y además se registran otros metadatos como la fecha, hora y el usuario que hizo el commit, por lo que cada cambio en git es rastreable por su id y por los otros metadatos que son almacenados al hacer el commit.
@@ -239,10 +235,6 @@ algunos de los parámetros opcionales más útiles al utilizar **git rm** para e
 <br>
 
 ## Administración De Ramas Y Versiones Con Git
-
-<p align="center">
-<img src="imagenes/notas_de_git_y_github/sistema_de_ramas_de_git.svg" width="100%" height="auto"/>
-</p>
 
 las ramas permiten dividir el código fuente de una aplicación en diferentes líneas separadas cronológicamente que luego se unen para formar una solo código fuente, por defecto git trabaja sobre la rama **master** pero normalmente cuando se trabaja en un equipo de desarrollo se utilizan diferentes ramas para que varios miembros del equipo trabajen en simultáneo en partes o funcionalidades distintas de una misma aplicación. cuando se crea una rama nueva basicamente lo que se hace es crear una copia de la última versión de la rama master de una nueva rama separada, y los cambios que se realicen en esta nueva rama no serán visibles en master hasta que no se fusionan las dos ramas con una operación llamada **merge**.\
 algunos de los conceptos más útiles al trabajar con ramas en git son:
@@ -507,10 +499,6 @@ mueve el HEAD del commit actual al commit indicado, dependiendo del modo al camb
 
 ## Administración De Repositorios Remotos Con Git Y Github
 
-<p align="center">
-<img src="imagenes/notas_de_git_y_github/flujo_basico_con_repositorios_remotos_github.svg" width="100%" height="auto"/>
-</p>
-
 un repositorio remoto es lo que se utiliza en la mayoría de casos en los que un desarrollo es el producto del trabajo de varios desarrolladores que trabajan en equipo para construir una sola aplicación, por lo tanto, al utilizar un repositorio remoto como github o **gitlab** lo que se hace es agregar una cuarta área adicional a las tres que se usan al trabajar con un repositorio git local, que es la del servidor remoto al que se envían con un **git push** los cambios luego de ser **rastreados** por el repositorio local con un commit para que todas las personas del equipo puedan ver y trabajar sobre los cambios más recientes realizados en el repositorio remoto.\
 las guías para crear repositorios remotos con [**github**](https://guides.github.com/) y [**gitlab**](https://docs.gitlab.com/) estan enlazadas a sus nombres en este comentario.
 
@@ -593,10 +581,6 @@ envía los cambios hechos en una rama del repositorio local al repositorio remot
 
 ## Conexión Con Github Usando Protocolo Ssh
 
-<p align="center">
-<img src="imagenes/notas_de_git_y_github/sistema_de_conexion_ssh_de_github.svg" width="100%" height="auto"/>
-</p>
-
 establecer que las conexiones a un repositorio en github se hagan con el protocolo ssh en lugar del https permiten agregar al repositorio una capa adicional de seguridad, ya que de esta forma los archivos enviados entre el repositorio remoto y cualquier otra máquina están totalmente cifrados y protegidos, github usa una llave privada y una llave pública para conseguir este cifrado, el cual se basa en una serie de algoritmos de cifrado y descifrado asimétricos usando el par de llaves para cifrar y descifrar los archivos, de tal forma que para poder descifrar cualquier archivo cifrado con una llave pública es necesario tener la contraparte privada de esa llave, la cual se crea y "vincula" a la llave pública cuando se crean el par de llaves, la llave privada bajo ninguna circunstancia debe salir de la máquina que establece la conexión ssh con github. para crear una conexión ssh bilateral, cifrada y segura entre cualquier máquina y github hace falta por lo tanto crear las dos llaves en la máquina que va a establecer la conexión, una privada y una pública, la llave pública se comparte con github y github compartirá su llave pública de vuelta, cifrada con la llave pública enviada previamente, de esta forma tanto en la máquina que va a establecer la conexión como en github hay una llave privada y una pública, lo que permite a github descifrar los archivos enviados desde la máquina local y a la máquina local descifrar los datos de github para así establecer una conexión bilateral totalmente segura a través de internet.\
 los pasos para establecer una conexión ssh segura entre el repositorio y la máquina son:
 
@@ -650,29 +634,21 @@ como último paso hay que actualizar la url del repositorio local reemplazandola
 
 ## Pull Requests Con Github
 
-<p align="center">
-<img src="imagenes/notas_de_git_y_github/sistema_de_pull_requests_de_github.svg" width="100%" height="auto"/>
-</p>
-
 los pull request o pr (también llamados merge request o mr en gitlab) son un sistema de revisión de código propio de github, que permite que un colaborador pide que revisen sus cambios antes de hacer merge a una rama, normalmente master. al hacer un pull request se genera una conversación que pueden seguir los demás miembros del repositorio, así como, comentar, autorizar o rechazar los cambios del pr.
 
 el flujo de trabajo normal de un pull request es el siguiente
 
 1. se realizan en un rama paralela todos los cambios.
-1. se suben a github los cambios.
-1. en github se hace el pull request comparando la rama master con la rama en la que se hicieron los cambios.
-1. uno, o varios colaboradores revisan que el código sea correcto y dan feedback.
-1. el colaborador hace los cambios que desea en la rama y lo vuelve a subir al remoto.
-1. se aceptan los cambios en github.
-1. se hace merge a master desde github.
+2. se suben a github los cambios.
+3. en github se hace el pull request comparando la rama master con la rama en la que se hicieron los cambios.
+4. uno, o varios colaboradores revisan que el código sea correcto y dan feedback.
+5. el colaborador hace los cambios que desea en la rama y lo vuelve a subir al remoto.
+6. se aceptan los cambios en github.
+7. se hace merge a master desde github.
 
 <br>
 
 ## Forks Con Github
-
-<p align="center">
-<img src="imagenes/notas_de_git_y_github/sistema_de_forks_de_github.svg" width="100%" height="auto"/>
-</p>
 
 los forks son una característica única de github que permite crear una copia exacta del estado actual de un repositorio directamente en github, éste repositorio podrá servir como otro origen y se podrá clonar (como cualquier otro repositorio), en pocas palabras, un fork se puede utilizar como un repositorio git cualquiera, un fork es una bifurcación del repositorio completo, tiene una historia en común, pero pueden variar los cambios, ya que ambos proyectos podrán ser modificados en paralelo y para estar al día hace falta mantener el fork actualizado respecto al original. al hacer un fork de un proyecto en github, quien hace el fork pasa a ser dueño del repositorio fork y puede trabajar en éste con todos los permisos, pero es un repositorio completamente diferente al original, teniendo algunas historias en común.\
 los forks son importantes porque es la manera en la que funciona el open source, ya que, una persona puede no ser colaborador de un proyecto, pero puede contribuir al mismo, haciendo mejor software que pueda ser utilizado por cualquiera.\

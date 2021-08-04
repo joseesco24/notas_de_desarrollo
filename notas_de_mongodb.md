@@ -55,10 +55,6 @@
 
 ## Componentes Principales De Mongodb
 
-<p align="center">
-<img src="imagenes/notas_de_mongodb/componentes_de_mongodb.svg" width="80%" height="auto"/>
-</p>
-
 <br>
 
 ### Bases De Datos
@@ -80,10 +76,6 @@ los [**documentos**](https://docs.mongodb.com/manual/core/document/) en mongodb 
 <br>
 
 ## Ecosistema De Mongodb
-
-<p align="center">
-<img src="imagenes/notas_de_mongodb/ecosistema_mongodb.svg" width="80%" height="auto"/>
-</p>
 
 <br>
 
@@ -113,14 +105,14 @@ ejemplo de documento anidado:
 
 ```json
 {
-    "nombre": "pedro",
-    "apellido": "perez",
-    "lugar_residencia": {
-        "ciudad": "bogotá",
-        "departamento": "cundinamarca",
-        "direccion": "calle 175 #64-11"
-    },
-    "edad": 36
+  "nombre": "pedro",
+  "apellido": "perez",
+  "lugar_residencia": {
+    "ciudad": "bogotá",
+    "departamento": "cundinamarca",
+    "direccion": "calle 175 #64-11"
+  },
+  "edad": 36
 }
 ```
 
@@ -128,21 +120,21 @@ ejemplo de múltiples documentos anidados:
 
 ```json
 {
-    "nombre": "pedro",
-    "apellido": "perez",
-    "lugar_residencia": [
-        {
-            "ciudad": "bogotá",
-            "departamento": "cundinamarca",
-            "direccion": "calle 175 #64-11"
-        },
-        {
-            "ciudad": "neiva",
-            "departamento": "huila",
-            "direccion": "calle 4 #17-11"
-        }
-    ],
-    "edad": 36
+  "nombre": "pedro",
+  "apellido": "perez",
+  "lugar_residencia": [
+    {
+      "ciudad": "bogotá",
+      "departamento": "cundinamarca",
+      "direccion": "calle 175 #64-11"
+    },
+    {
+      "ciudad": "neiva",
+      "departamento": "huila",
+      "direccion": "calle 4 #17-11"
+    }
+  ],
+  "edad": 36
 }
 ```
 
@@ -150,18 +142,18 @@ ejemplo de documento referenciado:
 
 ```json
 {
-    "id": "62a873996f6aaaa78dac39c0d5c36a39",
-    "nombre": "perez",
-    "apellido": "perez",
-    "edad": 36
+  "id": "62a873996f6aaaa78dac39c0d5c36a39",
+  "nombre": "perez",
+  "apellido": "perez",
+  "edad": 36
 }
 ```
 
 ```json
 {
-    "autor": "62a873996f6aaaa78dac39c0d5c36a39",
-    "nombre": "perez",
-    "ano_publicacion": 2021
+  "autor": "62a873996f6aaaa78dac39c0d5c36a39",
+  "nombre": "perez",
+  "ano_publicacion": 2021
 }
 ```
 
@@ -169,27 +161,30 @@ ejemplo de múltiples documentos referenciados:
 
 ```json
 {
-    "id": "62a873996f6aaaa78dac39c0d5c36a39",
-    "nombre": "perez",
-    "apellido": "perez",
-    "edad": 36
+  "id": "62a873996f6aaaa78dac39c0d5c36a39",
+  "nombre": "perez",
+  "apellido": "perez",
+  "edad": 36
 }
 ```
 
 ```json
 {
-    "id": "a85ba64adf6bf75e64b221a3171b0269",
-    "nombre": "felipe",
-    "apellido": "perez",
-    "edad": 32
+  "id": "a85ba64adf6bf75e64b221a3171b0269",
+  "nombre": "felipe",
+  "apellido": "perez",
+  "edad": 32
 }
 ```
 
 ```json
 {
-    "autor": ["62a873996f6aaaa78dac39c0d5c36a39", "a85ba64adf6bf75e64b221a3171b0269"],
-    "nombre": "perez",
-    "ano_publicacion": 2021
+  "autor": [
+    "62a873996f6aaaa78dac39c0d5c36a39",
+    "a85ba64adf6bf75e64b221a3171b0269"
+  ],
+  "nombre": "perez",
+  "ano_publicacion": 2021
 }
 ```
 
@@ -290,7 +285,7 @@ db
 ejemplo:
 
 ```javascript
-db.help()
+db.help();
 ```
 
 #### En Una Colección
@@ -302,7 +297,7 @@ db.help()
 ejemplo:
 
 ```javascript
-db.inventory.help()
+db.inventory.help();
 ```
 
 <br>
@@ -322,9 +317,7 @@ los documentos de filtros son parte fundamental de la mayoría de las operacione
 #### Operador Equal
 
 ```javascript
-db.inventory.find(
-    {item: "canvas"}
-)
+db.inventory.find({ item: "canvas" });
 ```
 
 #### Operador Lower Than
@@ -338,25 +331,18 @@ db.inventory.find(
 #### Operador And
 
 ```javascript
-db.inventory.find(
-    {
-        item: "canvas",
-        qty: {$lt:30}
-    }
-)
+db.inventory.find({
+  item: "canvas",
+  qty: { $lt: 30 },
+});
 ```
 
 #### Operador Or
 
 ```javascript
-db.inventory.find(
-    {
-        $or:[
-            {status: "a"},
-            {qty: {$lt:30}}
-            ]
-    }
-)
+db.inventory.find({
+  $or: [{ status: "a" }, { qty: { $lt: 30 } }],
+});
 ```
 
 <br>
@@ -375,9 +361,12 @@ al insertar un documento el id se puede especificar usando el tag **\_id**, si n
 ejemplo:
 
 ```javascript
-db.inventory.insertone(
-    {size: {h: 28, w: 35.5, uom: "cm"}, tags: ["cotton"], item: "canvas", qty: 100}
-)
+db.inventory.insertone({
+  size: { h: 28, w: 35.5, uom: "cm" },
+  tags: ["cotton"],
+  item: "canvas",
+  qty: 100,
+});
 ```
 
 #### Inserción Grupal
@@ -389,13 +378,26 @@ db.inventory.insertone(
 ejemplo:
 
 ```javascript
-db.inventory.insertmany(
-    [
-        {item: "sketch pad", qty: 95, size: {h: 22.85, w: 30.5, uom: "cm"}, status: "a"},
-        {item: "postcard", qty: 45, size: {h: 10, w: 15.25, uom: "cm"}, status: "a"},
-        {item: "sketchbook", qty: 80, size: {h: 14, w: 21, uom: "cm"}, status: "a"}
-    ]
-)
+db.inventory.insertmany([
+  {
+    item: "sketch pad",
+    qty: 95,
+    size: { h: 22.85, w: 30.5, uom: "cm" },
+    status: "a",
+  },
+  {
+    item: "postcard",
+    qty: 45,
+    size: { h: 10, w: 15.25, uom: "cm" },
+    status: "a",
+  },
+  {
+    item: "sketchbook",
+    qty: 80,
+    size: { h: 14, w: 21, uom: "cm" },
+    status: "a",
+  },
+]);
 ```
 
 <br>
@@ -411,10 +413,7 @@ db.inventory.insertmany(
 ejemplo:
 
 ```javascript
-db.inventory.findone(
-    {item: "canvas"},
-    {_id:0, item:1, status:1}
-)
+db.inventory.findone({ item: "canvas" }, { _id: 0, item: 1, status: 1 });
 ```
 
 en el ejemplo anterior se usa una proyección y un filtro, el filtro **({item: "canvas"})** se usa para retornar solamente los documentos que cumplan con ciertos parámetros y la proyección **({\_id:0, item:1, status:1})** asegura que se muestren solo ciertos campos de los documentos retornados, los filtros son parte fundamental de cualquier operación de búsqueda, mientras que las proyecciones pueden facilitar en gran medida la lectura de los resultados omitiendo la información innecesaria.\
@@ -429,10 +428,7 @@ al usar el método **findone** solamente se retorna el primer documento que cump
 ejemplo:
 
 ```javascript
-db.inventory.find(
-    {item: "canvas"},
-    {_id:0, item:1, status:1}
-)
+db.inventory.find({ item: "canvas" }, { _id: 0, item: 1, status: 1 });
 ```
 
 al usar el método **find** se retornan todos los documento que cumpla con las condiciones de la búsqueda, el método **find** al igual que el método **findone** y la gran mayoría de los métodos de búsqueda en mongodb admite el uso de filtros y proyecciones.
@@ -457,13 +453,13 @@ ejemplo:
 
 ```javascript
 db.inventory.updateone(
-    {
-        status: "a"
-    },
-    {
-        $set: {status: "b"},
-    }
-)
+  {
+    status: "a",
+  },
+  {
+    $set: { status: "b" },
+  }
+);
 ```
 
 #### Actualización Grupal
@@ -476,13 +472,13 @@ ejemplo:
 
 ```javascript
 db.inventory.updatemany(
-    {
-        status: "a"
-    },
-    {
-        $set: {status: "b"},
-    }
-)
+  {
+    status: "a",
+  },
+  {
+    $set: { status: "b" },
+  }
+);
 ```
 
 <br>
@@ -498,9 +494,7 @@ db.inventory.updatemany(
 ejemplo:
 
 ```javascript
-db.inventory.deleteone(
-    {status: "b"}
-)
+db.inventory.deleteone({ status: "b" });
 ```
 
 el documento eliminado con deleteone siempre es el primer documento que cumple con las condiciones del json de filtros según el orden natural de mongodb.
@@ -514,9 +508,7 @@ el documento eliminado con deleteone siempre es el primer documento que cumple c
 ejemplo:
 
 ```javascript
-db.inventory.deletemany(
-    {status: "b"}
-)
+db.inventory.deletemany({ status: "b" });
 ```
 
 <br>
@@ -547,7 +539,7 @@ los [**índices**](https://docs.mongodb.com/manual/indexes/) en mongodb se usan 
 ejemplo:
 
 ```javascript
-db.inventory.getindexes()
+db.inventory.getindexes();
 ```
 
 #### Crear Nuevo Índice
@@ -559,7 +551,7 @@ db.inventory.getindexes()
 ejemplo:
 
 ```javascript
-db.inventory.createindex({nombre: "text"})
+db.inventory.createindex({ nombre: "text" });
 ```
 
 <br>
