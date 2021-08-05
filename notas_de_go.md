@@ -3,6 +3,15 @@
 - [Introducción](#introducción)
 - [Compilar](#compilar)
 - [Compilar y ejecutar](#compilar-y-ejecutar)
+- [Variables, constantes y zero values](#variables-constantes-y-zero-values)
+- [Operadores aritmeticos](#operadores-aritmeticos)
+  - [Suma](#suma)
+  - [Resta](#resta)
+  - [Multiplicación](#multiplicación)
+  - [División](#división)
+  - [Modulo](#modulo)
+  - [Incremental](#incremental)
+  - [Decremental](#decremental)
 
 <br>
 
@@ -46,7 +55,7 @@ export PATH=$PATH:$GOBIN:$GOROOT/bin
 
 Al compilar cualquier proyecto en Go el resultado de la compilación se guarda en el directorio raíz del proyecto (GOPATH), para compilar un main.go por ejemplo se usa el comando **go build**:
 
-```bash
+```go
 go build main.go
 ```
 
@@ -56,6 +65,102 @@ go build main.go
 
 Go también permite compilar y ejecutar un proyecto almacenando temporalmente las compilaciones de tal modo que el directorio raíz del proyecto (GOPATH) no se llene de archivos compilados, para esto se usa el comando **go run**:
 
-```bash
+```go
 go build main.go
+```
+
+<br>
+
+## Variables, constantes y zero values
+
+Go permite declarar constantes, que son variables cuyo valor no cambiará durante la ejecución del programa, para declarar una constante en Go se usa la palabra reservada **const**, al declarar la nueva constante además se puede incluir el tipo de dato de la constante, no incluir el valor de la constante no afecta la ejecución del programa, pero si reduce un poco el desempeño del programa y el uso de memoria del mismo, a continuación se muestran ejemplos de ambos casos:
+
+```go
+// Declaracion de constantes con tipo de dato.
+const pi_1 float64 = 3.14
+
+// Declaracion de constantes sin tipo de dato.
+const pi_2 = 3.1415
+```
+
+Al igual que con las declaraciones de las constantes donde se usa **const** con las variables también se usa la palabra reservada **var** por lo general, la forma correcta de declarar variables en Go para conservar el desempeño del programa y para gestionar bien la memoria es declarando las variables con **var** e indicando su tipo de dato, adicionalmente el valor se puede asignar de forma inmediata o se puede asignar de forma posterior. Go también soporta declarar y asignar variables sin tipo de dato, pero usar este tipo de variables reduce el desempeño del programa y no gestiona bien la memoria, a continuación se muestran ejemplos del uso de variables en Go:
+
+```go
+// Crea la variable, le asigna un tipo de dato y el valor.
+var altura int = 14
+
+// Crea la variable y le asigna un tipo de dato sin asignar el valor.
+var area int
+
+// Crea la variable y se le asigna un valor sin asignar un tipo de dato.
+base := 14
+
+
+// Asigna un valor a la variable area.
+area = 18
+```
+
+Algo que cabe destacar es que Go a diferencia de otros lenguajes que usan null asigna valores por defecto a las variables que se declaran, pero que no se asignan.
+
+**nota**: Go no permite que se compile o ejecute el código a no ser que todas las variables y constantes previamente declaradas se utilicen.
+
+<br>
+
+## Operadores aritmeticos
+
+Los operadores aritméticos en Go son bastante similares a los usados en la mayoría de los lenguajes de programación, algunas de las operaciones aritméticas más básicas se listan y ejemplifican a continuación usando la siguiente declaración de variables como punto de partida para todas las operaciones:
+
+```go
+// Declaracion de variables.
+x := 10
+y := 50
+```
+
+### Suma
+
+```go
+// Suma.
+result := x + y
+```
+
+### Resta
+
+```go
+// Resta.
+result := x - y
+```
+
+### Multiplicación
+
+```go
+// Multiplicación.
+result := x * y
+```
+
+### División
+
+```go
+// División.
+result := x / y
+```
+
+### Modulo
+
+```go
+// Modulo.
+result := x % y
+```
+
+### Incremental
+
+```go
+// Incremental.
+x++
+```
+
+### Decremental
+
+```go
+// Decremental.
+x--
 ```
