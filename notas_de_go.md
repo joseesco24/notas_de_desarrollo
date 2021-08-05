@@ -55,7 +55,7 @@ export PATH=$PATH:$GOBIN:$GOROOT/bin
 
 Al compilar cualquier proyecto en Go el resultado de la compilación se guarda en el directorio raíz del proyecto (GOPATH), para compilar un main.go por ejemplo se usa el comando **go build**:
 
-```go
+```bash
 go build main.go
 ```
 
@@ -65,7 +65,7 @@ go build main.go
 
 Go también permite compilar y ejecutar un proyecto almacenando temporalmente las compilaciones de tal modo que el directorio raíz del proyecto (GOPATH) no se llene de archivos compilados, para esto se usa el comando **go run**:
 
-```go
+```bash
 go build main.go
 ```
 
