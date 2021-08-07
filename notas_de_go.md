@@ -1,6 +1,6 @@
 # Notas De Go
 
-[**Go también conocido como golang**](https://golang.org/) es un lenguaje compilado y estáticamente tipado, fue creado en Google con la intención de manejar procesos pesados con la potencia de C pero conservando la sintaxis amigable de Python, por lo que Go se sitúa en un punto intermedio entre ambos, haciendo fácil el desarrollo, como en Python pero conservando en gran medida la potencia de C, además el proceso de compilación es bastante rápido y las tareas pesadas son más rápidas ya que nativamente Go maneja concurrencia y utiliza todos los cores disponibles del host.
+[**Go**](https://golang.org/) también conocido como golang es un lenguaje compilado y estáticamente tipado, fue creado en Google con la intención de manejar procesos pesados con la potencia de C pero conservando la sintaxis amigable de Python, por lo que Go se sitúa en un punto intermedio entre ambos, haciendo fácil el desarrollo, como en Python pero conservando en gran medida la potencia de C, además el proceso de compilación es bastante rápido y las tareas pesadas son más rápidas ya que nativamente Go maneja concurrencia y utiliza todos los cores disponibles del host.
 
 Antes de empezar a desarrollar un proyecto de Go es necesario crear los siguientes directorios:
 
@@ -59,10 +59,10 @@ go run main.go
 Go permite declarar constantes, que son variables cuyo valor no cambiará durante la ejecución del programa, para declarar una constante en Go se usa la palabra reservada **const**, al declarar la nueva constante además se puede incluir el tipo de dato de la constante, no incluir el valor de la constante no afecta la ejecución del programa, pero si reduce un poco el desempeño del programa y el uso de memoria del mismo, a continuación se muestran ejemplos de ambos casos:
 
 ```go
-// Declaracion de constantes con tipo de dato.
+// Declaración de constantes con tipo de dato.
 const pi_1 float64 = 3.14
 
-// Declaracion de constantes sin tipo de dato.
+// Declaración de constantes sin ningún tipo de dato.
 const pi_2 = 3.1415
 ```
 
@@ -79,7 +79,7 @@ var area int
 base := 14
 
 
-// Asigna un valor a la variable area.
+// Asigna un valor a la variable área.
 area = 18
 ```
 
@@ -89,7 +89,7 @@ Algo que cabe destacar es que Go a diferencia de otros lenguajes que usan null a
 
 <br>
 
-## Operadores aritmeticos
+## Operadores aritméticos
 
 Los operadores aritméticos en Go son bastante similares a los usados en la mayoría de los lenguajes de programación, algunas de las operaciones aritméticas más básicas se listan y ejemplifican a continuación usando la siguiente declaración de variables como punto de partida para todas las operaciones.
 
@@ -122,7 +122,7 @@ result := x * y
 result := x / y
 ```
 
-### Modulo
+### Módulo
 
 ```go
 result := x % y
