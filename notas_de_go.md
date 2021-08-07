@@ -66,7 +66,7 @@ go build main.go
 Go también permite compilar y ejecutar un proyecto almacenando temporalmente las compilaciones de tal modo que el directorio raíz del proyecto (GOPATH) no se llene de archivos compilados, para esto se usa el comando **go run**:
 
 ```bash
-go build main.go
+go run main.go
 ```
 
 <br>
