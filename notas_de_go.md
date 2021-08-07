@@ -108,10 +108,9 @@ Algo que cabe destacar es que Go a diferencia de otros lenguajes que usan null a
 
 ## Operadores aritmeticos
 
-Los operadores aritméticos en Go son bastante similares a los usados en la mayoría de los lenguajes de programación, algunas de las operaciones aritméticas más básicas se listan y ejemplifican a continuación usando la siguiente declaración de variables como punto de partida para todas las operaciones:
+Los operadores aritméticos en Go son bastante similares a los usados en la mayoría de los lenguajes de programación, algunas de las operaciones aritméticas más básicas se listan y ejemplifican a continuación usando la siguiente declaración de variables como punto de partida para todas las operaciones.
 
 ```go
-// Declaracion de variables.
 x := 10
 y := 50
 ```
@@ -119,48 +118,41 @@ y := 50
 ### Suma
 
 ```go
-// Suma.
 result := x + y
 ```
 
 ### Resta
 
 ```go
-// Resta.
 result := x - y
 ```
 
 ### Multiplicación
 
 ```go
-// Multiplicación.
 result := x * y
 ```
 
 ### División
 
 ```go
-// División.
 result := x / y
 ```
 
 ### Modulo
 
 ```go
-// Modulo.
 result := x % y
 ```
 
 ### Incremental
 
 ```go
-// Incremental.
 x++
 ```
 
 ### Decremental
 
 ```go
-// Decremental.
 x--
 ```
