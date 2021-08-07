@@ -102,7 +102,7 @@ area = 18
 
 Algo que cabe destacar es que Go a diferencia de otros lenguajes que usan null asigna valores por defecto a las variables que se declaran, pero que no se asignan.
 
-**nota**: Go no permite que se compile o ejecute el código a no ser que todas las variables y constantes previamente declaradas se utilicen.
+**Nota**: Go no permite que se compile o ejecute el código a no ser que todas las variables y constantes previamente declaradas se utilicen.
 
 <br>
 
