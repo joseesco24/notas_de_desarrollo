@@ -1,25 +1,5 @@
 # Notas De Docker Compose
 
-- [Introducción](#introducción)
-- [Instalación De Docker Compose En Ubuntu](#instalación-de-docker-compose-en-ubuntu)
-- [Archivos Docker Compose](#archivos-docker-compose)
-  - [Tips De Docker Compose](#tips-de-docker-compose)
-  - [Ejemplo De Un Docker Compose Con Dos Servicios Y Volúmenes](#ejemplo-de-un-docker-compose-con-dos-servicios-y-volúmenes)
-  - [Ejemplo De Un Docker Compose Con Dos Servicios Y Un Bind Mount](#ejemplo-de-un-docker-compose-con-dos-servicios-y-un-bind-mount)
-  - [Ejemplo De Un Docker Compose Override](#ejemplo-de-un-docker-compose-override)
-- [Subcomandos De Docker Compose](#subcomandos-de-docker-compose)
-  - [Comandos De Administración General De Una Aplicación Compose](#comandos-de-administración-general-de-una-aplicación-compose)
-  - [Construir Las Imágenes Necesarias Para Una Aplicación Compose](#construir-las-imágenes-necesarias-para-una-aplicación-compose)
-  - [Iniciar Una Aplicación Compose](#iniciar-una-aplicación-compose)
-  - [Revisar El Estado De Los Contenedores Generados Por Una Aplicación Compose](#revisar-el-estado-de-los-contenedores-generados-por-una-aplicación-compose)
-  - [Revisar Los Logs De Una Aplicación Compose](#revisar-los-logs-de-una-aplicación-compose)
-  - [Ejecutar Comandos En Servicios De Una Aplicación Compose](#ejecutar-comandos-en-servicios-de-una-aplicación-compose)
-  - [Detener Y Eliminar Todos Los Servicios De Una Aplicación Compose](#detener-y-eliminar-todos-los-servicios-de-una-aplicación-compose)
-
-<br>
-
-## Introducción
-
 [**Docker Compose**](https://docs.docker.com/compose/) permite usar los 4 recursos principales de Docker juntos fácilmente desde un solo archivo [**docker-compose.yml**](https://docs.docker.com/compose/compose-file/), usando este archivo también llamado compose file se pueden integrar fácilmente recursos de red, volúmenes, imagenes y contenedores sin necesidad de administrar uno a uno cada tipo de recurso, en síntesis lo que permite Docker Compose es describir de forma declarativa la arquitectura de servicios que la aplicación necesita, y Docker se encargará de crear e integrar cada recursos declarado por detrás evitando que el desarrollador tenga que administraba uno a uno los recursos necesarios para levantar una aplicación basada en varios servicios contenerizados que interactúan entre sí.\
 Docker Compose se basa en servicios, no en contenedores, un servicio en Docker puede componerse de una o más aplicaciones contenerizadas creadas a partir de la misma imagen, es decir que pueden haber varias réplicas de un contenedor en un mismo servicio, en un esquema de servicios con réplicas además se distribuyen las diferentes peticiones entre las réplicas de la aplicación, lo que permite que la aplicación se más ágil atendiendo peticiones y además pueda atender más en simultáneo al mismo tiempo que aprovecha los recursos disponibles a nivel de hardware, en Docker Compose se manejan servicios en lugar de contenedores para así dar a los desarrolladores la posibilidad de escalar fácilmente el número de contenedores que realizan la misma tarea.
 

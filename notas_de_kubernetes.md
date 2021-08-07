@@ -1,17 +1,5 @@
 # Notas De Kubernetes
 
-- [Introducción](#introducción)
-- [Contenedores En Kubernetes](#contenedores-en-kubernetes)
-- [Arquitectura De Kubernetes](#arquitectura-de-kubernetes)
-  - [Componentes De Los Nodos Maestro En Kubernetes](#componentes-de-los-nodos-maestro-en-kubernetes)
-  - [Componentes De Los Nodos Esclavo En Kubernetes](#componentes-de-los-nodos-esclavo-en-kubernetes)
-- [Sistemas Declarativos E Imperativos En Kubernetes](#sistemas-declarativos-e-imperativos-en-kubernetes)
-- [Redes En Kubernetes](#redes-en-kubernetes)
-
-<br>
-
-## Introducción
-
 [kubernetes](https://kubernetes.io/es/docs/concepts/overview/what-is-kubernetes/) es la plataforma de orquestación de contenedores más popular actualmente en el desarrollo profesional, esto en gran parte es gracias a que kubernetes apunta a ser una plataforma declarativa donde no se indique paso a paso todo lo que debe hacer la infraestructura si no que apunta a que se indique el estado deseado de esta y kubernetes se encarga de llegar a ese estado deseado, lo que hace más fácil la administración de la infraestructura, kubernetes además pertenece al [cncf](https://www.cncf.io/), lo que le da un enorme respaldo como plataforma de orquestación de contenedores, el principal trabajo de kubernetes es desplegar y gestionar contenedores en un cluster basándose en pods, algunas de las principales ventajas de utilizar kubernetes como plataforma para desplegar aplicaciones contenerizadas son:
 
 - al ejecutar varias réplicas del mismo contenedor garantiza que todas las réplicas están funcionando.

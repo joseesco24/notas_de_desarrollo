@@ -1,54 +1,5 @@
 # Notas De Mongodb
 
-- [Introducción](#introducción)
-- [Componentes Principales De Mongodb](#componentes-principales-de-mongodb)
-  - [Bases De Datos](#bases-de-datos)
-  - [Colecciones](#colecciones)
-  - [Documentos](#documentos)
-- [Ecosistema De Mongodb](#ecosistema-de-mongodb)
-  - [Mongodb Server](#mongodb-server)
-  - [Mongodb Shell](#mongodb-shell)
-  - [Conectores De Mongodb](#conectores-de-mongodb)
-- [Relaciones Entre Documentos En Mongodb](#relaciones-entre-documentos-en-mongodb)
-- [Conexión Con Mongodb Server](#conexión-con-mongodb-server)
-- [Operaciones Básicas Con Mongodb Shell](#operaciones-básicas-con-mongodb-shell)
-  - [Iniciar Shell](#iniciar-shell)
-  - [Limpiar Shell](#limpiar-shell)
-  - [Ver Bases De Datos Disponibles](#ver-bases-de-datos-disponibles)
-  - [Ver Colecciones Disponibles](#ver-colecciones-disponibles)
-  - [Crear Nueva Base De Datos O Usar Una Ya Creada](#crear-nueva-base-de-datos-o-usar-una-ya-creada)
-  - [Ver Nombre De La Base De Datos A La Que Está Conectado El Shell](#ver-nombre-de-la-base-de-datos-a-la-que-está-conectado-el-shell)
-  - [Ver Funciones Disponibles](#ver-funciones-disponibles)
-    - [En Una Base De Datos](#en-una-base-de-datos)
-    - [En Una Colección](#en-una-colección)
-- [Operaciones Con Bases De Datos En Mongodb Shell](#operaciones-con-bases-de-datos-en-mongodb-shell)
-- [Operaciones Con Colecciones Y Documentos En Mongodb Shell](#operaciones-con-colecciones-y-documentos-en-mongodb-shell)
-  - [Documentos De Filtros](#documentos-de-filtros)
-    - [Operador Equal](#operador-equal)
-    - [Operador Lower Than](#operador-lower-than)
-    - [Operador And](#operador-and)
-    - [Operador Or](#operador-or)
-  - [Insertar Documentos En Una Colección](#insertar-documentos-en-una-colección)
-    - [Inserción Individual](#inserción-individual)
-    - [Inserción Grupal](#inserción-grupal)
-  - [Buscar Documentos En Una Colección](#buscar-documentos-en-una-colección)
-    - [Búsqueda Individual](#búsqueda-individual)
-    - [Búsqueda Grupal](#búsqueda-grupal)
-  - [Actualizar Documentos De Una Colección](#actualizar-documentos-de-una-colección)
-    - [Actualización Individual](#actualización-individual)
-    - [Actualización Grupal](#actualización-grupal)
-  - [Eliminar Documentos De Una Colección](#eliminar-documentos-de-una-colección)
-    - [Eliminación Individual](#eliminación-individual)
-    - [Eliminación Grupal](#eliminación-grupal)
-  - [Operaciones De Agregación](#operaciones-de-agregación)
-  - [Manejo De Índices](#manejo-de-índices)
-    - [Listar Índices](#listar-índices)
-    - [Crear Nuevo Índice](#crear-nuevo-índice)
-
-<br>
-
-## Introducción
-
 [**mongodb**](https://docs.mongodb.com/) es uno de los sistemas de bases de datos no relacionales más usados en el desarrollo profesional, es ampliamente usado en todo tipo de entornos de desarrollo gracias a su flexibilidad y facilidad de uso, que se deben en gran medida al hecho de que mongodb se basa en documentos similares a los documentos json. una de las mejores características de mongodb es que permite crear sistemas distribuidos de bases de datos, por lo que usando mongodb es totalmente factible tener un cluster de máquinas dedicadas al almacenamiento de los datos de una o varias bases de datos, esta característica hace que escalar un sistema de bases de datos basado en mongodb sea extremadamente fácil ya que solo hace falta agregar más nodos al cluster. otra de las principales características clave de mongodb es que es "schema less" en todas sus versiones, por lo que los documentos dentro de una misma colección pueden tener estructuras totalmente diferentes sin afectar el funcionamiento o el rendimiento de mongodb, y como si fuera poco las consultas de mongodb también son extremadamente eficientes por el hecho de ser una base de datos no relacional basada en documentos que además permite indexación, por lo que se puede optimizar incluso más su rendimiento mediante índices.
 
 <br>

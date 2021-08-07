@@ -1,21 +1,5 @@
 # Notas De Docker Stacks
 
-- [Introducción](#introducción)
-- [Archivos Stack File](#archivos-stack-file)
-  - [Tips De Docker Stacks](#tips-de-docker-stacks)
-  - [Ejemplo De Un Stack File](#ejemplo-de-un-stack-file)
-- [Subcomandos De Docker Stacks](#subcomandos-de-docker-stacks)
-  - [Inspeccionar Comandos De Administración De Stacks](#inspeccionar-comandos-de-administración-de-stacks)
-  - [Iniciar O Actualizar Un Stack](#iniciar-o-actualizar-un-stack)
-  - [Listar Stacks](#listar-stacks)
-  - [Listar Tareas De Un Stack](#listar-tareas-de-un-stack)
-  - [Listar Servicios De Un Stack](#listar-servicios-de-un-stack)
-  - [Eliminar Stacks](#eliminar-stacks)
-
-<br>
-
-## Introducción
-
 [**Docker Stacks**](https://docs.docker.com/engine/reference/commandline/stack/) es la solucion que da Docker a situaciones en las que se se quieren desplegar varias aplicaciones como servicios en un cluster basado en Docker Swarm sin configurar cada servicio uno a uno. Al igual que Docker Compose, Docker Stacks permite que se integren los 4 recursos principales de Docker en una sola aplicación basada en varios servicios que se pueden comunicar o no entre sí y además se ejecutan sobre un mismo cluster, todo usando un archivo llamado [**stack-file.yml**](https://docs.docker.com/compose/compose-file/), este archivo es en realidad un compose file "enriquecido", utiliza la misma sintaxis y los mismos componentes de un compose file normal, por lo que permite establecer de forma declarativa la arquitectura de servicios que la aplicación necesita y por detrás Docker se encargará de e integrar cada recurso, la diferencia principal entre un stack file y un compose file radica en que los stack file utilizan configuraciones adicionales dedicadas a los [**stacks**](https://docs.docker.com/compose/compose-file/compose-file-v3/#deploy), por lo que los stack file sirven para generar esquemas de servicios basados en Docker Swarm sobre un cluster, a diferencia de los compose file, que cumplen la misma función, pero solo en una máquina, los stack file además soportan componentes que Docker Compose ignora y de la misma forma los compose file regulares utilizan ciertos componentes que los Docker Stacks ignoran.
 
 <br>
