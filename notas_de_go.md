@@ -179,3 +179,57 @@ fmt.Printf("tipo de variable de message_1: %T \n", message_1)
 Cuando se usan strings formateados con fmt lo más adecuado es usar el tipo de dato concreto, pero se puede usar %v cuando no se conoce el tipo de dato o %T para saber el tipo de dato, además el paquete fmt acepta varios tipos de [datos](https://pkg.go.dev/fmt) más usando las claves correctas.
 
 <br>
+
+## Funciones
+
+Las funciones en Go al igual que en Python permiten retornar y recibir varios argumentos, con la ventaja de que los tipos de datos se deben declarar en la definición de la función de forma obligatoria, lo que mejora la lectura del código, las funciones en Go se declaran con la palabra reservada **func**.
+
+```go
+
+// Función regular sin valor de retorno.
+
+func regular_function(message string) {
+ fmt.Println(message)
+}
+
+// Función con tres valores de retorno.
+
+func function_with_three_returns(a, b int, c string) {
+ fmt.Println(a, b, c)
+}
+
+// Función con un solo valor de retorno.
+
+func regular_function_with_return(a int) int {
+ return a * 2
+}
+
+// Función con dos valores de retorno.
+
+func function_with_two_returns(a int) (c, d int) {
+ return a, a * 2
+}
+
+func main() {
+
+ value_1, value_2 := function_with_two_returns(4)
+ fmt.Println(value_1, value_2)
+
+ value_4, _ := function_with_two_returns(4)
+ fmt.Println(value_4)
+
+ fmt.Println(function_with_two_returns(4))
+
+ value_3 := regular_function_with_return(4)
+ fmt.Println(value_3)
+
+ fmt.Println(regular_function_with_return(4))
+
+ regular_function("Hola Mundo")
+
+ function_with_three_returns(1, 2, "Hola")
+
+}
+```
+
+<br>
