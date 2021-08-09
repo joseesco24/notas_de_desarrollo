@@ -85,7 +85,7 @@ area = 18
 
 Algo que cabe destacar es que Go a diferencia de otros lenguajes que usan null asigna valores por defecto a las variables que se declaran, pero que no se asignan.
 
-**Nota**: Go no permite que se compile o ejecute el código a no ser que todas las variables y constantes previamente declaradas se utilicen.
+**Nota**: Go no permite que se compile o ejecute el código a no ser que todas las variables y constantes previamente declaradas se utilicen, algunos de los tipos primitivos de datos que acepta Go se muestran en el siguiente [link](https://www.tutorialspoint.com/go/go_data_types.htm).
 
 <br>
 
@@ -139,3 +139,39 @@ x++
 ```go
 x--
 ```
+
+## Uso básico del paquete fmt
+
+El paquete fmt permite realizar varias funciones, como imprimir strings.
+
+```go
+fmt.Println("Hola Mundo")
+```
+
+Formatear strings.
+
+```go
+mensaje_3 := "platzi"
+decimal_1 := 500
+
+string_formateado := fmt.Sprintf("%v tiene mas de %v cursos", mensaje_3, decimal_1)
+```
+
+Imprimir strings con formato.
+
+```go
+mensaje_3 := "platzi"
+decimal_1 := 500
+
+fmt.Printf("%s tiene mas de %d cursos \n", mensaje_3, decimal_1)
+```
+
+O imprimir el tipo de dato dentro de una variable.
+
+```go
+message_1 := "message 1"
+
+fmt.Printf("tipo de variable de message_1: %T \n", message_1)
+```
+
+Cuando se usan strings formateados con fmt lo más adecuado es usar el tipo de dato concreto, pero se puede usar %v cuando no se conoce el tipo de dato o %T para saber el tipo de dato, además el paquete fmt acepta varios tipos de [datos](https://pkg.go.dev/fmt) más usando las claves correctas.
