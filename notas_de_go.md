@@ -140,6 +140,8 @@ x++
 x--
 ```
 
+<br>
+
 ## Uso básico del paquete fmt
 
 El paquete fmt permite realizar varias funciones, como imprimir strings.
@@ -175,3 +177,5 @@ fmt.Printf("tipo de variable de message_1: %T \n", message_1)
 ```
 
 Cuando se usan strings formateados con fmt lo más adecuado es usar el tipo de dato concreto, pero se puede usar %v cuando no se conoce el tipo de dato o %T para saber el tipo de dato, además el paquete fmt acepta varios tipos de [datos](https://pkg.go.dev/fmt) más usando las claves correctas.
+
+<br>
