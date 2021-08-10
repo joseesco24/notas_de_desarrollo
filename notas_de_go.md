@@ -289,13 +289,13 @@ Los condicionales en Go usan una sintaxis similar a la de la mayoría de los len
   fmt.Println("No es 1")
  }
 
- // If con and
+ // If con and.
 
  if valor_1 == 1 && valor_2 == 2 {
   fmt.Println("Val 1 = 1 y Val 2 = 2")
  }
 
- // If con or
+ // If con or.
 
  if valor_1 == 0 || valor_2 == 2 {
   fmt.Println("Val 1 = 0 o Val 2 = 2")
