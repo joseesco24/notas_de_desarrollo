@@ -236,11 +236,11 @@ func main() {
 
 ## Ciclos
 
-En Go a diferencia de otros lenguajes solo existen los ciclos for, a continuacion se muestran algunos ejemplos de como usar ciclos for sencillos en Go.
+En Go a diferencia de otros lenguajes solo existen los ciclos for, a continuación se muestran algunos ejemplos de cómo usar ciclos for sencillos en Go.
 
 ```go
 
- // For condicional clasico.
+ // For condicional clásico.
 
  for i := 0; i < 10; i++ {
   fmt.Println(i)
@@ -265,3 +265,42 @@ En Go a diferencia de otros lenguajes solo existen los ciclos for, a continuacio
  }
 
 ```
+
+<br>
+
+## Condicionales
+
+Los condicionales en Go usan una sintaxis similar a la de la mayoría de los lenguajes de programación usando **if**, **else** y **else if**, a continuación se muestran algunos ejemplos de condicionales en Go.
+
+```go
+
+ // Declaracion de variables.
+
+ valor_1 := 1
+ valor_2 := 2
+
+ // If clasico.
+
+ if valor_1 == 0 {
+  fmt.Println("Si es 1")
+ } else if valor_2 == 2 {
+  fmt.Println("Val 2 == 2")
+ } else {
+  fmt.Println("No es 1")
+ }
+
+ // If con and
+
+ if valor_1 == 1 && valor_2 == 2 {
+  fmt.Println("Val 1 = 1 y Val 2 = 2")
+ }
+
+ // If con or
+
+ if valor_1 == 0 || valor_2 == 2 {
+  fmt.Println("Val 1 = 0 o Val 2 = 2")
+ }
+
+```
+
+<br>
