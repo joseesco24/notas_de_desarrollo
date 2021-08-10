@@ -233,3 +233,35 @@ func main() {
 ```
 
 <br>
+
+## Ciclos
+
+En Go a diferencia de otros lenguajes solo existen los ciclos for, a continuacion se muestran algunos ejemplos de como usar ciclos for sencillos en Go.
+
+```go
+
+ // For condicional clasico.
+
+ for i := 0; i < 10; i++ {
+  fmt.Println(i)
+ }
+
+ // For while.
+
+ counter := 0
+
+ for counter < 10 {
+  fmt.Println(counter)
+  counter++
+ }
+
+ // For forever.
+
+ counter_forever := 0
+
+ for {
+  fmt.Println(counter_forever)
+  counter_forever++
+ }
+
+```
