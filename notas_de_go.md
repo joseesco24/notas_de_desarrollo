@@ -236,7 +236,7 @@ func main() {
 
 ## Ciclos
 
-En Go a diferencia de otros lenguajes solo existen los ciclos for, a continuación se muestran algunos ejemplos de cómo usar ciclos for sencillos en Go.
+En Go a diferencia de otros lenguajes solo existen los ciclos for, que se inician con la palabra reservada **for**, a continuación se muestran algunos ejemplos de cómo usar ciclos for sencillos en Go.
 
 ```go
 
@@ -274,7 +274,7 @@ Los condicionales en Go usan una sintaxis similar a la de la mayoría de los len
 
 ```go
 
- // Declaracion de variables.
+ // Declaración de variables.
 
  valor_1 := 1
  valor_2 := 2
@@ -299,6 +299,47 @@ Los condicionales en Go usan una sintaxis similar a la de la mayoría de los len
 
  if valor_1 == 0 || valor_2 == 2 {
   fmt.Println("Val 1 = 0 o Val 2 = 2")
+ }
+
+```
+
+<br>
+
+## Switch
+
+Los switch en Go permiten simplificar la sintaxis en casos en los que se deben usar varios condicionales if consecutivos y se crean usando la palabra reservada **switch**, a continuación se muestran algunos ejemplos de cómo usar switches en Go.
+
+```go
+
+ // Switch clásico.
+
+ switch valor_1 {
+ case 0:
+  fmt.Println("Si es par")
+ default:
+  fmt.Println("No es par")
+ }
+
+ // Switch declarado en la misma línea.
+
+ switch valor_2 := 4 % 2; valor_2 {
+ case 0:
+  fmt.Println("Si es par")
+ default:
+  fmt.Println("No es par")
+ }
+
+ // Switch condicional.
+
+ valor_3 := 100
+
+ switch {
+ case valor_3 > 100:
+  fmt.Println("Mayor")
+ case valor_3 < 100:
+  fmt.Println("Menor")
+ default:
+  fmt.Println("Igual")
  }
 
 ```
