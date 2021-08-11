@@ -387,3 +387,76 @@ Dentro de los ciclos **for** se pueden utilizar los comandos **continue** y **br
 ```
 
 <br>
+
+## Arrays y slices
+
+Los arrays en Go se declaran usando la palabra reservada **var** al igual que las variables, con la diferencia de que además se deben usar **llaves** para indicar que la variable es un arreglo y se debe indicar la cantidad de **valores máximos** que podrá almacenar el array y además, se debe indicar también el tipo de datos que almacenará el array en cada posición, a continuación se muestra un ejemplo de la declaración de un array, la forma en la que se cambian sus valores y la forma como se imprimen algunos de sus valores más importantes, como la cantidad de valores que tiene y la cantidad de valores que soporta el array.
+
+```go
+
+ // Declaración de un array.
+
+ var array [4]int
+
+ // Cambio de los valores del array.
+
+ array[0] = 1
+ array[1] = 2
+
+ // Impresión de los valores del array.
+
+ fmt.Println(array)
+
+ // Impresión de las especificaciones del array.
+
+ // Número de elementos en el array.
+
+ fmt.Println(len(array))
+
+ // Capacidad máxima del array.
+
+ fmt.Println(cap(array))
+
+```
+
+La principal diferencia entre un slice y un array es que los slices no tienen una longitud fija, a diferencia de los arrays, cuya longitud se fija desde el momento en el que se crean.
+
+```go
+
+ // Declaración de un slice.
+
+ slice := []int{0, 1, 2}
+
+ // Agregar elementos al slice.
+
+ slice = append(slice, 3, 4, 5)
+
+ // Impresión de los valores del slice.
+
+ fmt.Println(slice)
+
+ // Número de elementos en el slice.
+
+ fmt.Println(len(slice))
+
+ // Capacidad máxima del slice.
+
+ fmt.Println(cap(slice))
+
+  // Métodos de un slice.
+
+ fmt.Println(slice[0])
+ fmt.Println(slice[:3])
+ fmt.Println(slice[2:4])
+ fmt.Println(slice[4:])
+
+ // Append de un nuevo slice.
+
+ new_slice := []int{6, 7, 8}
+ slice = append(slice, new_slice...)
+
+ fmt.Println(slice)
+
+```
+
+<br>
