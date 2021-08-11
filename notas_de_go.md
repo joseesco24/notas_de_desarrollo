@@ -345,3 +345,45 @@ Los switch en Go permiten simplificar la sintaxis en casos en los que se deben u
 ```
 
 <br>
+
+## Defer, break y continue
+
+La palabra reservada **defer** en Go permite indicar al lenguaje que la función que se indica debe ejecutarse luego de finalizar la ejecución del main, en el siguiente ejemplo se imprime primero mundo y luego hola, ya que la función de imprimir hola es precedida por la instrucción **defer**, **defer** es especialmente útil para cerrar conexiones o archivos al finalizar la ejecución del programa.
+
+```go
+
+// Ejemplo de defer.
+
+defer fmt.Println("hola")
+fmt.Println("mundo")
+
+```
+
+Dentro de los ciclos **for** se pueden utilizar los comandos **continue** y **break**, **continue**, por su parte, permite, por ejemplo, que la ejecución de un ciclo continuo ante ciertos errores que han sido controlados, **break** por otra parte permite detener la ejecución de un ciclo.
+
+```go
+
+ // Continue y break.
+
+ for i := 0; i < 10; i++ {
+
+  fmt.Println(i)
+
+  // Continue.
+
+  if i == 4 {
+   fmt.Println("i es 4")
+   continue
+  }
+
+  // Break.
+
+  if i == 8 {
+   fmt.Println("break")
+   break
+  }
+ }
+
+```
+
+<br>
