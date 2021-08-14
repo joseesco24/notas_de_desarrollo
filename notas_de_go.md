@@ -528,6 +528,12 @@ Para recorrer los slice o arrays se puede utilizar la función **range**, range 
   fmt.Println(indice)
  }
 
+ // Recorriendo un string.
+
+ for indice, valor := range strings.ToLower("hOla") {
+  fmt.Println(indice, string(valor))
+ }
+
 ```
 
 <br>
