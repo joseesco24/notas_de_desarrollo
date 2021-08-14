@@ -537,3 +537,37 @@ Para recorrer los slice o arrays se puede utilizar la función **range**, range 
 ```
 
 <br>
+
+## Estructuras llave valor con maps
+
+Las estructuras llave valor son estructuras indexadas en las que para acceder a un valor en específico se necesita una llave, que además es única en la estructura, en Go este tipo de estructuras son llamadas **map** y sin el equivalente de los diccionarios en otros lenguajes como Python o Java. Algo que cabe destacar es que en Go al acceder a una llave no especificada se imprime el zero value de ese tipo de dato. A continuación se muestra un ejemplo de cómo usar un map en Go.
+
+```go
+
+ // Declarando el map.
+
+ mapa := make(map[string]int)
+
+ // Agregra valores al map.
+
+ mapa["pepito"] = 20
+ mapa["jose"] = 14
+
+ // Imprimiendo el map.
+
+ fmt.Println(mapa)
+
+ // Recorriendo el map con range.
+
+ for llave, valor := range mapa {
+  fmt.Println(llave, valor)
+ }
+
+ // Econtrar un valor del map y confirmas si la llave existe.
+
+ value, ok := mapa["jose"]
+ fmt.Println(value, ok)
+
+```
+
+<br>
