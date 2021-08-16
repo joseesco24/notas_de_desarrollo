@@ -571,3 +571,81 @@ Las estructuras llave valor son estructuras indexadas en las que para acceder a 
 ```
 
 <br>
+
+## Structs
+
+En la mayoría de lenguajes existen estructuras llamadas clases, las cuales pueden poseer atributos y métodos, en Go no este tipo de estructuras son reemplazadas por **Structs**, a continuación se muestra el uso de un Struct con Go.
+
+```go
+
+// Instanciamiento del struct.
+
+type car struct {
+ brand string
+ year  int
+}
+
+func main() {
+
+ // Creacion del Struct.
+
+ my_car := car{brand: "hyundai", year: 2020}
+
+ // Impresion del Struct.
+
+ fmt.Println(my_car)
+
+ // Creacion del struct.
+
+ var other_car car
+ other_car.brand = "Ferrari"
+
+ // Impresion del Struct.
+
+ fmt.Println(other_car)
+
+}
+
+```
+
+<br>
+
+## Modificadores de acceso
+
+En Go la forma de permitir que un recurso sea público y accesible desde diferentes módulos o paquetes es declarando la primera letra del tipo de dato en mayúscula, al declararlo en minúscula se restringe el acceso a solo el módulo actual, es decir que el recurso es privado.
+
+```go
+
+// Paquete (un directrio por debajo del directorio donde esta el main).
+
+package my_package
+
+// Instanciamiento del struct publico.
+
+type Car struct {
+ Brand string
+ Year  int
+}
+
+// Main (un directrio por encima del directorio donde esta el paquete).
+
+package main
+
+import (
+ pk "access_modificators/my_package"
+ "fmt"
+)
+
+func main() {
+
+ var my_car pk.Car
+
+ my_car.Brand = "Hyundai"
+ my_car.Year = 2018
+
+ fmt.Println(my_car)
+}
+
+```
+
+<br>
