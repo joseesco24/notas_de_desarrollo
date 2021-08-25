@@ -838,3 +838,61 @@ Las listas de interfaces en Go permiten simular el comportamiento de arrays en l
 ```
 
 <br>
+
+## Concurrencia con goroutines
+
+Las goroutines se ejecutan usando la palabra reservada **go** y permiten ejecutar tareas de forma concurrente usando Go, a continuación se muestra un ejemplo de cómo implementar una goroutine simple junto con un wait group para así esperar a que todas las goroutines terminen.
+
+```go
+
+func say(text string, wg *sync.WaitGroup) {
+
+ // Se usa defer para indicar al wait group que todo esta listo una vez finalice la funcion.
+
+ defer wg.Done()
+
+ fmt.Println(text)
+
+}
+
+func main() {
+
+ // Configuracion del wait group.
+
+ var wg sync.WaitGroup
+
+ fmt.Println("Hola")
+
+ // Se agrega una go routine al wait group.
+
+ wg.Add(1)
+
+ // Se ejecuta la funcion say y se envia el texto junto con el puntero del wait group.
+
+ go say("Mundo", &wg)
+
+ // Se indica a la funcion principal que espere hasta que todas las tareas del wait group finalicen.
+
+ wg.Wait()
+
+}
+
+```
+
+Adicionalmente al usar goroutines Go permite definir funciones anónimas, a continuación se muestra un ejemplo de funciones anónimas con Go.
+
+```go
+
+ go func() {
+  fmt.Println("Hola")
+ }()
+
+ go func(text string) {
+  fmt.Println(text)
+ }("Mundo")
+
+ time.Sleep(time.Second * 2)
+
+```
+
+<br>
