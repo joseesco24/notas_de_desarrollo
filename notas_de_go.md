@@ -649,3 +649,84 @@ func main() {
 ```
 
 <br>
+
+## Punteros
+
+Los punteros en Go permiten acceder a las direcciones de memoria en las que se guardan los valores de una variable, para obtener la dirección de memoria de una variable se usa el **ampersand (&)** y para acceder a su valor se usa el **asterisco (\*)**, a continuación se muestra un ejemplo de uso de punteros en Go.
+
+```go
+
+ // Se crea la variable a y se le asigna un valor.
+
+ a := 50
+
+ // Se crea la variable b y se apunta a la direccion de memoria de a.
+
+ b := &a
+
+ fmt.Println(a, b)
+
+ // Se usa el asterisco para acceder al valor de la memoria en lugar de usar su direccion.
+
+ fmt.Println(a, *b)
+
+ // Modificando el valor de b en la memoria.
+
+ *b = 100
+
+ // a y b imprimen 100 ya que ambas variables apuntan a la misma direccion de memoria.
+
+ fmt.Println(&a, &b)
+ fmt.Println(*b)
+ fmt.Println(a)
+
+```
+
+<br>
+
+## Punteros y structs
+
+Una de las principales ventajas de usar punteros en Go es que permiten alterar también los structs, en esta sección se muestra como crear funciones para acceder a los valores de los structs y cómo modificarlos mediante punteros.
+
+```go
+
+type pc struct {
+ ram   int
+ disk  int
+ brand string
+}
+
+func (myPc pc) ping() {
+ fmt.Println(myPc.brand, "pong")
+}
+
+// Se usa el asterisco para indicar que se van a acceder los valores del struct.
+
+func (myPc *pc) duplicateRam() {
+ myPc.ram *= 2
+}
+
+func main() {
+
+ // Se instancia el struct.
+
+ myPc := pc{ram: 16, disk: 240, brand: "MSI"}
+ fmt.Println(myPc)
+
+ // Se llama la funcion ping.
+
+ myPc.ping()
+
+ // Se llama a la funcion duplicate dos veces.
+
+ myPc.duplicateRam()
+ fmt.Println(myPc.ram)
+
+ myPc.duplicateRam()
+ fmt.Println(myPc.ram)
+
+}
+
+```
+
+<br>
