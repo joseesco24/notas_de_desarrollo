@@ -818,3 +818,23 @@ func main() {
 ```
 
 <br>
+
+## Listas de interfaces
+
+Las listas de interfaces en Go permiten simular el comportamiento de arrays en lenguajes más flexibles como Python o JavaScript, donde es posible guardar diferentes tipos de datos en una lista, a continuación se muestra un ejemplo de cómo conseguir esta funcionalidad en Go.
+
+```go
+
+ // Intanciamiento de la lista de interfaces.
+
+ myInterface := []interface{}{"Hola 1", 12, 4.9}
+
+ // gregando un nuevo elemento al slice.
+
+ myInterface = append(myInterface, "Hola 2")
+
+ fmt.Println(myInterface...)
+
+```
+
+<br>
