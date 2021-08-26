@@ -1041,3 +1041,11 @@ go mod verify
 go mod vendor
 
 ```
+
+### Limpiar módulos
+
+```bash
+
+go mod tidy
+
+```
