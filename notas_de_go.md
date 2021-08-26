@@ -999,3 +999,45 @@ Go al igual que otros lenguajes como Python o JavaScript también cuenta con un 
 go get -v -u <paquete>
 
 ```
+
+## Modificando módulos con Go
+
+Go posee una interfaz dedicada a la creación y edición de módulos, algunas de las funciones más útiles de esta interfaz se muestran a continuación.
+
+### Iniciar módulos
+
+```bash
+
+go mod init <nombre del módulo>
+
+```
+
+### Editar módulos
+
+```bash
+
+go mod edit --replace <dependencia vieja>=<dependencia nueva>
+
+```
+
+```bash
+
+go mod edit --dropreplace <dependencia vieja>
+
+```
+
+### Verificar módulos
+
+```bash
+
+go mod verify
+
+```
+
+### Empacar módulos
+
+```bash
+
+go mod vendor
+
+```
