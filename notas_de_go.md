@@ -899,7 +899,7 @@ Adicionalmente al usar goroutines Go permite definir funciones anónimas, a cont
 
 ## Canales
 
-Los canales en Go permiten que las goroutines concurrentes se sincronicen y compartan datos, a continuación se muestra un ejemplo de como crear un canal y como ingresar y extraer datos del canal.
+Los canales en Go permiten que las Go routines concurrentes se sincronicen y compartan datos, a continuación se muestra un ejemplo de como crear un canal y como ingresar y extraer datos del canal, algo importante que cabe resaltar es que al extraer un dato de un canal en alguna Go routine, como la que ejecuta main, esta se bloquea hasta que hay un nuevo dato en el canal para ser extraído, de esta forma se logra por ejemplo, que la Go routine de main espera a la Go routine de say.
 
 ```go
 
@@ -1071,7 +1071,7 @@ Go a diferencia de otros lenguajes de programación no permite la captura de exc
  } else {
   fmt.Println(number)
  }
- 
+
 ```
 
 <br>
