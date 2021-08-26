@@ -1051,3 +1051,27 @@ go mod vendor
 go mod tidy
 
 ```
+
+<br>
+
+## Control de errores
+
+Go a diferencia de otros lenguajes de programación no permite la captura de excepciones mediante bloques **try** y **catch** en cambio la captura debe hacerse de forma explícita, lo que hace más difícil la labor de capturar errores, pero da un mayor control sobre el manejo de cada uno de los errores que se puedan presentar durante el runtime de Go, a continuación se muestra un ejemplo sencillo de como capturar un error al realizar un parseo de string a int.
+
+```go
+
+ // Captura del error.
+
+ number, error := strconv.ParseInt("8", 0, 64)
+
+ // Control del error.
+
+ if error != nil {
+  fmt.Println(error)
+ } else {
+  fmt.Println(number)
+ }
+ 
+```
+
+<br>
