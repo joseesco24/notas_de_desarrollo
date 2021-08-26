@@ -1000,6 +1000,8 @@ go get -v -u <paquete>
 
 ```
 
+<br>
+
 ## Modificando módulos con Go
 
 Go posee una interfaz dedicada a la creación y edición de módulos, algunas de las funciones más útiles de esta interfaz se muestran a continuación.
