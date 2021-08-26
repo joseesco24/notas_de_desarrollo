@@ -989,3 +989,13 @@ func main() {
 ```
 
 <br>
+
+## Go get
+
+Go al igual que otros lenguajes como Python o JavaScript también cuenta con un manejador de paquetes **go get** el cual permite instalar fácilmente las dependencias necesarias para el proyecto.
+
+```bash
+
+go get -v -u <paquete>
+
+```
