@@ -866,7 +866,7 @@ func main() {
 
 ## Interfaces
 
-Las interfaces permiten usar fácilmente el mismo método cuando varios structs lo comparten, por ejemplo en el caso que se muestra a continuación se ve como usando una interfaz es más sencillo llamar a los métodos de calcular área para un cuadrado y un rectángulo, tomando en cuenta que el cálculo para ambos casos es diferente.
+Las interfaces permiten usar fácilmente el mismo método cuando varios structs lo comparten, por ejemplo en el caso que se muestra a continuación se ve como usando una interfaz es más sencillo llamar a los métodos de calcular área para un cuadrado y un rectángulo, tomando en cuenta que el cálculo para ambos casos es diferente, gracias a las interfaces y a la composición Go consigue un comportamiento polimórfico equivalente al que se puede ver en otros lenguajes como Java o Python.
 
 ```go
 
