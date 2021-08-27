@@ -608,6 +608,62 @@ func main() {
 
 ```
 
+Al momento de crear un nuevo objeto usando structs existen tres posibles formas de instanciar un nuevo objeto, a continuación se ejemplifican las tres formas.
+
+```go
+
+type car struct {
+ brand string
+ year  int
+}
+
+func main() {
+
+ // Metodo 1 (zero values)
+
+ car1 := car{}
+
+ // Metodo 2 (instanciamiento en la creacion)
+
+ car2 := car{brand: "mazda", year: 2021}
+
+ // Metodo 3 (creacion con new, retorna un apuntador)
+
+ car3 := new(car)
+
+ fmt.Println(car1, car2, *car3)
+
+}
+
+```
+
+### Simulación de constructores con structs y apuntadores
+
+Adicionalmente a los tres métodos mostrados anteriormente en Go se puede simular el comportamiento de un constructor usando apuntadores y structs, a continuación se muestra un ejemplo de esto usando de nuevo el struct de car, es importante resaltar que se deben usar apuntadores para retornar la referencia de memoria del nuevo struct, para así poder modificarlo en caso de ser necesario, ya que de otra forma Go tratara los nuevos structs como copias.
+
+```go
+
+type car struct {
+ brand string
+ year  int
+}
+
+func newCar(brand string, year int) *car {
+ return &car{brand: brand, year: year}
+}
+
+func main() {
+
+ // Metodo 4 (simulacion de contructor)
+
+ car4 := newCar("Mazda", 2024)
+
+ fmt.Println(*car4)
+
+}
+
+```
+
 <br>
 
 ## Modificadores de acceso
