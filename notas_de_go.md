@@ -664,6 +664,52 @@ func main() {
 
 ```
 
+### Composición usando structs
+
+La herencia en los diferentes lenguajes de programación permite que una clase determinada obtenga propiedades y métodos de otra, de esta forma se ahorra código aplicando polimorfismo, en Go se aplica composición, de tal modo que cada struct es independiente de los demás, por lo que para obtener un funcionamiento similar al de la herencia en Go un struct se compone de otros structs, de tal modo que un struct pueda contener otros structs, como por ejemplo, el struct de empleado de tiempo completo contiene dos struct, persona y empleado.
+
+```go
+
+// Instanciamiento del struct persona.
+
+type Person struct {
+ name     string
+ birdYear int
+}
+
+// Intanciamiento del struct empleado.
+
+type Employee struct {
+ id int
+}
+
+// Intanciamiento del struct empleado de tiempo completo.
+
+type FullTimeEmployee struct {
+ Person
+ Employee
+}
+
+func main() {
+
+ // Creacion del objeto de empleado de tiempo completo.
+
+ newFullTimeEmployee := FullTimeEmployee{}
+
+ // Llenando los atributos del empleado.
+
+ newFullTimeEmployee.name = "Jose"
+ newFullTimeEmployee.birdYear = 1998
+ newFullTimeEmployee.id = 14
+
+ // Imprimiendo la estructura del empleado.
+
+ fmt.Println(newFullTimeEmployee)
+
+}
+
+```
+
 <br>
 
 ## Modificadores de acceso
