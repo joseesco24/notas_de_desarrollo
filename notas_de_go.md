@@ -608,6 +608,108 @@ func main() {
 
 ```
 
+Al momento de crear un nuevo objeto usando structs existen tres posibles formas de instanciar un nuevo objeto, a continuación se ejemplifican las tres formas.
+
+```go
+
+type car struct {
+ brand string
+ year  int
+}
+
+func main() {
+
+ // Metodo 1 (zero values)
+
+ car1 := car{}
+
+ // Metodo 2 (instanciamiento en la creacion)
+
+ car2 := car{brand: "mazda", year: 2021}
+
+ // Metodo 3 (creacion con new, retorna un apuntador)
+
+ car3 := new(car)
+
+ fmt.Println(car1, car2, *car3)
+
+}
+
+```
+
+### Simulación de constructores con structs y apuntadores
+
+Adicionalmente a los tres métodos mostrados anteriormente en Go se puede simular el comportamiento de un constructor usando apuntadores y structs, a continuación se muestra un ejemplo de esto usando de nuevo el struct de car, es importante resaltar que se deben usar apuntadores para retornar la referencia de memoria del nuevo struct, para así poder modificarlo en caso de ser necesario, ya que de otra forma Go tratara los nuevos structs como copias.
+
+```go
+
+type car struct {
+ brand string
+ year  int
+}
+
+func newCar(brand string, year int) *car {
+ return &car{brand: brand, year: year}
+}
+
+func main() {
+
+ // Metodo 4 (simulacion de contructor)
+
+ car4 := newCar("Mazda", 2024)
+
+ fmt.Println(*car4)
+
+}
+
+```
+
+### Composición usando structs
+
+La herencia en los diferentes lenguajes de programación permite que una clase determinada obtenga propiedades y métodos de otra, de esta forma se ahorra código aplicando polimorfismo, en Go se aplica composición, de tal modo que cada struct es independiente de los demás, por lo que para obtener un funcionamiento similar al de la herencia en Go un struct se compone de otros structs, de tal modo que un struct pueda contener otros structs, como por ejemplo, el struct de empleado de tiempo completo contiene dos struct, persona y empleado.
+
+```go
+
+// Instanciamiento del struct persona.
+
+type Person struct {
+ name     string
+ birdYear int
+}
+
+// Intanciamiento del struct empleado.
+
+type Employee struct {
+ id int
+}
+
+// Intanciamiento del struct empleado de tiempo completo.
+
+type FullTimeEmployee struct {
+ Person
+ Employee
+}
+
+func main() {
+
+ // Creacion del objeto de empleado de tiempo completo.
+
+ newFullTimeEmployee := FullTimeEmployee{}
+
+ // Llenando los atributos del empleado.
+
+ newFullTimeEmployee.name = "Jose"
+ newFullTimeEmployee.birdYear = 1998
+ newFullTimeEmployee.id = 14
+
+ // Imprimiendo la estructura del empleado.
+
+ fmt.Println(newFullTimeEmployee)
+
+}
+
+```
+
 <br>
 
 ## Modificadores de acceso
@@ -764,7 +866,7 @@ func main() {
 
 ## Interfaces
 
-Las interfaces permiten usar fácilmente el mismo método cuando varios structs lo comparten, por ejemplo en el caso que se muestra a continuación se ve como usando una interfaz es más sencillo llamar a los métodos de calcular área para un cuadrado y un rectángulo, tomando en cuenta que el cálculo para ambos casos es diferente.
+Las interfaces permiten usar fácilmente el mismo método cuando varios structs lo comparten, por ejemplo en el caso que se muestra a continuación se ve como usando una interfaz es más sencillo llamar a los métodos de calcular área para un cuadrado y un rectángulo, tomando en cuenta que el cálculo para ambos casos es diferente, gracias a las interfaces y a la composición Go consigue un comportamiento polimórfico equivalente al que se puede ver en otros lenguajes como Java o Python.
 
 ```go
 
@@ -899,7 +1001,7 @@ Adicionalmente al usar goroutines Go permite definir funciones anónimas, a cont
 
 ## Canales
 
-Los canales en Go permiten que las goroutines concurrentes se sincronicen y compartan datos, a continuación se muestra un ejemplo de como crear un canal y como ingresar y extraer datos del canal.
+Los canales en Go permiten que las Go routines concurrentes se sincronicen y compartan datos, a continuación se muestra un ejemplo de como crear un canal y como ingresar y extraer datos del canal, algo importante que cabe resaltar es que al extraer un dato de un canal en alguna Go routine, como la que ejecuta main, esta se bloquea hasta que hay un nuevo dato en el canal para ser extraído, de esta forma se logra por ejemplo, que la Go routine de main espera a la Go routine de say.
 
 ```go
 
@@ -1000,6 +1102,8 @@ go get -v -u <paquete>
 
 ```
 
+<br>
+
 ## Modificando módulos con Go
 
 Go posee una interfaz dedicada a la creación y edición de módulos, algunas de las funciones más útiles de esta interfaz se muestran a continuación.
@@ -1049,3 +1153,27 @@ go mod vendor
 go mod tidy
 
 ```
+
+<br>
+
+## Control de errores
+
+Go a diferencia de otros lenguajes de programación no permite la captura de excepciones mediante bloques **try** y **catch** en cambio la captura debe hacerse de forma explícita, lo que hace más difícil la labor de capturar errores, pero da un mayor control sobre el manejo de cada uno de los errores que se puedan presentar durante el runtime de Go, a continuación se muestra un ejemplo sencillo de como capturar un error al realizar un parseo de string a int.
+
+```go
+
+ // Captura del error.
+
+ number, error := strconv.ParseInt("8", 0, 64)
+
+ // Control del error.
+
+ if error != nil {
+  fmt.Println(error)
+ } else {
+  fmt.Println(number)
+ }
+
+```
+
+<br>
