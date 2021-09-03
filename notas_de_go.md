@@ -1177,3 +1177,61 @@ Go a diferencia de otros lenguajes de programación no permite la captura de exc
 ```
 
 <br>
+
+## Funciones variadicas
+
+Las funciones variadicas permiten utilizar como slices los argumentos de funciones de los cuales no se sabe su longitud exacta, de tal modo que la función es capaz de recibir una cantidad indefinida de parámetros, los cuales podrá recorrer como si se trata de un slice, a continuación se muestra un ejemplo de una función variadicas.
+
+```go
+
+// Recibe un slice de valores enteros y devuelve un entero.
+
+func sum(values ...int) int {
+ total := 0
+ for _, num := range values {
+  total += num
+ }
+ return total
+}
+
+func main() {
+
+ // pasando datos a la funcion variadica de suma.
+
+ fmt.Println(sum(3, 5, 7, 10, 25, 4))
+
+}
+
+```
+
+<br>
+
+## Retornos con nombre
+
+Los retornos con nombre permiten definir variables de retorno antes de definir el cuerpo de la función, de tal modo que solo haga falta usar return para devolver las variables de retorno ya definidas, a continuación se muestra un ejemplo sencillo de retornos con nombre.
+
+```go
+
+// Funcion que retorna multiples valores usando retornos con nombre.
+
+func getValues(x int) (double int, triple int, quad int) {
+ double = 2 * x
+ triple = 3 * x
+ quad = 4 * x
+ return
+}
+
+func main() {
+
+ // Imprimiento multiples returns
+ fmt.Println(getValues(5))
+
+ // Capturando multiples returns
+ d, t, q := getValues(5)
+ fmt.Println(d, t, q)
+
+}
+
+```
+
+<br>
